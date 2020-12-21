@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    Liste des salles de classes
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact"><button type="button" class="btn btn-info btn"
+                                                    data-toggle="modal" data-target="#classroom-modal">Ajouter
+                                                    salle de classe</button></div>
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Salle de classe</th>
+                                                            <th>Niveau</th>
+                                                            <th>Abbréviation</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% data.forEach((classroom)=> { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=classroom.classe%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=classroom.mere%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=classroom.abv%>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fas fa-edit to-link"
+                                                                        title="Modifier <%=classroom.classe%>"
+                                                                        onclick="editClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <i class="fas fa-trash to-link h-red"
+                                                                        title="Supprimer <%=classroom.classe%>"
+                                                                        onclick="deleteClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                </td>
+
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <footer class="footer">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
+                                    2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights
+                                    reserved.</span>
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &
+                                    made
+                                    with <i class="far fa-heart text-danger"></i></span>
+                            </div>
+                        </footer>
+                        <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD CLASSROOMS -->
+                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvelle salle de classe</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="classroomForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="Niveau">Niveau</label>
+                                            <select class="form-control" name="Niveau" id="Niveau"
+                                                onchange="autoFill(this)">
+                                                <option>------Choisissez le niveau------</option>
+                                                <% niveau.forEach((classroom)=> { %>
+                                                    <option value="<%=classroom.id%>">
+                                                        <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="classroomName">Nom de la salle de classe</label>
+                                            <input type="text" required name="classroomName" id="classroomName"
+                                                class="form-control" placeholder="Salle de classe">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="abrevClassroomName">Abbréviation du Nom de la salle de
+                                                classe</label>
+                                            <input type="text" required name="abrevClassroomName"
+                                                id="abrevClassroomName" class="form-control" placeholder="Abréviation">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnClassroom' value="Enregistrer"
+                                            class="btn btn-success" id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="classroomID" id="classroomID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //AUTOFILL CLASSNAME ON SELECTED ITEM
+        function autoFill(Niveau) {
+            let classroomName = $("#classroomName");
+            if (Niveau.selectedIndex != 0) {
+                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
+                classroomName.val(generateClassroomName);
+            } else {
+                classroomName.val("");
+            }
+        }
+        //EDIT INFO ABOUT CLASSROOM
+        function editClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
+            $("#modalTitle").html("Modification " + classroomName);
+            $("#Niveau").val(classroomNiveau);
+            $("#classroomName").val(classroomName);
+            $("#abrevClassroomName").val(abrevClassroomName);
+            $("#classroomID").val(classroomID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#classroom-modal").modal();
+        }
+        //DELETE INFO ABOUT CLASSROOM
+        function deleteClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
+            $("#modalTitle").html("Voulez-vous supprimer " + classroomName + " ?");
+            $("#classroomForm").blur();
+            $("#Niveau").val(classroomNiveau);
+            $("#classroomName").val(classroomName);
+            $("#abrevClassroomName").val(abrevClassroomName);
+            $("#classroomID").val(classroomID);
+            $("#actionField").val("Delete");
+            $("#btnClassroom").val("Supprimer");
+            $("#btnClassroom").addClass("btn btn-danger");
+            $("#classroom-modal").modal();
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>
