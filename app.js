@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Allow to submit forms
 app.use(session({ secret: 'St&phani&1987', resave: false, saveUninitialized: false }));
 // External routes
 app.use(require('./routes/classrooms'));
+app.use(require('./routes/courses'));
 app.use(require('./routes/employees'));
 
 

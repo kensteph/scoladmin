@@ -35,7 +35,7 @@ router.post('/classrooms-list', auth, async (req, res) => {
 // git config --global user.name "Kender Romain"
 
 // Classrooms List
-router.get('/classrooms-list', auth, async (req, res) => {
+router.get('/courses-list', auth, async (req, res) => {
     let response = await dbController.listOfClassrooms("All");
     let niveau = await dbController.listOfClassrooms("Mother");
     let msg = "";
@@ -50,7 +50,7 @@ router.get('/classrooms-list', auth, async (req, res) => {
         page: 'Classrooms',
         msg: msg,
     };
-    res.render('../views/classrooms/classrooms-list', params);
+    res.render('../views/courses/courses-list', params);
 });
 
 // Exportation of this router
