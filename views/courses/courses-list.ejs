@@ -44,25 +44,20 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <div id="contact"><button type="button" class="btn btn-info btn"
-                                                    onclick="addClassroom()">Ajouter
-                                                    salle de classe</button></div>
+                                            <div id="contact">
+                                                <button type="button" class="btn btn-success btn"
+                                                    onclick="addClassroom()">Ajouter cours (Matière)</button>
+                                                <button type="button" class="btn btn-info btn" data-toggle="modal"
+                                                    data-target="#courseAss-modal">Assignation de cours</button>
+                                                <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
+                                                    data-target="#filter-modal" aria-hidden="true"></i>
+                                            </div>
                                         </li>
+
                                     </ol>
                                 </nav>
                             </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <select class="form-control">
-                                        <option>-----Classe-----</option>
-                                    </select>
-                                </div>
-                                <div class="col-2">
-                                    <select class="form-control">
-                                        <option>-----Classe-----</option>
-                                    </select>
-                                </div>
-                            </div>
+
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title h-red">
@@ -77,32 +72,37 @@
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Salle de classe</th>
                                                             <th>Niveau</th>
-                                                            <th>Abbréviation</th>
+                                                            <th>Cours(Matière)</th>
+                                                            <th>Code</th>
+                                                            <th>Position sur le bulletin</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% data.forEach((classroom)=> { %>
+                                                        <% coursesList.forEach((course)=> { %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=classroom.classe%>
+                                                                    <%=niveau%>
                                                                 </td>
                                                                 <td>
-                                                                    <%=classroom.mere%>
+                                                                    <%=course.libelle%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=course.code%>
                                                                 </td>
                                                                 <td>
-                                                                    <%=classroom.abv%>
+                                                                    <%=course.poids%>
                                                                 </td>
                                                                 <td>
                                                                     <i class="fas fa-edit to-link"
-                                                                        title="Modifier <%=classroom.classe%>"
-                                                                        onclick="editClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                        title="Modifier <%=course.classe%>"
+                                                                        onclick="editClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i class="fas fa-trash to-link h-red"
-                                                                        title="Supprimer <%=classroom.classe%>"
-                                                                        onclick="deleteClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                        title="Supprimer <%=course.libelle%>"
+                                                                        onclick="deleteClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
                                                                 </td>
 
                                                             </tr>
@@ -131,22 +131,68 @@
                     </div>
                     <!-- main-panel ends -->
 
-                    <!-- ADD CLASSROOMS -->
-                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
+                    <!-- ADD COURSES -->
+                    <div id="course-modal" class="modal fade" role="dialog" data-backdrop="static">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <strong id="modalTitle">Nouvelle salle de classe</strong>
+                                    <strong id="modalTitle">Nouveau cours(Matière)</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
-                                <form id="classroomForm" name="contact" role="form" method="POST">
+                                <form id="courseForm" name="contact" role="form" method="POST">
+
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="Categorie">Categorie</label>
+                                            <select class="form-control" name="Categorie" required id="Categorie"
+                                                onchange="autoFill(this)">
+                                                <option value="0">------Choisissez la catégorie------</option>
+                                                <% courseCategories.forEach((item)=> { %>
+                                                    <option value="<%=item.id%>">
+                                                        <%=item.categorie%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="courseName">Nom du cours (Matière)</label>
+                                            <input type="text" required name="courseName" id="courseName"
+                                                class="form-control" placeholder="Cours (Matière)">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="courseCode">Code du cours (Matière)</label>
+                                            <input type="text" required name="courseCode" id="courseCode"
+                                                class="form-control" placeholder="Code du Cours (Matière)">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnCourse' value="Enregistrer" class="btn btn-success"
+                                            id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="courseID" id="courseID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ASSIGN COURSES -->
+                    <div id="courseAss-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalAssignTitle">Formation de liste de cours</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="assignCoursesForm" name="contact" role="form" method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="Niveau">Niveau</label>
-                                            <select class="form-control" name="Niveau" required id="Niveau"
-                                                onchange="autoFill(this)">
-                                                <option value="0">------Choisissez le niveau------</option>
-                                                <% niveau.forEach((classroom)=> { %>
+                                            <label for="ClassRoom">Salle de classe</label>
+                                            <select class="form-control" name="ClassRoom" required id="ClassRoom">
+                                                <% classrooms.forEach((classroom)=> { %>
                                                     <option value="<%=classroom.id%>">
                                                         <%=classroom.classe%>
                                                     </option>
@@ -154,24 +200,89 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="classroomName">Nom de la salle de classe</label>
-                                            <input type="text" required name="classroomName" id="classroomName"
-                                                class="form-control" placeholder="Salle de classe">
+                                            <label for="coursesList">Liste des cours (Matières)</label>
+                                            <div class="form-inline">
+                                                <select class="form-control w-40" required id="coursesList">
+                                                    <% data.forEach((course)=> { %>
+                                                        <option value="<%=course.id%>">
+                                                            <%=course.libelle%>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                &nbsp;
+                                                <input type="number" class="form-control w-30" min="1"
+                                                    title="coefficient" placeholder="Coefficient" id="coefficient">
+                                                &nbsp;
+                                                <input type="number" class="form-control w-25" min="1"
+                                                    title="Position sur le bulletin" placeholder="Position"
+                                                    id="Position">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Professeur">Professeur</label>
+                                            <select class="form-control" required id="Professeur"
+                                                onchange="autoFill(this)">
+                                                <option value="0">------Choisissez le professeur------</option>
+                                                <% teachersList.forEach((teacher)=> { %>
+                                                    <option value="<%=teacher.id_personne%>">
+                                                        <%=teacher.fullname%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+
                                         </div>
                                         <div class="form-group">
-                                            <label for="abrevClassroomName">Abbréviation du Nom de la salle de
-                                                classe</label>
-                                            <input type="text" required name="abrevClassroomName"
-                                                id="abrevClassroomName" class="form-control" placeholder="Abréviation">
+                                            <i class="fa fa-plus fa-2x to-link" title="Ajouter" onclick="addItem()"></i>
+                                        </div>
+                                        <div class="form-group" id="courseSelected">
+                                            <ol id="csList">
+                                            </ol>
+                                        </div>
 
+
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <input type="submit" id='btnAssignation' value="Enregistrer"
+                                        onclick="assignCourses()" class="btn btn-success" id="submit">
+                                    <input type="hidden" name="actionField" id="actionField">
+                                    <input type="hidden" name="classroomID" id="classroomID">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="Niveau">Salle de classe </label>
+                                            <select class="form-control" name="classRoomId" onchange="autoFill(this)">
+                                                <option value="All">------Choisissez la salle de classe------</option>
+                                                <% classrooms.forEach((classroom)=> { %>
+                                                    <option value="<%=classroom.id%>">
+                                                        <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            <input type="hidden" name="classRoomSelectedNiveau"
+                                                id="classRoomSelectedNiveau">
                                         </div>
 
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="submit" id='btnClassroom' value="Enregistrer"
-                                            class="btn btn-success" id="submit">
-                                        <input type="hidden" name="actionField" id="actionField">
-                                        <input type="hidden" name="classroomID" id="classroomID">
+                                        <input type="submit" id='btnClassroom' value="Continuer"
+                                            class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
                                     </div>
                                 </form>
                             </div>
@@ -195,6 +306,8 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="../../js/data-table.js"></script>
+
+    <script src="../../js/select2.js"></script>
     <!-- End custom js for this page-->
     <script>
         //AUTOFILL CLASSNAME ON SELECTED ITEM
@@ -207,18 +320,19 @@
                 classroomName.val("");
             }
         }
+
+        //========================== ADD COURSE ===============================
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
-            $("#modalTitle").html("Nouvelle salle de classe ");
-            $("#Niveau").val(0);
-            $("#classroomName").val("");
-            $("#abrevClassroomName").val("");
-            $("#classroomID").val("");
+            $("#modalTitle").html("Nouveau cours(Matière) ");
+            $("#courseName").val("");
+            $("#courseCode").val("");
+            $("#courseID").val("");
             $("#actionField").val("Add");
-            $("#btnClassroom").val("Enregistrer");
-            $("#btnClassroom").removeClass();
-            $("#btnClassroom").addClass("btn btn-success");
-            $("#classroom-modal").modal();
+            $("#btnCourse").val("Enregistrer");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
         }
         //EDIT INFO ABOUT CLASSROOM
         function editClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
@@ -247,6 +361,56 @@
             $("#btnClassroom").addClass("btn btn-danger");
             $("#classroom-modal").modal();
         }
+        ///================================== MANAGe SELECTED LIST =============================
+        let Cart = [];
+        function addItem() {
+            let course = $("#coursesList option:selected").text();
+            let courseID = $("#coursesList").val();
+            let coeff = $("#coefficient").val();
+            let position = $("#Position").val();
+            let prof = $("#Professeur").val();
+            let profName = $("#Professeur option:selected").text();
+
+            var ul = $("#csList");
+            task = course + " | " + profName + " | COEFF : " + coeff + " | POS : " + position;
+            let fieldsCoursID = "<input type='hidden' name='Cours[]' value='" + courseID + "' id='Cours" + courseID + "'> ";
+            let fieldsCoeff = "<input type='hidden' name='Coeff[]' value='" + coeff + "' id='Coeff" + courseID + "' >";
+            let fieldsPos = "<input type='hidden' name='Position[]' value='" + position + "' id='Pos" + courseID + "' >";
+            let fieldsProf = "<input type='hidden' name='Prof[]' value='" + prof + "' id='Prof" + courseID + "' >";
+            let remove = "<i class='fa fa-times to-link h-red' onclick='removeItem(" + courseID + ")'></i>"
+            let fields = fieldsCoursID + fieldsCoeff + fieldsPos + fieldsProf + remove;
+            let html = '<li id="li' + courseID + '"><span>' + task + fields + '</span></li>';
+            if (Cart.includes(courseID)) {
+                console.log(courseID + " IS ALREADY IN CART CART : ", Cart);
+                //REMOVE THE LINE AND REPLACE IT BY THE NEW INPUT
+                removeItem(courseID);
+                ul.append(html);
+            } else {
+                Cart.push(courseID);
+                ul.append(html);
+            }
+            console.log("CART : ", Cart);
+
+        }
+
+        function removeItem(courseID) {
+            var li = $("#li" + courseID);
+            li.remove();
+        }
+        //ASSIGN COURSES TO CLASSROOM
+
+        function assignCourses() {
+            let formData = $("#assignCoursesForm").serialize();
+            $.post("/courses-assignation", formData, function (data) {
+                // if (data.success) { //Success 
+                //     $("#notifySignature").html(data.msg);
+                // } else {
+                //     $("#notifySignature").html(data.msg);
+                // }
+            });
+        }
+
+
     </script>
 </body>
 

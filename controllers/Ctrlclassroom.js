@@ -69,6 +69,22 @@ var self = module.exports = {
         return rep;
     },
 
+    //CLASSROOM INFO
+    getclassroom: async function (id) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_classes WHERE id=? ";
+            con.query(sql, [id], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //Load All The classrooms
     listOfClassrooms: async function (classType) {
         let promise = new Promise((resolve, reject) => {
