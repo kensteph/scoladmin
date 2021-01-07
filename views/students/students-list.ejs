@@ -39,16 +39,21 @@
                         <div class="content-wrapper">
                             <div class="page-header">
                                 <h3 class="page-title">
-                                    Liste des salles de classes
+                                    <%=pageTitle%>
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <div id="contact"><button type="button" class="btn btn-info btn"
                                                     onclick="addClassroom()">Ajouter
-                                                    salle de classe</button></div>
+                                                    Etudiant/Eléve</button>
+                                                <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
+                                                    data-target="#filter-modal" aria-hidden="true"></i>
+                                            </div>
+
                                         </li>
                                     </ol>
+
                                 </nav>
                             </div>
                             <div class="card">
@@ -64,32 +69,32 @@
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Salle de classe</th>
-                                                            <th>Niveau</th>
-                                                            <th>Abbréviation</th>
+                                                            <th>Prénom</th>
+                                                            <th>Nom</th>
+                                                            <th>Sexe</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% data.forEach((classroom)=> { %>
+                                                        <% studentList.forEach((Student)=> { %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=classroom.classe%>
+                                                                    <%=Student.prenom%>
                                                                 </td>
                                                                 <td>
-                                                                    <%=classroom.mere%>
+                                                                    <%=Student.nom%>
                                                                 </td>
                                                                 <td>
-                                                                    <%=classroom.abv%>
+                                                                    <%=Student.sexe%>
                                                                 </td>
                                                                 <td>
                                                                     <i class="fas fa-edit to-link"
-                                                                        title="Modifier <%=classroom.classe%>"
-                                                                        onclick="editClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                        title="Modifier <%=Student.fullname%>"
+                                                                        onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>')"></i>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i class="fas fa-trash to-link h-red"
-                                                                        title="Supprimer <%=classroom.classe%>"
-                                                                        onclick="deleteClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
+                                                                        title="Supprimer <%=Student.fullname%>"
+                                                                        onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>')"></i>
                                                                 </td>
 
                                                             </tr>
@@ -109,39 +114,53 @@
                     </div>
                     <!-- main-panel ends -->
 
-                    <!-- ADD CLASSROOMS -->
+                    <!-- ADD STUDENT -->
                     <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <strong id="modalTitle">Nouvelle salle de classe</strong>
+                                    <strong id="modalTitle">Nouvel Etudiant/Elève</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
                                 <form id="classroomForm" name="contact" role="form" method="POST">
                                     <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="Niveau">Niveau</label>
-                                            <select class="form-control" name="Niveau" required id="Niveau"
-                                                onchange="autoFill(this)">
-                                                <option value="0">------Choisissez le niveau------</option>
-                                                <% niveau.forEach((classroom)=> { %>
-                                                    <option value="<%=classroom.id%>">
-                                                        <%=classroom.classe%>
+                                        <label for="ClassRoom">Salle de classe</label><br>
+                                        <div class="form-inline">
+                                            <select class="form-control w-50" name="ClassRoom" required id="ClassRoom">
+                                                <option value="0">------Salle de classe------</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
                                                     </option>
                                                     <% }) %>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="classroomName">Nom de la salle de classe</label>
-                                            <input type="text" required name="classroomName" id="classroomName"
-                                                class="form-control" placeholder="Salle de classe">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="abrevClassroomName">Abbréviation du Nom de la salle de
-                                                classe</label>
-                                            <input type="text" required name="abrevClassroomName"
-                                                id="abrevClassroomName" class="form-control" placeholder="Abréviation">
+                                            &nbsp; &nbsp;
 
+                                            <input type="text" required name="AneAca" id="AneAca" value="2020-2021"
+                                                title="Année Académique" onclick="select()" class="form-control w-25"
+                                                placeholder="Année Académique">
+                                            <input type="hidden" name="Niveau" id="Niveau">
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="Firstname">Prénom</label>
+                                            <input type="text" required name="Firstname" id="Firstname"
+                                                class="form-control" placeholder="Prénom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Lastname">Nom</label>
+                                            <input type="text" required name="Lastname" id="Lastname"
+                                                class="form-control" placeholder="Nom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Sexe">Sexe</label>
+                                            <select class="form-control" name="Sexe" required id="Sexe"
+                                                onchange="autoFill(this)">
+                                                <option value="F">Féminin</option>
+                                                <option value="M">Masculin</option>
+                                            </select>
                                         </div>
 
                                     </div>
@@ -149,7 +168,50 @@
                                         <input type="submit" id='btnClassroom' value="Enregistrer"
                                             class="btn btn-success" id="submit">
                                         <input type="hidden" name="actionField" id="actionField">
-                                        <input type="hidden" name="classroomID" id="classroomID">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <input type="hidden" name="AffectationID" id="AffectationID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="Niveau">Salle de classe </label>
+                                        <div class="form-inline">
+                                            <select class="form-control" name="ClassRoom">
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
                                     </div>
                                 </form>
                             </div>
@@ -187,7 +249,7 @@
         }
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
-            $("#modalTitle").html("Nouvelle salle de classe ");
+            $("#modalTitle").html("Nouvel Etudiant/Elève");
             $("#Niveau").val(0);
             $("#classroomName").val("");
             $("#abrevClassroomName").val("");
@@ -199,12 +261,13 @@
             $("#classroom-modal").modal();
         }
         //EDIT INFO ABOUT CLASSROOM
-        function editClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
-            $("#modalTitle").html("Modification " + classroomName);
-            $("#Niveau").val(classroomNiveau);
-            $("#classroomName").val(classroomName);
-            $("#abrevClassroomName").val(abrevClassroomName);
-            $("#classroomID").val(classroomID);
+        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+            $("#modalTitle").html("Modification " + fullname);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
             $("#actionField").val("Edit");
             $("#btnClassroom").val("Modifier");
             $("#btnClassroom").removeClass();
@@ -212,13 +275,16 @@
             $("#classroom-modal").modal();
         }
         //DELETE INFO ABOUT CLASSROOM
-        function deleteClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
-            $("#modalTitle").html("Voulez-vous supprimer " + classroomName + " ?");
-            $("#classroomForm").blur();
-            $("#Niveau").val(classroomNiveau);
-            $("#classroomName").val(classroomName);
-            $("#abrevClassroomName").val(abrevClassroomName);
-            $("#classroomID").val(classroomID);
+        function deleted(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+            $("#modalTitle").html("Voulez-vous supprimer " + fullname + " ?");
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
             $("#actionField").val("Delete");
             $("#btnClassroom").val("Supprimer");
             $("#btnClassroom").removeClass();

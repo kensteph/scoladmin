@@ -81,22 +81,22 @@ var self = module.exports = {
         return rep;
     },
 
-    //Save Modalites paiement
+    //EDIT COURSE'S SYSTEM
     editCourse: async function (req) {
         let promise = new Promise((resolve, reject) => {
-            let mother = req.body.Niveau;
-            let classroomName = req.body.classroomName;
-            let classroomID = req.body.classroomID;
-            let abrevClassroomName = req.body.abrevClassroomName;
+            let courseID = req.body.courseID;
+            let courseName = req.body.courseName;
+            let courseCode = req.body.courseCode;
+            let Categorie = req.body.Categorie;
             let sql =
-                'UPDATE tb_classes SET mere=?, classe =?, abv=? WHERE id=?';
+                'UPDATE tb_cours SET libelle=?, code =?, categorie=? WHERE id=?';
             // console.log(sql);
-            con.query(sql, [mother, classroomName, abrevClassroomName, classroomID], function (err, result) {
+            con.query(sql, [courseName, courseCode, Categorie, courseID], function (err, result) {
                 if (err) {
                     msg = {
                         type: "danger",
                         msg:
-                            "<font color='red'><strong>Vous avez déja attribué ces paramètres.</strong></font>",
+                            "Vous avez déja ajouté",
                         debug: err
                     };
                 } else {
@@ -104,7 +104,46 @@ var self = module.exports = {
                         type: "success",
                         success: true,
                         msg:
-                            "<font color='green'><strong> " + classroomName + " modifié avec succès...</strong></font>",
+                            courseName + " modifié avec succès...",
+                        nb_success: result.affectedRows,
+                    };
+                }
+
+                resolve(msg);
+                //console.log(msg);
+            });
+        });
+        rep = await promise;
+        return rep;
+    },
+
+    //EDIT COURSE'S ASSIGNMENT
+    editCourseAssignment: async function (req) {
+        let promise = new Promise((resolve, reject) => {
+            let assignmentID = req.body.assignmentID;
+            let courseID = req.body.EditCourse;
+            let ClassRoom = req.body.ClassRoom;
+            let Coeff = req.body.EditCoeff;
+            let Position = req.body.EditPos;
+            let Professeur = req.body.EditProf;
+
+            let sql =
+                'UPDATE tb_cours_par_classe SET id_cours=?, salle_classe =?, professeur=?,coefficient=?,position=? WHERE id=?';
+            // console.log(sql);
+            con.query(sql, [courseID, ClassRoom, Professeur, Coeff, Position, assignmentID], function (err, result) {
+                if (err) {
+                    msg = {
+                        type: "danger",
+                        msg:
+                            "Une erreur est survenue.Veuillez réessayez.",
+                        debug: err
+                    };
+                } else {
+                    msg = {
+                        type: "success",
+                        success: true,
+                        msg:
+                            "Assignation modifiée avec succès.",
                         nb_success: result.affectedRows,
                     };
                 }
@@ -141,12 +180,30 @@ var self = module.exports = {
     //Load All The courese BY CLASSROOM
     listOfCoursesByClassroom: async function (classRoom) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT * FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? ORDER BY libelle ";
+            let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? ORDER BY libelle ";
+            // console.log(sql);
             con.query(sql, [classRoom], function (err, rows) {
                 if (err) {
                     throw err;
                 } else {
                     resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //Load All The courese BY CLASSROOM
+    courseInfoById: async function (courseID) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND id_cours=? ORDER BY libelle ";
+            // console.log(sql);
+            con.query(sql, courseID, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
                 }
             });
         });

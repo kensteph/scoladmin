@@ -39,7 +39,7 @@
                         <div class="content-wrapper">
                             <div class="page-header">
                                 <h3 class="page-title">
-                                    Gestion des cours
+                                    <%=pageTitle%>
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -47,8 +47,8 @@
                                             <div id="contact">
                                                 <button type="button" class="btn btn-success btn"
                                                     onclick="addClassroom()">Ajouter cours (Matière)</button>
-                                                <button type="button" class="btn btn-info btn" data-toggle="modal"
-                                                    data-target="#courseAss-modal">Assignation de cours</button>
+                                                <button type="button" class="btn btn-info btn"
+                                                    onclick="assignCoursesModal()">Assignation de cours</button>
                                                 <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
                                                     data-target="#filter-modal" aria-hidden="true"></i>
                                             </div>
@@ -93,16 +93,23 @@
                                                                     <%=course.code%>
                                                                 </td>
                                                                 <td>
-                                                                    <%=course.poids%>
+                                                                    <%=course.position%>
                                                                 </td>
                                                                 <td>
-                                                                    <i class="fas fa-edit to-link"
-                                                                        title="Modifier <%=course.classe%>"
-                                                                        onclick="editClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
-                                                                    &nbsp;&nbsp;&nbsp;
-                                                                    <i class="fas fa-trash to-link h-red"
-                                                                        title="Supprimer <%=course.libelle%>"
-                                                                        onclick="deleteClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
+                                                                    <% if(niveau==0){ %>
+                                                                        <i class="fas fa-edit to-link"
+                                                                            title="Modifier <%=course.classe%>"
+                                                                            onclick="editCourse('<%=course.id%>','<%=course.categorie%>','<%=course.code%>','<%=course.libelle%>')"></i>
+                                                                        &nbsp;&nbsp;&nbsp;
+                                                                        <% }else{ %>
+                                                                            <i class="fas fa-edit to-link"
+                                                                                title="Modifier A <%=course.classe%>"
+                                                                                onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>')"></i>
+                                                                            &nbsp;&nbsp;&nbsp;
+                                                                            <% } %>
+                                                                                <i class="fas fa-trash to-link h-red"
+                                                                                    title="Supprimer <%=course.libelle%>"
+                                                                                    onclick="deleteClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
                                                                 </td>
 
                                                             </tr>
@@ -117,17 +124,8 @@
                         </div>
                         <!-- content-wrapper ends -->
                         <!-- partial:../../partials/_footer.html -->
-                        <footer class="footer">
-                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
-                                    2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights
-                                    reserved.</span>
-                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &
-                                    made
-                                    with <i class="far fa-heart text-danger"></i></span>
-                            </div>
-                        </footer>
-                        <!-- partial -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
                     </div>
                     <!-- main-panel ends -->
 
@@ -184,14 +182,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <strong id="modalAssignTitle">Formation de liste de cours</strong>
+                                    <strong id="modalTitleAssigment">Formation de liste de cours</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
                                 <form id="assignCoursesForm" name="contact" role="form" method="POST">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="ClassRoom">Salle de classe</label>
-                                            <select class="form-control" name="ClassRoom" required id="ClassRoom">
+                                            <select class="form-control" name="ClassRoom" required id="ClassRoom"
+                                                name="EditClassRoom">
                                                 <% classrooms.forEach((classroom)=> { %>
                                                     <option value="<%=classroom.id%>">
                                                         <%=classroom.classe%>
@@ -202,7 +201,8 @@
                                         <div class="form-group">
                                             <label for="coursesList">Liste des cours (Matières)</label>
                                             <div class="form-inline">
-                                                <select class="form-control w-40" required id="coursesList">
+                                                <select class="form-control w-40" required id="coursesList"
+                                                    name="EditCourse">
                                                     <% data.forEach((course)=> { %>
                                                         <option value="<%=course.id%>">
                                                             <%=course.libelle%>
@@ -211,19 +211,20 @@
                                                 </select>
                                                 &nbsp;
                                                 <input type="number" class="form-control w-30" min="1"
-                                                    title="coefficient" placeholder="Coefficient" id="coefficient">
+                                                    title="coefficient" placeholder="Coefficient" id="coefficient"
+                                                    name="EditCoeff">
                                                 &nbsp;
                                                 <input type="number" class="form-control w-25" min="1"
                                                     title="Position sur le bulletin" placeholder="Position"
-                                                    id="Position">
+                                                    id="Position" name="EditPos">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="Professeur">Professeur</label>
-                                            <select class="form-control" required id="Professeur"
+                                            <select class="form-control" required id="Professeur" name="EditProf"
                                                 onchange="autoFill(this)">
-                                                <option value="0">------Choisissez le professeur------</option>
+                                                <option value="0">Choisissez le professeur</option>
                                                 <% teachersList.forEach((teacher)=> { %>
                                                     <option value="<%=teacher.id_personne%>">
                                                         <%=teacher.fullname%>
@@ -233,21 +234,25 @@
 
                                         </div>
                                         <div class="form-group">
-                                            <i class="fa fa-plus fa-2x to-link" title="Ajouter" onclick="addItem()"></i>
+                                            <i class="fa fa-plus fa-2x to-link" title="Ajouter" id="btnAddItem"
+                                                onclick="addItem()"></i>
                                         </div>
-                                        <div class="form-group" id="courseSelected">
+                                        <div class="form-group" id="courseSelected" align="center">
+                                            <strong>SELECTION</strong>
                                             <ol id="csList">
                                             </ol>
                                         </div>
 
 
                                     </div>
+                                    <input type="hidden" name="actionField" id="actionFieldAsignment">
+                                    <input type="hidden" name="assignmentID" id="assignmentID">
                                 </form>
                                 <div class="modal-footer">
                                     <input type="submit" id='btnAssignation' value="Enregistrer"
                                         onclick="assignCourses()" class="btn btn-success" id="submit">
-                                    <input type="hidden" name="actionField" id="actionField">
-                                    <input type="hidden" name="classroomID" id="classroomID">
+
+
                                 </div>
 
                             </div>
@@ -280,8 +285,7 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="submit" id='btnClassroom' value="Continuer"
-                                            class="btn btn-success">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
                                         <input type="hidden" name="actionField" value="Filter" id="actionField">
                                     </div>
                                 </form>
@@ -322,7 +326,6 @@
         }
 
         //========================== ADD COURSE ===============================
-        //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
             $("#modalTitle").html("Nouveau cours(Matière) ");
             $("#courseName").val("");
@@ -334,20 +337,56 @@
             $("#btnCourse").addClass("btn btn-success");
             $("#course-modal").modal();
         }
-        //EDIT INFO ABOUT CLASSROOM
-        function editClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
-            $("#modalTitle").html("Modification " + classroomName);
-            $("#Niveau").val(classroomNiveau);
-            $("#classroomName").val(classroomName);
-            $("#abrevClassroomName").val(abrevClassroomName);
-            $("#classroomID").val(classroomID);
+        //EDIT INFO ABOUT COURSE
+        function editCourse(courseID, courseCategorie, courseCode, courseName) {
+            $("#modalTitle").html("Modification " + courseName);
+            $("#courseName").val(courseName);
+            $("#Categorie").val(courseCategorie).change();
+            $("#courseID").val(courseID);
+            $("#courseCode").val(courseCode);
             $("#actionField").val("Edit");
-            $("#btnClassroom").val("Modifier");
-            $("#btnClassroom").removeClass();
-            $("#btnClassroom").addClass("btn btn-success");
-            $("#classroom-modal").modal();
+            $("#btnCourse").val("Modifier");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
         }
-        //DELETE INFO ABOUT CLASSROOM
+
+        //ASSIGNMENT
+        function assignCoursesModal() {
+            $("#modalTitleAssigment").html("Formation de liste de cours ");
+            $("#btnAddItem").show();
+            $("#courseSelected").show();
+            $("#assignmentID").val(0)
+            $("#courseID").val(0);
+            $("#coefficient").val(20);
+            $("#Position").val(1);
+            $("#Professeur").val(0);
+            $("#actionFieldAsignment").val("Add");
+            $("#btnAssignation").val("Enregistrer");
+            $("#btnAssignation").removeClass();
+            $("#btnAssignation").addClass("btn btn-success");
+            $("#courseAss-modal").modal();
+        }
+        //EDIT INFO ABOUT COURSE
+        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur) {
+            $("#csList").empty();
+            $("#btnAddItem").hide();
+            $("#courseSelected").hide();
+            $("#modalTitleAssigment").html("Modification de l'assignation : " + courseName.toUpperCase());
+            $("#assignmentID").val(assignmentID);
+            $("#ClassRoom").val(classroomID).change();
+            $("#coursesList").val(courseID).change();
+            $("#courseID").val(courseID);
+            $("#coefficient").val(coeff);
+            $("#Position").val(position);
+            $("#Professeur").val(professeur);
+            $("#actionFieldAsignment").val("Edit");
+            $("#btnAssignation").val("Modifier");
+            $("#btnAssignation").removeClass();
+            $("#btnAssignation").addClass("btn btn-success");
+            $("#courseAss-modal").modal();
+        }
+        //DELETE INFO ABOUT COURSE
         function deleteClassroom(classroomID, classroomNiveau, classroomName, abrevClassroomName) {
             $("#modalTitle").html("Voulez-vous supprimer " + classroomName + " ?");
             $("#classroomForm").blur();
@@ -371,7 +410,7 @@
             let prof = $("#Professeur").val();
             let profName = $("#Professeur option:selected").text();
 
-            var ul = $("#csList");
+            let ul = $("#csList");
             task = course + " | " + profName + " | COEFF : " + coeff + " | POS : " + position;
             let fieldsCoursID = "<input type='hidden' name='Cours[]' value='" + courseID + "' id='Cours" + courseID + "'> ";
             let fieldsCoeff = "<input type='hidden' name='Coeff[]' value='" + coeff + "' id='Coeff" + courseID + "' >";
@@ -400,14 +439,20 @@
         //ASSIGN COURSES TO CLASSROOM
 
         function assignCourses() {
-            let formData = $("#assignCoursesForm").serialize();
-            $.post("/courses-assignation", formData, function (data) {
-                // if (data.success) { //Success 
-                //     $("#notifySignature").html(data.msg);
-                // } else {
-                //     $("#notifySignature").html(data.msg);
-                // }
-            });
+            let ul = $("#csList");
+            if ($("#csList li").length > 0 || $("#actionFieldAsignment").val() == "Edit") {
+                let formData = $("#assignCoursesForm").serialize();
+                $.post("/courses-assignation", formData, function (data) {
+                    // if (data.success) { //Success 
+                    //     $("#notifySignature").html(data.msg);
+                    // } else {
+                    //     $("#notifySignature").html(data.msg);
+                    // }
+                });
+            } else {
+                alert("Vous devez selectionner les cours (matiéres)...");
+            }
+
         }
 
 

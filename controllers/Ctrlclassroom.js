@@ -85,6 +85,23 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+
+    //ALL ACADEMIC YEAR
+    getAcademicYear: async function () {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT DISTINCT(aneaca) FROM tb_affectation ORDER BY aneaca ";
+            con.query(sql, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //Load All The classrooms
     listOfClassrooms: async function (classType) {
         let promise = new Promise((resolve, reject) => {
@@ -92,7 +109,7 @@ var self = module.exports = {
             if (classType == "Mother") {
                 sql = "SELECT * FROM tb_classes WHERE mere=0 ORDER BY id ";
             } else {
-                sql = "SELECT * FROM tb_classes WHERE mere!=0 ORDER BY id ";
+                sql = "SELECT * FROM tb_classes WHERE mere!=0 ORDER BY mere ";
             }
             con.query(sql, function (err, rows) {
                 if (err) {

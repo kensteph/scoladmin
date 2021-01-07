@@ -19,6 +19,8 @@ app.use(session({ secret: 'St&phani&1987', resave: false, saveUninitialized: fal
 // External routes
 app.use(require('./routes/classrooms'));
 app.use(require('./routes/courses'));
+app.use(require('./routes/students'));
+app.use(require('./routes/notes'));
 app.use(require('./routes/employees'));
 
 
@@ -36,6 +38,7 @@ app.post('/login', async (req, res) => {
     //USER'S ACCESSS
     let userAccess = ["Employee-list"];
     req.session.userData = { userName: username, userAccess: userAccess };
+    req.session.modEvaluation = "E4";
     res.render('index');
 });
 
