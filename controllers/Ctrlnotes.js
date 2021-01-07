@@ -171,28 +171,41 @@ var self = module.exports = {
     },
     //======================================================== NOTES===========================
     //ASSING COURSE TO CLASSROOM
-    assignCourse: async function (req) {
+    saveNotes: async function (req) {
         let promise = new Promise((resolve, reject) => {
-            let id_cours = req.body.Cours;
-            let salle_classe = req.body.ClassRoom;
-            let professeur = req.body.Prof;
-            let coefficient = req.body.Coeff;
-            let position = req.body.Position;
+            let students = req.body.studentId;
+            let course = req.body.courseId;
+            let notes = req.body.note;
+            let courseCoeff = req.body.courseCoeff;
+            let period = req.body.period;
+            let niveauSelected = req.body.niveauSelected;
+            let yearAca = req.body.yearAca;
+            let abscence = req.body.abscence;
+            let methodEvaluationCode = req.body.methodEvaluationCode
 
             //VALUES foR BULK INSERTION
             let finalValues = [];
-            for (i = 0; i < id_cours.length; i++) {
-                let value = [];
-                value.push(id_cours[i]);
-                value.push(salle_classe);
-                value.push(professeur[i]);
-                value.push(coefficient[i]);
-                value.push(position[i]);
-                finalValues.push(value);
+            for (i = 0; i < students.length; i++) {
+                if (notes[i] != "") {
+                    let value = [];
+                    value.push(students[i]);
+                    value.push(course);
+                    value.push(notes[i]);
+                    value.push(period);
+                    value.push(niveauSelected);
+                    value.push(yearAca);
+                    value.push(abscence[i]);
+                    value.push(courseCoeff);
+                    value.push(methodEvaluationCode);
+                    finalValues.push(value);
+                } else {
+
+                }
+
             }
             console.log("VALUES : ", finalValues);
             let sql =
-                'INSERT INTO tb_cours_par_classe (id_cours,salle_classe,professeur,coefficient,position) VALUES ? ';
+                'INSERT INTO tb_notes (etudiant,cours,note,periode,niveau,aneaca,tag,sur,mode_evaluation) VALUES ? ';
             con.query(sql, [finalValues], function (err, result) {
                 if (err) {
                     msg = {
@@ -206,7 +219,7 @@ var self = module.exports = {
                     msg = {
                         type: "success",
                         msg:
-                            " Assignation effectuée avec succès.",
+                            " Notes enregistrées  avec succès.",
                     };
                 }
 

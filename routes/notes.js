@@ -140,6 +140,7 @@ router.get('/save-notes', auth, async (req, res) => {
     let aneacaList = await dbClassroomController.getAcademicYear();
     let yearSelected = "2020-2021"; //CURRENT YEAR
     let roomSelected;
+    let niveauSelected;
     let CourseSelectedId;
     let periodSelected;
     let infoCourse = [];
@@ -161,6 +162,7 @@ router.get('/save-notes', auth, async (req, res) => {
         studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
         //GET INFO ABOUT THE CLASSROOM
         let info = await dbClassroomController.getclassroom(roomSelected);
+        niveauSelected = info.mere;
         //GET INFO ABOUT THE COURSE
         infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId);
         console.log("COURSE INFO :", infoCourse);
@@ -179,6 +181,7 @@ router.get('/save-notes', auth, async (req, res) => {
         UserData: req.session.UserData,
         yearSelected: yearSelected,
         roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
         page: 'Notes',
         msg: msg,
     };
@@ -187,12 +190,11 @@ router.get('/save-notes', auth, async (req, res) => {
 
 //SAVE NOTES TO DB
 router.post('/save-notes-db', auth, async (req, res) => {
-    req.body.methodEvaluationCode=req.session.modEvaluation;
+    req.body.methodEvaluationCode = req.session.modEvaluation;
     console.log(req.body);
-    // let classRoomId = req.body.classRoomId;
-    // let coursesList = await dbCoursesController.listOfCoursesByClassroom(classRoomId);
-    // console.log("COURSES : ", coursesList);
-    //res.json(coursesList);
+    let response = await dbController.saveNotes(req);
+    console.log(response);
+    res.json(response);
 });
 
 
