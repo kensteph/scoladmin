@@ -83,7 +83,11 @@
                                                         <% coursesList.forEach((course)=> { %>
                                                             <tr>
                                                                 <td>
+                                                                    <% if(niveau!=0){ %>
                                                                     <%=niveau%>
+                                                                    <%}else{%>
+                                                                        Système
+                                                                    <%}%>
                                                                 </td>
                                                                 <td>
                                                                     <%=course.libelle%>

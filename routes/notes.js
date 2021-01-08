@@ -8,6 +8,7 @@ const dbController = require("../controllers/Ctrlnotes");
 const dbClassroomController = require("../controllers/Ctrlclassroom");
 const dbStudentController = require("../controllers/Ctrlstudent");
 const dbCoursesController = require("../controllers/Ctrlcourses");
+const helper = require("../helpers/helper");
 // PERIODES List
 router.get('/periode-list', auth, async (req, res) => {
     let modeEvaluation = await dbController.listOfModeEvaluation();
@@ -144,7 +145,7 @@ router.get('/save-notes', auth, async (req, res) => {
     let CourseSelectedId;
     let periodSelected;
     let infoCourse = [];
-    console.log(req.body);
+    //console.log(req.body);
     let pageTitle = "Gestion des notes";
     // console.log("ANE ACA : ", aneacaList);
     let msg = "";
@@ -161,14 +162,14 @@ router.get('/save-notes', auth, async (req, res) => {
         let info = await dbClassroomController.getclassroom(roomSelected);
         niveauSelected = info.mere;
         //GET INFO ABOUT THE COURSE
-        infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId);
+        infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId, roomSelected);
         //COURSES LIST
         coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
         studentList = await dbController.listOfStudentWithoutNotes(roomSelected, CourseSelectedId, niveauSelected, periodSelected, yearSelected);
 
         pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
     }
-    //console.log("STUDENTS : ", studentList);
+    console.log("COURSE : ", infoCourse);
     params = {
         pageTitle: pageTitle,
         data: response,
@@ -194,7 +195,25 @@ router.post('/save-notes-db', auth, async (req, res) => {
     console.log(req.body);
     let response = await dbController.saveNotes(req);
     console.log(response);
-    res.json(response);
+    let ClassRoom = req.body.roomSelected;
+    let AneAca = req.body.yearAca;
+    let CourseSelectedId = req.body.courseId;
+    let period = req.body.period;
+    res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period);
+    //res.json(response);
+});
+//SAVE OR EDIT SINGLE NOTE TO DB
+router.post('/save-edit-notes-db', auth, async (req, res) => {
+    req.body.methodEvaluationCode = req.session.modEvaluation;
+    console.log(req.body);
+    // let response = await dbController.saveNotes(req);
+    // console.log(response);
+    // let ClassRoom = req.body.roomSelected;
+    // let AneAca = req.body.yearAca;
+    // let CourseSelectedId = req.body.courseId;
+    // let period = req.body.period;
+    // res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period);
+    //res.json(response);
 });
 
 //PALMARES
@@ -211,6 +230,7 @@ router.get('/palmares-notes', auth, async (req, res) => {
     let CourseSelectedId;
     let periodSelected;
     let infoCourse = [];
+    let listNotes = [];
     console.log(req.body);
     let pageTitle = "Palmarès ";
     // console.log("ANE ACA : ", aneacaList);
@@ -231,7 +251,7 @@ router.get('/palmares-notes', auth, async (req, res) => {
         let info = await dbClassroomController.getclassroom(roomSelected);
         niveauSelected = info.mere;
         //GET INFO ABOUT THE COURSE
-        infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId);
+        infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId, roomSelected);
         //console.log("COURSE INFO :", infoCourse);
         pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
     }
@@ -245,6 +265,7 @@ router.get('/palmares-notes', auth, async (req, res) => {
         coursesList: coursesList,
         infoCourse: infoCourse,
         aneacaList: aneacaList,
+        listNotes,
         UserData: req.session.UserData,
         yearSelected: yearSelected,
         roomSelected: roomSelected,
@@ -279,8 +300,10 @@ router.post('/palmares-notes', auth, async (req, res) => {
     let palmares = [];
     let Total = [];
     let Moyennes = [];
+    let listNotes = [];
     for (i = 0; i < studentList.length; i++) {
         let student = studentList[i];
+        let StudentId = student.id_personne;
         let line = [];
         let sumNote = 0;
         //line.push(student.fullname);
@@ -299,15 +322,18 @@ router.post('/palmares-notes', auth, async (req, res) => {
                 //console.log(Course.libelle, " : ", "");
             }
         }
+
         Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
         palmares.push(line);
         Total.push(sumNote);
         Moyennes.push(Moyenne);
+        let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, Total: sumNote, Sur: CoeffTotal, Moyenne };
+        listNotes.push(obj);
     }
+    listNotes.sort(helper.compareValues('Moyenne', 'desc'));
+    console.log("PALMAES : ", listNotes);
 
-    console.log("PALMAES : ", palmares);
-
-    let pageTitle = "Palmarès " + info.classe + " " + periodSelected + " " + yearSelected;
+    let pageTitle = "Palmarès " + info.classe + " | " + periodSelected + " " + yearSelected;
 
     //let palmares = await dbController.palmares(roomSelected, yearSelected, periodSelected);
 
@@ -318,6 +344,7 @@ router.post('/palmares-notes', auth, async (req, res) => {
         Moyennes,
         Total,
         CoeffTotal,
+        listNotes,
         periodList: periodList,
         periodSelected: periodSelected,
         studentList: studentList,

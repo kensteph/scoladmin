@@ -69,36 +69,46 @@
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
+                                                            <th>Place</th>
                                                             <th>Elèves/Etudiants</th>
                                                             <% coursesList.forEach((courses)=> { %>
                                                                 <th title="<%=courses.libelle%>">
                                                                     <%=courses.code%>
                                                                 </th>
-                                                            <% }) %>
-                                                            <th>TOT</th>
-                                                            <th>SUR</th>
-                                                            <th>MOY</th>
+                                                                <% }) %>
+                                                                    <th>TOT</th>
+                                                                    <th>SUR</th>
+                                                                    <th>MOY</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
 
-                                                        <% pos= 0; studentList.forEach((Student)=> { 
-                                                            notesStudent = Notes[pos];
-                                                            moyenne = Moyennes[pos];
-                                                            total = Total[pos];
-                                                        %>
+                                                        <% pos=0; listNotes.forEach((line)=> {
+                                                            notesStudent = line.Notes;
+                                                            %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=Student.nom+" "+Student.prenom%>
+                                                                    <%=pos+1%>
                                                                 </td>
-                                                                <% pos_note= 0; coursesList.forEach((courses)=> { %>
-                                                                    <td title=" <%=courses.libelle%>">
+                                                                <td>
+                                                                    <%=line.Student%>
+                                                                </td>
+                                                                <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                                                    <td title=" <%=courses.libelle%>"
+                                                                        onclick="editOrAddNote('<%=line.Student%>','<%=line.StudentId%>','<%=courses.id_cours%>','<%=courses.libelle%>','<%= notesStudent[pos_note] %>','<%=courses.coefficient%>')"
+                                                                        class="to-link">
                                                                         <%= notesStudent[pos_note] %>
-                                                                </td>
-                                                                <% pos_note++; }) %>
-                                                            <td><strong> <%=total%> </strong></td>
-                                                            <td><strong class="h-red"><%=CoeffTotal%> </strong> </td>
-                                                            <td><strong><i><%=moyenne%></i></strong></td>
+                                                                    </td>
+                                                                    <% pos_note++; }) %>
+                                                                        <td><strong>
+                                                                                <%=line.Total%>
+                                                                            </strong></td>
+                                                                        <td><strong class="h-red">
+                                                                                <%=CoeffTotal%>
+                                                                            </strong> </td>
+                                                                        <td><strong><i>
+                                                                                    <%=line.Moyenne%>
+                                                                                </i></strong></td>
 
                                                             </tr>
                                                             <% pos++; }) %>
@@ -174,6 +184,38 @@
                         </div>
                     </div>
 
+                    <!-- EITD OR ADD NOTE -->
+                    <div id="editNote-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalEditTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="EditNoteForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            <strong for="Cours" id="courseSelected">Cours/Matière </strong>
+                                            &nbsp;
+                                            <input type="number" class="form-control w-25" min="0" name="note"
+                                                id="note">
+                                            &nbsp;&nbsp;
+                                            <a type="submit" id="btnSaveNote" class="btn btn-success"
+                                                onclick="saveEditNote()"></a>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="hidden" name="studentId" id="studentId">
+                                        <input type="hidden" name="courseId" id="courseId">
+                                        <input type="hidden" name="coefficient" id="coefficient">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionFieldEdit">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
             </div>
             <!-- page-body-wrapper ends -->
     </div>
@@ -214,7 +256,6 @@
         }
         //SAVE NOTES TO DB
         function saveNotes() {
-
             let formData = $("#noteForm").serialize();
             $.post("/save-notes-db", formData, function (data) {
                 // if (data.success) { //Success 
@@ -223,10 +264,37 @@
                 //     $("#notifySignature").html(data.msg);
                 // }
             });
-
         }
 
-
+        //EDIT OR ADD NOTE MODAL
+        function editOrAddNote(student, studentID, courseID, courseName, note, coef) {
+            $("#modalEditTitle").html(student.toUpperCase());
+            $("#courseSelected").html(courseName);
+            let btntxt = "Enregistrer";
+            $("#studentId").val(studentID);
+            $("#courseId").val(courseID);
+            $("#coefficient").val(coef);
+            $("#note").val(note);
+            $("#note").attr("max", coef);
+            $("#note").attr("placeholder", coef);
+            if (note != "") {
+                btntxt = "Modifier";
+            }
+            $("#actionFieldEdit").val(btntxt);
+            $("#btnSaveNote").html(btntxt);
+            $("#editNote-modal").modal();
+        }
+        //SAVE OR EDIT SINGLE NOTE
+        function saveEditNote() {
+            let formData = $("#EditNoteForm").serialize();
+            $.post("/save-edit-notes-db", formData, function (data) {
+                // if (data.success) { //Success 
+                //     $("#notifySignature").html(data.msg);
+                // } else {
+                //     $("#notifySignature").html(data.msg);
+                // }
+            });
+        }
     </script>
 </body>
 

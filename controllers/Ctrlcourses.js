@@ -181,7 +181,7 @@ var self = module.exports = {
     listOfCoursesByClassroom: async function (classRoom) {
         let promise = new Promise((resolve, reject) => {
             let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? ORDER BY libelle ";
-            // console.log(sql);
+            //console.log(sql);
             con.query(sql, [classRoom], function (err, rows) {
                 if (err) {
                     throw err;
@@ -195,11 +195,11 @@ var self = module.exports = {
         return data;
     },
     //Load All The courese BY CLASSROOM
-    courseInfoById: async function (courseID) {
+    courseInfoById: async function (courseID,classRoomId) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND id_cours=? ORDER BY libelle ";
-            // console.log(sql);
-            con.query(sql, courseID, function (err, rows) {
+            let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND id_cours=? AND salle_classe=? ORDER BY libelle ";
+            console.log(sql);
+            con.query(sql, [courseID,classRoomId], function (err, rows) {
                 if (err) {
                     throw err;
                 } else {

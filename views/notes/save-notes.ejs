@@ -68,6 +68,7 @@
                                         <input type="hidden" name="yearAca" value="<%=yearSelected%>">
                                         <input type="hidden" name="period" value="<%=periodSelected%>">
                                         <input type="hidden" name="niveauSelected" value="<%=niveauSelected%>">
+                                        <input type="hidden" name="roomSelected" value="<%=roomSelected%>">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="table-responsive table-striped">
@@ -88,7 +89,7 @@
                                                                     </td>
                                                                     <td>
                                                                         <input type="number" name="note[]"
-                                                                            class="form-control w-30"
+                                                                            class="form-control w-40"
                                                                             max="<%=infoCourse.coefficient%>" min="0"
                                                                             placeholder="<%=infoCourse.coefficient%>">
                                                                             <input type="hidden" name="studentId[]"
@@ -141,6 +142,7 @@
                             <div class="form-inline">
                                 <select class="form-control w-35" name="ClassRoom" id="ClassRoom"
                                     onchange="populateCoursesList()">
+                                    <option></option>
                                     <% data.forEach((classroom)=> { %>
                                         <option <% if(roomSelected==classroom.id){ %> selected <% } %>
                                                 value="<%=classroom.id%>">
