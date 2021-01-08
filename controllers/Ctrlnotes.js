@@ -1,4 +1,5 @@
 const con = require('./database');
+const dbStudentController = require("./Ctrlstudent");
 var self = module.exports = {
     //============================MANAGE MODE & PERIODE EVALUATION ================================
     //ADD NEW METHOD
@@ -170,7 +171,24 @@ var self = module.exports = {
         return data;
     },
     //======================================================== NOTES===========================
-    //ASSING COURSE TO CLASSROOM
+    //Load All The classrooms
+    listOfStudentWithoutNotes: async function (classroom, courseId, niveau, period, aneaca) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? AND id_personne NOT IN ( SELECT etudiant FROM tb_notes WHERE niveau=? AND periode=? AND aneaca=? AND cours=?) ORDER BY nom,prenom";
+            //console.log(sql);
+            con.query(sql, [classroom, aneaca, niveau, period, aneaca, courseId], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //SAVE NOTES
     saveNotes: async function (req) {
         let promise = new Promise((resolve, reject) => {
             let students = req.body.studentId;
@@ -204,31 +222,94 @@ var self = module.exports = {
 
             }
             console.log("VALUES : ", finalValues);
-            let sql =
-                'INSERT INTO tb_notes (etudiant,cours,note,periode,niveau,aneaca,tag,sur,mode_evaluation) VALUES ? ';
-            con.query(sql, [finalValues], function (err, result) {
-                if (err) {
-                    msg = {
-                        type: "danger",
-                        error: true,
-                        msg:
-                            " Vous avez déja ajouté ",
-                        debug: err
-                    };
-                } else {
-                    msg = {
-                        type: "success",
-                        msg:
-                            " Notes enregistrées  avec succès.",
-                    };
-                }
+            if (finalValues.length > 0) {
+                let sql =
+                    'INSERT INTO tb_notes (etudiant,cours,note,periode,niveau,aneaca,tag,sur,mode_evaluation) VALUES ? ';
+                con.query(sql, [finalValues], function (err, result) {
+                    if (err) {
+                        msg = {
+                            type: "danger",
+                            error: true,
+                            msg:
+                                " Vous avez déja ajouté ",
+                            debug: err
+                        };
+                    } else {
+                        msg = {
+                            type: "success",
+                            msg:
+                                " Notes enregistrées  avec succès.",
+                        };
+                    }
 
+                    resolve(msg);
+                    //console.log(msg);
+                });
+            } else {
+                msg = {
+                    type: "danger",
+                    error: true,
+                    msg:
+                        " Aucune note n'a été enregistrée.... ",
+                    debug: err
+                };
                 resolve(msg);
-                //console.log(msg);
-            });
+                //console.log(msg)
+            }
+
         });
         rep = await promise;
         return rep;
+    },
+    //GET STUDENT NOTE BY COURSE
+    getStudentNoteByCourse: async function (studentId, courseId, niveau, period, aneaca) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_notes ,tb_cours WHERE tb_notes.cours=tb_cours.id AND etudiant=? AND tb_notes.niveau=? AND periode=? AND aneaca=? AND cours=? ";
+            con.query(sql, [studentId, niveau, period, aneaca, courseId], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(studentId, niveau, period, aneaca);
+        return data;
+    },
+    //GET STUDENT NOTES
+    getStudentNotes: async function (studentId, niveau, period, aneaca) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_notes ,tb_cours WHERE tb_notes.cours=tb_cours.id AND etudiant=? AND tb_notes.niveau=? AND periode=? AND aneaca=? ORDER BY cours ";
+            con.query(sql, [studentId, niveau, period, aneaca], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        console.log(studentId, niveau, period, aneaca);
+        return data;
+    },
+    //Coeficient de clacul des moyennes par salle de classe
+    CoefficientCalcul: async function (classroom) {
+        let promise = new Promise((resolve, reject) => {
+            let sql =
+                'SELECT SUM(coefficient) as total FROM tb_cours_par_classe WHERE salle_classe=?';
+            con.query(sql, classroom, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    coef = rows[0].total * 0.1;
+                    info = { Total: rows[0].total, CoefMoyenne: coef };
+                    resolve(info);
+                }
+            });
+        });
+        data = await promise;
+        return data;
     },
 
 }

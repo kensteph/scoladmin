@@ -92,11 +92,11 @@
                                                                             max="<%=infoCourse.coefficient%>" min="0"
                                                                             placeholder="<%=infoCourse.coefficient%>">
                                                                             <input type="hidden" name="studentId[]"
-                                                                                value="<%=Student.id%>">
+                                                                                value="<%=Student.id_personne%>">
                                                                     </td>
                                                                     <td>
                                                                         <select class="form-control w-40"
-                                                                            name="abscence">
+                                                                            name="abscence[]">
                                                                             <option value=""></option>
                                                                             <option value="1">Abscence</option>
                                                                             <option value="0">Triche</option>
@@ -139,9 +139,8 @@
                         <div class="modal-body">
                             <label for="Niveau">Salle de classe </label>
                             <div class="form-inline">
-                                <select class="form-control w-30" name="ClassRoom" id="ClassRoom"
+                                <select class="form-control w-35" name="ClassRoom" id="ClassRoom"
                                     onchange="populateCoursesList()">
-                                    <option>Salle de classe</option>
                                     <% data.forEach((classroom)=> { %>
                                         <option <% if(roomSelected==classroom.id){ %> selected <% } %>
                                                 value="<%=classroom.id%>">
@@ -149,15 +148,15 @@
                                         </option>
                                         <% }) %>
                                 </select>
-                                &nbsp;Période
-                                <select class="form-control w-30" name="Period" id="Period">
+                                &nbsp;
+                                <select class="form-control w-25" name="Period" id="Period">
                                     <% periodList.forEach((periode)=> { %>
                                         <option value="<%=periode.periode%>">
                                             <%=periode.periode%>
                                         </option>
                                         <% }) %>
                                 </select>
-                                &nbsp;&nbsp;
+                                &nbsp;
                                 <select class="form-control" name="AneAca">
                                     <% aneacaList.forEach((year)=> { %>
                                         <option <% if(yearSelected==year.aneaca){ %> selected <% } %>

@@ -159,7 +159,7 @@ var self = module.exports = {
     listOfStudent: async function (classroom, aneAca) {
         let promise = new Promise((resolve, reject) => {
             let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? ORDER BY nom,prenom";
-            console.log(sql);
+            //console.log(sql);
             con.query(sql, [classroom, aneAca], function (err, rows) {
                 if (err) {
                     throw err;

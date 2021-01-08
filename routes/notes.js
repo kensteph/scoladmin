@@ -87,7 +87,7 @@ router.post('/getCourses-list', auth, async (req, res) => {
     console.log(req.body);
     let classRoomId = req.body.classRoomId;
     let coursesList = await dbCoursesController.listOfCoursesByClassroom(classRoomId);
-    console.log("COURSES : ", coursesList);
+    //console.log("COURSES : ", coursesList);
     res.json(coursesList);
 });
 
@@ -157,15 +157,15 @@ router.get('/save-notes', auth, async (req, res) => {
         yearSelected = req.query.year;
         CourseSelectedId = req.query.course;
         periodSelected = req.query.period;
-        //COURSES LIST
-        coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
-        studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
         //GET INFO ABOUT THE CLASSROOM
         let info = await dbClassroomController.getclassroom(roomSelected);
         niveauSelected = info.mere;
         //GET INFO ABOUT THE COURSE
         infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId);
-        console.log("COURSE INFO :", infoCourse);
+        //COURSES LIST
+        coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+        studentList = await dbController.listOfStudentWithoutNotes(roomSelected, CourseSelectedId, niveauSelected, periodSelected, yearSelected);
+
         pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
     }
     //console.log("STUDENTS : ", studentList);
@@ -197,6 +197,141 @@ router.post('/save-notes-db', auth, async (req, res) => {
     res.json(response);
 });
 
+//PALMARES
+router.get('/palmares-notes', auth, async (req, res) => {
+    let methodEvaluationCode = req.session.modEvaluation;
+    let periodList = await dbController.listOfPeriod(methodEvaluationCode);
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let studentList = [];
+    let coursesList = [];
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = "2020-2021"; //CURRENT YEAR
+    let roomSelected;
+    let niveauSelected;
+    let CourseSelectedId;
+    let periodSelected;
+    let infoCourse = [];
+    console.log(req.body);
+    let pageTitle = "Palmarès ";
+    // console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    if (req.query.msg) {
+        msg = req.query.msg;
+    }
+    //FILTER
+    if (req.query.year && req.query.room) {
+        roomSelected = req.query.room;
+        yearSelected = req.query.year;
+        CourseSelectedId = req.query.course;
+        periodSelected = req.query.period;
+        //COURSES LIST
+        coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+        studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+        //GET INFO ABOUT THE CLASSROOM
+        let info = await dbClassroomController.getclassroom(roomSelected);
+        niveauSelected = info.mere;
+        //GET INFO ABOUT THE COURSE
+        infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId);
+        //console.log("COURSE INFO :", infoCourse);
+        pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
+    }
+    //console.log("STUDENTS : ", studentList);
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        periodList: periodList,
+        periodSelected: periodSelected,
+        studentList: studentList,
+        coursesList: coursesList,
+        infoCourse: infoCourse,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
+        page: 'Notes',
+        msg: msg,
+    };
+    res.render('../views/notes/palmares-notes', params);
+});
+
+router.post('/palmares-notes', auth, async (req, res) => {
+    let methodEvaluationCode = req.session.modEvaluation;
+    let periodList = await dbController.listOfPeriod(methodEvaluationCode);
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = req.body.AneAca; //CURRENT YEAR
+    let roomSelected = req.body.ClassRoom;
+    //Coefficient de Calcul des moyennes
+    let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
+    let CoeffTotal = CoefficientCalcul.Total;
+    //GET INFO ABOUT THE CLASSROOM
+    let info = await dbClassroomController.getclassroom(roomSelected);
+    let niveauSelected = info.mere;;
+    let periodSelected = req.body.Period;
+    //console.log(req.body);
+    // console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    //COURSES LIST
+    let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+    //STUDENTS LIST
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let palmares = [];
+    let Total = [];
+    let Moyennes = [];
+    for (i = 0; i < studentList.length; i++) {
+        let student = studentList[i];
+        let line = [];
+        let sumNote = 0;
+        //line.push(student.fullname);
+        //console.log("STUDENT : ", student.fullname);
+        for (j = 0; j < coursesList.length; j++) {
+            let Course = coursesList[j];
+            let note = await dbController.getStudentNoteByCourse(student.id_personne, Course.id_cours, niveauSelected, periodSelected, yearSelected);
+            //console.log(note);
+            if (note !== undefined) {
+                let noteStudent = parseFloat(note.note);
+                line.push(note.note);
+                sumNote += noteStudent;
+                //console.log(Course.libelle, " : ", note.note);
+            } else {
+                line.push("");
+                //console.log(Course.libelle, " : ", "");
+            }
+        }
+        Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
+        palmares.push(line);
+        Total.push(sumNote);
+        Moyennes.push(Moyenne);
+    }
+
+    console.log("PALMAES : ", palmares);
+
+    let pageTitle = "Palmarès " + info.classe + " " + periodSelected + " " + yearSelected;
+
+    //let palmares = await dbController.palmares(roomSelected, yearSelected, periodSelected);
+
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        Notes: palmares,
+        Moyennes,
+        Total,
+        CoeffTotal,
+        periodList: periodList,
+        periodSelected: periodSelected,
+        studentList: studentList,
+        coursesList: coursesList,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
+        page: 'Notes',
+        msg: msg,
+    };
+    res.render('../views/notes/palmares-notes', params);
+});
 
 // Exportation of this router
 module.exports = router;
