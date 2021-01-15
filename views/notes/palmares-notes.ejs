@@ -47,12 +47,14 @@
                                             <div id="contact">
                                                 <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
                                                     data-target="#filter-modal" aria-hidden="true"></i>
-                                                <a title="Palmarès" target="_blank"
-                                                    href="/print-palmares-notes?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
-                                                        class="fa fa-print fa-2x"></i></a>
-                                                <a title="Bulletins" target="_blank"
-                                                    href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
-                                                        class="fa fa-print fa-2x"></i></a>
+                                                <% if(listNotes.length>0){ %>
+                                                    <a title="Palmarès" target="_blank"
+                                                        href="/print-palmares-notes?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i></a>
+                                                    <a title="Bulletins" target="_blank"
+                                                        href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i></a>
+                                                    <% } %>
                                             </div>
 
                                         </li>
@@ -328,6 +330,9 @@
                         $("#msg").removeClass();
                         $("#" + notePosition).html(note);
                         $("#msg").html("<br><br>" + data.msg);
+                        $("#msg").fadeIn(2000, function () {
+                            $("#editNote-modal").modal('hide');
+                        });
                     } else {
                         $("#msg").html("<br><br>" + data.msg);
                         $("#msg").addClass("h-red");

@@ -110,8 +110,10 @@
 
                                                         </tbody>
                                                     </table>
-                                                    <input type="submit" class="btn btn-success"
+                                                    <% if(studentList.length > 0) { %>
+                                                      <input type="submit" class="btn btn-success"
                                                         value="Enregistrer Notes">
+                                                    <% } %>
                                     </form>
                                 </div>
                             </div>

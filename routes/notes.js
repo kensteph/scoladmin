@@ -74,7 +74,6 @@ router.post('/period', auth, async (req, res) => {
     }
     //res.json(response);
 });
-
 // PERIODES List
 router.post('/getPeriod-list', auth, async (req, res) => {
     console.log(req.body);
@@ -93,7 +92,6 @@ router.post('/getCourses-list', auth, async (req, res) => {
     //console.log("COURSES : ", coursesList);
     res.json(coursesList);
 });
-
 router.post('/save-notes', auth, async (req, res) => {
     let response;
     let ClassRoom = req.body.ClassRoom;
@@ -133,7 +131,6 @@ router.post('/save-notes', auth, async (req, res) => {
     }
 
 });
-
 router.get('/save-notes', auth, async (req, res) => {
     let methodEvaluationCode = req.session.modEvaluation;
     let periodList = await dbController.listOfPeriod(methodEvaluationCode);
@@ -282,7 +279,6 @@ router.get('/palmares-notes', auth, async (req, res) => {
     };
     res.render('../views/notes/palmares-notes', params);
 });
-
 router.post('/palmares-notes', auth, async (req, res) => {
     let methodEvaluationCode = req.session.modEvaluation;
     let periodList = await dbController.listOfPeriod(methodEvaluationCode);
@@ -470,22 +466,8 @@ router.get('/print-palmares-notes', auth, async (req, res) => {
         msg: msg,
     };
     res.render('../print/templates/palmares', params);
-    // let report = "palmares";
-    // let filename = report + ".pdf";
-    // let pathfile = "./tmp/" + filename;
-    // let template_name = "palmares";
 
-    // await printer.print(template_name, params, pathfile);
-    // //Display the file in the browser
-    // let stream = fs.ReadStream(pathfile);
-    // // Be careful of special characters
-    // filename = encodeURIComponent(filename);
-    // // Ideally this should strip them
-    // res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
-    // res.setHeader("Content-type", "application/pdf");
-    // stream.pipe(res);
 });
-
 router.get('/print-all-bulletin', auth, async (req, res) => {
     let methodEvaluationCode = req.session.modEvaluation;
     let periodList = await dbController.listOfPeriod(methodEvaluationCode);
@@ -494,8 +476,6 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
     let yearSelected = req.query.yearSelected;
     let roomSelected = req.query.roomSelected;
     let periodSelected = req.query.periodSelected;
-    let logo = helper.base64("public/images/logo/logo.png");
-
     //Coefficient de Calcul des moyennes
     let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
     let CoeffTotal = CoefficientCalcul.Total;
@@ -576,25 +556,10 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
         yearSelected: yearSelected,
         roomSelected: roomSelected,
         niveauSelected: niveauSelected,
-        logo,
         page: 'Notes',
         msg: msg,
     };
     res.render('../print/templates/all-bulletin.ejs', params);
-    // let report = "allBulletin";
-    // let filename = report + ".pdf";
-    // let pathfile = "./tmp/" + filename;
-    // let template_name = "all-bulletin";
-
-    // await printer.print(template_name, params, pathfile);
-    // //Display the file in the browser
-    // let stream = fs.ReadStream(pathfile);
-    // // Be careful of special characters
-    // filename = encodeURIComponent(filename);
-    // // Ideally this should strip them
-    // res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
-    // res.setHeader("Content-type", "application/pdf");
-    // stream.pipe(res);
 });
 router.get('/print-bulletin', auth, async (req, res) => {
     let methodEvaluationCode = req.session.modEvaluation;
@@ -662,20 +627,7 @@ router.get('/print-bulletin', auth, async (req, res) => {
         page: 'Notes',
         msg: msg,
     };
-    let report = "bulletin";
-    let filename = report + ".pdf";
-    let pathfile = "./tmp/" + filename;
-    let template_name = "bulletin";
-
-    await printer.print(template_name, params, pathfile);
-    //Display the file in the browser
-    let stream = fs.ReadStream(pathfile);
-    // Be careful of special characters
-    filename = encodeURIComponent(filename);
-    // Ideally this should strip them
-    res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
-    res.setHeader("Content-type", "application/pdf");
-    stream.pipe(res);
+    res.render('../print/templates/bulletin', params);
 });
 
 // Exportation of this router
