@@ -142,7 +142,7 @@ var self = module.exports = {
     //CLASSROOM INFO
     getStudent: async function (id) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT * FROM tb_classes WHERE id=? ";
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=? ";
             con.query(sql, [id], function (err, rows) {
                 if (err) {
                     throw err;

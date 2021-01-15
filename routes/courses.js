@@ -25,7 +25,7 @@ router.get('/courses-list', auth, async (req, res) => {
         console.log("CLASS INFO : ", info);
         niveau = info.mere;
         salleClass = " | " + info.classe;
-        coursesList = await dbController.listOfCoursesByClassroom(req.query.filter);
+        coursesList = await dbController.listOfCoursesByClassroom(req.query.filter,"All");
 
     } else {
         coursesList = data;

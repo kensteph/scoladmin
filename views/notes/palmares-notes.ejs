@@ -47,6 +47,12 @@
                                             <div id="contact">
                                                 <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
                                                     data-target="#filter-modal" aria-hidden="true"></i>
+                                                <a title="Palmarès" target="_blank"
+                                                    href="/print-palmares-notes?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
+                                                        class="fa fa-print fa-2x"></i></a>
+                                                <a title="Bulletins" target="_blank"
+                                                    href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
+                                                        class="fa fa-print fa-2x"></i></a>
                                             </div>
 
                                         </li>
@@ -85,18 +91,24 @@
 
                                                         <% pos=0; listNotes.forEach((line)=> {
                                                             notesStudent = line.Notes;
+                                                            noteIds = line.NoteIds;
                                                             %>
                                                             <tr>
                                                                 <td>
                                                                     <%=pos+1%>
+                                                                        <a title="Bulletin de <%=line.Student%>"
+                                                                            target="_blank"
+                                                                            href="/print-bulletin?studentId=<%=line.StudentId%>&place=<%=pos+1%>&periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>"><i
+                                                                                class="fa fa-print"></i></a>
                                                                 </td>
                                                                 <td>
                                                                     <%=line.Student%>
                                                                 </td>
                                                                 <% pos_note=0; coursesList.forEach((courses)=> { %>
                                                                     <td title=" <%=courses.libelle%>"
-                                                                        onclick="editOrAddNote('<%=line.Student%>','<%=line.StudentId%>','<%=courses.id_cours%>','<%=courses.libelle%>','<%= notesStudent[pos_note] %>','<%=courses.coefficient%>')"
-                                                                        class="to-link">
+                                                                        onclick="editOrAddNote('<%=line.Student%>','<%=line.StudentId%>','<%=courses.id_cours%>','<%=courses.libelle%>','<%= notesStudent[pos_note] %>','<%=courses.coefficient%>','<%=noteIds[pos_note]%>')"
+                                                                        class="to-link"
+                                                                        id="POS<%=line.StudentId+''+courses.id_cours%>">
                                                                         <%= notesStudent[pos_note] %>
                                                                     </td>
                                                                     <% pos_note++; }) %>
@@ -197,18 +209,36 @@
                                         <div class="form-inline">
                                             <strong for="Cours" id="courseSelected">Cours/Matière </strong>
                                             &nbsp;
-                                            <input type="number" class="form-control w-25" min="0" name="note"
+                                            <input type="number" class="form-control w-20" min="0" name="note"
                                                 id="note">
-                                            &nbsp;&nbsp;
-                                            <a type="submit" id="btnSaveNote" class="btn btn-success"
-                                                onclick="saveEditNote()"></a>
+                                            &nbsp;
+                                            <select class="form-control w-25" name="abscence" title="Abscence/Triche">
+                                                <option value="">Abscence/Triche</option>
+                                                <option value="1">Abscence</option>
+                                                <option value="0">Triche</option>
+                                            </select>
+
+                                        </div>
+                                        <div align="center">
+                                            <strong id="msg"></strong>
                                         </div>
 
                                     </div>
                                     <div class="modal-footer">
+                                        <a type="submit" id="btnSaveNote" class="btn btn-success"
+                                            onclick="saveEditNote()"></a>
                                         <input type="hidden" name="studentId" id="studentId">
                                         <input type="hidden" name="courseId" id="courseId">
                                         <input type="hidden" name="coefficient" id="coefficient">
+                                        <input type="hidden" name="niveauSelected" id="niveauSelected"
+                                            value="<%=niveauSelected%>">
+                                        <input type="hidden" name="roomSelected" id="roomSelected"
+                                            value="<%=roomSelected%>">
+                                        <input type="hidden" name="yearSelected" id="yearSelected"
+                                            value="<%=yearSelected%>">
+                                        <input type="hidden" name="periodSelected" id="periodSelected"
+                                            value="<%=periodSelected%>">
+                                        <input type="hidden" name="idNote" id="idNote">
                                         <input type="hidden" name="actionField" value="Filter" id="actionFieldEdit">
                                     </div>
                                 </form>
@@ -267,14 +297,16 @@
         }
 
         //EDIT OR ADD NOTE MODAL
-        function editOrAddNote(student, studentID, courseID, courseName, note, coef) {
+        function editOrAddNote(student, studentID, courseID, courseName, note, coef, idNote) {
             $("#modalEditTitle").html(student.toUpperCase());
             $("#courseSelected").html(courseName);
+            $("#msg").html("");
             let btntxt = "Enregistrer";
             $("#studentId").val(studentID);
             $("#courseId").val(courseID);
             $("#coefficient").val(coef);
             $("#note").val(note);
+            $("#idNote").val(idNote);
             $("#note").attr("max", coef);
             $("#note").attr("placeholder", coef);
             if (note != "") {
@@ -286,14 +318,26 @@
         }
         //SAVE OR EDIT SINGLE NOTE
         function saveEditNote() {
-            let formData = $("#EditNoteForm").serialize();
-            $.post("/save-edit-notes-db", formData, function (data) {
-                // if (data.success) { //Success 
-                //     $("#notifySignature").html(data.msg);
-                // } else {
-                //     $("#notifySignature").html(data.msg);
-                // }
-            });
+            let note = $("#note").val();
+            let coeff = $("#coefficient").val();
+            let notePosition = "POS" + $("#studentId").val() + "" + $("#courseId").val();
+            if (note <= coeff) {
+                let formData = $("#EditNoteForm").serialize();
+                $.post("/save-edit-notes-db", formData, function (data) {
+                    if (data.type == "success") { //Success 
+                        $("#msg").removeClass();
+                        $("#" + notePosition).html(note);
+                        $("#msg").html("<br><br>" + data.msg);
+                    } else {
+                        $("#msg").html("<br><br>" + data.msg);
+                        $("#msg").addClass("h-red");
+                    }
+                });
+            } else {
+                $("#msg").html("<br><br> La note doit etre inférieur ou égal à " + coeff);
+                $("#msg").addClass("h-red");
+            }
+
         }
     </script>
 </body>

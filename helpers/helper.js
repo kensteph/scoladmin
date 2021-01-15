@@ -23,6 +23,19 @@ let self = module.exports = {
                 (order === 'desc') ? (comparison * -1) : comparison
             );
         };
-    }
+    },
+    //Convert image to base64
+    base64(pathFile) {
+        const fs = require('fs-extra');
+        let base64data = null;
+        try {
+            let buff = fs.readFileSync(pathFile);
+            base64data = buff.toString('base64');
+        } catch (error) {
+            console.log('Image not converted to base 64 :\n\n' + error);
+        }
+        //console.log('Image converted to base 64 is:\n\n' + base64data);
+        return base64data;
+    },
 
 }

@@ -80,8 +80,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% coursesList.forEach((course)=> { %>
-                                                            <tr>
+                                                        <% coursesList.forEach((course)=> {
+                                                            css_class ="";
+                                                            desactive = "";
+                                                            if(course.active==0){
+                                                                css_class="h-red";
+                                                                desactive = "Ce cours est désactivé.";
+                                                            }
+                                                        %>
+                                                            <tr class="<%=css_class%>" title="<%=desactive%>" >
                                                                 <td>
                                                                     <% if(niveau!=0){ %>
                                                                     <%=niveau%>
@@ -107,8 +114,8 @@
                                                                         &nbsp;&nbsp;&nbsp;
                                                                         <% }else{ %>
                                                                             <i class="fas fa-edit to-link"
-                                                                                title="Modifier A <%=course.classe%>"
-                                                                                onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>')"></i>
+                                                                                title="Modifier <%=course.libelle%>"
+                                                                                onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>','<%=course.active%>')"></i>
                                                                             &nbsp;&nbsp;&nbsp;
                                                                             <% } %>
                                                                                 <i class="fas fa-trash to-link h-red"
@@ -226,14 +233,21 @@
 
                                         <div class="form-group">
                                             <label for="Professeur">Professeur</label>
-                                            <select class="form-control" required id="Professeur" name="EditProf"
-                                                onchange="autoFill(this)">
+                                            <select class="form-control"  id="Professeur" name="EditProf">
                                                 <option value="0">Choisissez le professeur</option>
                                                 <% teachersList.forEach((teacher)=> { %>
                                                     <option value="<%=teacher.id_personne%>">
                                                         <%=teacher.fullname%>
                                                     </option>
                                                     <% }) %>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Activation">Activé/Désactivé</label>
+                                            <select class="form-control"id="Activation" name="Activation" disabled>
+                                                <option value="1">Activé</option>
+                                                <option value="0">Désactivé</option>
                                             </select>
 
                                         </div>
@@ -372,7 +386,7 @@
             $("#courseAss-modal").modal();
         }
         //EDIT INFO ABOUT COURSE
-        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur) {
+        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur,activation) {
             $("#csList").empty();
             $("#btnAddItem").hide();
             $("#courseSelected").hide();
@@ -384,6 +398,8 @@
             $("#coefficient").val(coeff);
             $("#Position").val(position);
             $("#Professeur").val(professeur);
+            $("#Activation").attr("disabled",false);
+            $("#Activation").val(activation);
             $("#actionFieldAsignment").val("Edit");
             $("#btnAssignation").val("Modifier");
             $("#btnAssignation").removeClass();

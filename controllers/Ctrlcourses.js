@@ -126,11 +126,11 @@ var self = module.exports = {
             let Coeff = req.body.EditCoeff;
             let Position = req.body.EditPos;
             let Professeur = req.body.EditProf;
-
+            let Activation = req.body.Activation;
             let sql =
-                'UPDATE tb_cours_par_classe SET id_cours=?, salle_classe =?, professeur=?,coefficient=?,position=? WHERE id=?';
+                'UPDATE tb_cours_par_classe SET id_cours=?, salle_classe =?, professeur=?,coefficient=?,position=?,active=? WHERE id=?';
             // console.log(sql);
-            con.query(sql, [courseID, ClassRoom, Professeur, Coeff, Position, assignmentID], function (err, result) {
+            con.query(sql, [courseID, ClassRoom, Professeur, Coeff, Position, Activation, assignmentID], function (err, result) {
                 if (err) {
                     msg = {
                         type: "danger",
@@ -178,11 +178,19 @@ var self = module.exports = {
         return data;
     },
     //Load All The courese BY CLASSROOM
-    listOfCoursesByClassroom: async function (classRoom) {
+    listOfCoursesByClassroom: async function (classRoom,active=1) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? ORDER BY libelle ";
+            let sql="";
+            let values=[];
+            if(active=="All"){
+                sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? ORDER BY position ";
+                values= [classRoom];
+            }else{
+                sql= "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=? AND active=?  ORDER BY position ";
+                values= [classRoom,active];
+            }
             //console.log(sql);
-            con.query(sql, [classRoom], function (err, rows) {
+            con.query(sql,values, function (err, rows) {
                 if (err) {
                     throw err;
                 } else {
@@ -195,11 +203,11 @@ var self = module.exports = {
         return data;
     },
     //Load All The courese BY CLASSROOM
-    courseInfoById: async function (courseID,classRoomId) {
+    courseInfoById: async function (courseID, classRoomId) {
         let promise = new Promise((resolve, reject) => {
             let sql = "SELECT *,ca.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND id_cours=? AND salle_classe=? ORDER BY libelle ";
-            console.log(sql);
-            con.query(sql, [courseID,classRoomId], function (err, rows) {
+            //console.log(sql);
+            con.query(sql, [courseID, classRoomId], function (err, rows) {
                 if (err) {
                     throw err;
                 } else {

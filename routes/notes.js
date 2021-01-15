@@ -9,6 +9,8 @@ const dbClassroomController = require("../controllers/Ctrlclassroom");
 const dbStudentController = require("../controllers/Ctrlstudent");
 const dbCoursesController = require("../controllers/Ctrlcourses");
 const helper = require("../helpers/helper");
+const printer = require("../print/print");
+const fs = require("fs-extra");
 // PERIODES List
 router.get('/periode-list', auth, async (req, res) => {
     let modeEvaluation = await dbController.listOfModeEvaluation();
@@ -101,7 +103,7 @@ router.post('/save-notes', auth, async (req, res) => {
     console.log(req.body);
     //GET INFO ABOUT THE CLASSROOM
     let info = await dbClassroomController.getclassroom(ClassRoom);
-    console.log("CLASS INFO : ", info);
+    //console.log("CLASS INFO : ", info);
     req.body.Niveau = info.mere;
     console.log(req.body);
     if (req.body.actionField == "Filter") { //FILTER
@@ -169,7 +171,7 @@ router.get('/save-notes', auth, async (req, res) => {
 
         pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
     }
-    console.log("COURSE : ", infoCourse);
+    //console.log("COURSE : ", infoCourse);
     params = {
         pageTitle: pageTitle,
         data: response,
@@ -206,16 +208,21 @@ router.post('/save-notes-db', auth, async (req, res) => {
 router.post('/save-edit-notes-db', auth, async (req, res) => {
     req.body.methodEvaluationCode = req.session.modEvaluation;
     console.log(req.body);
-    // let response = await dbController.saveNotes(req);
-    // console.log(response);
+    let response;
+    let actionField = req.body.actionField;
+    if (actionField == "Enregistrer") {
+        response = await dbController.saveSingleNote(req);
+    } else {
+        response = await dbController.editSingleNote(req);
+    }
+    console.log(response);
     // let ClassRoom = req.body.roomSelected;
-    // let AneAca = req.body.yearAca;
+    // let AneAca = req.body.yearSelected;
     // let CourseSelectedId = req.body.courseId;
-    // let period = req.body.period;
-    // res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period);
-    //res.json(response);
+    // let period = req.body.periodSelected;
+    //res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period);
+    res.json(response);
 });
-
 //PALMARES
 router.get('/palmares-notes', auth, async (req, res) => {
     let methodEvaluationCode = req.session.modEvaluation;
@@ -304,34 +311,43 @@ router.post('/palmares-notes', auth, async (req, res) => {
     for (i = 0; i < studentList.length; i++) {
         let student = studentList[i];
         let StudentId = student.id_personne;
-        let line = [];
+        let line = []; //NOTES
+        let idNote = [];//ID NOTES
         let sumNote = 0;
-        //line.push(student.fullname);
-        //console.log("STUDENT : ", student.fullname);
+        // let sNotes = await dbController.getStudentNotes(StudentId,niveauSelected, periodSelected, yearSelected);
+        // console.log("NOTES : ", sNotes);
         for (j = 0; j < coursesList.length; j++) {
             let Course = coursesList[j];
-            let note = await dbController.getStudentNoteByCourse(student.id_personne, Course.id_cours, niveauSelected, periodSelected, yearSelected);
+            let note = await dbController.getStudentNoteByCourse(StudentId, Course.id_cours, niveauSelected, periodSelected, yearSelected);
             //console.log(note);
             if (note !== undefined) {
                 let noteStudent = parseFloat(note.note);
                 line.push(note.note);
+                idNote.push(note.id_note);
                 sumNote += noteStudent;
                 //console.log(Course.libelle, " : ", note.note);
             } else {
                 line.push("");
+                idNote.push("");
                 //console.log(Course.libelle, " : ", "");
             }
         }
+        //GET THE TOTAL NOTE FOR THE STUDENT
+        // let TotalNote = await dbController.getStudentTotalNote(StudentId, niveauSelected, periodSelected, yearSelected);
+        // console.log("STUDENT : ", student.fullname, " : ", TotalNote.total);
 
+        //GET THE MOYENNE
         Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
-        palmares.push(line);
-        Total.push(sumNote);
-        Moyennes.push(Moyenne);
-        let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, Total: sumNote, Sur: CoeffTotal, Moyenne };
+
+        palmares.push(line); // NOTES LIST
+        Total.push(sumNote); // TOTAL LIST
+        Moyennes.push(Moyenne); // MOYENNE LIST
+
+        let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, NoteIds: idNote, Total: sumNote, Sur: CoeffTotal, Moyenne };
         listNotes.push(obj);
     }
     listNotes.sort(helper.compareValues('Moyenne', 'desc'));
-    console.log("PALMAES : ", listNotes);
+    //console.log("PALMAES : ", listNotes);
 
     let pageTitle = "Palmarès " + info.classe + " | " + periodSelected + " " + yearSelected;
 
@@ -358,6 +374,308 @@ router.post('/palmares-notes', auth, async (req, res) => {
         msg: msg,
     };
     res.render('../views/notes/palmares-notes', params);
+});
+
+//=============================================== PRINT =========================================
+router.get('/print-palmares-notes', auth, async (req, res) => {
+    let methodEvaluationCode = req.session.modEvaluation;
+    let periodList = await dbController.listOfPeriod(methodEvaluationCode);
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = req.query.yearSelected;
+    let roomSelected = req.query.roomSelected;
+    let periodSelected = req.query.periodSelected;
+
+    //Coefficient de Calcul des moyennes
+    let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
+    let CoeffTotal = CoefficientCalcul.Total;
+    //GET INFO ABOUT THE CLASSROOM
+    let info = await dbClassroomController.getclassroom(roomSelected);
+    let niveauSelected = info.mere;
+
+    //console.log(req.body);
+    // console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    //COURSES LIST
+    let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+    //STUDENTS LIST
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let palmares = [];
+    let Total = [];
+    let Moyennes = [];
+    let listNotes = [];
+    for (i = 0; i < studentList.length; i++) {
+        let student = studentList[i];
+        let StudentId = student.id_personne;
+        let line = []; //NOTES
+        let idNote = [];//ID NOTES
+        let sumNote = 0;
+        // let sNotes = await dbController.getStudentNotes(StudentId,niveauSelected, periodSelected, yearSelected);
+        // console.log("NOTES : ", sNotes);
+        for (j = 0; j < coursesList.length; j++) {
+            let Course = coursesList[j];
+            let note = await dbController.getStudentNoteByCourse(StudentId, Course.id_cours, niveauSelected, periodSelected, yearSelected);
+            //console.log(note);
+            if (note !== undefined) {
+                let noteStudent = parseFloat(note.note);
+                line.push(note.note);
+                idNote.push(note.id_note);
+                sumNote += noteStudent;
+                //console.log(Course.libelle, " : ", note.note);
+            } else {
+                line.push("");
+                idNote.push("");
+                //console.log(Course.libelle, " : ", "");
+            }
+        }
+        //GET THE TOTAL NOTE FOR THE STUDENT
+        // let TotalNote = await dbController.getStudentTotalNote(StudentId, niveauSelected, periodSelected, yearSelected);
+        // console.log("STUDENT : ", student.fullname, " : ", TotalNote.total);
+
+        //GET THE MOYENNE
+        Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
+
+        palmares.push(line); // NOTES LIST
+        Total.push(sumNote); // TOTAL LIST
+        Moyennes.push(Moyenne); // MOYENNE LIST
+
+        let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, NoteIds: idNote, Total: sumNote, Sur: CoeffTotal, Moyenne };
+        listNotes.push(obj);
+    }
+    listNotes.sort(helper.compareValues('Moyenne', 'desc'));
+    //console.log("PALMAES : ", listNotes);
+
+    let pageTitle = "Palmarès " + info.classe + " | " + periodSelected + " " + yearSelected;
+
+    //let palmares = await dbController.palmares(roomSelected, yearSelected, periodSelected);
+
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        Notes: palmares,
+        Moyennes,
+        Total,
+        CoeffTotal,
+        listNotes,
+        periodList: periodList,
+        periodSelected: periodSelected,
+        studentList: studentList,
+        coursesList: coursesList,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
+        page: 'Notes',
+        msg: msg,
+    };
+    res.render('../print/templates/palmares', params);
+    // let report = "palmares";
+    // let filename = report + ".pdf";
+    // let pathfile = "./tmp/" + filename;
+    // let template_name = "palmares";
+
+    // await printer.print(template_name, params, pathfile);
+    // //Display the file in the browser
+    // let stream = fs.ReadStream(pathfile);
+    // // Be careful of special characters
+    // filename = encodeURIComponent(filename);
+    // // Ideally this should strip them
+    // res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
+    // res.setHeader("Content-type", "application/pdf");
+    // stream.pipe(res);
+});
+
+router.get('/print-all-bulletin', auth, async (req, res) => {
+    let methodEvaluationCode = req.session.modEvaluation;
+    let periodList = await dbController.listOfPeriod(methodEvaluationCode);
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = req.query.yearSelected;
+    let roomSelected = req.query.roomSelected;
+    let periodSelected = req.query.periodSelected;
+    let logo = helper.base64("public/images/logo/logo.png");
+
+    //Coefficient de Calcul des moyennes
+    let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
+    let CoeffTotal = CoefficientCalcul.Total;
+    //GET INFO ABOUT THE CLASSROOM
+    let info = await dbClassroomController.getclassroom(roomSelected);
+    let niveauSelected = info.mere;
+
+    //console.log(req.body);
+    // console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    //COURSES LIST
+    let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+    //STUDENTS LIST
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let palmares = [];
+    let Total = [];
+    let Moyennes = [];
+    let listNotes = [];
+    for (i = 0; i < studentList.length; i++) {
+        let student = studentList[i];
+        let StudentId = student.id_personne;
+        let line = []; //NOTES
+        let idNote = [];//ID NOTES
+        let sumNote = 0;
+        // let sNotes = await dbController.getStudentNotes(StudentId,niveauSelected, periodSelected, yearSelected);
+        // console.log("NOTES : ", sNotes);
+        for (j = 0; j < coursesList.length; j++) {
+            let Course = coursesList[j];
+            let note = await dbController.getStudentNoteByCourse(StudentId, Course.id_cours, niveauSelected, periodSelected, yearSelected);
+            //console.log(note);
+            if (note !== undefined) {
+                let noteStudent = parseFloat(note.note);
+                line.push(note.note);
+                idNote.push(note.id_note);
+                sumNote += noteStudent;
+                //console.log(Course.libelle, " : ", note.note);
+            } else {
+                line.push("");
+                idNote.push("");
+                //console.log(Course.libelle, " : ", "");
+            }
+        }
+        //GET THE TOTAL NOTE FOR THE STUDENT
+        // let TotalNote = await dbController.getStudentTotalNote(StudentId, niveauSelected, periodSelected, yearSelected);
+        // console.log("STUDENT : ", student.fullname, " : ", TotalNote.total);
+
+        //GET THE MOYENNE
+        Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
+
+        palmares.push(line); // NOTES LIST
+        Total.push(sumNote); // TOTAL LIST
+        Moyennes.push(Moyenne); // MOYENNE LIST
+
+        let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, NoteIds: idNote, Total: sumNote, Sur: CoeffTotal, Moyenne };
+        listNotes.push(obj);
+    }
+    listNotes.sort(helper.compareValues('Moyenne', 'desc'));
+    console.log("PALMAES : ", listNotes);
+
+    let pageTitle = "Bulletin " + info.classe + " | " + periodSelected + " " + yearSelected;
+
+    //let palmares = await dbController.palmares(roomSelected, yearSelected, periodSelected);
+
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        Notes: palmares,
+        Moyennes,
+        Total,
+        CoeffTotal,
+        listNotes,
+        periodList: periodList,
+        periodSelected: periodSelected,
+        studentList: studentList,
+        coursesList: coursesList,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
+        logo,
+        page: 'Notes',
+        msg: msg,
+    };
+    res.render('../print/templates/all-bulletin.ejs', params);
+    // let report = "allBulletin";
+    // let filename = report + ".pdf";
+    // let pathfile = "./tmp/" + filename;
+    // let template_name = "all-bulletin";
+
+    // await printer.print(template_name, params, pathfile);
+    // //Display the file in the browser
+    // let stream = fs.ReadStream(pathfile);
+    // // Be careful of special characters
+    // filename = encodeURIComponent(filename);
+    // // Ideally this should strip them
+    // res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
+    // res.setHeader("Content-type", "application/pdf");
+    // stream.pipe(res);
+});
+router.get('/print-bulletin', auth, async (req, res) => {
+    let methodEvaluationCode = req.session.modEvaluation;
+    let periodList = await dbController.listOfPeriod(methodEvaluationCode);
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = req.query.yearSelected;
+    let roomSelected = req.query.roomSelected;
+    let periodSelected = req.query.periodSelected;
+    let studentSelected = req.query.studentId;
+    let place = req.query.place;
+
+    //Coefficient de Calcul des moyennes
+    let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
+    let CoeffTotal = CoefficientCalcul.Total;
+    //GET INFO ABOUT THE CLASSROOM
+    let info = await dbClassroomController.getclassroom(roomSelected);
+    let niveauSelected = info.mere;
+
+    //console.log(req.body);
+    // console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    let studentInfo = await dbStudentController.getStudent(studentSelected);
+    //COURSES LIST
+    let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
+    //GET STUDENT NOTES
+    //let studentNotes  = await dbController.getStudentNotes(studentSelected, niveauSelected, periodSelected, yearSelected);
+    let studentNotes = [];
+    let sumNote = 0;
+    for (j = 0; j < coursesList.length; j++) {
+        let Course = coursesList[j];
+        let note = await dbController.getStudentNoteByCourse(studentSelected, Course.id_cours, niveauSelected, periodSelected, yearSelected);
+        //console.log(note);
+        if (note !== undefined) {
+            let noteStudent = parseFloat(note.note);
+            studentNotes.push(note.note);
+            sumNote += noteStudent;
+            //console.log(Course.libelle, " : ", note.note);
+        } else {
+            studentNotes.push("");
+        }
+    }
+    //GET THE MOYENNE
+    let Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
+    console.log("NOTES : ", studentNotes);
+    let pageTitle = "Bulletin " + info.classe + " | " + periodSelected + " " + yearSelected;
+
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        Notes: studentNotes,
+        Moyenne,
+        place,
+        Total: sumNote,
+        TotalCoeff: CoeffTotal,
+        periodList: periodList,
+        periodSelected: periodSelected,
+        Student: studentInfo,
+        coursesList: coursesList,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        niveauSelected: niveauSelected,
+        page: 'Notes',
+        msg: msg,
+    };
+    let report = "bulletin";
+    let filename = report + ".pdf";
+    let pathfile = "./tmp/" + filename;
+    let template_name = "bulletin";
+
+    await printer.print(template_name, params, pathfile);
+    //Display the file in the browser
+    let stream = fs.ReadStream(pathfile);
+    // Be careful of special characters
+    filename = encodeURIComponent(filename);
+    // Ideally this should strip them
+    res.setHeader("Content-disposition", 'inline; filename="' + filename + '"');
+    res.setHeader("Content-type", "application/pdf");
+    stream.pipe(res);
 });
 
 // Exportation of this router

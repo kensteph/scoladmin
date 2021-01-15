@@ -5,10 +5,7 @@ const bodyParser = require('body-parser');
 const auth = require('./middleware/auth');
 //SESSION
 const session = require('express-session');
-var app = express();
-//GLOBALS VARIABLES
-global.appName = process.env.APP_NAME;
-global.appRoutes = ['employee-list', ''];
+let app = express();
 //Uses
 app.use(express.static('public')); // All our static files
 app.use(express.static(path.join(__dirname, '/public')));
@@ -24,7 +21,26 @@ app.use(require('./routes/notes'));
 app.use(require('./routes/employees'));
 
 
+//SYSTEM IGNITION
+intitValues = function async() {
+    let helpers = require("./helpers/helper");
+    console.log("INITIALISATION....... : ");
+    // Global variables
+    //let settings = await self.getSettings();
+    //console.log(settings);
+    //GLOBALS VARIABLES
+
+    global.appName = process.env.APP_NAME;
+    global.appRoutes = ['employee-list', ''];
+    global.LOGO = helpers.base64("public/images/logo/logo.png");
+    //MENU ACCESS
+    global.MENU_ITEM = ['Tableau de bord', 'Test Patient', 'Test Laboratoire', 'Patients', 'Examens', 'Gestion de stock', 'Paramètres', 'Administration'];
+    global.SUBMENU_ITEM = ['Ajouter Patient', 'Liste des Patients', 'Modifier Patients', 'Rechercher Patient', 'Liste des demandes de Tests', 'Supprimer une demandes de Test', 'Enregistrer Résultat', 'Modifier Résultat', 'Valider Résultat', 'Ajouter Signature', 'Imprimer Résultat', 'Ajouter examens', 'Voir la liste des examens', 'Supprimer examens', 'Modifier examens', 'Ajouter valeurs normales', 'Détails Examens', 'Ajouter Matériau', 'Modifier Matériau', 'Lister les matériaux', 'Ajouter Stock', 'Inventaire', 'Imprimer Inventaire', 'Requete Ajouter/Retirer article du Stock', 'Autoriser Ajouter/Retirer article du Stock', 'Approuver requete relative au stock', 'Voir la liste des requetes de stock', 'Valider/Invalider Stock', 'Modifier Stock', 'Supprimer Stock', 'Supprimer transactions pendantes', 'Mouvement de stock', 'Imprimer Mouvement de Stock'];
+    //res.render('login');
+}
+
 app.get('/', function (req, res) {
+    intitValues();
     res.render('login');
 });
 
