@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 06, 2021 at 10:30 PM
+-- Generation Time: Jan 15, 2021 at 03:13 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.18
 
@@ -49,7 +49,23 @@ INSERT INTO `tb_affectation` (`id`, `id_personne`, `niveau`, `classroom`, `optio
 (5, 9, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-03 20:52:27'),
 (6, 10, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-03 21:02:22'),
 (8, 12, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-03 21:02:57'),
-(9, 13, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-03 21:03:06');
+(9, 13, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-03 21:03:06'),
+(10, 15, 1, 42, NULL, '2020-2021', 'keromain', '2021-01-07 09:25:06'),
+(11, 16, 6, 47, NULL, '2020-2021', 'keromain', '2021-01-08 09:01:33'),
+(12, 17, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:49:16'),
+(13, 18, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:51:24'),
+(14, 19, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:51:41'),
+(15, 20, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:51:57'),
+(16, 21, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:52:23'),
+(17, 22, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:52:44'),
+(18, 23, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:52:58'),
+(19, 24, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:53:09'),
+(20, 25, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:53:24'),
+(21, 26, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:53:39'),
+(22, 27, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:54:04'),
+(23, 28, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:54:27'),
+(24, 29, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:56:37'),
+(25, 30, 7, 45, NULL, '2020-2021', 'keromain', '2021-01-15 10:56:48');
 
 -- --------------------------------------------------------
 
@@ -107,7 +123,8 @@ INSERT INTO `tb_classes` (`id`, `mere`, `classe`, `abv`) VALUES
 (43, 2, '2Ã¨me AnnÃ©e Fondamentale', '2Ã¨AF'),
 (44, 0, '7Ã¨me AnnÃ©e Fondamentale A', '7Ã¨AF A'),
 (45, 7, '7Ã¨me AnnÃ©e Fondamentale A', '7Ã¨AF A'),
-(46, 3, '3Ã¨me AnnÃ©e Fondamentale', '3eme AF');
+(46, 3, '3Ã¨me AnnÃ©e Fondamentale', '3eme AF'),
+(47, 6, '6Ã¨me AnnÃ©e Fondamentale', '6Ã¨AF A');
 
 -- --------------------------------------------------------
 
@@ -333,12 +350,35 @@ INSERT INTO `tb_cours_par_classe` (`id`, `id_cours`, `salle_classe`, `professeur
 (2, 22, 42, 4, 20, 1, 1),
 (3, 21, 42, 3, 20, 1, 1),
 (4, 11, 42, 2, 20, 1, 1),
-(5, 13, 45, 3, 40, 1, 1),
+(5, 13, 45, 3, 40, 2, 1),
 (6, 20, 45, 4, 40, 2, 1),
 (7, 11, 45, 2, 20, 5, 1),
 (8, 14, 45, 2, 20, 11, 1),
 (9, 1, 42, 4, 20, 1, 1),
-(10, 35, 45, 2, 20, 1, 1);
+(10, 35, 45, 2, 20, 1, 1),
+(11, 7, 42, 4, 20, 1, 1),
+(12, 39, 42, 4, 20, 1, 1),
+(13, 16, 42, 4, 20, 1, 1),
+(14, 12, 42, 4, 20, 1, 1),
+(15, 15, 42, 4, 20, 1, 1),
+(16, 9, 45, 1, 20, 1, 1),
+(17, 32, 45, 1, 20, 1, 1),
+(18, 27, 45, 1, 20, 1, 1),
+(19, 31, 45, 1, 20, 1, 1),
+(20, 40, 45, 1, 20, 1, 1),
+(21, 18, 45, 1, 20, 1, 1),
+(22, 176, 45, 1, 20, 1, 1),
+(23, 19, 45, 1, 20, 1, 1),
+(24, 16, 47, 1, 40, 1, 1),
+(25, 12, 47, 1, 40, 1, 1),
+(26, 22, 47, 1, 40, 1, 1),
+(27, 21, 47, 1, 40, 1, 1),
+(28, 28, 45, 1, 20, 1, 1),
+(29, 175, 45, 1, 20, 1, 1),
+(30, 15, 45, 1, 20, 1, 1),
+(31, 12, 45, 1, 20, 1, 1),
+(32, 16, 45, 1, 20, 1, 1),
+(33, 1, 45, 1, 20, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -361,6 +401,77 @@ INSERT INTO `tb_mode_evaluations` (`id`, `mode_evaluation`, `code`, `nb_controle
 (2, '5 Etapes', 'C5', 5),
 (3, '4 Etapes', 'E4', 4),
 (4, 'Trimestre', 'TRIM', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_notes`
+--
+
+CREATE TABLE `tb_notes` (
+  `id` bigint(20) NOT NULL,
+  `etudiant` bigint(20) NOT NULL,
+  `cours` int(11) NOT NULL,
+  `note` text NOT NULL,
+  `periode` varchar(50) NOT NULL,
+  `niveau` int(11) NOT NULL,
+  `options` int(11) DEFAULT NULL,
+  `aneaca` varchar(100) NOT NULL,
+  `date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tag` varchar(10) NOT NULL,
+  `acteur` varchar(50) DEFAULT NULL,
+  `sur` int(11) DEFAULT NULL,
+  `mode_evaluation` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_notes`
+--
+
+INSERT INTO `tb_notes` (`id`, `etudiant`, `cours`, `note`, `periode`, `niveau`, `options`, `aneaca`, `date_time`, `tag`, `acteur`, `sur`, `mode_evaluation`) VALUES
+(1, 16, 22, '21', 'Etape 1', 6, NULL, '2020-2021', '2021-01-08 09:37:20', '', NULL, 40, 'E4'),
+(2, 16, 21, '25', 'Etape 1', 6, NULL, '2020-2021', '2021-01-08 09:39:28', '', NULL, 40, 'E4'),
+(3, 16, 12, '26', 'Etape 1', 6, NULL, '2020-2021', '2021-01-08 09:47:32', '', NULL, 40, 'E4'),
+(4, 16, 16, '18', 'Etape 1', 6, NULL, '2020-2021', '2021-01-08 09:49:04', '', NULL, 40, 'E4'),
+(5, 8, 176, '18', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 09:50:36', '', NULL, 20, 'E4'),
+(6, 9, 35, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:01', '', NULL, 20, 'E4'),
+(7, 13, 35, '12', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:01', '', NULL, 20, 'E4'),
+(8, 12, 35, '10', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:01', '', NULL, 20, 'E4'),
+(9, 5, 35, '8', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:01', '', NULL, 20, 'E4'),
+(10, 8, 35, '19', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:09', '', NULL, 20, 'E4'),
+(11, 10, 35, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 13:49:09', '', NULL, 20, 'E4'),
+(12, 8, 14, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:46:15', '', NULL, 20, 'E4'),
+(13, 8, 18, '16', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:49:05', '', NULL, 20, 'E4'),
+(14, 8, 11, '18', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:50:29', '', NULL, 20, 'E4'),
+(15, 8, 13, '35', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:51:46', '', NULL, 40, 'E4'),
+(16, 8, 20, '30', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:53:33', '', NULL, 40, 'E4'),
+(17, 8, 40, '17', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 20:54:16', '', NULL, 20, 'E4'),
+(18, 5, 9, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:27:20', '', NULL, 20, 'E4'),
+(19, 5, 20, '29', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:29:12', '', NULL, 40, 'E4'),
+(20, 8, 31, '12', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:35:12', '', NULL, 20, 'E4'),
+(22, 8, 27, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:36:35', '', NULL, 20, 'E4'),
+(23, 8, 32, '19', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:37:47', '', NULL, 20, 'E4'),
+(24, 8, 9, '16', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:38:58', '', NULL, 20, 'E4'),
+(25, 8, 19, '17', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:39:20', '', NULL, 20, 'E4'),
+(26, 5, 14, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:45:23', '', NULL, 20, 'E4'),
+(27, 13, 11, '13', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 21:45:37', '', NULL, 20, 'E4'),
+(28, 5, 11, '16', 'Etape 1', 7, NULL, '2020-2021', '2021-01-08 22:11:15', '', NULL, 20, 'E4'),
+(29, 13, 14, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 15:07:51', '', NULL, 20, 'E4'),
+(31, 13, 18, '13', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 15:08:52', '', NULL, 20, 'E4'),
+(32, 13, 20, '32', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 15:22:16', '', NULL, 40, 'E4'),
+(33, 13, 32, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 21:48:01', '', NULL, 20, 'E4'),
+(34, 5, 32, '13', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 21:48:17', '', NULL, 20, 'E4'),
+(35, 10, 32, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 22:41:26', '', NULL, 20, 'E4'),
+(36, 10, 11, '17', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 22:41:34', '', NULL, 20, 'E4'),
+(37, 12, 18, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 22:42:00', '', NULL, 20, 'E4'),
+(38, 9, 13, '32', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 22:42:13', '', NULL, 40, 'E4'),
+(39, 9, 32, '12', 'Etape 1', 7, NULL, '2020-2021', '2021-01-09 22:43:51', '', NULL, 20, 'E4'),
+(40, 12, 32, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-10 10:20:55', '', NULL, 20, 'E4'),
+(41, 23, 27, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-15 13:28:13', '', NULL, 20, 'E4'),
+(42, 19, 35, '15', 'Etape 1', 7, NULL, '2020-2021', '2021-01-15 14:46:06', '', NULL, 20, 'E4'),
+(43, 19, 9, '14', 'Etape 1', 7, NULL, '2020-2021', '2021-01-15 14:49:07', '', NULL, 20, 'E4'),
+(44, 19, 32, '16', 'Etape 1', 7, NULL, '2020-2021', '2021-01-15 14:49:47', '', NULL, 20, 'E4'),
+(45, 19, 27, '13', 'Etape 1', 7, NULL, '2020-2021', '2021-01-15 14:50:05', '', NULL, 20, 'E4');
 
 -- --------------------------------------------------------
 
@@ -403,28 +514,45 @@ CREATE TABLE `tb_personnes` (
   `id` int(11) NOT NULL,
   `prenom` varchar(250) NOT NULL,
   `nom` varchar(250) NOT NULL,
-  `sexe` varchar(2) DEFAULT NULL
+  `sexe` varchar(2) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_personnes`
 --
 
-INSERT INTO `tb_personnes` (`id`, `prenom`, `nom`, `sexe`) VALUES
-(1, 'Roodson', 'Romain', 'M'),
-(2, 'Mario', 'Sajous', 'M'),
-(3, 'Theodora', 'W. Romain', NULL),
-(4, 'Guerline', 'Joseph', NULL),
-(5, 'Kender', 'Romain', 'M'),
-(6, 'Kerlyne', 'Jean', 'F'),
-(7, 'Catiana', 'Rameau', 'F'),
-(8, 'Stephanie ', 'Romain', 'F'),
-(9, 'May-Darline', 'Belton', 'F'),
-(10, 'Johanne', 'Rosemond', 'F'),
-(11, 'Magdala', 'Elizaire', 'F'),
-(12, 'Martine', 'Pierre-Louis', 'F'),
-(13, 'Natacha', 'Jean', 'F'),
-(14, 'Gethro', 'Pierre', 'M');
+INSERT INTO `tb_personnes` (`id`, `prenom`, `nom`, `sexe`, `active`) VALUES
+(1, 'Roodson', 'Romain', 'M', 1),
+(2, 'Mario', 'Sajous', 'M', 1),
+(3, 'Theodora', 'W. Romain', NULL, 1),
+(4, 'Guerline', 'Joseph', NULL, 1),
+(5, 'Kender', 'Romain', 'M', 1),
+(6, 'Kerlyne', 'Jean', 'F', 1),
+(7, 'Catiana', 'Rameau', 'F', 1),
+(8, 'Stephanie ', 'Romain', 'F', 1),
+(9, 'May-Darline', 'Belton', 'F', 1),
+(10, 'Johanne', 'Rosemond', 'F', 1),
+(11, 'Magdala', 'Elizaire', 'F', 1),
+(12, 'Martine', 'Pierre-Louis', 'F', 1),
+(13, 'Natacha', 'Jean', 'F', 1),
+(14, 'Gethro', 'Pierre', 'M', 1),
+(15, 'Garry', 'Desrosiers', 'M', 1),
+(16, 'Marie-MichÃ¨le', 'Zamor', 'F', 1),
+(17, 'Mondy', 'Badeau', 'M', 1),
+(18, 'Marie Guirlaine', 'Louis', 'F', 1),
+(19, 'Manola', 'Registre', 'F', 1),
+(20, 'Daniel', 'Pierre', 'M', 1),
+(21, 'Kerlyne', 'Louis', 'F', 1),
+(22, 'Stephanie ', 'Joseph', 'F', 1),
+(23, 'Sheila', 'Guillaume', 'F', 1),
+(24, 'Samuel', 'Gouin', 'M', 1),
+(25, 'Kelly', 'Paul', 'M', 1),
+(26, 'Jean Marie', 'Pierre', 'M', 1),
+(27, 'Marie Christine', 'Platel', 'F', 1),
+(28, 'FranÃ§ois', 'Jean', 'M', 1),
+(29, 'NadÃ¨ge', 'Louis', 'F', 1),
+(30, 'Francesca', 'Dumas', 'F', 1);
 
 -- --------------------------------------------------------
 
@@ -496,6 +624,13 @@ ALTER TABLE `tb_mode_evaluations`
   ADD UNIQUE KEY `mode_evaluation` (`mode_evaluation`);
 
 --
+-- Indexes for table `tb_notes`
+--
+ALTER TABLE `tb_notes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `etudiant` (`etudiant`,`cours`,`periode`,`niveau`,`aneaca`);
+
+--
 -- Indexes for table `tb_periodes_evaluation`
 --
 ALTER TABLE `tb_periodes_evaluation`
@@ -522,7 +657,7 @@ ALTER TABLE `tb_professeurs`
 -- AUTO_INCREMENT for table `tb_affectation`
 --
 ALTER TABLE `tb_affectation`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tb_categorie_cours`
 --
@@ -532,7 +667,7 @@ ALTER TABLE `tb_categorie_cours`
 -- AUTO_INCREMENT for table `tb_classes`
 --
 ALTER TABLE `tb_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `tb_cours`
 --
@@ -542,12 +677,17 @@ ALTER TABLE `tb_cours`
 -- AUTO_INCREMENT for table `tb_cours_par_classe`
 --
 ALTER TABLE `tb_cours_par_classe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `tb_mode_evaluations`
 --
 ALTER TABLE `tb_mode_evaluations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_notes`
+--
+ALTER TABLE `tb_notes`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `tb_periodes_evaluation`
 --
@@ -557,7 +697,7 @@ ALTER TABLE `tb_periodes_evaluation`
 -- AUTO_INCREMENT for table `tb_personnes`
 --
 ALTER TABLE `tb_personnes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `tb_professeurs`
 --
