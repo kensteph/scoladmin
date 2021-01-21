@@ -8,18 +8,7 @@
     <% pos=0; listNotes.forEach((line)=> {
         notesStudent = line.Notes;
         %>
-        <div class="row-header">
-            <div class="logo">
-                <img style="margin-left: 10px;" src="/images/logo/logo.png" alt="img" width="100" height="100">
-            </div>
-            <div class="header-form">
-                COLLEGE MIXTE LES FRERES UNIS<br>
-                48,Rue Charlemagne Péralte ,PV<br>
-                509 38606466 | 36589475<br>
-            </div>
-        </div>
-        <hr style="width: 80%; margin-top: 30px;">
-
+        <%- include("header") -%>
         <div class="row-header-table">
             <div class="title-report">
                 <%=pageTitle%><br>

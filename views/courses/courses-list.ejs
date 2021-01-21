@@ -84,17 +84,17 @@
                                                             css_class ="";
                                                             desactive = "";
                                                             if(course.active==0){
-                                                                css_class="h-red";
-                                                                desactive = "Ce cours est désactivé.";
+                                                            css_class="h-red";
+                                                            desactive = "Ce cours est désactivé.";
                                                             }
-                                                        %>
-                                                            <tr class="<%=css_class%>" title="<%=desactive%>" >
+                                                            %>
+                                                            <tr class="<%=css_class%>" title="<%=desactive%>">
                                                                 <td>
                                                                     <% if(niveau!=0){ %>
-                                                                    <%=niveau%>
-                                                                    <%}else{%>
-                                                                        Système
-                                                                    <%}%>
+                                                                        <%=niveau%>
+                                                                            <%}else{%>
+                                                                                Système
+                                                                                <%}%>
                                                                 </td>
                                                                 <td>
                                                                     <%=course.libelle%>
@@ -117,10 +117,10 @@
                                                                                 title="Modifier <%=course.libelle%>"
                                                                                 onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>','<%=course.active%>')"></i>
                                                                             &nbsp;&nbsp;&nbsp;
+                                                                            <a title="Palmarès" target="_blank"
+                                                                                href="/print-course-palmares?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&Course=<%=course.libelle+' | '+course.code%>&Periode=<%=periodSelected%>"><i
+                                                                                    class="fa fa-print"></i></a>
                                                                             <% } %>
-                                                                                <i class="fas fa-trash to-link h-red"
-                                                                                    title="Supprimer <%=course.libelle%>"
-                                                                                    onclick="deleteClassroom('<%=course.id%>','<%=course.libelle%>','<%=course.code%>','<%=course.id%>')"></i>
                                                                 </td>
 
                                                             </tr>
@@ -163,6 +163,7 @@
                                                     </option>
                                                     <% }) %>
                                             </select>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="courseName">Nom du cours (Matière)</label>
@@ -233,7 +234,7 @@
 
                                         <div class="form-group">
                                             <label for="Professeur">Professeur</label>
-                                            <select class="form-control"  id="Professeur" name="EditProf">
+                                            <select class="form-control" id="Professeur" name="EditProf">
                                                 <option value="0">Choisissez le professeur</option>
                                                 <% teachersList.forEach((teacher)=> { %>
                                                     <option value="<%=teacher.id_personne%>">
@@ -245,7 +246,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="Activation">Activé/Désactivé</label>
-                                            <select class="form-control"id="Activation" name="Activation" disabled>
+                                            <select class="form-control" id="Activation" name="Activation" disabled>
                                                 <option value="1">Activé</option>
                                                 <option value="0">Désactivé</option>
                                             </select>
@@ -287,16 +288,35 @@
                                 </div>
                                 <form id="FilterForm" role="form" method="POST">
                                     <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="Niveau">Salle de classe </label>
-                                            <select class="form-control" name="classRoomId" onchange="autoFill(this)">
-                                                <option value="All">------Choisissez la salle de classe------</option>
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" name="classRoomId"
+                                                onchange="autoFill(this)">
                                                 <% classrooms.forEach((classroom)=> { %>
                                                     <option value="<%=classroom.id%>">
                                                         <%=classroom.classe%>
                                                     </option>
                                                     <% }) %>
                                             </select>
+                                            &nbsp;
+                                            <select class="form-control w-25" name="Period" id="Period">
+                                                <option>All</option>
+                                                <% periodList.forEach((periode)=> { %>
+                                                    <option value="<%=periode.periode%>">
+                                                        <%=periode.periode%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;
+                                            <select class="form-control w-25" name="AneAca">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %>
+                                                        selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+
                                             <input type="hidden" name="classRoomSelectedNiveau"
                                                 id="classRoomSelectedNiveau">
                                         </div>
@@ -386,7 +406,7 @@
             $("#courseAss-modal").modal();
         }
         //EDIT INFO ABOUT COURSE
-        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur,activation) {
+        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur, activation) {
             $("#csList").empty();
             $("#btnAddItem").hide();
             $("#courseSelected").hide();
@@ -398,7 +418,7 @@
             $("#coefficient").val(coeff);
             $("#Position").val(position);
             $("#Professeur").val(professeur);
-            $("#Activation").attr("disabled",false);
+            $("#Activation").attr("disabled", false);
             $("#Activation").val(activation);
             $("#actionFieldAsignment").val("Edit");
             $("#btnAssignation").val("Modifier");

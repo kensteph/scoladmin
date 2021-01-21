@@ -22,25 +22,32 @@ app.use(require('./routes/employees'));
 
 
 //SYSTEM IGNITION
-intitValues = function async() {
-    let helpers = require("./helpers/helper");
-    console.log("INITIALISATION....... : ");
-    // Global variables
-    //let settings = await self.getSettings();
-    //console.log(settings);
+intitValues = async function () {
+    console.log("INITIALISATION DES VARIABLES DU SYSTEME....... : ");
+    let ctrlNotes = require("./controllers/Ctrlnotes");
+    let ctrlSetting = require("./controllers/Ctrlclassroom");
+    let settings = await ctrlSetting.getSettings();
+    console.log(settings);
     //GLOBALS VARIABLES
-
+    global.modeEvaluation = await ctrlNotes.listOfModeEvaluation();
     global.appName = process.env.APP_NAME;
     global.appRoutes = ['employee-list', ''];
-    global.LOGO = helpers.base64("public/images/logo/logo.png");
+    global.schoolName = settings.school_name;
+    global.schoolAddress = settings.school_address;
+    global.schoolPhone = settings.school_phone;
+    global.schoolEmail = settings.school_email;
+    //
+    global.schoolDirector = settings.director;
+    global.schoolModEvaluation = settings.school_evaluation_method;
+    global.schoolCoeffPassage = settings.coeff_passage;
+
     //MENU ACCESS
     global.MENU_ITEM = ['Tableau de bord', 'Test Patient', 'Test Laboratoire', 'Patients', 'Examens', 'Gestion de stock', 'Paramètres', 'Administration'];
     global.SUBMENU_ITEM = ['Ajouter Patient', 'Liste des Patients', 'Modifier Patients', 'Rechercher Patient', 'Liste des demandes de Tests', 'Supprimer une demandes de Test', 'Enregistrer Résultat', 'Modifier Résultat', 'Valider Résultat', 'Ajouter Signature', 'Imprimer Résultat', 'Ajouter examens', 'Voir la liste des examens', 'Supprimer examens', 'Modifier examens', 'Ajouter valeurs normales', 'Détails Examens', 'Ajouter Matériau', 'Modifier Matériau', 'Lister les matériaux', 'Ajouter Stock', 'Inventaire', 'Imprimer Inventaire', 'Requete Ajouter/Retirer article du Stock', 'Autoriser Ajouter/Retirer article du Stock', 'Approuver requete relative au stock', 'Voir la liste des requetes de stock', 'Valider/Invalider Stock', 'Modifier Stock', 'Supprimer Stock', 'Supprimer transactions pendantes', 'Mouvement de stock', 'Imprimer Mouvement de Stock'];
-    //res.render('login');
 }
 
-app.get('/', function (req, res) {
-    intitValues();
+app.get('/', async (req, res) => {
+    await intitValues();
     res.render('login');
 });
 

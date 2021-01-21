@@ -45,9 +45,6 @@ router.post('/students-list', auth, async (req, res) => {
     }
 
 });
-// git config --global user.email "kenderromain@gmail.com"
-// git config --global user.name "Kender Romain"
-
 // Classrooms List
 router.get('/students-list', auth, async (req, res) => {
     let response = await dbClassroomController.listOfClassrooms("All");
@@ -85,5 +82,23 @@ router.get('/students-list', auth, async (req, res) => {
     res.render('../views/students/students-list', params);
 });
 
+//============================================ PRINTING =====================================================================
+
+router.get('/print-students-list', auth, async (req, res) => {
+    let ClassRoom = req.query.ClassRoom;
+    let AneAca = req.query.AneAca;
+    //GET INFO ABOUT THE CLASSROOM
+    let info = await dbClassroomController.getclassroom(ClassRoom);
+    console.log("CLASS INFO : ", info);
+    //GET THE LIST
+    let studentList = await dbController.listOfStudent(ClassRoom, AneAca);
+
+    let pageTitle = "Liste " + info.classe + " " + AneAca;
+    let params = {
+        pageTitle,
+        studentList
+    };
+    res.render('../print/templates/list-eleves', params);
+});
 // Exportation of this router
 module.exports = router;

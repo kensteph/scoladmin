@@ -9,8 +9,7 @@ const dbClassroomController = require("../controllers/Ctrlclassroom");
 const dbStudentController = require("../controllers/Ctrlstudent");
 const dbCoursesController = require("../controllers/Ctrlcourses");
 const helper = require("../helpers/helper");
-const printer = require("../print/print");
-const fs = require("fs-extra");
+
 // PERIODES List
 router.get('/periode-list', auth, async (req, res) => {
     let modeEvaluation = await dbController.listOfModeEvaluation();

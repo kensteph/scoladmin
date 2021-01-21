@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+</head>
+
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%>
+            </div>
+        </div>
+        </div>
+        <div class=" row-report">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Prénom</th>
+                                <th>Nom</th>
+                                <th>Sexe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% studentList.forEach((Student)=> { %>
+                                <tr>
+                                    <td>
+                                        <%=Student.prenom%>
+                                    </td>
+                                    <td>
+                                        <%=Student.nom%>
+                                    </td>
+                                    <td>
+                                        <%=Student.sexe%>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

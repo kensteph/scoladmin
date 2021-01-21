@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+</head>
+
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%>
+            </div>
+        </div>
+        </div>
+        <div class=" row-report">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Elèves/Etudiants</th>
+                                <% if(periode=="" ){ %>
+                                    <% periodList.forEach((periode)=> { %>
+                                        <th>
+                                            <%=periode.periode %>
+                                        </th>
+                                        <% }) %>
+                                <% }else{ %>
+                                                <th>
+                                                    <%=periode %>
+                                                </th>
+                                <% } %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% studentList.forEach((Student)=> { %>
+                                <tr>
+                                    <td>
+                                        <%=Student.nom+' '+Student.prenom%>
+                                    </td>
+                                    <% if(periode==""){ %>
+                                    <% pos_note=0; periodList.forEach((periode)=> { %>
+                                        <th class="td-bulletin">
+                                                <% %>
+                                        </th>
+                                    <% pos_note++; }) %>
+                                    <%  }else{ %>
+                                        <th class="td-bulletin">
+                                            <% %>
+                                    </th>
+                                    <%  } %>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

@@ -32,7 +32,6 @@ var self = module.exports = {
         rep = await promise;
         return rep;
     },
-
     //Save Modalites paiement
     editClassroom: async function (req) {
         let promise = new Promise((resolve, reject) => {
@@ -68,7 +67,6 @@ var self = module.exports = {
         rep = await promise;
         return rep;
     },
-
     //CLASSROOM INFO
     getclassroom: async function (id) {
         let promise = new Promise((resolve, reject) => {
@@ -149,5 +147,59 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+    //============================ MANAGE SETTINGS ================================
+
+    //GET THE SETTINGS
+    getSettings: async function () {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_settings ";
+            con.query(sql, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        console.log(data);
+        return data;
+    },
+    //EDIT COURSE'S SYSTEM
+    editSettings: async function (req) {
+        let promise = new Promise((resolve, reject) => {
+            let methodID = req.body.methodID;
+            let Methode = req.body.Methode;
+            let codeMethode = req.body.codeMethode;
+            let nbPeriode = req.body.nbPeriode;
+            let sql =
+                'UPDATE tb_mode_evaluations SET mode_evaluation=?,code=?,nb_controles=? WHERE id=?';
+            // console.log(sql);
+            con.query(sql, [Methode, codeMethode, nbPeriode, methodID], function (err, result) {
+                if (err) {
+                    msg = {
+                        type: "danger",
+                        msg:
+                            "Vous avez déja ajouté",
+                        debug: err
+                    };
+                } else {
+                    msg = {
+                        type: "success",
+                        success: true,
+                        msg:
+                            Methode + " modifié avec succès...",
+                        nb_success: result.affectedRows,
+                    };
+                }
+
+                resolve(msg);
+                //console.log(msg);
+            });
+        });
+        rep = await promise;
+        return rep;
+    },
+
 
 }

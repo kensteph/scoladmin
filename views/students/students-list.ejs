@@ -49,6 +49,11 @@
                                                     Etudiant/Eléve</button>
                                                 <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
                                                     data-target="#filter-modal" aria-hidden="true"></i>
+                                                    <% if(studentList.length > 0){ %>
+                                                    <a title="Liste des élèves" target="_blank"
+                                                        href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i></a>
+                                                    <% } %>
                                             </div>
 
                                         </li>

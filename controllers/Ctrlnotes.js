@@ -46,7 +46,7 @@ var self = module.exports = {
             });
         });
         data = await promise;
-        console.log(data);
+        //console.log(data);
         return data;
     },
     //EDIT COURSE'S SYSTEM

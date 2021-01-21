@@ -4,92 +4,81 @@
 <link rel="stylesheet" href="/css/print.css">
 
 <body onload="window.print()">
-    <div class="row-header">
-        <div class="logo">
-            <img style="margin-left: 10px;" src="/images/logo/logo.png" alt="img" width="100" height="100">
-        </div>
-        <div class="header-form">
-            COLLEGE MIXTE LES FRERES UNIS<br>
-            48,Rue Charlemagne Péralte ,PV<br>
-            509 38606466 | 36589475<br>
-        </div>
-    </div>
-    <hr style="width: 80%; margin-top: 30px;">
-
-    <div class="row-header-table">
-        <div class="title-report">
-            <%=pageTitle%><br>
-                <%=Student.prenom+" "+Student.nom.toUpperCase()%>
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%><br>
+                    <%=Student.prenom+" "+Student.nom.toUpperCase()%>
         </div>
     </div>
     <div class=" row-report">
-                    <div class="col-sm-6">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="td-bulletin">Cours/Matières</th>
-                                        <th class="td-bulletin">Notes</th>
-                                        <th class="td-bulletin">Coefficients</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% pos_note=0; coursesList.forEach((courses)=> { %>
-                                        <tr class="td-bulletin">
-                                            <td class="td-bulletin">
-                                                <%=courses.libelle %>
-                                            </td>
-                                            <td class="td-vn td-bulletin">
-                                                <%=Notes[pos_note] %>
-                                            </td>
-                                            <td class="td-vn td-bulletin">
-                                                <%=courses.coefficient %>
-                                            </td>
+                        <div class="col-sm-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-bulletin">Cours/Matières</th>
+                                            <th class="td-bulletin">Notes</th>
+                                            <th class="td-bulletin">Coefficients</th>
                                         </tr>
-                                        <% pos_note++; }) %>
-                                            <tr>
-                                                <td class="td-bulletin"><strong>TOTAL</strong></td>
-                                                <td class="td-vn td-bulletin">
-                                                    <strong>
-                                                        <%=Total%>
-                                                    </strong>
+                                    </thead>
+                                    <tbody>
+                                        <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                            <tr class="td-bulletin">
+                                                <td class="td-bulletin">
+                                                    <%=courses.libelle %>
                                                 </td>
                                                 <td class="td-vn td-bulletin">
-                                                    <strong>
-                                                        <%=TotalCoeff%>
-                                                    </strong>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="td-bulletin"><strong>MOYENNE</strong></td>
-                                                <td class="td-vn td-bulletin">
-
+                                                    <%=Notes[pos_note] %>
                                                 </td>
                                                 <td class="td-vn td-bulletin">
-                                                    <strong>
-                                                        <%=Moyenne%>
-                                                    </strong>
+                                                    <%=courses.coefficient %>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="td-bulletin"><strong>PLACE</strong></td>
-                                                <td class="td-vn td-bulletin">
+                                            <% pos_note++; }) %>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=Total%>
+                                                        </strong>
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=TotalCoeff%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                    <td class="td-vn td-bulletin">
 
-                                                </td>
-                                                <td class="td-vn td-bulletin">
-                                                    <strong>
-                                                        <%=place%>
-                                                    </strong>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=Moyenne%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>PLACE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=place%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
 
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-        </div>
-        <%- include("signature") -%>
+            </div>
+            <%- include("signature") -%>
 
 
 </body>
