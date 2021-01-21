@@ -162,20 +162,24 @@ var self = module.exports = {
             });
         });
         data = await promise;
-        console.log(data);
+        //console.log(data);
         return data;
     },
-    //EDIT COURSE'S SYSTEM
+    //EDIT SETTINGS
     editSettings: async function (req) {
         let promise = new Promise((resolve, reject) => {
-            let methodID = req.body.methodID;
-            let Methode = req.body.Methode;
-            let codeMethode = req.body.codeMethode;
-            let nbPeriode = req.body.nbPeriode;
+            let school_name = req.body.schoolName;
+            let school_address = req.body.schoolAddress;
+            let school_phone = req.body.schoolPhone;
+            let school_email = req.body.schoolEmail;
+            let school_evaluation_method = req.body.modeEvaluation;
+            let director = req.body.schoolDirector;
+            let coeff_passage = req.body.schoolCoeffPassage;
+
             let sql =
-                'UPDATE tb_mode_evaluations SET mode_evaluation=?,code=?,nb_controles=? WHERE id=?';
+                'UPDATE tb_settings SET school_name=?,school_address=?,school_phone=?,school_email=?,school_evaluation_method=?,director=?,coeff_passage=? WHERE id=1';
             // console.log(sql);
-            con.query(sql, [Methode, codeMethode, nbPeriode, methodID], function (err, result) {
+            con.query(sql, [school_name, school_address, school_phone, school_email, school_evaluation_method, director, coeff_passage], function (err, result) {
                 if (err) {
                     msg = {
                         type: "danger",
@@ -188,7 +192,7 @@ var self = module.exports = {
                         type: "success",
                         success: true,
                         msg:
-                            Methode + " modifié avec succès...",
+                            "Les informations ont été modifiés avec succès...",
                         nb_success: result.affectedRows,
                     };
                 }

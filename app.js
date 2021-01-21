@@ -27,7 +27,7 @@ intitValues = async function () {
     let ctrlNotes = require("./controllers/Ctrlnotes");
     let ctrlSetting = require("./controllers/Ctrlclassroom");
     let settings = await ctrlSetting.getSettings();
-    console.log(settings);
+    //console.log(settings);
     //GLOBALS VARIABLES
     global.modeEvaluation = await ctrlNotes.listOfModeEvaluation();
     global.appName = process.env.APP_NAME;
@@ -51,7 +51,8 @@ app.get('/', async (req, res) => {
     res.render('login');
 });
 
-app.get('/dash-board', function (req, res) {
+app.get('/dash-board', async (req, res)=> {
+    await intitValues();
     res.render('index');
 });
 

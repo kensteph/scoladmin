@@ -138,11 +138,11 @@
     function editSettings() {
         let formData = $("#SettingsForm").serialize();
         $.post("/edit-settings", formData, function (data) {
-            // if (data.success) { //Success 
-            //     $("#notifySignature").html(data.msg);
-            // } else {
-            //     $("#notifySignature").html(data.msg);
-            // }
+            if (data.success) { //Success 
+               location.href="/dash-board";
+            } else {
+                $("#notifySignature").html(data.msg);
+            }
         });
     }
 </script>
