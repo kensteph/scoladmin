@@ -67,24 +67,18 @@ var self = module.exports = {
         return data;
     },
 
-    //Edit student Info
+    //Save Modalites paiement
     editStudent: async function (req) {
         let promise = new Promise((resolve, reject) => {
             let Firstname = req.body.Firstname;
             let Lastname = req.body.Lastname;
             let Sexe = req.body.Sexe;
-            let BloodType = req.body.BloodType;
-            let Address = req.body.Address;
-            let Phone = req.body.Phone;
-            let Nif = req.body.Nif;
-            if (Nif == "") { Nif = null; }
-            let ImageName = req.body.ImageName;
             let StudentID = req.body.StudentID;
             let Statut = req.body.Statut;
             let sql =
-                'UPDATE tb_personnes SET prenom=?, nom =?, sexe=?,groupe_sanguin=?,adresse=?,phone=?,nif=?,img_profile=?,active=? WHERE id=?';
+                'UPDATE tb_personnes SET prenom=?, nom =?, sexe=?,active=? WHERE id=?';
             // console.log(sql);
-            con.query(sql, [Firstname, Lastname, Sexe, BloodType, Address, Phone, Nif, ImageName, Statut, StudentID], function (err, result) {
+            con.query(sql, [Firstname, Lastname, Sexe, Statut, StudentID], function (err, result) {
                 if (err) {
                     msg = {
                         type: "danger",
@@ -109,7 +103,7 @@ var self = module.exports = {
         rep = await promise;
         return rep;
     },
-    //Edit student Affectation
+    //Save Modalites paiement
     editStudentAffectation: async function (req) {
         let promise = new Promise((resolve, reject) => {
             let niveau = req.body.Niveau;
@@ -146,10 +140,10 @@ var self = module.exports = {
         return rep;
     },
 
-    //Student Info
+    //CLASSROOM INFO
     getStudent: async function (id) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND pers.id=? ";
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=? ";
             con.query(sql, [id], function (err, rows) {
                 if (err) {
                     throw err;
@@ -162,23 +156,7 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
-    //Student Live Search
-    liveStudentSearch: async function (keyWorkToSearch) {
-        let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,CONCAT(id,' - ',prenom,' ',nom) as fullname FROM tb_personnes WHERE  CONCAT(prenom,' ',nom,' ',phone,' ',id) LIKE '%" + keyWorkToSearch + "%' OR CONCAT(prenom,' ',nom) LIKE '%" + keyWorkToSearch + "%' ";
-            con.query(sql, function (err, rows) {
-                if (err) {
-                    throw err;
-                } else {
-                    resolve(rows);
-                }
-            });
-        });
-        data = await promise;
-        //console.log(data);
-        return data;
-    },
-    //Load All The students
+    //Load All The classrooms
     listOfStudent: async function (classroom, aneAca, active = "All") {
         let promise = new Promise((resolve, reject) => {
             let sql = "";

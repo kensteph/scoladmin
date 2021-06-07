@@ -5,27 +5,34 @@ const bodyParser = require('body-parser');
 const auth = require('./middleware/auth');
 //SESSION
 const session = require('express-session');
+const statistic = require('./middleware/statistic');
 let app = express();
 //Uses
 app.use(express.static('public')); // All our static files
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs'); // Templating
 app.use(bodyParser.urlencoded({ extended: true })); // Allow to submit forms
+const fileupload = require('express-fileupload'); // Allow to submit forms with files
+// enable files upload
+app.use(fileupload({ createParentPath: true }));
 //Use Session
 app.use(session({ secret: 'St&phani&1987', resave: false, saveUninitialized: false }));
+
 // External routes
 app.use(require('./routes/classrooms'));
 app.use(require('./routes/courses'));
 app.use(require('./routes/students'));
 app.use(require('./routes/notes'));
 app.use(require('./routes/employees'));
+app.use(require('./routes/admin'));
 
 
 //SYSTEM IGNITION
-intitValues = async function () {
+intitValues = async function (req) {
     console.log("INITIALISATION DES VARIABLES DU SYSTEME....... : ");
     let ctrlNotes = require("./controllers/Ctrlnotes");
     let ctrlSetting = require("./controllers/Ctrlclassroom");
+
     let settings = await ctrlSetting.getSettings();
     //console.log(settings);
     //GLOBALS VARIABLES
@@ -40,6 +47,7 @@ intitValues = async function () {
     global.schoolDirector = settings.director;
     global.schoolModEvaluation = settings.school_evaluation_method;
     global.schoolCoeffPassage = settings.coeff_passage;
+    req.session.modEvaluation = settings.school_evaluation_method;
 
     //MENU ACCESS
     global.MENU_ITEM = ['Tableau de bord', 'Test Patient', 'Test Laboratoire', 'Patients', 'Examens', 'Gestion de stock', 'Paramètres', 'Administration'];
@@ -47,23 +55,27 @@ intitValues = async function () {
 }
 
 app.get('/', async (req, res) => {
-    await intitValues();
+    await intitValues(req);
     res.render('login');
 });
 
-app.get('/dash-board', async (req, res)=> {
-    await intitValues();
-    res.render('index');
+app.get('/dash-board', statistic, async (req, res) => {
+    await intitValues(req);
+    let params = req.stat;
+    console.log("TST : ", params);
+    res.render('index', params);
 });
 
 //LOGIN
-app.post('/login', async (req, res) => {
+app.post('/login', statistic, async (req, res) => {
+    await intitValues(req);
     let username = "keromain";
     //USER'S ACCESSS
     let userAccess = ["Employee-list"];
     req.session.userData = { userName: username, userAccess: userAccess };
-    req.session.modEvaluation = "E4";
-    res.render('index');
+    let params = req.stat;
+    console.log("TST : ", params);
+    res.render('index', params);
 });
 
 //Exit Point

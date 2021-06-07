@@ -88,7 +88,7 @@
                                                                         <%=Student.nom+" "+Student.prenom%>
                                                                     </td>
                                                                     <td>
-                                                                        <input type="number" name="note[]"
+                                                                        <input type=" number" name="note[]"
                                                                             class="form-control w-40"
                                                                             max="<%=infoCourse.coefficient%>" min="0"
                                                                             placeholder="<%=infoCourse.coefficient%>">
@@ -110,10 +110,10 @@
 
                                                         </tbody>
                                                     </table>
-                                                    <% if(studentList.length > 0) { %>
-                                                      <input type="submit" class="btn btn-success"
-                                                        value="Enregistrer Notes">
-                                                    <% } %>
+                                                    <% if(studentList.length> 0) { %>
+                                                        <input type="submit" class="btn btn-success"
+                                                            value="Enregistrer Notes">
+                                                        <% } %>
                                     </form>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="Continuer" class="btn btn-success">
+                            <input type="submit" id="btnContinue" value="Continuer" class="btn btn-success" disabled>
                             <input type="hidden" name="courseName" id="courseName">
                             <input type="hidden" name="actionField" value="Filter" id="actionField">
                         </div>
@@ -228,8 +228,16 @@
                 $.post("/getCourses-list", { classRoomId: classRoomId }, function (data) {
                     console.log(data);
                     let pos = 0;
-                    for (i = 0; i < data.length; i++) {
-                        select.append('<option value="' + data[i].id_cours + '">' + data[i].libelle + '</option>');
+                    console.log(data);
+                    if (data.length > 0) {
+                        //SET btnContinue
+                        $("#btnContinue").prop("disabled", false);
+                        for (i = 0; i < data.length; i++) {
+                            select.append('<option value="' + data[i].id_cours + '">' + data[i].libelle + '</option>');
+                        }
+                    } else {
+                        //SET btnContinue
+                        $("#btnContinue").prop("disabled", true);
                     }
                 });
             }

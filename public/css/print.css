@@ -21,6 +21,11 @@ td {
   border: 1px solid #dddddd;
   padding: 1px;
 }
+.td-list {
+  width: 50px;
+  border: 1px solid #dddddd;
+  padding: 1px;
+}
 
 .td-vn {
   border: 1px solid #dddddd;
@@ -242,6 +247,7 @@ body {
 }
 
 .palma-title {
+  margin: 20px;
   font-size: 9px;
   font-weight:lighter;
 }

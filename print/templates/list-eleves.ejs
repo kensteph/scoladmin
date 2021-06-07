@@ -10,7 +10,9 @@
     <%- include("header") -%>
         <div class="row-header-table">
             <div class="title-report">
-                <%=pageTitle%>
+                <%=pageTitle%><br>
+                Semaine du _________ au ________ Mois _________________ Année ____________
+                <br>
             </div>
         </div>
         </div>
@@ -20,23 +22,27 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Prénom</th>
-                                <th>Nom</th>
-                                <th>Sexe</th>
+                                <th>Elèves/Etudiants</th>
+                                <th>Lundi</th>
+                                <th>Mardi</th>
+                                <th>Mercredi</th>
+                                <th>Jeudi</th>
+                                <th>Vendredi</th>
+                                <th>Remarques</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% studentList.forEach((Student)=> { %>
                                 <tr>
                                     <td>
-                                        <%=Student.prenom%>
+                                        <%=Student.nom.toUpperCase()+" "+Student.prenom%>
                                     </td>
-                                    <td>
-                                        <%=Student.nom%>
-                                    </td>
-                                    <td>
-                                        <%=Student.sexe%>
-                                    </td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td></td>
                                 </tr>
                                 <% }) %>
                         </tbody>

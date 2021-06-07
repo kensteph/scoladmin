@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+
+                            <div class="col-6">
+                                <form action="" method="POST" id="search-form">
+                                    <div class="form-group d-flex">
+                                        <input type="text" id="search-input" onfocus="select()"
+                                            onkeyup="searchStudents()" class="form-control"
+                                            placeholder="Rechercher ici..." autocomplete="off">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <button type="submit" class="btn btn-primary ml-3">Rechercher</button>
+                                    </div>
+                                    <div class="" id="search-result">
+                                        <ul id="ResultList">
+
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-12 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="page-title center">
+                                            <a href="/student-details?ID=<%=studentInfo.id_personne%>">
+                                                <%=pageTitle%>
+                                            </a>
+                                        </h2>
+
+                                        <div class="mt-4">
+                                            <div class="accordion" id="accordion" role="tablist">
+                                                <div class="card">
+                                                    <div class="card-header" role="tab" id="heading-1">
+                                                        <h6 class="mb-0">
+                                                            <a data-toggle="collapse" href="#collapse-1"
+                                                                aria-expanded="true" aria-controls="collapse-1"
+                                                                class="collapsed ">
+                                                                <strong> Informations Personnelles </strong>
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                    <div id="collapse-1" class="collapse show" role="tabpanel"
+                                                        aria-labelledby="heading-1" data-parent="#accordion" style="">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img src="../../uploads/<%=studentInfo.img_profile%>"
+                                                                        class="mw-100" alt="image">
+                                                                </div>
+                                                                <div class="col-9">
+
+                                                                    <div class="form-inline">
+                                                                        <input type="text" name="Firstname" disabled
+                                                                            id="Firstname" class="form-control"
+                                                                            value="<%=studentInfo.prenom%>"
+                                                                            placeholder="Prénom de l'étudiant/élève">
+                                                                        &nbsp; &nbsp;
+                                                                        <input type="text" name="Lastname" disabled
+                                                                            id="Lastname" class="form-control"
+                                                                            value="<%=studentInfo.nom%>"
+                                                                            placeholder="Nom de l'étudiant/élève">
+
+                                                                        &nbsp; &nbsp;
+                                                                        <input type="text" name="BloodType" disabled
+                                                                            id="BloodType" class="form-control"
+                                                                            value="<%=studentInfo.groupe_sanguin%>"
+                                                                            placeholder="Groupe Sanguin de l'étudiant/élève">
+                                                                        &nbsp; &nbsp;
+                                                                        <select class="form-control" name="Sexe"
+                                                                            disabled required id="Sexe">
+                                                                            <option value="F" <%
+                                                                                if(studentInfo.sexe=="F" ){ %>
+                                                                                selected <% } %>>Féminin</option>
+                                                                            <option value="M" <%
+                                                                                if(studentInfo.sexe=="M" ){ %>
+                                                                                selected <% } %>>Masculin</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="form-inline">
+                                                                        <input type="text" name="Address" id="Address"
+                                                                            disabled class="form-control"
+                                                                            placeholder="Adresse de l'étudiant/élève"
+                                                                            value="<%=studentInfo.adresse%>" size="50">
+                                                                        &nbsp; &nbsp;
+                                                                        <input type="text" name="Phone" id="Phone"
+                                                                            disabled class="form-control" size="30"
+                                                                            value="<%=studentInfo.phone%>"
+                                                                            placeholder="Téléphone de l'étudiant/élève">
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="form-inline">
+                                                                        <input type="text" name="Nif" id="Nif" disabled
+                                                                            class="form-control" size="30"
+                                                                            value="<%=studentInfo.nif%>"
+                                                                            placeholder="NIF  de l'étudiant/élève">
+                                                                        &nbsp; &nbsp;
+                                                                        <select class="form-control" name="Statut"
+                                                                            disabled id="Statut">
+                                                                            <option <% if(studentInfo.active==1 ){ %>
+                                                                                selected <% } %> value="1">Activé
+                                                                            </option>
+                                                                            <option <% if(studentInfo.active==0 ){ %>
+                                                                                selected <% } %> value="0">Désactivé
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header" role="tab" id="heading-2">
+                                                        <h6 class="mb-0">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                href="#collapse-2" aria-expanded="false"
+                                                                aria-controls="collapse-2">
+                                                                I can’t sign in to my account
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                    <div id="collapse-2" class="collapse" role="tabpanel"
+                                                        aria-labelledby="heading-2" data-parent="#accordion" style="">
+                                                        <div class="card-body">
+                                                            If while signing in to your account you see an
+                                                            error message, you can do the following
+                                                            <ol class="pl-3 mt-4">
+                                                                <li>Check your network connection and try
+                                                                    again</li>
+                                                                <li>Make sure your account credentials are
+                                                                    correct while signing in</li>
+                                                                <li>Check whether your account is accessible
+                                                                    in your region</li>
+                                                            </ol>
+                                                            <br>
+                                                            <p class="text-success">
+                                                                <i
+                                                                    class="fa fa-exclamation-triangle-octagon mr-2"></i>If
+                                                                the problem persists, you can contact our
+                                                                support.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header" role="tab" id="heading-3">
+                                                        <h6 class="mb-0">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                                href="#collapse-3" aria-expanded="false"
+                                                                aria-controls="collapse-3">
+                                                                Can I add money to the wallet?
+                                                            </a>
+                                                        </h6>
+                                                    </div>
+                                                    <div id="collapse-3" class="collapse" role="tabpanel"
+                                                        aria-labelledby="heading-3" data-parent="#accordion" style="">
+                                                        <div class="card-body">
+                                                            You can add money to the wallet for any future
+                                                            transaction from your bank account using
+                                                            net-banking, or credit/debit card transaction.
+                                                            The money in the wallet can be used for an
+                                                            easier and faster transaction.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+
+        function searchStudents() {
+            $("#search-result").attr("display", 'block')
+            let wordToSearch = $("#search-input").val();
+            if (wordToSearch.length >= 2) {
+                $.post("/student-live-search", { key: wordToSearch }, function (data) {
+                    console.log(data);
+                    if (data) {
+                        $("#ResultList").html("");
+                        for (i = 0; i < data.length; i++) {
+                            let item = data[i];
+                            let student = item.fullname;
+                            let line = '<li> <a href="#" onclick="displayDetails(' + item.id + ')" >' + student + '</a></li>';
+                            $("#ResultList").append(line);
+                        }
+                    } else {
+                        //alert(data.msg);
+                        $("#ResultList").html("Aucun résultat...");
+                    }
+                });
+            } else {
+                $("#ResultList").html("");
+            }
+        }
+
+        function displayDetails(id) {
+            $("#StudentID").val(id);
+            $("#search-form").submit();
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

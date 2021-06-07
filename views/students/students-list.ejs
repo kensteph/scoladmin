@@ -49,7 +49,7 @@
                                                     Etudiant/Eléve</button>
                                                 <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
                                                     data-target="#filter-modal" aria-hidden="true"></i>
-                                                    <% if(studentList.length > 0){ %>
+                                                <% if(studentList.length> 0){ %>
                                                     <a title="Liste des élèves" target="_blank"
                                                         href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
                                                             class="fa fa-print fa-2x"></i></a>
@@ -74,8 +74,7 @@
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Prénom</th>
-                                                            <th>Nom</th>
+                                                            <th>Elèves/Etudiants</th>
                                                             <th>Sexe</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -84,10 +83,11 @@
                                                         <% studentList.forEach((Student)=> { %>
                                                             <tr>
                                                                 <td>
-                                                                    <%=Student.prenom%>
-                                                                </td>
-                                                                <td>
-                                                                    <%=Student.nom%>
+                                                                    <a
+                                                                        href="/student-details?ID=<%=Student.id_personne%>">
+                                                                        <%=Student.prenom%>
+                                                                            <%=Student.nom%>
+                                                                    </a>
                                                                 </td>
                                                                 <td>
                                                                     <%=Student.sexe%>
@@ -95,7 +95,7 @@
                                                                 <td>
                                                                     <i class="fas fa-edit to-link"
                                                                         title="Modifier <%=Student.fullname%>"
-                                                                        onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>')"></i>
+                                                                        onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i class="fas fa-trash to-link h-red"
                                                                         title="Supprimer <%=Student.fullname%>"
@@ -141,7 +141,6 @@
                                                     <% }) %>
                                             </select>
                                             &nbsp; &nbsp;
-
                                             <input type="text" required name="AneAca" id="AneAca" value="2020-2021"
                                                 title="Année Académique" onclick="select()" class="form-control w-25"
                                                 placeholder="Année Académique">
@@ -159,12 +158,20 @@
                                             <input type="text" required name="Lastname" id="Lastname"
                                                 class="form-control" placeholder="Nom de l'étudiant/élève">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-inline">
                                             <label for="Sexe">Sexe</label>
-                                            <select class="form-control" name="Sexe" required id="Sexe"
-                                                onchange="autoFill(this)">
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Sexe" required id="Sexe">
                                                 <option value="F">Féminin</option>
                                                 <option value="M">Masculin</option>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <label for="Statut">Statut</label>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut" id="Statut">
+                                                <option value="1">Activé
+                                                </option>
+                                                <option value="0">Désactivé</option>
                                             </select>
                                         </div>
 
@@ -194,7 +201,7 @@
                                     <div class="modal-body">
                                         <label for="Niveau">Salle de classe </label>
                                         <div class="form-inline">
-                                            <select class="form-control" name="ClassRoom">
+                                            <select class="form-control w-40" name="ClassRoom">
                                                 <% data.forEach((classroom)=> { %>
                                                     <option <% if(roomSelected==classroom.id){ %> selected <% } %>
                                                             value="<%=classroom.id%>">
@@ -210,6 +217,13 @@
                                                                 <%=year.aneaca%>
                                                     </option>
                                                     <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut">
+                                                <option value="1" <% if(statutSelected==1){ %> selected <% } %> >Activé
+                                                </option>
+                                                <option value="0" <% if(statutSelected==0){ %> selected <% } %>
+                                                        >Désactivé</option>
                                             </select>
 
                                         </div>
@@ -255,6 +269,7 @@
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
             $("#modalTitle").html("Nouvel Etudiant/Elève");
+            $("#Statut").attr("disabled", true);
             $("#Niveau").val(0);
             $("#classroomName").val("");
             $("#abrevClassroomName").val("");
@@ -266,7 +281,9 @@
             $("#classroom-modal").modal();
         }
         //EDIT INFO ABOUT CLASSROOM
-        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID, Statut) {
+            $("#Statut").attr("disabled", false);
+            $("#Statut").val(Statut);
             $("#modalTitle").html("Modification " + fullname);
             $("#Firstname").val(firstname);
             $("#Lastname").val(lastname);
@@ -282,6 +299,7 @@
         //DELETE INFO ABOUT CLASSROOM
         function deleted(StudentID, firstname, lastname, gender, fullname, AffectationID) {
             $("#modalTitle").html("Voulez-vous supprimer " + fullname + " ?");
+            $("#Statut").attr("disabled", true);
             $("#Firstname").val(firstname);
             $("#Lastname").val(lastname);
             $("#Sexe").val(gender);

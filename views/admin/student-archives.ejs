@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+
+                            <div class="col-6">
+                                <form action="/student-archives-result" method="POST" id="search-form">
+                                    <div class="form-group d-flex">
+                                        <input type="text" id="search-input" onfocus="select()"
+                                            onkeyup="searchStudents()" class="form-control"
+                                            placeholder="Rechercher ici..." autocomplete="off">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <button type="submit" class="btn btn-primary ml-3">Rechercher</button>
+                                    </div>
+                                    <div class="" id="search-result">
+                                        <ul id="ResultList">
+
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- content-wrapper ends -->
+                            <!-- partial:../../partials/_footer.html -->
+                            <%- include("../parts/footer") -%>
+                                <!-- partial -->
+                        </div>
+                        <!-- main-panel ends -->
+
+
+                    </div>
+                    <!-- page-body-wrapper ends -->
+            </div>
+            <!-- container-scroller -->
+            <!-- plugins:js -->
+            <script src="../../vendors/js/vendor.bundle.base.js"></script>
+            <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+            <!-- endinject -->
+            <!-- inject:js -->
+            <script src="../../js/off-canvas.js"></script>
+            <script src="../../js/hoverable-collapse.js"></script>
+            <script src="../../js/misc.js"></script>
+            <script src="../../js/settings.js"></script>
+            <script src="../../js/todolist.js"></script>
+            <!-- endinject -->
+            <!-- Custom js for this page-->
+            <script src="../../js/data-table.js"></script>
+            <!-- End custom js for this page-->
+            <script>
+
+                function searchStudents() {
+                    $("#search-result").attr("display", 'block')
+                    let wordToSearch = $("#search-input").val();
+                    if (wordToSearch.length >= 2) {
+                        $.post("/student-live-search", { key: wordToSearch }, function (data) {
+                            console.log(data);
+                            if (data) {
+                                $("#ResultList").html("");
+                                for (i = 0; i < data.length; i++) {
+                                    let item = data[i];
+                                    let student = item.fullname;
+                                    let line = '<li> <a href="#" onclick="displayDetails(' + item.id + ')" >' + student + '</a></li>';
+                                    $("#ResultList").append(line);
+                                }
+                            } else {
+                                //alert(data.msg);
+                                $("#ResultList").html("Aucun résultat...");
+                            }
+                        });
+                    } else {
+                        $("#ResultList").html("");
+                    }
+                }
+
+                function displayDetails(id) {
+                    $("#StudentID").val(id);
+                    $("#search-form").submit();
+                }
+            </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

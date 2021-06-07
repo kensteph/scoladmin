@@ -249,7 +249,7 @@ router.get('/palmares-notes', auth, async (req, res) => {
         periodSelected = req.query.period;
         //COURSES LIST
         coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
-        studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+        studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected, 1);
         //GET INFO ABOUT THE CLASSROOM
         let info = await dbClassroomController.getclassroom(roomSelected);
         niveauSelected = info.mere;
@@ -285,6 +285,9 @@ router.post('/palmares-notes', auth, async (req, res) => {
     let aneacaList = await dbClassroomController.getAcademicYear();
     let yearSelected = req.body.AneAca; //CURRENT YEAR
     let roomSelected = req.body.ClassRoom;
+    //Get the last Period
+    let lastPeriod = periodList[periodList.length - 1];
+    console.log("LAST PERIOD : ", lastPeriod);
     //Coefficient de Calcul des moyennes
     let CoefficientCalcul = await dbController.CoefficientCalcul(roomSelected);
     let CoeffTotal = CoefficientCalcul.Total;
@@ -298,7 +301,7 @@ router.post('/palmares-notes', auth, async (req, res) => {
     //COURSES LIST
     let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
     //STUDENTS LIST
-    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected, 1);
     let palmares = [];
     let Total = [];
     let Moyennes = [];
@@ -394,7 +397,7 @@ router.get('/print-palmares-notes', auth, async (req, res) => {
     //COURSES LIST
     let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
     //STUDENTS LIST
-    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected, 1);
     let palmares = [];
     let Total = [];
     let Moyennes = [];
@@ -488,7 +491,7 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
     //COURSES LIST
     let coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
     //STUDENTS LIST
-    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected);
+    let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected, 1);
     let palmares = [];
     let Total = [];
     let Moyennes = [];
