@@ -202,6 +202,7 @@
                                         <label for="Niveau">Salle de classe </label>
                                         <div class="form-inline">
                                             <select class="form-control w-40" name="ClassRoom">
+                                                <option value="All">Toutes les classes</option>
                                                 <% data.forEach((classroom)=> { %>
                                                     <option <% if(roomSelected==classroom.id){ %> selected <% } %>
                                                             value="<%=classroom.id%>">

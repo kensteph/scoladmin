@@ -19,14 +19,20 @@ router.post('/students-list', auth, async (req, res) => {
     let ClassRoom = req.body.ClassRoom;
     let AneAca = req.body.AneAca;
     let active = 1;
+    let info;
     if (req.body.Statut) {
         active = req.body.Statut;
     }
     console.log(req.body);
-    //GET INFO ABOUT THE CLASSROOM
-    let info = await dbClassroomController.getclassroom(ClassRoom);
-    console.log("CLASS INFO : ", info);
-    req.body.Niveau = info.mere;
+    if (ClassRoom == "All") {
+
+    } else {
+        //GET INFO ABOUT THE CLASSROOM
+        info = await dbClassroomController.getclassroom(ClassRoom);
+        console.log("CLASS INFO : ", info);
+        req.body.Niveau = info.mere;
+    }
+
     console.log(req.body);
     if (req.body.actionField == "Filter") { //FILTER
         res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active);
@@ -63,6 +69,8 @@ router.get('/students-list', auth, async (req, res) => {
     let yearSelected = "2020-2021"; //CURRENT YEAR
     let roomSelected;
     let statutSelected = 1;
+    let statusName = "actifs";
+    let info;
     let pageTitle = "Etudiants/Elèves";
     console.log("ANE ACA : ", aneacaList);
     let msg = "";
@@ -74,10 +82,16 @@ router.get('/students-list', auth, async (req, res) => {
         roomSelected = req.query.room;
         yearSelected = req.query.year;
         statutSelected = req.query.statut;
+        if (statutSelected == 0) { statusName = "désactivés" }
         studentList = await dbController.listOfStudent(roomSelected, yearSelected, statutSelected);
-        //GET INFO ABOUT THE CLASSROOM
-        let info = await dbClassroomController.getclassroom(roomSelected);
-        pageTitle = info.classe + " " + yearSelected;
+        if (roomSelected != "All") {
+            //GET INFO ABOUT THE CLASSROOM
+            info = await dbClassroomController.getclassroom(roomSelected);
+            pageTitle = info.classe + " " + yearSelected + " | " + statusName;
+        } else {
+            pageTitle = "Etudiants/Elèves" + " " + yearSelected + " | " + statusName;
+        }
+
     }
     console.log("STUDENTS : ", studentList);
     params = {
@@ -94,7 +108,53 @@ router.get('/students-list', auth, async (req, res) => {
     };
     res.render('../views/students/students-list', params);
 });
+// STUDENT GALLERY
+router.get('/students-gallery', auth, async (req, res) => {
+    let response = await dbClassroomController.listOfClassrooms("All");
+    let studentList = [];
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let yearSelected = "2020-2021"; //CURRENT YEAR
+    let roomSelected;
+    let statutSelected = 1;
+    let statusName = "actifs";
+    let info;
+    let pageTitle = "Etudiants/Elèves";
+    console.log("ANE ACA : ", aneacaList);
+    let msg = "";
+    if (req.query.msg) {
+        msg = req.query.msg;
+    }
+    //FILTER
+    if (req.query.year && req.query.room) {
+        roomSelected = req.query.room;
+        yearSelected = req.query.year;
+        statutSelected = req.query.statut;
+        if (statutSelected == 0) { statusName = "désactivés" }
+        studentList = await dbController.listOfStudent(roomSelected, yearSelected, statutSelected);
+        if (roomSelected != "All") {
+            //GET INFO ABOUT THE CLASSROOM
+            info = await dbClassroomController.getclassroom(roomSelected);
+            pageTitle = info.classe + " " + yearSelected + " | " + statusName;
+        } else {
+            pageTitle = "Etudiants/Elèves" + " " + yearSelected + " | " + statusName;
+        }
 
+    }
+    console.log("STUDENTS : ", studentList);
+    params = {
+        pageTitle: pageTitle,
+        data: response,
+        studentList: studentList,
+        aneacaList: aneacaList,
+        UserData: req.session.UserData,
+        yearSelected: yearSelected,
+        roomSelected: roomSelected,
+        statutSelected,
+        page: 'Students',
+        msg: msg,
+    };
+    res.render('../views/students/student-gallery', params);
+});
 // STUDENT DETAILS
 router.get('/student-details', auth, async (req, res) => {
     let response = await dbClassroomController.listOfClassrooms("All");
@@ -157,13 +217,20 @@ router.post('/student-details', auth, async (req, res) => {
 router.get('/print-students-list', auth, async (req, res) => {
     let ClassRoom = req.query.ClassRoom;
     let AneAca = req.query.AneAca;
-    //GET INFO ABOUT THE CLASSROOM
-    let info = await dbClassroomController.getclassroom(ClassRoom);
-    console.log("CLASS INFO : ", info);
+    let pageTitle;
+    if (ClassRoom == "All") {
+        pageTitle = "Liste des étudiants/élèves " + AneAca;
+    } else {
+        //GET INFO ABOUT THE CLASSROOM
+        let info = await dbClassroomController.getclassroom(ClassRoom);
+        pageTitle = "Liste " + info.classe + " " + AneAca;
+        console.log("CLASS INFO : ", info);
+    }
     //GET THE LIST
     let studentList = await dbController.listOfStudent(ClassRoom, AneAca);
 
-    let pageTitle = "Liste " + info.classe + " " + AneAca;
+
+
     let params = {
         pageTitle,
         studentList

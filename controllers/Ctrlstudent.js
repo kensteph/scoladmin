@@ -162,11 +162,12 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
-    //Student Live Search
-    liveStudentSearch: async function (keyWorkToSearch) {
+
+    //Student Info CLASSES
+    getStudentClasses: async function (id) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,CONCAT(id,' - ',prenom,' ',nom) as fullname FROM tb_personnes WHERE  CONCAT(prenom,' ',nom,' ',phone,' ',id) LIKE '%" + keyWorkToSearch + "%' OR CONCAT(prenom,' ',nom) LIKE '%" + keyWorkToSearch + "%' ";
-            con.query(sql, function (err, rows) {
+            let sql = "SELECT * FROM tb_affectation   WHERE id_personne=? ORDER BY aneaca ";
+            con.query(sql, [id], function (err, rows) {
                 if (err) {
                     throw err;
                 } else {
@@ -178,20 +179,49 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+    //Student Live Search
+    liveStudentSearch: async function (keyWorkToSearch) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT *,CONCAT(id,' - ',prenom,' ',nom) as fullname FROM tb_personnes WHERE  CONCAT(prenom,' ',nom,' ',phone,' ',id) LIKE '%" + keyWorkToSearch + "%' OR CONCAT(prenom,' ',nom) LIKE '%" + keyWorkToSearch + "%' AND type='Student' ";
+            console.log(sql);
+            con.query(sql, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        // console.log(sql);
+        return data;
+    },
     //Load All The students
     listOfStudent: async function (classroom, aneAca, active = "All") {
         let promise = new Promise((resolve, reject) => {
             let sql = "";
             let params = [];
             if (active == "All") {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? ORDER BY nom,prenom";
-                params = [classroom, aneAca];
+                if (classroom == "All") {
+                    sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne  AND aneaca=? ORDER BY nom,prenom";
+                    params = [aneAca];
+                } else {
+                    sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? ORDER BY nom,prenom";
+                    params = [classroom, aneAca];
+                }
+
             } else {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? AND active=? ORDER BY nom,prenom";
-                params = [classroom, aneAca, active];
+                if (classroom == "All") {
+                    sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne  AND aneaca=? AND active=? ORDER BY nom,prenom";
+                    params = [aneAca, active];
+                } else {
+                    sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? AND active=? ORDER BY nom,prenom";
+                    params = [classroom, aneAca, active];
+                }
+
             }
 
-            //console.log(sql);
+            console.log(sql);
             con.query(sql, params, function (err, rows) {
                 if (err) {
                     throw err;

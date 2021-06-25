@@ -169,6 +169,22 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+    //METHOD EVALUATION
+    getModeEvaluation: async function (niveau, aneaca) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT DISTINCT(mode_evaluation) FROM `tb_notes` WHERE niveau=? AND aneaca=?";
+            con.query(sql, [niveau, aneaca], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //======================================================== NOTES===========================
     //Load All The classrooms
     listOfStudentWithoutNotes: async function (classroom, courseId, niveau, period, aneaca) {

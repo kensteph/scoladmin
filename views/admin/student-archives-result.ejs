@@ -65,14 +65,15 @@
                                         </h2>
 
                                         <div class="mt-4">
-                                            <div class="accordion" id="accordion" role="tablist">
+                                            <div class="accordion accordion-solid-header" id="accordion" role="tablist">
                                                 <div class="card">
-                                                    <div class="card-header" role="tab" id="heading-1">
+                                                    <div class="card-header" role="tab" id="heading-1"
+                                                        style="border-bottom:10px">
                                                         <h6 class="mb-0">
                                                             <a data-toggle="collapse" href="#collapse-1"
                                                                 aria-expanded="true" aria-controls="collapse-1"
-                                                                class="collapsed ">
-                                                                <strong> Informations Personnelles </strong>
+                                                                class="collapsed">
+                                                                <h1> INFORMATIONS PERSONNELLES </h1>
                                                             </a>
                                                         </h6>
                                                     </div>
@@ -153,30 +154,56 @@
                                                             <a class="collapsed" data-toggle="collapse"
                                                                 href="#collapse-2" aria-expanded="false"
                                                                 aria-controls="collapse-2">
-                                                                I can’t sign in to my account
+                                                                NOTES
                                                             </a>
                                                         </h6>
                                                     </div>
                                                     <div id="collapse-2" class="collapse" role="tabpanel"
                                                         aria-labelledby="heading-2" data-parent="#accordion" style="">
                                                         <div class="card-body">
-                                                            If while signing in to your account you see an
-                                                            error message, you can do the following
-                                                            <ol class="pl-3 mt-4">
-                                                                <li>Check your network connection and try
-                                                                    again</li>
-                                                                <li>Make sure your account credentials are
-                                                                    correct while signing in</li>
-                                                                <li>Check whether your account is accessible
-                                                                    in your region</li>
-                                                            </ol>
-                                                            <br>
-                                                            <p class="text-success">
-                                                                <i
-                                                                    class="fa fa-exclamation-triangle-octagon mr-2"></i>If
-                                                                the problem persists, you can contact our
-                                                                support.
-                                                            </p>
+
+                                                            <div class="accordion accordion-solid-header"
+                                                                id="accordion-2" role="tablist">
+
+                                                                <% let pos=0; allClasses.forEach((studentYear)=> { %>
+                                                                    <div class="card">
+                                                                        <div class="card-header" role="tab"
+                                                                            id="heading-4">
+                                                                            <h6 class="mb-0">
+                                                                                <a data-toggle="collapse"
+                                                                                    href="#collapse-sub<%=studentYear.id%>"
+                                                                                    aria-expanded="false"
+                                                                                    aria-controls="collapse-4"
+                                                                                    class="collapsed">
+                                                                                    <%=studentYear.aneaca%>
+                                                                                </a>
+                                                                            </h6>
+                                                                        </div>
+                                                                        <div id="collapse-sub<%=studentYear.id%>"
+                                                                            class="collapse" role="tabpanel"
+                                                                            aria-labelledby="heading-4"
+                                                                            data-parent="#accordion-2" style="">
+                                                                            <div class="card-body">
+                                                                                <div class="template-demo">
+                                                                                    <%
+                                                                                        periodsByYear[pos].forEach((periodeEvaluation)=>
+                                                                                        { %>
+
+                                                                                        <a target="_blank"
+                                                                                            href="/print-bulletin?studentId=<%=studentInfo.id_personne%>&place=&periodSelected=<%=periodeEvaluation.periode%>&roomSelected=<%=studentYear.classroom%>&yearSelected=<%=studentYear.aneaca%>"
+                                                                                            class="btn btn-dark btn-fw">
+                                                                                            <%=periodeEvaluation.periode%>
+                                                                                        </a>
+
+                                                                                        <% }) %>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <% pos++ %>
+                                                                        <% }) %>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

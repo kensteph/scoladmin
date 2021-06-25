@@ -6,6 +6,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(express.static('public'));
 const dbController = require("../controllers/Ctrlstudent");
 const dbClassroomController = require("../controllers/Ctrlclassroom");
+const dbNotesController = require("../controllers/Ctrlnotes");
 const helpers = require('../helpers/helper');
 
 
@@ -33,10 +34,34 @@ router.post('/student-archives-result', auth, async (req, res) => {
     let studentFullName = "ARCHIVES";
     let studentInfo;
     let studentIdSelected = req.body.StudentID;
+
+    //INFO ABOUT THE STUDENT
     studentInfo = await dbController.getStudent(studentIdSelected);
     studentFullName = studentInfo.fullname;
     console.log("ID-STUDENT : ", studentIdSelected, "INFO : ", studentInfo);
 
+    //INFO ABOUT THE CLASSES
+    let allClasses = await dbController.getStudentClasses(studentIdSelected);
+    console.log("ALL CLASSES : ", allClasses);
+
+    let periodsByYear = [];
+    for (let yearAca of allClasses) {
+        let methodeEvaluationForThisYear = await dbNotesController.getModeEvaluation(yearAca.niveau, yearAca.aneaca);
+        let methode;
+        if (methodeEvaluationForThisYear != null) {
+            console.log("METHODE : ", methodeEvaluationForThisYear);
+            methode = methodeEvaluationForThisYear.mode_evaluation;
+            //INFO ABOUT THE PERIODE  LIST
+            let periodList = await dbNotesController.listOfPeriod("E4");
+            console.log("ALL PERIODS : ", periodList);
+            periodsByYear.push(periodList);
+        } else {
+            periodsByYear.push([]);
+        }
+        // console.log("YEAR : ", yearAca.aneaca, " METHODE : ", methode);
+    }
+
+    console.log("ALL PERIODES : ", periodsByYear);
 
     let pageTitle = studentFullName;
     console.log("ANE ACA : ", aneacaList);
@@ -47,6 +72,8 @@ router.post('/student-archives-result', auth, async (req, res) => {
 
     params = {
         pageTitle: pageTitle,
+        allClasses,
+        periodsByYear,
         data: response,
         studentInfo,
         studentList: studentList,
