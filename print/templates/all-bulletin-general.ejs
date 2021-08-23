@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<!-- inject:css -->
+<link rel="stylesheet" href="/css/print.css">
+<title><%=pageTitle%></title>
+<body onload="window.print()">
+
+    <% pos=0; bulletins.forEach((line)=> {
+        let Student = line.Student;
+        let Notes = line.notes;
+        let studentTotalNote = line.studentTotalNote;
+        let studentMoyenne = line.studentMoyenne;
+        let lastMoyenne = line.lastMoyenne;
+        let moyGen = line.moyGen;
+        let decision = line.decision;
+    %>
+
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%><br>
+                <%=Student.prenom+" "+Student.nom.toUpperCase()+" ("+Student.dossier+")"%>
+                    <br><br>
+        </div>
+    </div>
+                        <div class="col-sm-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-bulletin">Cours/Matières</th>
+                                            <th class="td-bulletin">Coefficients</th>
+                                            <% periodList.forEach((period)=> { %>
+                                                <th class="td-bulletin"><%=period.periode %></th>
+                                            <%  }) %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% let pos_cours=0; coursesList.forEach((courses)=> { %>
+                                            <tr class="td-bulletin">
+                                                <td class="td-bulletin">
+                                                    <strong><i><%=courses.libelle %></i></strong>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                   <strong><%=courses.coefficient %></strong> 
+                                                </td>
+                                                <% let pos_period=0; periodList.forEach((period)=> { 
+                                                    let note = Notes[pos_period][pos_cours];
+                                                %>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=note %>
+                                                </td>
+                                                <% pos_period++ }) %>
+                                            </tr>
+                                        <% pos_cours++; }) %>
+                                                <tr class="td-bulletin">
+                                                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=CoeffTotal%>
+                                                        </strong>
+                                                    </td>
+                                                    <% let pos_period1=0; periodList.forEach((period)=> { %>
+                                                        <td class="td-vn td-bulletin">
+                                                            <strong>
+                                                                <%=studentTotalNote[pos_period1]%>
+                                                            </strong>
+                                                        </td>
+                                                    <% pos_period1++ }) %>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>-----</strong>
+                                                    </td>
+                                                    <% let pos_period=0; periodList.forEach((period)=> { %>
+                                                    <td class="td-vn td-bulletin">
+                                                            <strong>
+                                                                <%=studentMoyenne[pos_period]%>
+                                                            </strong>
+                                                    </td>
+                                                    <% pos_period++ }) %>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE GENERALE</strong></td>
+                                                    <td class="td-moy-gle"><strong><%=moyGen%></strong></td>
+                                                </tr>
+
+                                    </tbody>
+                                </table>
+                                <table style="margin-top: 10px;">
+                                    <tr colspan="<%=periodList.length%>">
+                                        <td class="td-bulletin">
+                                            <strong>MENTION : </strong> &nbsp;&nbsp; <%=decision%>
+                                        </td>
+                                    </tr>
+                                    <tr colspan="7">
+                                        <td class="td-bulletin"><strong>REMARQUES : </strong></td>
+                                    </tr>
+                                </table>
+                        </div>
+            <%- include("signature") -%>
+            <% if(pos < bulletins.length-1){ %>
+                <div class="pagebreak"> </div>
+                <% } %>
+<% pos++; }) %>
+
+</body>
+
+</html>

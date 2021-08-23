@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header" style="align-items: center;">
+                                <h3 class="page-title">
+                                    Détails sur l'élève/étudiant
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <a title="Imprimer la fiche de l'élève,étudiant" target="_blank"
+                                                    href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
+                                                        class="fa fa-print fa-2x"></i></a>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+
+                            <div class="col-lg-12 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="page-title center">
+                                            <%=pageTitle%>
+                                        </h2>
+                                        <form action="/student-details" method="POST" enctype="multipart/form-data">
+                                            <div class="mt-4">
+                                                <div class="accordion accordion-solid-header" id="accordion" role="tablist">
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="heading-1">
+                                                            <h6 class="mb-0">
+                                                                <a data-toggle="collapse" href="#collapse-1"
+                                                                    aria-expanded="true" aria-controls="collapse-1"
+                                                                    class="collapsed ">
+                                                                    <strong> Informations Personnelles </strong>
+                                                                </a>
+                                                            </h6>
+                                                        </div>
+                                                        <div id="collapse-1" class="collapse show" role="tabpanel"
+                                                            aria-labelledby="heading-1" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <img src="../../uploads/<%=studentInfo.img_profile%>"
+                                                                            class="mw-100" alt="image">
+                                                                        <input type="file" name="avatar" class="mt-4" />
+                                                                        <input type="hidden" name="OldImgName" value="<%=studentInfo.img_profile%>">
+                                                                    </div>
+                                                                    <div class="col-9">
+
+                                                                        <div class="form-inline">
+                                                                            <input type="text" name="Firstname"
+                                                                                id="Firstname" class="form-control"
+                                                                                value="<%=studentInfo.prenom%>"
+                                                                                placeholder="Prénom de l'étudiant/élève">
+                                                                            &nbsp; &nbsp;
+                                                                            <input type="text" name="Lastname"
+                                                                                id="Lastname" class="form-control"
+                                                                                value="<%=studentInfo.nom%>"
+                                                                                placeholder="Nom de l'étudiant/élève">
+
+                                                                            &nbsp; &nbsp;
+                                                                            <input type="text" name="BloodType"
+                                                                                id="BloodType" class="form-control"
+                                                                                value="<%=studentInfo.groupe_sanguin%>"
+                                                                                placeholder="Groupe Sanguin de l'étudiant/élève">
+                                                                            &nbsp; &nbsp;
+                                                                            <select class="form-control" name="Sexe"
+                                                                                required id="Sexe">
+                                                                                <option value="F" <%
+                                                                                    if(studentInfo.sexe=="F" ){ %>
+                                                                                    selected <% } %>>Féminin</option>
+                                                                                <option value="M" <%
+                                                                                    if(studentInfo.sexe=="M" ){ %>
+                                                                                    selected <% } %>>Masculin</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="form-inline">
+                                                                            <input type="text" name="Address"
+                                                                                id="Address" class="form-control"
+                                                                                placeholder="Adresse de l'étudiant/élève"
+                                                                                value="<%=studentInfo.adresse%>"
+                                                                                size="50">
+                                                                            &nbsp; &nbsp;
+                                                                            <input type="text" name="Phone" id="Phone"
+                                                                                class="form-control" size="30"
+                                                                                value="<%=studentInfo.phone%>"
+                                                                                placeholder="Téléphone de l'étudiant/élève">
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="form-inline">
+                                                                            <input type="text" name="Nif" id="Nif"
+                                                                                class="form-control" size="30"
+                                                                                value="<%=studentInfo.nif%>"
+                                                                                placeholder="NIF  de l'étudiant/élève">
+                                                                            &nbsp; &nbsp;
+                                                                            <select class="form-control" name="Statut"
+                                                                                id="Statut">
+                                                                                <option <% if(studentInfo.active==1 ){
+                                                                                    %>
+                                                                                    selected <% } %> value="1">Activé
+                                                                                </option>
+                                                                                <option <% if(studentInfo.active==0 ){
+                                                                                    %>
+                                                                                    selected <% } %> value="0">Désactivé
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="card">
+                                                        <div class="card-header" role="tab" id="heading-2">
+                                                            <h6 class="mb-0">
+                                                                <a class="collapsed" data-toggle="collapse"
+                                                                    href="#collapse-2" aria-expanded="false"
+                                                                    aria-controls="collapse-2">
+                                                                    I can’t sign in to my account
+                                                                </a>
+                                                            </h6>
+                                                        </div>
+                                                        <div id="collapse-2" class="collapse" role="tabpanel"
+                                                            aria-labelledby="heading-2" data-parent="#accordion"
+                                                            style="">
+                                                            <div class="card-body">
+                                                                If while signing in to your account you see an
+                                                                error message, you can do the following
+                                                                <ol class="pl-3 mt-4">
+                                                                    <li>Check your network connection and try
+                                                                        again</li>
+                                                                    <li>Make sure your account credentials are
+                                                                        correct while signing in</li>
+                                                                    <li>Check whether your account is accessible
+                                                                        in your region</li>
+                                                                </ol>
+                                                                <br>
+                                                                <p class="text-success">
+                                                                    <i
+                                                                        class="fa fa-exclamation-triangle-octagon mr-2"></i>If
+                                                                    the problem persists, you can contact our
+                                                                    support.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-header" role="tab" id="heading-3">
+                                                            <h6 class="mb-0">
+                                                                <a class="collapsed" data-toggle="collapse"
+                                                                    href="#collapse-3" aria-expanded="false"
+                                                                    aria-controls="collapse-3">
+                                                                    Can I add money to the wallet?
+                                                                </a>
+                                                            </h6>
+                                                        </div>
+                                                        <div id="collapse-3" class="collapse" role="tabpanel"
+                                                            aria-labelledby="heading-3" data-parent="#accordion"
+                                                            style="">
+                                                            <div class="card-body">
+                                                                You can add money to the wallet for any future
+                                                                transaction from your bank account using
+                                                                net-banking, or credit/debit card transaction.
+                                                                The money in the wallet can be used for an
+                                                                easier and faster transaction.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <input type="hidden" name="StudentID" value="<%=studentInfo.id_personne%>">
+                                            <input type="submit" value="Modifier" class="btn btn-success">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD STUDENT -->
+                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvel Etudiant/Elève</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="classroomForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="ClassRoom">Salle de classe</label><br>
+                                        <div class="form-inline">
+                                            <select class="form-control w-50" name="ClassRoom" required id="ClassRoom">
+                                                <option value="0">------Salle de classe------</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <input type="text" required name="AneAca" id="AneAca" value="2020-2021"
+                                                title="Année Académique" onclick="select()" class="form-control w-25"
+                                                placeholder="Année Académique">
+                                            <input type="hidden" name="Niveau" id="Niveau">
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="Firstname">Prénom</label>
+                                            <input type="text" required name="Firstname" id="Firstname"
+                                                class="form-control" placeholder="Prénom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Lastname">Nom</label>
+                                            <input type="text" required name="Lastname" id="Lastname"
+                                                class="form-control" placeholder="Nom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-inline">
+                                            <label for="Sexe">Sexe</label>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Sexe" required id="Sexe">
+                                                <option value="F">Féminin</option>
+                                                <option value="M">Masculin</option>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <label for="Statut">Statut</label>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut" id="Statut">
+                                                <option value="1">Activé
+                                                </option>
+                                                <option value="0">Désactivé</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnClassroom' value="Enregistrer"
+                                            class="btn btn-success" id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <input type="hidden" name="AffectationID" id="AffectationID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //AUTOFILL CLASSNAME ON SELECTED ITEM
+        function autoFill(Niveau) {
+            let classroomName = $("#classroomName");
+            if (Niveau.selectedIndex != 0) {
+                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
+                classroomName.val(generateClassroomName);
+            } else {
+                classroomName.val("");
+            }
+        }
+        //EDIT INFO ABOUT CLASSROOM
+        function addClassroom() {
+            $("#modalTitle").html("Nouvel Etudiant/Elève");
+            $("#Statut").attr("disabled", true);
+            $("#Niveau").val(0);
+            $("#classroomName").val("");
+            $("#abrevClassroomName").val("");
+            $("#classroomID").val("");
+            $("#actionField").val("Add");
+            $("#btnClassroom").val("Enregistrer");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        //EDIT INFO ABOUT CLASSROOM
+        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID, Statut) {
+            $("#Statut").attr("disabled", false);
+            $("#Statut").val(Statut);
+            $("#modalTitle").html("Modification " + fullname);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        //DELETE INFO ABOUT CLASSROOM
+        function deleted(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+            $("#modalTitle").html("Voulez-vous supprimer " + fullname + " ?");
+            $("#Statut").attr("disabled", true);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
+            $("#actionField").val("Delete");
+            $("#btnClassroom").val("Supprimer");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-danger");
+            $("#classroom-modal").modal();
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

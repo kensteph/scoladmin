@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <a><i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
+                                                    data-target="#filter-modal" aria-hidden="true"></i>Filtre</a>
+                                                <% if(listNotes.length>0){ %>
+                                                    <a title="Palmarès" target="_blank"
+                                                        href="/print-palmares-notes?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                            class="fa fa-print fa-2x"></i> Palmarès</a>
+                                                    
+                                                            <% if(ifLastPeriod){ %>
+                                                                <a title="Bulletins General"
+                                                                    target="_blank"
+                                                                    href="/print-all-bulletin-general?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                                        class="fa fa-print fa-2x"></i>Bulletins General</a>
+                                                                <a title="Palmarès General" target="_blank"
+                                                                        href="/print-palmares-general?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                                            class="fa fa-print fa-2x"></i> Palmarès General</a>
+                                                                            <% if(ifAdmission){ %>
+                                                                            <button class="btn btn-success" onclick="admission('<%=methodEvaluationCode%>','<%=yearSelected%>','<%=roomSelected%>')">Admission</button>
+                                                                            <% } %>
+                                                            <% }else{ %>
+                                                                <a title="Bulletins" target="_blank"
+                                                        href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                            class="fa fa-print fa-2x"></i> Bulletins</a>
+                                                            <% } %>
+                                                <% } %>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Place</th>
+                                                            <th>Elèves/Etudiants</th>
+                                                            <% coursesList.forEach((courses)=> { %>
+                                                                <th title="<%=courses.libelle%>">
+                                                                    <%=courses.code%>
+                                                                </th>
+                                                                <% }) %>
+                                                                    <th>TOT</th>
+                                                                    <th>SUR</th>
+                                                                    <th>MOY</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% pos=0; listNotes.forEach((line)=> {
+                                                            notesStudent = line.Notes;
+                                                            noteIds = line.NoteIds;
+                                                            %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%=pos+1%>
+                                                                        
+                                                                    <% if(ifLastPeriod){ %>
+                                                                        <a title="Bulletin de <%=line.Student%>"
+                                                                            target="_blank"
+                                                                            href="/print-bulletin-general?studentId=<%=line.StudentId%>&place=<%=pos+1%>&periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                                                class="fa fa-print"></i></a>
+                                                                    <% }else{ %>
+                                                                        <a title="Bulletin de <%=line.Student%>"
+                                                                            target="_blank"
+                                                                            href="/print-bulletin?studentId=<%=line.StudentId%>&place=<%=pos+1%>&periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                                                class="fa fa-print"></i></a>
+                                                                   <% } %>        
+                                                                </td>
+                                                                <td>
+                                                                    <%=line.Student%>
+                                                                </td>
+                                                                <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                                                    <td title=" <%=courses.libelle%>"
+                                                                        onclick="editOrAddNote('<%=line.Student%>','<%=line.StudentId%>','<%=courses.id_cours%>','<%=courses.libelle%>','<%= notesStudent[pos_note] %>','<%=courses.coefficient%>','<%=noteIds[pos_note]%>')"
+                                                                        class="to-link"
+                                                                        id="POS<%=line.StudentId+''+courses.id_cours%>">
+                                                                        <%= notesStudent[pos_note] %>
+                                                                    </td>
+                                                                    <% pos_note++; }) %>
+                                                                        <td><strong>
+                                                                                <%=line.Total%>
+                                                                            </strong></td>
+                                                                        <td><strong class="h-red">
+                                                                                <%=CoeffTotal%>
+                                                                            </strong> </td>
+                                                                        <td><strong><i>
+                                                                                    <%=line.Moyenne%>
+                                                                                </i></strong></td>
+
+                                                            </tr>
+                                                            <% pos++; }) %>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="Niveau">Salle de classe </label>
+                                        <div class="form-inline">
+                                            <select class="form-control w-35" name="classRoomFilter" id="classRoomFilter" onchange="populatePeriodList()">
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;
+                                            <select class="form-control" name="AneAcaFilter" id="AneAcaFilter" onchange="populatePeriodList()">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %>
+                                                        selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;
+                                            <select class="form-control w-25" name="PeriodFilter" id="PeriodFilter">
+                                                <% periodList.forEach((periode)=> { %>
+                                                    <option value="<%=periode.periode%>">
+                                                        <%=periode.periode%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                           
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="modEvaluationFilter" id="modEvaluationFilter" value="<%=methodEvaluationCode%>">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EITD OR ADD NOTE -->
+                    <div id="editNote-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalEditTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="EditNoteForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            <strong for="Cours" id="courseSelected">Cours/Matière </strong>
+                                            &nbsp;
+                                            <input type="number" class="form-control w-20" min="0" name="note"
+                                                id="note">
+                                            &nbsp;
+                                            <select class="form-control w-25" name="abscence" title="Abscence/Triche">
+                                                <option value="">Abscence/Triche</option>
+                                                <option value="1">Abscence</option>
+                                                <option value="0">Triche</option>
+                                            </select>
+
+                                        </div>
+                                        <div align="center">
+                                            <strong id="msg"></strong>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="submit" id="btnSaveNote" class="btn btn-success"
+                                            onclick="saveEditNote()"></a>
+                                        <input type="hidden" name="studentId" id="studentId">
+                                        <input type="hidden" name="courseId" id="courseId">
+                                        <input type="hidden" name="coefficient" id="coefficient">
+                                        <input type="hidden" name="niveauSelected" id="niveauSelected"
+                                            value="<%=niveauSelected%>">
+                                        <input type="hidden" name="roomSelected" id="roomSelected"
+                                            value="<%=roomSelected%>">
+                                        <input type="hidden" name="yearSelected" id="yearSelected"
+                                            value="<%=yearSelected%>">
+                                        <input type="hidden" name="periodSelected" id="periodSelected"
+                                            value="<%=periodSelected%>">
+                                        <input type="hidden" name="idNote" id="idNote">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionFieldEdit">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADMISSION -->
+                    <div id="admission-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalAdmisionTitle">Admission</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                    <div class="modal-body center">
+                                        <div id="msgAdmission"></div>
+                                        <p id="summary"></p>
+                                        <div id="notifyAdmission" class="center"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Valider" onclick="validerAdmission()" class="btn btn-success">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script src="../../js/custom.js"></script>
+    <script>
+        //AUTOFILL CLASSNAME ON SELECTED ITEM
+        function getCourseName(course) {
+            let courseName = $("#courseName");
+            let cname = course.options[course.selectedIndex].text;
+            courseName.val(cname);
+        }
+        // //AUTOFILL  ON SELECTED ITEM
+        // function populatePeriodList() {
+        //     let classRoomId = $("#ClassRoom option:selected").val();
+        //     let academicYear = $("#AneAca option:selected").val();
+        //     //alert(academicYear);
+        //     let select = $("#Period");
+        //     select.empty();
+        //     $.post("/getPeriod-list", {classRoomId,academicYear:academicYear }, function (data) {
+        //         console.log(data);
+        //         let pos = 0;
+        //         for (i = 0; i < data.length; i++) {
+        //             select.append('<option value="' + data[i].periode + '">' + data[i].periode + '</option>');
+        //             $("#modEvaluation").val(data[0].mode_evaluation_code);
+        //         }
+        //     });
+        // }
+        // //SAVE NOTES TO DB
+        function saveNotes() {
+            let formData = $("#noteForm").serialize();
+            $.post("/save-notes-db", formData, function (data) {
+                // if (data.success) { //Success 
+                //     $("#notifySignature").html(data.msg);
+                // } else {
+                //     $("#notifySignature").html(data.msg);
+                // }
+            });
+        }
+        //EDIT OR ADD NOTE MODAL
+        function editOrAddNote(student, studentID, courseID, courseName, note, coef, idNote) {
+            $("#modalEditTitle").html(student.toUpperCase());
+            $("#courseSelected").html(courseName);
+            $("#msg").html("");
+            let btntxt = "Enregistrer";
+            $("#studentId").val(studentID);
+            $("#courseId").val(courseID);
+            $("#coefficient").val(coef);
+            $("#note").val(note);
+            $("#idNote").val(idNote);
+            $("#note").attr("max", coef);
+            $("#note").attr("placeholder", coef);
+            if (note != "") {
+                btntxt = "Modifier";
+            }
+            $("#actionFieldEdit").val(btntxt);
+            $("#btnSaveNote").html(btntxt);
+            $("#editNote-modal").modal();
+        }
+        //SAVE OR EDIT SINGLE NOTE
+        function saveEditNote() {
+            let note = $("#note").val();
+            let coeff = $("#coefficient").val();
+            let notePosition = "POS" + $("#studentId").val() + "" + $("#courseId").val();
+            if (note <= coeff) {
+                let formData = $("#EditNoteForm").serialize();
+                $.post("/save-edit-notes-db", formData, function (data) {
+                    if (data.type == "success") { //Success 
+                        $("#msg").removeClass();
+                        $("#" + notePosition).html(note);
+                        $("#msg").html("<br><br>" + data.msg);
+                        $("#msg").fadeIn(2000, function () {
+                            $("#editNote-modal").modal('hide');
+                        });
+                    } else {
+                        $("#msg").html("<br><br>" + data.msg);
+                        $("#msg").addClass("h-red");
+                    }
+                });
+            } else {
+                $("#msg").html("<br><br> La note doit etre inférieur ou égal à " + coeff);
+                $("#msg").addClass("h-red");
+            }
+
+        }
+        //ADMISSION MODAL
+        function admission(methodEvaluationCode, yearSelected, roomSelected) {
+            $("#msgAdmission").html("Traitement en cours....");
+            $("#summary").html("");
+            $.get("/student-admission",{methodEvaluationCode, yearSelected, roomSelected}, function (data) {
+                let color="";
+                let table = "<div class='table-striped tableFixHead'><table class='table table-fixed-header table-striped'> <thead><tr><th class='th-fixed-header'>#</th><th class='th-fixed-header'>ELEVES</th class='th-fixed-header'><th class='th-fixed-header'>MOY. GLE</th></tr><thead> ";
+                let pos =1;
+                    if(data.bulletins){
+                    console.log(data);
+                    for(i=0;i<data.bulletins.length;i++){
+                        let fullname =data.bulletins[i].Student;
+                        let promoted =data.bulletins[i].promoted;
+                        let moyenGen = data.bulletins[i].Moyenne;
+                        let str=fullname+" - <strong>MOYENNE GLE :  "+moyenGen+"</strong>";
+                        
+                        if(promoted==0){ color='red'}else{color='blue'}
+                        table += "<tr style='color:"+color+"'><td>"+pos+"</td><td>"+fullname+"</td><td>"+moyenGen+"</td></tr>";
+                        pos++;
+                        //console.log(data.bulletins[i].Student);
+                    }
+                    table += "</table></div>";
+                    let summary ="<br>&nbsp;&nbsp;&nbsp;&nbsp;<h5>Total :   "+data.bulletins.length+"&nbsp;&nbsp;&nbsp;&nbsp;<strong>Promu,e :   "+data.countSuccess+"</strong> &nbsp;&nbsp;<font color='red'><strong>Echoué,e : "+data.countFail+"</strong></font></h5>";
+                    //console.log(table);
+                    $("#msgAdmission").html(""+table);
+                    $("#summary").html(""+summary);
+                    $("#modalAdmisionTitle").html("Admission en "+data.nextClassName);
+                }else{
+                    $("#msgAdmission").html("NO DATA");
+                }
+                  
+                });
+            $("#admission-modal").modal();
+        }
+        //VALIDER
+        function validerAdmission() {
+            $.post("/valider-admission", function (data) {
+                if (data) { //Success 
+                   let Total = data.Total;
+                   let done = data.transSucceed;
+                   $("#notifyAdmission").html("Admission ("+data.nbSuccess+") | Redoublement ("+data.nbFail+")  effectué avec succès...");
+                } else {
+                    $("#notifyAdmission").html("Veuillez reessayer...");
+                }
+            });
+        }
+        //EDIT OR ADD NOTE MODAL
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

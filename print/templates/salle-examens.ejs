@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+    <title><%=pageTitle+" "+yearSelected%></title>
+</head>
+
+<body onload="window.print()">
+    <% position=0; subList.forEach((studentList)=> {
+    %>
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle+" "+examRooms[position].classe%><br><br>
+                <%=counts[position]%><br><br>
+
+                Semaine du _________ au ________ Mois _________________ Année ____________
+                <br>
+            </div>
+        </div>
+        </div>
+        <div class=" row-report">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Elèves/Etudiants</th>
+                                <th>Lundi</th>
+                                <th>Mardi</th>
+                                <th>Mercredi</th>
+                                <th>Jeudi</th>
+                                <th>Vendredi</th>
+                                <th>Remarques</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let pos=1; studentList.forEach((Student)=> { %>
+                                <tr>
+                                    <td align="center"><%=pos%></td>
+                                    <td>
+                                        <%=Student.fullname+" ("+Student.dossier+") "%>
+                                        <strong><%=Student.abv%></strong>
+                                    </td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td class="td-list"></td>
+                                    <td></td>
+                                </tr>
+                                <% pos++; }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <% if(position < subList.length-1){ %>
+                <div class="pagebreak"> </div>
+            <% } %>
+<% position++; }) %>
+</body>
+
+</html>

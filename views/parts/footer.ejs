@@ -1,0 +1,73 @@
+
+  <!-- CHANGE PASSWORD -->
+  <div id="changePassword-modal" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <strong id="modalTitle">Changement de mot de passe</strong>
+                <a class="close" data-dismiss="modal">×</a>
+            </div>
+            <form id="UserFormPassword" name="contact" role="form" method="POST">
+                <div class="modal-body">
+                    <div class="form-inline">
+                        <input type="password" required name="CPassword" id="CPassword" onfocus="select()"
+                            class="form-control w-50" placeholder="Mot de passe actuel">
+                    </div>
+                    <br>
+                    <div class="form-inline">
+                        <input type="password" required name="NPassword" id="NPassword" onfocus="select()"
+                            class="form-control w-40" placeholder="Nouveau mot de passe">
+                            &nbsp;&nbsp;
+                        <input type="password" required name="ConfPassword" id="ConfPassword" onfocus="select()"
+                            class="form-control w-50" placeholder="Confirmation de mot de passe">
+                    </div>
+                    <br>
+                    <div id="notifychangePassword" class="mt-20" align="center"></div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="submitPW" onclick="changeUserPassword()" >Changer</button>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©
+            2021 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights
+            reserved.</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted &
+            made
+            with <i class="far fa-heart text-danger"></i></span>
+    </div>
+</footer>
+<script>
+     //Change user password
+     function changeUserPassword() {
+        let curPass= $("#CPassword").val().trim();
+        let pass= $("#NPassword").val().trim();
+        let confPass= $("#ConfPassword").val().trim();
+        let defaultPass ='Scoladmin2021!';
+        if(curPass.length>=3){
+            if(pass==confPass && pass.length>=8){
+                let formData = $("#UserFormPassword").serialize();
+                    $.post("/change-user-pass",formData, function (data) {
+                    if (data.success) { //Success 
+                        $("#notifychangePassword").html(data.msg);
+                        $("#submitPW").attr("disabled", true);
+                    } else {
+                        $("#notifychangePassword").html(data.msg);
+                    }
+                });
+            }else{
+                alert("Les deux mots de passe doivent avoir au moins 8 caractères et doivent être les mêmes.");
+                //$("#NPassword").val(defaultPass);
+            }
+        }else{
+            alert("Le mot de passe doit avoir au moins 8 caractères");
+        }
+        }
+    
+</script>

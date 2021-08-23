@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<!-- inject:css -->
+<link rel="stylesheet" href="/css/print.css">
+<title><%="Relevé de notes | "+Student.fullname%></title>
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <h3>Relevé de notes</h3>
+                <br>
+        </div>
+       
+       <p style="width: 100%;text-align: center;">Le Directeur du <strong>COLLÈGE EUGÈNE DE MAZENOD</strong>, soussigné , certifie que<br>
+        l'élève <strong><%=Student.fullname+" ("+Student.dossier+")"%></strong>
+        était régulièrement inscrit dans sa liste de formation de classe de<i><strong> <%=fromToClass%></strong></i>. <%=sexe%> a suivi
+        avec satisfaction et succès les cours programés pour <%=saOrSesClasse%>. <%=sexe%> a obtenu les notes générales pour les matières suivantes :</p>
+    </div>
+    <div class=" row-report">
+                        <div class="col-sm-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-bulletin">Cours/Matières</th>
+                                            <th class="td-bulletin">Notes</th>
+                                            <th class="td-bulletin">Coefficients</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% 
+                                            let Notes = NotesInfo.Notes;
+                                            pos_note=0; 
+                                            coursesList.forEach((courses)=> {
+                                        %>
+                                            <tr class="td-bulletin">
+                                                <td class="td-bulletin">
+                                                    <%=courses.libelle %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=Notes[pos_note] %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=courses.coefficient %>
+                                                </td>
+                                            </tr>
+                                            <% pos_note++; }) %>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=NotesInfo.Total%>
+                                                        </strong>
+                                                    </td>
+                                                    <td class="td-vn">
+                                                        <strong>
+                                                            <%=NotesInfo.TotalCoeff%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                   
+                                                    <td class="td-vn td-bulletin" colspan="2">
+                                                        <strong>
+                                                            <%=NotesInfo.MoyGle%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+            <%- include("signature") -%>
+
+
+</body>
+
+</html>

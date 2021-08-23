@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+    <title><%=pageTitle%></title>
+</head>
+
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%><br>
+                Coefficient : <%=courseCoeff%><br>
+                Professeur : <%=Teacher%>
+            </div>
+        </div>
+        </div>
+        <div class=" row-report">
+            <div  <% if(periode==""){ %> class="col-sm-12" <% }else{ %> class="col-sm-3 center" <%}%> >
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="th-pos">#</th>
+                                <th>Elèves/Etudiants</th>
+                                <% if(periode=="" ){ %>
+                                    <% periodList.forEach((periode)=> { %>
+                                        <th class="td-vn">
+                                            <%=periode.periode %>
+                                        </th>
+                                        <% }) %>
+                                <% }else{ %>
+                                                <th class="th-vn">
+                                                    <%=periode %>
+                                                </th>
+                                <% } %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% let rank =1;let posEt=0; studentList.forEach((Student)=> {%>
+                                <tr>
+                                    <td class="th-pos"><%=rank%></td>
+                                    <td class="td-fullname">
+                                        <%=Student.fullname%>
+                                    </td>
+                                    <% if(periode==""){
+                                        let Notes=studentNotes[posEt];
+                                    %>
+                                    <% pos_note=0; periodList.forEach((periode)=> { %>
+                                        <td class="td-vn ">
+                                                <%=Notes[pos_note]%>
+                                        </td>
+                                    <% pos_note++; }) %>
+                                    <%  }else{ %>
+                                        <td class="td-vn">
+                                            <%=studentNotes[posEt]%>
+                                    </th>
+                                    <%  } %>
+                                </tr>
+                            <% rank++; posEt++;}) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

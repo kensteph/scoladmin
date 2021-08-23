@@ -1,0 +1,163 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item nav-profile">
+            <div class="nav-link">
+                <div class="profile-image">
+                    <img src="images/faces/face5.jpg" alt="image" />
+                </div>
+                <div class="profile-name">
+                    <p class="name">
+                        Bienvenue <%= UserData.userName %> 
+                    </p>
+                    <p class="designation">
+                        Super Admin
+                    </p>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/dash-board">
+                <i class="fa fa-home menu-icon"></i>
+                <span class="menu-title">Tableau de bord</span>
+            </a>
+        </li>
+
+        <!-- MENU CLASSES-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#class-menu" aria-expanded="false"
+                aria-controls="class-menu">
+                <i class="fab fa-trello menu-icon"></i>
+                <span class="menu-title">Classes</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="class-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="classrooms-list">Liste des classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="examrooms-list">Salles d'examen</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- MENU COURSES-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#courses-menu" aria-expanded="false"
+                aria-controls="courses-menu">
+                <i class="fa fa-folder menu-icon"></i>
+                <span class="menu-title">Cours</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="courses-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses-list">Liste des cours</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- MENU PROFESSEURS-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#teacher-menu" aria-expanded="false"
+                aria-controls="teacher-menu">
+                <i class="fa fa-users menu-icon"></i>
+                <span class="menu-title">Professeurs</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="teacher-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="teacher-list">Liste des professeurs</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- MENU STUDENTS-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#student-menu" aria-expanded="false"
+                aria-controls="student-menu">
+                <i class="fa fa-users menu-icon"></i>
+                <span class="menu-title">Etudiants/Elèves</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="student-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="students-list">Liste des Etudiants/Elèves</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="students-gallery">Gallerie des Etudiants/Elèves</a> -->
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- MENU NOTES-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#note-menu" aria-expanded="false"
+                aria-controls="note-menu">
+                <i class="fas fa-chart-pie menu-icon"></i>
+                <span class="menu-title">Notes</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="note-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="periode-list">Périodes d'évaluation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="save-notes">Enregistrement notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="palmares-notes">Palmarès</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tableau-honneur">Tableau d'honneur</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- MENU EMPLOYES-->
+        <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#employee-menu" aria-expanded="false"
+                aria-controls="employee-menu">
+                <i class="fab fa-users menu-icon"></i>
+                <span class="menu-title">Employés</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="employee-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item d-lg-block">
+                        <a class="nav-link" href="employee-list">Liste des employés</a>
+                    </li>
+                </ul>
+            </div>
+        </li> -->
+
+        <!-- MENU ADMIN-->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#admin-menu" aria-expanded="false"
+                aria-controls="admin-menu">
+                <i class="fas fa-briefcase menu-icon"></i>
+                <span class="menu-title">Administration</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="admin-menu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="student-archives">Archives</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="papier-entete">PAPIER EN-TÊTE</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="user-list">Utilisateurs</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </li>
+
+    </ul>
+</nav>

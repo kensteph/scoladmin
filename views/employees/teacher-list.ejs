@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Melody Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:../../partials/_sidebar.html -->
+            <%- include("../parts/sidebar") -%>
+            <!-- partial -->
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            Liste des professeurs
+                        </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <div id="contact"><button type="button" class="btn btn-info btn" data-toggle="modal"
+                                            data-target="#teacher-modal" onclick="addTeacher()">Ajouter professeur</button></div>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table id="order-listing" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Professeur</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <% teacherList.forEach((teacher)=> { %>
+                                                <tr id="row<%=teacher.id_personne%>">
+                                                    <td><%=teacher.fullname%></td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary" onclick="coursesAssignation('<%=teacher.fullname%>','<%=teacher.id_personne%>')">Cours</button>
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <i class="fas fa-edit to-link"
+                                                                        title="Modifier <%=teacher.fullname%>"
+                                                                        onclick="edit('<%=teacher.id_personne%>','<%=teacher.prenom%>','<%=teacher.nom%>','<%=teacher.sexe%>','<%=teacher.fullname%>','<%=teacher.active%>')"></i>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <i class="fas fa-trash to-link h-red"
+                                                                        title="Supprimer <%=teacher.fullname%>"
+                                                                        onclick="deleted('<%=teacher.id_personne%>','<%=teacher.prenom%>','<%=teacher.nom%>','<%=teacher.sexe%>','<%=teacher.fullname%>')"></i>
+                                                    </td>
+                                                </tr>
+                                            <% }) %>    
+                                                   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                                href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
+                            with <i class="far fa-heart text-danger"></i></span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+
+            <!-- ADD TEACHER -->
+            <div id="teacher-modal" class="modal fade" role="dialog" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong id="modalTitle">Nouveau Professeur </strong>
+                            <a class="close" data-dismiss="modal">×</a>
+                        </div>
+                        <form id="TeacherForm" name="contact" role="form" method="POST">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="Firstname">Prénom</label>
+                                    <input type="text" required name="Firstname" id="Firstname"
+                                        class="form-control" placeholder="Prénom du professeur">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Lastname">Nom</label>
+                                    <input type="text" required name="Lastname" id="Lastname"
+                                        class="form-control" placeholder="Nom du professeur">
+                                </div>
+                                <div class="form-inline">
+                                    <label for="Sexe">Sexe</label>
+                                    &nbsp; &nbsp;
+                                    <select class="form-control" name="Sexe" required id="Sexe">
+                                        <option value="F">Féminin</option>
+                                        <option value="M">Masculin</option>
+                                    </select>
+                                    &nbsp; &nbsp;
+                                    <label for="Statut">Statut</label>
+                                    &nbsp; &nbsp;
+                                    <select class="form-control" name="Statut" id="Statut">
+                                        <option value="1">Activé
+                                        </option>
+                                        <option value="0">Désactivé</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="actionField" id="actionField">
+                                <input type="hidden" name="StudentID" id="StudentID">
+                                <input type="hidden" name="AffectationID" id="AffectationID">
+                                <br>
+                                <div id="notifyAddTeacher" class="mt-10" align="center"></div>
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" id="submit" onclick="addTeacherToDB()" >Enregistrer</button>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- COURSES ATTRIBUTION -->
+            <div id="courses-modal" class="modal fade" role="dialog" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong id="coursesmodalTitle">Nouveau Professeur </strong>
+                            <a class="close" data-dismiss="modal">×</a>
+                        </div>
+                        <form id="AssignationForm">
+                            <div class="modal-body">
+                                <div class="form-inline">
+                                    <select class="form-control w-40" name="ClassRoom" required id="ClassRoom" onchange="populateCoursesList()">
+                                        <option value="0">------Salle de classe------</option>
+                                        <% data.forEach((classroom)=> { %>
+                                            <option value="<%=classroom.id%>">
+                                                        <%=classroom.classe%>
+                                            </option>
+                                        <% }) %>
+                                    </select>
+                                    &nbsp;&nbsp;
+                                    <select class="form-control w-50" name="Courses" required id="Courses" onchange="addCourse()">
+                                        <option value="0">------Liste des cours------</option>
+                                    </select>
+                                    <br>
+                                </div>
+                                <br>
+                                <strong>
+                                    <ol id="TeacherCourses"></ol>
+                                </strong>
+                                
+                                <br>
+                                <input type="hidden" name="Teacher"  id="Teacher">
+                                <ol id="CoursesListSeleted"></ol>
+                            </form>
+                            <div id="notifyAttrib"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="saveAttribToDB()" 
+                                    class="btn btn-success" id="btnSaveAttrib" disabled>Enregistrer</button>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>
+<script>
+    let courseSelected=[];
+    let ol=$('#CoursesListSeleted');
+    let listCourses = $("#TeacherCourses");
+    //LAUNCH MODAL
+    function addTeacher(){
+        $('#TeacherForm').trigger("reset");
+        $("#submit").attr("disabled", false);
+        $("#notifyAddTeacher").html("");
+    }
+    //SAVE TEACHER  TO DB
+    function addTeacherToDB() {
+            let formData = $("#TeacherForm").serialize();
+            let idprof = $("#StudentID").val();
+                $.post("/teacher-list",formData, function (data) {
+                if (data.success) { //Success 
+                    $("#notifyAddTeacher").html(data.msg);
+                    $("#submit").attr("disabled", true);
+                    $("#row"+idprof).remove();
+                } else {
+                    $("#notifyAddTeacher").html(data.msg);
+                }
+            });
+        }
+    //COURSES ASSIGNATION 
+    function coursesAssignation(teacher,id) {
+            $('#AssignationForm').trigger("reset");
+            $("#coursesmodalTitle").html("Les cours de "+teacher);
+            $("#Teacher").val(id);
+            courseSelected=[];
+            ol.html("");
+            $("#notifyAttrib").html("");
+            getTeacherCourses(id);
+            $("#courses-modal").modal();
+        }
+    //AUTOFILL CLASSNAME ON SELECTED ITEM
+    function populateCoursesList() {
+        courseSelected=[];
+        ol.html("");
+        $("#btnSaveAttrib").attr("disabled", true);
+            let classRoomId = $("#ClassRoom option:selected").val();
+            //alert(academicYear);
+            let select = $("#Courses");
+            select.empty();
+            $.post("/getCourses-list", {classRoomId}, function (data) {
+                // console.log(data);
+                if(data.length>0){
+                    //$("#btnSaveAttrib").attr("disabled", false);
+                    select.append('<option value="0">Liste des cours</option>');
+                    for (i = 0; i < data.length; i++) {
+                        select.append('<option value="' + data[i].id + '">' + data[i].libelle + ' - '+data[i].code+'</option>');
+                     }    
+                }else{
+                    select.append('<option value="0">Aucune matière</option>');
+                    $("#btnSaveAttrib").attr("disabled", true);
+                }
+                
+            });
+        }     
+   //ADD COURSE to LIST
+    function addCourse() {
+        let CourseId = $("#Courses option:selected").val();
+        let CourseName = $("#Courses option:selected").text();
+        
+        //alert(CourseName);
+        if(!courseSelected.includes(CourseId)){
+            courseSelected.push(CourseId);
+            ol.append('<li id="C'+CourseId+'" onclick="removeCourse('+CourseId+')">'+CourseName+' X </li>');
+            $("#btnSaveAttrib").attr("disabled", false);
+        }
+        //console.log(courseSelected);
+    }
+    //REMOVE COURSE
+    function removeCourse(id) {
+        let li=$('#C'+id);
+        courseSelected.pop(id);
+        li.remove();
+        console.log(courseSelected); 
+    }
+    //SAVE ASSIGNATION  TO DB
+    function saveAttribToDB() {
+        let classRoomId = $("#ClassRoom option:selected").val();
+        let CourseId = $("#Courses option:selected").val();
+        let Teacher = $("#Teacher").val();
+        if(classRoomId!=0 || CourseId!=0){
+            //$("#btnSaveAttrib").attr("disabled", true);
+            //let formData = $("#AssignationForm").serialize();
+            
+                $.post("/teacher-attribution",{classRoomId,Teacher,courseSelected}, function (data) {
+                    $("#notifyAttrib").html(data.msg);
+                    ol.html("");
+                    $("#btnSaveAttrib").attr("disabled", true);
+                });
+        }else{
+            $("#btnSaveAttrib").attr("disabled", true);
+            $('#notifyAttrib').html("Vous devez sélectionner la salle de classe et le cours.");
+        }
+        
+        }
+    //EDIT INFO ABOUT CLASSROOM
+    function edit(StudentID, firstname, lastname, gender, fullname, Statut) {
+            $("#Statut").attr("disabled", false);
+            $("#Statut").val(Statut);
+            $("#modalTitle").html("Modification " + fullname);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#actionField").val("Edit");
+            $("#submit").html("Modifier");
+            $("#submit").removeClass();
+            $("#submit").addClass("btn btn-success");
+            $("#teacher-modal").modal();
+        }
+    //DELETE INFO ABOUT CLASSROOM
+    function deleted(StudentID, firstname, lastname, gender, fullname) {
+            $("#modalTitle").html("Voulez-vous supprimer " + fullname + " de cette classe?");
+            $("#Statut").attr("disabled", true);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#actionField").val("Delete");
+            $("#submit").html("Supprimer");
+            $("#submit").removeClass();
+            $("#submit").addClass("btn btn-danger");
+            $("#teacher-modal").modal();
+        }
+    //SAVE TEACHER  TO DB
+    function getTeacherCourses(idprof) {
+        listCourses.html("");
+        $.post("/getTeacherCoursesList",{idprof}, function (data) {
+            if (data.length>0) { //Success 
+                for (i = 0; i < data.length; i++) {
+                    //let cours=data[i];
+                    listCourses.append('<li id="li' + data[i].id_attrib + '">' + data[i].libelle +' '+data[i].abv+'  <i class="fas fa-trash to-link h-red" onclick="deleteAttrib('+data[i].id_attrib+')" ></i> </li>');
+               }   
+            } else {
+                listCourses.html("AUCUN COURS...");
+            }
+        });
+    }
+    //DELETE ATTRIBUTION
+    function deleteAttrib (idAttrib) {
+    var r = confirm("Voulez enlever cette attribution?");
+        if (r == true) {
+            $.post("/remove-attribution",{idAttrib}, function (data) {
+                if (data.success) { //Success 
+                    $("#li"+idAttrib).remove();
+                } 
+            });
+        }
+        
+    }
+         
+</script>

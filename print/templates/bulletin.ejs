@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<!-- inject:css -->
+<link rel="stylesheet" href="/css/print.css">
+<title><%=periodSelected+" "+yearSelected+" | "+Student.prenom+" "+Student.nom.toUpperCase()%></title>
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%><br>
+                <%=Student.prenom+" "+Student.nom.toUpperCase()+" ("+Student.dossier+")"%>
+        </div>
+    </div>
+    <div class=" row-report">
+                        <div class="col-sm-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-bulletin">Cours/Matières</th>
+                                            <th class="td-bulletin">Notes</th>
+                                            <th class="td-bulletin">Coefficients</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                            <tr class="td-bulletin">
+                                                <td class="td-bulletin">
+                                                    <%=courses.libelle %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=Notes[pos_note] %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=courses.coefficient %>
+                                                </td>
+                                            </tr>
+                                            <% pos_note++; }) %>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=Total%>
+                                                        </strong>
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=TotalCoeff%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=Moyenne%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>PLACE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=place%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+            </div>
+            <%- include("signature") -%>
+
+
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+
+-- tb_affectation --
+	INSERT INTO scol_admin.tb_affectation (id,id_personne,niveau,classroom,options,aneaca,acteur,date_time)
+	SELECT id,etudiant,niveau,niveau,options,aneaca,acteur,date_time
+	FROM cema.tb_affectation
+
+-- tb_classes --
+	INSERT INTO scol_admin.tb_classes (id,mere,classe,abv)
+	SELECT id,mere,classe,abv
+	FROM cema.tb_classes
+
+-- tb_cours --
+	INSERT INTO scol_admin.tb_cours (id,libelle,code,categorie,type,tp,session,niveau,options,coef,poids)
+	SELECT id,libelle,code,categorie,type,tp,session,niveau,options,coef,poids
+	FROM cema.tb_cours
+
+-- tb_cours & tb_cours_par_classe --
+	INSERT INTO scol_admin.tb_cours_par_classe (id_cours,salle_classe,coefficient,position)
+	SELECT id,niveau,coef,poids
+	FROM cema.tb_cours WHERE niveau !=0
+
+-- tb_cours & tb_cours_prof --
+	INSERT INTO scol_admin.tb_cours_prof (id_prof,id_cours,id_salle)
+	SELECT professeur,id,niveau
+	FROM cema.tb_cours WHERE niveau !=0
+
+-- tb_mode_evaluations --
+	INSERT INTO scol_admin.tb_mode_evaluations (id,mode_evaluation,code,nb_controles)
+	SELECT id,mode_evaluation,code,nb_controles
+	FROM cema.tb_mode_evaluations
+
+-- tb_periodes_evaluation --
+	INSERT INTO scol_admin.tb_periodes_evaluation (id,mode_evaluation_code,periode,type_periode)
+	SELECT id,mode_evaluation_code,periode,type_periode
+	FROM cema.tb_periodes_evaluation
+
+-- tb_notes --
+	INSERT INTO scol_admin.tb_notes (id,etudiant,cours,note,periode,niveau,options,aneaca,date_time,tag,acteur,sur,mode_evaluation)
+	SELECT id,etudiant,cours,note,periode,niveau,options,aneaca,date_time,tag,acteur,sur,mode_evaluation
+	FROM cema.tb_notes
+
+-- tb_personnes Eleves || Student --
+	INSERT INTO scol_admin.tb_personnes (id,prenom,nom,sexe,dossier,active)
+	SELECT tp.id,prenom,nom,sexe,dossier,etat
+	FROM cema.tb_personne tp,cema.tb_etudiant te WHERE tp.id=te.idpers
+
+-- tb_personnes Professeurs Users || Employee ---
+	INSERT INTO scol_admin.tb_personnes (id,prenom,nom,sexe)
+	SELECT tp.id,prenom,nom,sexe
+	FROM cema.tb_personne tp,cema.tb_users tu WHERE tp.id=tu.idpers
+
+--- UPdate TYPE---
+ 	UPDATE scol_admin.tb_personnes SET type='Employee' WHERE id IN(SELECT idpers FROM cema.tb_users)
+
+-- tb_professeurs || Employee ---
+	INSERT INTO scol_admin.tb_professeurs (id_personne)
+	SELECT idpers FROM cema.tb_users
+
+
+----- CLEANING THE NOTES TABLE-----------------------------------------------------
+      
+-- Get all the courses that should not be there  NIVEAU : 7,8,9,10,11,12,13 ANEACA : 2017-2018
+SELECT DISTINCT cours,libelle,code FROM `tb_notes` n,tb_cours crs 
+	 WHERE crs.id=n.cours AND aneaca='2017-2018' AND n.niveau=9 AND cours 
+	 NOT IN (SELECT c.id as assigment_id FROM tb_cours_par_classe as ca ,tb_cours as c WHERE c.id=ca.id_cours AND salle_classe=9);
+     
+-- INSERT all the notes's ids related to those courses
+INSERT INTO tmp.tb_notes (id,id_cours,note,class_room,aneaca)    
+SELECT id,cours,note,niveau,aneaca FROM `tb_notes` WHERE niveau=8 AND cours IN('41','53','54');
+
+-- Finally DELETE all the notes from the tmp.tb_notes in tb_notes
+DELETE FROM tb_notes WHERE id IN(SELECT id FROM tmp.tb_notes);

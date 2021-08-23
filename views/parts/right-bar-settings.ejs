@@ -1,0 +1,161 @@
+<div id="right-sidebar" class="settings-panel">
+    <i class="settings-close fa fa-times"></i>
+    <ul class="nav nav-tabs" id="setting-panel" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                aria-controls="todo-section" aria-expanded="true">PARAMETRES</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                aria-controls="chats-section">CHATS</a>
+        </li> -->
+    </ul>
+    <div class="tab-content" id="setting-content">
+        <form id="SettingsForm">
+            <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+                aria-labelledby="todo-section">
+                <div class="border-bottom" style="margin:5px;">
+                    <div class="form-group">
+                        <input type="text" name="schoolName" value="<%=schoolName%>" title="<%=schoolName%>"
+                            onclick="select()" class="form-control" placeholder="Nom de l'établissement">
+                    </div>
+                    <div class="form-group d-flex">
+                        <input type="text" name="schoolAddress" value="<%=schoolAddress%>" title="<%=schoolAddress%>"
+                            onclick="select()" class="form-control todo-list-input"
+                            placeholder="Adresse de l'établissement">
+                    </div>
+                    <div class="form-group d-flex">
+                        <input type="text" name="schoolPhone" value="<%=schoolPhone%>" title="<%=schoolPhone%>"
+                            onclick="select()" class="form-control todo-list-input"
+                            placeholder="Téléphone de l'établissement">
+                    </div>
+                    <div class="form-group d-flex">
+                        <input type="text" name="schoolEmail" value="<%=schoolEmail%>" title="<%=schoolEmail%>"
+                            onclick="select()" class="form-control todo-list-input"
+                            placeholder="Email de l'établissement">
+                    </div>
+                </div>
+                <div class="border-bottom">
+                    <div class="form-inline d-flex" style="margin:5px">
+                        <input type="text" name="schoolDirector" value="<%=schoolDirector%>" title="Directeur,rice"
+                            onclick="select()" class="form-control w-70" placeholder="Directeur,rice">
+                    </div>
+                    <div class="form-inline" style="margin:5px">
+                        <select class="form-control" name="modeEvaluation" title="Mode d'évaluation">
+                            <% modeEvaluation.forEach((mode)=> { %>
+                                <option <% if(mode.code==schoolModEvaluation){ %> selected <% } %> value="<%=mode.code%>">
+                                    <%=mode.mode_evaluation+" (Nombre de controles : "+mode.nb_controles+")"%>
+                                </option>
+                                <% }) %>
+                        </select> 
+                    </div>
+                    <div class="form-inline" style="margin:5px">
+                        <input type="text" name="schoolCoeffPassage" value="<%=schoolCoeffPassage%>"
+                            title="Coefficient de passage | EX : 55 signifie Moyenne 5.50 est acceptable" onclick="select()" class="form-control w-30"
+                            placeholder="Coeff.">
+                            &nbsp;&nbsp;
+                            <select class="form-control w-60"  name="TableauHonneur" title="Quel tableau d'honneur affiché au tableau de bord">
+                                    <option <% if(schoolHonor_board =="Honneur"){ %> selected <% } %> value="Honneur">
+                                        Tableau d'Honneur
+                                    </option>
+                                    <option <% if(schoolHonor_board =="Honorable"){ %> selected <% } %> value="Honorable">
+                                        Tableau Mention Honorable
+                                    </option>
+                            </select> 
+                    </div>
+
+                </div>
+                <div class="form-group d-flex" style="margin:10px">
+                    <button type="submit" onclick="editSettings()" class="add btn btn-primary todo-list-add-btn"
+                        style="margin-top: 5px;float:center;width: 100%;" id="add-task-todo">Enregistrer les
+                        modifications</button>
+                </div>
+            </div>
+        </form>
+        <!-- To do section tab ends -->
+        <!-- <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+                <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+                <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See
+                    All</small>
+            </div>
+            <ul class="chat-list">
+                <li class="list active">
+                    <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span>
+                    </div>
+                    <div class="info">
+                        <p>Thomas Douglas</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">19 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span>
+                    </div>
+                    <div class="info">
+                        <div class="wrapper d-flex">
+                            <p>Catherine</p>
+                        </div>
+                        <p>Away</p>
+                    </div>
+                    <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                    <small class="text-muted my-auto">23 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span>
+                    </div>
+                    <div class="info">
+                        <p>Daniel Russell</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">14 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span>
+                    </div>
+                    <div class="info">
+                        <p>James Richardson</p>
+                        <p>Away</p>
+                    </div>
+                    <small class="text-muted my-auto">2 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span>
+                    </div>
+                    <div class="info">
+                        <p>Madeline Kennedy</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">5 min</small>
+                </li>
+                <li class="list">
+                    <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span>
+                    </div>
+                    <div class="info">
+                        <p>Sarah Graves</p>
+                        <p>Available</p>
+                    </div>
+                    <small class="text-muted my-auto">47 min</small>
+                </li>
+            </ul>
+        </div> -->
+        <!-- chat tab ends -->
+    </div>
+</div>
+
+
+<script>
+    function editSettings() {
+        let formData = $("#SettingsForm").serialize();
+        $.post("/edit-settings", formData, function (data) {
+            if (data.success) { //Success
+                $("#add-task-todo").html(data.msg); 
+                setTimeout(()=>{
+                    location.href="/dash-board";
+                },2000);
+            } else {
+                $("#add-task-todo").html(data.msg);
+            }
+        });
+    }
+</script>

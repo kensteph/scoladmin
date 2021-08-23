@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+    <title> <%=pageTitle%></title>
+</head>
+<body onload="window.print()">
+    <% pos=0; listNotes.forEach((line)=> {
+        notesStudent = line.Notes;
+    %>
+        <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%><br>
+                    <%=line.Student%>
+            </div>
+        </div>
+        <div class=" row-report">
+                        <div class="col-sm-6">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="td-bulletin">Cours/Matières</th>
+                                            <th class="td-bulletin">Notes</th>
+                                            <th class="td-bulletin">Coefficients</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                            <tr class="td-bulletin">
+                                                <td class="td-bulletin">
+                                                    <%=courses.libelle %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=line.Notes[pos_note] %>
+                                                </td>
+                                                <td class="td-vn td-bulletin">
+                                                    <%=courses.coefficient %>
+                                                </td>
+                                            </tr>
+                                            <% pos_note++; }) %>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=line.Total%>
+                                                        </strong>
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=CoeffTotal%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+    
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=line.Moyenne%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="td-bulletin"><strong>PLACE</strong></td>
+                                                    <td class="td-vn td-bulletin">
+    
+                                                    </td>
+                                                    <td class="td-vn td-bulletin">
+                                                        <strong>
+                                                            <%=pos+1%>
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+    
+    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        </div>
+        <%- include("signature") -%>
+        <% if(pos < listNotes.length-1){ %>
+        <div class="pagebreak"> </div>
+        <% } %>
+        <% pos++; }) %>
+</body>
+
+</html>

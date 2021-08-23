@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/print.css">
+    <title><%=pageTitle%></title>
+</head>
+
+<body onload="window.print()">
+    <%- include("header") -%>
+        <div class="row-header-table">
+            <div class="title-report">
+                <%=pageTitle%> <br>
+                    <div class="palma-title">
+                        <strong> LEGENDE :</strong>
+                        <% pos_mat=0; separator=" | " ; coursesList.forEach((courses)=> {
+                            if(pos_mat == coursesList.length-1){ separator=""; }
+                            %>
+                            <strong>
+                                <%= courses.code+" : "%> </strong><%=courses.libelle+separator %>
+                <% pos_mat++; }) %>
+            </div>
+        </div>
+    </div>
+    <div class=" row-report">
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Elèves/Etudiants</th>
+                                                        <% coursesList.forEach((courses)=> { %>
+                                                            <th title="<%=courses.libelle%>">
+                                                                <%=courses.code%>
+                                                            </th>
+                                                            <% }) %>
+                                                                <th>TOT</th>
+                                                                <th>SUR</th>
+                                                                <th>MOY</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <% pos=0; listNotes.forEach((line)=> {
+                                                        notesStudent = line.Notes;
+                                                        noteIds = line.NoteIds;
+                                                        %>
+                                                        <tr>
+                                                            <td class="td-vn">
+                                                                <%=pos+1%>
+                                                            </td>
+                                                            <td>
+                                                                <%=line.Student%>
+                                                            </td>
+                                                            <% pos_note=0; coursesList.forEach((courses)=> { %>
+                                                                <td class="td-vn">
+                                                                    <%= notesStudent[pos_note] %>
+                                                                </td>
+                                                                <% pos_note++; }) %>
+                                                                    <td class="td-vn"><strong>
+                                                                            <%=line.Total%>
+                                                                        </strong></td>
+                                                                    <td class="td-vn"><strong class="h-red">
+                                                                            <%=CoeffTotal%>
+                                                                        </strong> </td>
+                                                                    <td class="td-vn"><strong><i>
+                                                                                <%=line.Moyenne%>
+                                                                            </i></strong></td>
+
+                                                        </tr>
+                                                        <% pos++; }) %>
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                    </div>
+
+</body>
+
+</html>

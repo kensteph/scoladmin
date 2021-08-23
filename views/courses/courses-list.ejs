@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <button type="button" class="btn btn-success btn"
+                                                    onclick="addClassroom()">Ajouter cours (Matière)</button>
+                                                <button type="button" class="btn btn-info btn"
+                                                    onclick="assignCoursesModal()">Assignation de cours</button>
+                                                <a href="#" title="Filtre" data-toggle="modal"
+                                                data-target="#filter-modal" aria-hidden="true">
+                                                    <i class="fa fa-filter fa-2x to-link" ></i> Filtrer la liste de cours
+                                                </a>
+                                            </div>
+                                        </li>
+
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+                                    <div class="row">
+
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cours(Matière)</th>
+                                                            <th>Code</th>
+                                                            <th>Position sur le bulletin</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% coursesList.forEach((course)=> {
+                                                            css_class ="";
+                                                            desactive = "";
+                                                            if(course.active==0){
+                                                            css_class="h-red";
+                                                            desactive = "Ce cours est désactivé.";
+                                                            }
+                                                            %>
+                                                            <tr class="<%=css_class%>" title="<%=desactive%>">
+                                                                <td>
+                                                                    <%=course.libelle%> | <%=course.coefficient%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=course.code%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=course.position%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(!course.hasOwnProperty('position')){ %>
+                                                                        <i class="fas fa-edit to-link"
+                                                                            title="Modifier <%=course.classe%>"
+                                                                            onclick="editCourse('<%=course.id%>','<%=course.categorie%>','<%=course.code%>','<%=course.libelle%>')"></i>
+                                                                        &nbsp;&nbsp;&nbsp;
+                                                                        <% }else{ %>
+                                                                            <i class="fas fa-edit to-link"
+                                                                                title="Modifier <%=course.libelle%>"
+                                                                                onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id_cours%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>','<%=course.active%>')"></i>
+                                                                                <% if(course.active!=0){ %>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                    <a title="Palmarès" target="_blank"
+                                                                                        href="/print-course-palmares?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&Course=<%=course.libelle+' | '+course.code%>&CourseId=<%=course.id%>&Periode=<%=periodSelected%>&Teacher=<%=course.teacher%>&modEvaluation=<%=methodEvaluationCode%>&niveau=<%=niveau%>&CourseCoeff=<%=course.coefficient%>"><i
+                                                                                        class="fa fa-print"></i></a>
+                                                                                <% } %>
+                                                                        <% } %>
+                                                                </td>
+
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD COURSES -->
+                    <div id="course-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouveau cours(Matière)</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="courseForm" name="contact" role="form" method="POST">
+
+                                    <div class="modal-body">
+
+                                        <div class="form-group">
+                                            <label for="Categorie">Categorie</label>
+                                            <select class="form-control" name="Categorie" required id="Categorie"
+                                                onchange="autoFill(this)">
+                                                <option value="0">------Choisissez la catégorie------</option>
+                                                <% courseCategories.forEach((item)=> { %>
+                                                    <option value="<%=item.id%>">
+                                                        <%=item.categorie%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="courseName">Nom du cours (Matière)</label>
+                                            <input type="text" required name="courseName" id="courseName"
+                                                class="form-control" placeholder="Cours (Matière)">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="courseCode">Code du cours (Matière)</label>
+                                            <input type="text" required name="courseCode" id="courseCode"
+                                                class="form-control" placeholder="Code du Cours (Matière)">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnCourse' value="Enregistrer" class="btn btn-success"
+                                            id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="courseID" id="courseID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ASSIGN COURSES -->
+                    <div id="courseAss-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitleAssigment">Formation de liste de cours</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="assignCoursesForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                           <div class="form-inline" id="choiceAttribSection">
+                                                <label id="AttribLabel">Attribuer une nouvelle liste ou une existante </label>
+                                                <select class="form-control" name="AttribChoice" 
+                                                required id="AttribChoice" onchange="attribChoice()">
+                                                    <option value="New">Nouvelle liste</option>
+                                                    <% classroomsM.forEach((classroom)=> { %>
+                                                        <option value="<%=classroom.id%>">
+                                                            <%=classroom.classe%>
+                                                        </option>
+                                                    <% }) %>
+                                                </select>
+                                                <input type="hidden" name="roomSelected" value="<%=roomSelected%>" id="roomSelected">
+                                                <label id="AttribLabel1"></label>
+                                            </div>
+                                            <div id="NewListSection">
+                                            <br>
+                                            <div class="form-group">
+                                            <select class="form-control" name="ClassRoom" required id="ClassRoom">
+                                                <% classrooms.forEach((classroom)=> { %>
+                                                    <option value="<%=classroom.id%>" <% if(roomSelected==classroom.id){ %> selected <%}%>>
+                                                        <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="coursesList" id="labelListCours">Liste des cours (Matières)</label>
+                                            <div class="form-inline">
+                                                <select class="form-control w-40" required id="coursesList"
+                                                    name="EditCourse">
+                                                    <% data.forEach((course)=> { %>
+                                                        <option value="<%=course.id%>">
+                                                            <%=course.libelle%>
+                                                        </option>
+                                                        <% }) %>
+                                                </select>
+                                                
+                                                &nbsp;
+                                                <input type="number" class="form-control w-30" min="1"
+                                                    title="coefficient" placeholder="Coefficient" id="coefficient"
+                                                    name="EditCoeff">
+                                                &nbsp;
+                                                <input type="number" class="form-control w-25" min="1"
+                                                    title="Position sur le bulletin" placeholder="Position"
+                                                    id="Position" name="EditPos">
+                                            </div>
+                                        </div>
+
+                                    
+                                        <div class="form-group">
+                                            <label for="Activation">Activé/Désactivé</label>
+                                            <select class="form-control" id="Activation" name="Activation" disabled>
+                                                <option value="1">Activé</option>
+                                                <option value="0">Désactivé</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="fa fa-plus fa-2x to-link" title="Ajouter" id="btnAddItem"
+                                                onclick="addItem()"></i>
+                                        </div>
+                                        <div class="form-group" id="courseSelected" align="center">
+                                            <strong>SELECTION</strong>
+                                            <ol id="csList">
+                                            </ol>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    <input type="hidden" name="actionField" id="actionFieldAsignment">
+                                    
+                                </form>
+                                <div id="notifyMsg"align="center"></div><br>
+                                <div class="modal-footer">
+                                    <input type="submit" id='btnAssignation' value="Enregistrer"
+                                        onclick="assignCourses()" class="btn btn-success" id="submit">
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- EDIT ASSIGNATION-->
+                     <div id="Edit-courseAss-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitleEditAssigment">Modification</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="EditAssignationForm" >
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                                <input type="number" class="form-control w-30" min="1"
+                                                    title="coefficient" onfocus="select()" placeholder="Coefficient" id="coefficientEdit"
+                                                    name="EditCoeff">
+                                                    &nbsp;&nbsp;
+                                                <input type="number" class="form-control w-25" min="1" onfocus="select()"
+                                                    title="Position sur le bulletin" placeholder="Position"
+                                                    id="PositionEdit" name="EditPos">
+                                                    &nbsp;&nbsp;
+                                                <select class="form-control" id="ActivationEdit" name="Active">
+                                                    <option value="1">Activé</option>
+                                                    <option value="0">Désactivé</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="assignmentID" id="assignmentID">
+                                </form>
+                                <div id="notifyEditAssMsg" align="center"></div><br>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" onclick="editCourseAssignation()" >Modifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" id="classRoomFilter" name="classRoomFilter"
+                                                onchange="populatePeriodList()">
+                                                <% classrooms.forEach((classroom)=> { %>
+                                                    <option value="<%=classroom.id%>">
+                                                        <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;
+                                            <select class="form-control w-25" id="AneAcaFilter" name="AneAcaFilter" onchange="populatePeriodList()">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %>
+                                                        selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;
+                                            <select class="form-control w-25" title="Liste des périodes à afficher" name="PeriodFilter" id="PeriodFilter">
+                                                <option>Liste des périodes à afficher</option>
+                                            </select>
+                                            <input type="hidden" name="modEvaluationFilter" id="modEvaluationFilter" >
+                                            <input type="hidden" name="classRoomSelectedNiveau"
+                                                id="classRoomSelectedNiveau">
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+
+    <script src="../../js/select2.js"></script>
+    <!-- End custom js for this page-->
+    <script src="../../js/custom.js"></script>
+    <script>
+        //========================== ADD COURSE ===============================
+        function addClassroom() {
+            $("#modalTitle").html("Nouveau cours(Matière) ");
+            $("#courseName").val("");
+            $("#courseCode").val("");
+            $("#courseID").val("");
+            $("#actionField").val("Add");
+            $("#btnCourse").val("Enregistrer");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
+        }
+        //EDIT INFO ABOUT COURSE
+        function editCourse(courseID, courseCategorie, courseCode, courseName) {
+            $("#modalTitle").html("Modification " + courseName);
+            $("#courseName").val(courseName);
+            $("#Categorie").val(courseCategorie).change();
+            $("#courseID").val(courseID);
+            $("#courseCode").val(courseCode);
+            $("#actionField").val("Edit");
+            $("#btnCourse").val("Modifier");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
+        }
+        //ASSIGNMENT
+        function assignCoursesModal() {
+            $("#choiceAttribSection").show();
+            $("#modalTitleAssigment").html("Formation de liste de cours ");
+            $("#btnAddItem").show();
+            $("#courseSelected").show();
+            $("#ClassRoom").show();
+            $("#coursesList").show();
+            $("#labelListCours").show();
+            $("#assignmentID").val(0)
+            $("#courseID").val(0);
+            $("#coefficient").val(20);
+            $("#Position").val(1);
+            $("#Professeur").val(0);
+            $("#actionFieldAsignment").val("Add");
+            $("#btnAssignation").val("Enregistrer");
+            $("#btnAssignation").removeClass();
+            $("#btnAssignation").addClass("btn btn-success");
+            $("#courseAss-modal").modal();
+        }
+        //EDIT INFO ABOUT COURSE LAUNCH MODAL
+        function editCourseAssigment(assignmentID, courseID, courseName, classroomID, coeff, position, professeur, activation) {
+            $("#modalTitleEditAssigment").html("Modification de l'assignation : " + courseName.toUpperCase());
+            $("#assignmentID").val(assignmentID);
+            $("#coefficientEdit").val(coeff);
+            $("#PositionEdit").val(position);
+            $("#ActivationEdit").val(activation);
+            $("#Edit-courseAss-modal").modal();
+        }
+        //DIT INFO ABOUT COURSE ASSIGNATION
+        function editCourseAssignation () {
+            let formData = $("#EditAssignationForm").serialize();
+            $.post("/edit-courses-assignation", formData, function (data) {
+                if (data.success) { //Success 
+                    $("#notifyEditAssMsg").html(data.msg);
+                } else {
+                    $("#notifyEditAssMsg").html(data.msg);
+                }
+            });
+        }
+        
+        
+        ///================================== MANAGE SELECTED LIST =============================
+        let Cart = [];
+        function addItem() {
+            let course = $("#coursesList option:selected").text();
+            let courseID = $("#coursesList").val();
+            let coeff = $("#coefficient").val();
+            let position = $("#Position").val();
+            let prof = $("#Professeur").val();
+            let profName = $("#Professeur option:selected").text();
+
+            let ul = $("#csList");
+            task = course + " | " + profName + " | COEFF : " + coeff + " | POS : " + position;
+            let fieldsCoursID = "<input type='hidden' name='Cours[]' value='" + courseID + "' id='Cours" + courseID + "'> ";
+            let fieldsCoeff = "<input type='hidden' name='Coeff[]' value='" + coeff + "' id='Coeff" + courseID + "' >";
+            let fieldsPos = "<input type='hidden' name='Position[]' value='" + position + "' id='Pos" + courseID + "' >";
+            let fieldsProf = "<input type='hidden' name='Prof[]' value='" + prof + "' id='Prof" + courseID + "' >";
+            let remove = "<i class='fa fa-times to-link h-red' onclick='removeItem(" + courseID + ")'></i>"
+            let fields = fieldsCoursID + fieldsCoeff + fieldsPos + fieldsProf + remove;
+            let html = '<li id="li' + courseID + '"><span>' + task + fields + '</span></li>';
+            if (Cart.includes(courseID)) {
+                console.log(courseID + " IS ALREADY IN CART CART : ", Cart);
+                //REMOVE THE LINE AND REPLACE IT BY THE NEW INPUT
+                removeItem(courseID);
+                ul.append(html);
+            } else {
+                Cart.push(courseID);
+                ul.append(html);
+            }
+            console.log("CART : ", Cart);
+
+        }
+        //REMOVE ITEM
+        function removeItem(courseID) {
+            var li = $("#li" + courseID);
+            li.remove();
+        }
+        //ASSIGN COURSES TO CLASSROOM
+        function assignCourses() {
+            let choice = $("#AttribChoice option:selected");
+            if(choice.val()=="New"){
+                let ul = $("#csList");
+                    if ($("#csList li").length > 0 || $("#actionFieldAsignment").val() == "Edit") {
+                        let formData = $("#assignCoursesForm").serialize();
+                        $.post("/courses-assignation", formData, function (data) {
+                            if (data.success) { //Success 
+                                $("#notifyMsg").html(data.msg);
+                            } else {
+                                $("#notifyMsg").html(data.msg);
+                            }
+                        });
+                    } else {
+                        alert("Vous devez selectionner les cours (matiéres)...");
+                    }
+            }else{
+                let salleFrom = $("#AttribChoice option:selected").val();
+                let salleTo=$("#roomSelected").val();
+                $.post("/courses-assignation-old-list", {salleFrom,salleTo}, function (data) {
+                            if (data.success) { //Success 
+                                $("#notifyMsg").html(data.msg);
+                            } else {
+                                $("#notifyMsg").html(data.msg);
+                            }
+                        });
+
+            }
+        }
+        //SELECT ATTRIBUTION MODE 
+        function attribChoice() {
+            let choice = $("#AttribChoice option:selected");
+            let salle = $("#ClassRoom option:selected").text();
+            //alert(choice.val());
+           if(choice.val()=="New"){
+            $("#NewListSection").show();
+           }else{
+            $("#NewListSection").hide();
+            $("#AttribLabel").html("<strong>Vous allez attribuer la liste de cours relative à </strong><br>");
+            $("#AttribLabel1").html("<strong>à la salle de classe : </strong>&nbsp; "+salle);
+           }
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

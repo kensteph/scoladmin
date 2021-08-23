@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Melody Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:../../partials/_sidebar.html -->
+            <%- include("../parts/sidebar") -%>
+            <!-- partial -->
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            Liste des employés
+                        </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <div id="contact"><button type="button" class="btn btn-info btn" data-toggle="modal"
+                                            data-target="#contact-modal">Ajouter Employé</button></div>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Data table</h4>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table id="order-listing" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order #</th>
+                                                    <th>Purchased On</th>
+                                                    <th>Customer</th>
+                                                    <th>Ship to</th>
+                                                    <th>Base Price</th>
+                                                    <th>Purchased Price</th>
+                                                    <th>Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>2012/08/03</td>
+                                                    <td>Edinburgh</td>
+                                                    <td>New York</td>
+                                                    <td>$1500</td>
+                                                    <td>$3200</td>
+                                                    <td>
+                                                        <label class="badge badge-info">On hold</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>2015/04/01</td>
+                                                    <td>Doe</td>
+                                                    <td>Brazil</td>
+                                                    <td>$4500</td>
+                                                    <td>$7500</td>
+                                                    <td>
+                                                        <label class="badge badge-danger">Pending</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>2010/11/21</td>
+                                                    <td>Sam</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Closed</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>2016/01/12</td>
+                                                    <td>Sam</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Closed</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>2017/12/28</td>
+                                                    <td>Sam</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Closed</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>2000/10/30</td>
+                                                    <td>Sam</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-info">On-hold</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>2011/03/11</td>
+                                                    <td>Cris</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Closed</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>2015/06/25</td>
+                                                    <td>Tim</td>
+                                                    <td>Italy</td>
+                                                    <td>$6300</td>
+                                                    <td>$2100</td>
+                                                    <td>
+                                                        <label class="badge badge-info">On-hold</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9</td>
+                                                    <td>2016/11/12</td>
+                                                    <td>John</td>
+                                                    <td>Tokyo</td>
+                                                    <td>$2100</td>
+                                                    <td>$6300</td>
+                                                    <td>
+                                                        <label class="badge badge-success">Closed</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>10</td>
+                                                    <td>2003/12/26</td>
+                                                    <td>Tom</td>
+                                                    <td>Germany</td>
+                                                    <td>$1100</td>
+                                                    <td>$2300</td>
+                                                    <td>
+                                                        <label class="badge badge-danger">Pending</label>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary">View</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a
+                                href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
+                            with <i class="far fa-heart text-danger"></i></span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+
+
+            <div id="contact-modal" class="modal fade" role="dialog" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a class="close" data-dismiss="modal">×</a>
+                            <h3>Contact Form</h3>
+                        </div>
+                        <form id="contactForm" name="contact" role="form">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sexe">Sexe</label>
+                                    <select>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-success" id="submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

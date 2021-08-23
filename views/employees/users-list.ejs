@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> Liste des utilisateurs</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:../../partials/_sidebar.html -->
+            <%- include("../parts/sidebar") -%>
+            <!-- partial -->
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            Liste des utilisateurs
+                        </h3>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <div id="contact"><button type="button" class="btn btn-info btn" data-toggle="modal"
+                                            data-target="#teacher-modal" onclick="addTeacher()">Ajouter utilisateur</button></div>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-responsive">
+                                        <table id="order-listing" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Utilisateur</th>
+                                                    <th>Employé</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <% usersList.forEach((teacher)=> { 
+                                                if(teacher.user_name!=UserData.userName){  
+                                            %>
+                                                <tr id="row<%=teacher.id_personne%>">
+                                                    <td><%=teacher.user_name%></td>
+                                                    <td><%=teacher.fullname%></td>
+                                                    <td>
+                                                    <button class="btn btn-outline-primary" onclick="coursesAssignation('<%=teacher.fullname%>','<%=teacher.id_personne%>')">Liste des accès</button>
+                                                    
+                                                        &nbsp;&nbsp;&nbsp;
+                                                        <i class="fas fa-lock to-link"
+                                                                        title="Réinitialiser le mot de passe de <%=teacher.fullname%>"
+                                                                        onclick="resetPassword('<%=teacher.user_name%>')"></i>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <i class="fas fa-trash to-link h-red"
+                                                                        title="Supprimer <%=teacher.fullname+' ('+teacher.user_name+')'%>"
+                                                                        onclick="removeUser('<%=teacher.user_name%>')"></i>
+                                                    </td>
+                                                </tr>
+                                            <% } }) %>    
+                                                   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <%- include("../parts/footer") -%>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+
+            <!-- ADD TEACHER -->
+            <div id="teacher-modal" class="modal fade" role="dialog" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong id="modalTitle">Nouvel utilisateur</strong>
+                            <a class="close" data-dismiss="modal">×</a>
+                        </div>
+                        <form id="UserForm" name="contact" role="form" method="POST">
+                            <div class="modal-body">
+                                <div class="form-inline">
+                                        <select class="form-control w-40" name="EmployeeID" id="EmployeeID" onchange="genUsername()">
+                                            <% employeeList.forEach((employee)=> { %>
+                                                <option value="<%=employee.id%>">
+                                                            <%=employee.fullname%>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        &nbsp; &nbsp;
+                                        <input type="text" required name="Username" id="Username" onfocus="genUsername()"
+                                            class="form-control w-40" placeholder="Nom d'utilisateur">
+                                </div>
+                                <br>
+                                <div class="form-inline">
+                                    <input type="password" required name="Password" id="Password" onfocus="select()"
+                                        class="form-control w-60" placeholder="Mot de passe">
+                                    &nbsp; &nbsp;
+                                    <select class="form-control" name="Statut" id="Statut">
+                                        <option value="1">Activé
+                                        </option>
+                                        <option value="0">Désactivé</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="actionField" id="actionField">
+                                <input type="hidden" name="StudentID" id="StudentID">
+                                <input type="hidden" name="AffectationID" id="AffectationID">
+                                <br>
+                                <div id="notifyAddTeacher" class="mt-10" align="center"></div>
+                            </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" id="submit" onclick="addTeacherToDB()" >Enregistrer</button>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>
+<script>
+    let courseSelected=[];
+    let ol=$('#CoursesListSeleted');
+    let listCourses = $("#TeacherCourses");
+    //LAUNCH MODAL
+    function addTeacher(){
+        $('#UserForm').trigger("reset");
+        $("#submit").attr("disabled", false);
+        $("#actionField").val("Add");
+        $("#notifyAddTeacher").html("");
+    }
+    //SAVE USER  TO DB
+    function addTeacherToDB() {
+        let username= $("#Username").val().trim();
+        let pass= $("#Password").val().trim();
+        let defaultPass ='Scoladmin2021!';
+        if(username.length>=3){
+            if(pass.length>=8){
+                let formData = $("#UserForm").serialize();
+                    $.post("/user-list",formData, function (data) {
+                    if (data.success) { //Success 
+                        $("#notifyAddTeacher").html(data.msg);
+                        $("#submit").attr("disabled", true);
+                    } else {
+                        $("#notifyAddTeacher").html(data.msg);
+                    }
+                });
+            }else{
+                alert("Le mot de passe doit avoir au moins 8 caractères.Sinon vous allez avoir le mot de passe : "+defaultPass);
+                $("#Password").val(defaultPass);
+            }
+        }else{
+            alert("Le nom de l'utilisateur est trop court....");
+        }
+        }
+    //GENERATE USERNAME
+    function genUsername(){
+     let fn= $("#EmployeeID option:selected").text().trim();
+     let spFn = fn.split(" ");
+     let un=fn.substr(0,1)+""+spFn[spFn.length-1];
+     $("#Username").val(un);
+    }
+   //RESET USER PASSWORD
+    function resetPassword(user) {
+        let newPassword = prompt("Voulez-vous réintialiser le mot de passe de "+user.toUpperCase()+" ?");
+        if(newPassword.length>=8){
+            $.post("/rest-user-password",{username:user.toLowerCase(),newPassword:newPassword}, function (data) {
+                alert(data.msg); 
+            });
+        }else{
+            alert("Le mot de passe doit avoir au moins 8 caractères."); 
+        }
+    }
+    //REMOVE USER
+    function removeUser(user) {
+        let response = confirm("Voulez-vous supprimer : "+user.toUpperCase()+" ?");
+        if(response){
+            $.post("/delete-user",{username:user.toLowerCase()}, function (data) {
+                alert(data.msg); 
+            });
+        }
+    }
+
+
+</script>

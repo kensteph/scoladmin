@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact"><button type="button" class="btn btn-info btn"
+                                                    onclick="addClassroom()">Ajouter
+                                                    Etudiant/Eléve</button>
+                                                <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
+                                                    data-target="#filter-modal" aria-hidden="true"></i>
+                                                <% if(studentList.length> 0){ %>
+                                                    <a title="Liste des élèves" target="_blank"
+                                                        href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&statut=<%=statutSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i></a>
+                                                    <% } %>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Elèves/Etudiants</th>
+                                                            <th>Sexe</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% studentList.forEach((Student)=> { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <strong>
+                                                                        <a
+                                                                        href="/student-details?ID=<%=Student.id_personne%>">
+                                                                        <%=Student.fullname+" ("+Student.dossier+")"%>
+                                                                    </a>
+                                                                    </strong>
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                    <%=Student.sexe%>
+                                                                </td>
+                                                                <td>
+                                                                    <i class="fas fa-edit to-link"
+                                                                        title="Modifier <%=Student.fullname%>"
+                                                                        onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <i class="fas fa-trash to-link h-red"
+                                                                        title="Supprimer <%=Student.fullname%>"
+                                                                        onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>')"></i>
+                                                                </td>
+
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD STUDENT -->
+                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvel Etudiant/Elève</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="classroomForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="ClassRoom">Salle de classe</label><br>
+                                        <div class="form-inline">
+                                            <select class="form-control w-50" name="ClassRoom" required id="ClassRoom">
+                                                <option value="0">------Salle de classe------</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <input type="text" required name="AneAca" id="AneAca" value="2020-2021"
+                                                title="Année Académique" onclick="select()" class="form-control w-25"
+                                                placeholder="Année Académique">
+                                            <input type="hidden" name="Niveau" id="Niveau">
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="Firstname">Prénom</label>
+                                            <input type="text" required name="Firstname" id="Firstname"
+                                                class="form-control" placeholder="Prénom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Lastname">Nom</label>
+                                            <input type="text" required name="Lastname" id="Lastname"
+                                                class="form-control" placeholder="Nom de l'étudiant/élève">
+                                        </div>
+                                        <div class="form-inline">
+                                            <label for="Sexe">Sexe</label>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Sexe" required id="Sexe">
+                                                <option value="F">Féminin</option>
+                                                <option value="M">Masculin</option>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <label for="Statut">Statut</label>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut" id="Statut">
+                                                <option value="1">Activé
+                                                </option>
+                                                <option value="0">Désactivé</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnClassroom' value="Enregistrer"
+                                            class="btn btn-success" id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <input type="hidden" name="AffectationID" id="AffectationID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="Niveau">Salle de classe </label>
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" name="ClassRoom">
+                                                <option value="All">Toutes les classes</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut">
+                                                <option value="1" <% if(statutSelected==1){ %> selected <% } %> >Activé
+                                                </option>
+                                                <option value="0" <% if(statutSelected==0){ %> selected <% } %>
+                                                        >Désactivé</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //AUTOFILL CLASSNAME ON SELECTED ITEM
+        function autoFill(Niveau) {
+            let classroomName = $("#classroomName");
+            if (Niveau.selectedIndex != 0) {
+                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
+                classroomName.val(generateClassroomName);
+            } else {
+                classroomName.val("");
+            }
+        }
+        //EDIT INFO ABOUT CLASSROOM
+        function addClassroom() {
+            $("#modalTitle").html("Nouvel Etudiant/Elève");
+            $("#Statut").attr("disabled", true);
+            $("#Niveau").val(0);
+            $("#classroomName").val("");
+            $("#abrevClassroomName").val("");
+            $("#classroomID").val("");
+            $("#actionField").val("Add");
+            $("#btnClassroom").val("Enregistrer");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        //EDIT INFO ABOUT CLASSROOM
+        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID, Statut) {
+            $("#Statut").attr("disabled", false);
+            $("#Statut").val(Statut);
+            $("#modalTitle").html("Modification " + fullname);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        //DELETE INFO ABOUT CLASSROOM
+        function deleted(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+            $("#modalTitle").html("Voulez-vous supprimer " + fullname + " ?");
+            $("#Statut").attr("disabled", true);
+            $("#Firstname").val(firstname);
+            $("#Lastname").val(lastname);
+            $("#Sexe").val(gender);
+            $("#StudentID").val(StudentID);
+            $("#AffectationID").val(AffectationID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
+            $("#actionField").val("Delete");
+            $("#btnClassroom").val("Supprimer");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-danger");
+            $("#classroom-modal").modal();
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

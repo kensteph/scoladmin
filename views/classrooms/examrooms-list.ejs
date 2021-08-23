@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                              <a title="Formation des salles" href="#" class="pointer" data-toggle="modal"
+                                              data-target="#settings-modal"><i class="fa fa-cogs fa-2x"></i> Formation des salles</a>
+                                              &nbsp;&nbsp;
+                                              <a title="Liste des salles d'examens" target="_blank"
+                                                        href="print-examrooms-list"><i
+                                                            class="fa fa-print fa-2x"></i> Liste des salles d'examens</a>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12">
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <div class="mt-5">
+                                        <div class="timeline">
+                                            <% 
+                                                let timelineClass="";
+                                                let position=1;
+                                                examRooms.forEach((classroom)=> { 
+                                                if(position%2==0){
+                                                    timelineClass="timeline-wrapper timeline-inverted timeline-wrapper-danger";
+                                                }else{
+                                                    timelineClass="timeline-wrapper timeline-wrapper-warning"; 
+                                                }
+                                                let students=subList[position-1];
+                                            %>
+                                            <div class="<%=timelineClass%>">
+                                                <div class="timeline-badge"></div>
+                                                <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <strong class="timeline-title"><%=classroom.classe%></strong>
+                                                </div>
+                                                <div class="timeline-body" style="width: 100%;">
+                                                    <ol >
+                                                   <% students.forEach((student)=> { %>
+                                                        <li>
+                                                           <%=student.fullname%>
+                                                           <strong><%=student.abv%></strong>
+                                                        </li>
+                                                   <%  }) %>
+                                                </ol>
+                                                </div>
+                                                <div class="timeline-footer d-flex align-items-center">
+                                                    <strong><%=counts[position-1]%></strong>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <% position++; }) %>
+                                          <!-- <div class="timeline-wrapper timeline-inverted timeline-wrapper-danger">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 Alpha 6</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>Alpha 6 has landed, and it’s one of our biggest ships to date.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>25</span>
+                                                  <span class="ml-auto font-weight-bold">10th Aug 2017</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="timeline-wrapper timeline-wrapper-success">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 Alpha 5</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>Alpha 5 has arrived just over a month after Alpha 4 with some major feature improvements and a boat load of bug fixes.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>19</span>
+                                                  <span class="ml-auto font-weight-bold">5th Sep 2016</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="timeline-wrapper timeline-inverted timeline-wrapper-info">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 Alpha 4</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>Alpha 4 is here to address those pesky build and package errors, a few CSS bugs, and some documentation inconsistencies we introduced in our last release.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>19</span>
+                                                  <span class="ml-auto font-weight-bold">27th July 2016</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="timeline-wrapper timeline-wrapper-primary">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 Alpha 3</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>Alpha 3 has landed! We have an overhauled grid, updated form controls, a new font stack, tons of bug fixes, and more.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>25</span>
+                                                  <span class="ml-auto font-weight-bold">25th July 2016</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="timeline-wrapper timeline-inverted timeline-wrapper-info">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 Alpha 2</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>The general plan for v4’s development starts with a few alpha releases. We’re a little behind on that, but should be getting caught up as the year winds down.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>32</span>
+                                                  <span class="ml-auto font-weight-bold">19th Aug 2015</span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="timeline-wrapper timeline-wrapper-success">
+                                            <div class="timeline-badge"></div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <h6 class="timeline-title">Bootstrap 4 alpha 1</h6>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>Bootstrap 4 has been a massive undertaking that touches nearly every line of code.</p>
+                                              </div>
+                                              <div class="timeline-footer d-flex align-items-center">
+                                                  <i class="far fa-heart text-muted mr-1"></i>
+                                                  <span>26</span>
+                                                  <span class="ml-auto font-weight-bold">15th Jun 2015</span>
+                                              </div>
+                                            </div>
+                                          </div> -->
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- SETTINGS -->
+    <div id="settings-modal" class="modal fade" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                Paramètres de formation des salles
+                  <a class="close" data-dismiss="modal">×</a>
+              </div>
+              <form id="FilterForm" role="form" method="POST">
+                  <div class="modal-body">
+                      <label for="choix">Choix des noms </label>
+                      <div class="form-inline">
+                          <select class="form-control" name="Criteria">
+                              <option value="A">Par ordre alphabétique</option>
+                              <option value="R">Aléatoire</option>
+                          </select>
+                          &nbsp;&nbsp;
+                          <input type="submit" value="Continuer" class="btn btn-success">
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

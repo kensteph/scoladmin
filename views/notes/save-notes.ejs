@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                    <br>
+                                    <br><p style="color: red;">N.B- A noter que seulement les élèves visibles auront leur note enregistrée. Pour enregistrer toutes les notes  au lieu de 10 choisissez ALL.</p>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
+                                                    data-target="#filter-modal" aria-hidden="true"></i>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+                                    <form id="noteForm" method="post" action="/save-notes-db">
+                                        <input type="hidden" name="courseId" value="<%=infoCourse.id_cours%>">
+                                        <input type="hidden" name="courseCoeff" value="<%=infoCourse.coefficient%>">
+                                        <input type="hidden" name="yearAca" value="<%=yearSelected%>">
+                                        <input type="hidden" name="period" value="<%=periodSelected%>">
+                                        <input type="hidden" name="niveauSelected" value="<%=niveauSelected%>">
+                                        <input type="hidden" name="roomSelected" value="<%=roomSelected%>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive table-striped">
+                                                    <table id="order-listing" class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Elèves/Etudiants</th>
+                                                                <th>Note</th>
+                                                                <th>Absence/Tricherie</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            <% let position=1; studentList.forEach((Student)=> { %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <%=position%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=Student.nom+" "+Student.prenom%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="number" name="note[]"
+                                                                            class="form-control w-40"
+                                                                            onclick="select()"
+                                                                            max="<%=infoCourse.coefficient%>" min="0"
+                                                                            placeholder="<%=infoCourse.coefficient%>">
+                                                                            <input type="hidden" name="studentId[]"
+                                                                                value="<%=Student.id_personne%>">
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control w-40"
+                                                                            name="abscence[]">
+                                                                            <option value=""></option>
+                                                                            <option value="1">Abscence</option>
+                                                                            <option value="0">Triche</option>
+                                                                        </select>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <% position++; }) %>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                    <% if(studentList.length> 0) { %>
+                                                        <br>
+                                                        <input type="submit" class="btn btn-success"
+                                                            value="Enregistrer Notes">
+                                                    <% } %>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+    <%- include("../parts/footer") -%>
+        <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+
+        <!-- FILTER -->
+        <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <strong id="modalFilterTitle">Filtre</strong>
+                        <a class="close" data-dismiss="modal">×</a>
+                    </div>
+                    <form id="FilterForm" role="form" method="POST">
+                        <div class="modal-body">
+                            <label for="Niveau">Salle de classe </label>
+                            <div class="form-inline">
+                                <select class="form-control w-35" name="ClassRoom" id="ClassRoom"
+                                    onchange="populateCoursesList()">
+                                    <option></option>
+                                    <% data.forEach((classroom)=> { %>
+                                        <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                value="<%=classroom.id%>">
+                                                    <%=classroom.classe%>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                                &nbsp;
+                                <select class="form-control w-25" name="Period" id="Period">
+                                    <% periodList.forEach((periode)=> { %>
+                                        <option value="<%=periode.periode%>">
+                                            <%=periode.periode%>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                                &nbsp;
+                                <select class="form-control" name="AneAca">
+                                    <% aneacaList.forEach((year)=> { %>
+                                        <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                value="<%=year.aneaca%>">
+                                                    <%=year.aneaca%>
+                                        </option>
+                                        <% }) %>
+                                </select>
+
+                            </div>
+                            <label for="Niveau">Liste des cours (Matières) </label>
+                            <div class="form-inline">
+                                <select class="form-control w-75" name="CourseSelectedId" id="CourseSelectedId"
+                                    onchange="getCourseName(this)">
+                                    <option>Sélectionnez le cours</option>
+                                    <% coursesList.forEach((course)=> { %>
+                                        <option value="<%=course.id_cours%>">
+                                            <%=course.libelle%>
+                                        </option>
+                                        <% }) %>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" id="btnContinue" value="Continuer" class="btn btn-success" disabled>
+                            <input type="hidden" name="courseName" id="courseName">
+                            <input type="hidden" name="actionField" value="Filter" id="actionField">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <!-- page-body-wrapper ends -->
+        </div>
+        <!-- container-scroller -->
+        <!-- plugins:js -->
+        <script src="../../vendors/js/vendor.bundle.base.js"></script>
+        <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+        <!-- endinject -->
+        <!-- inject:js -->
+        <script src="../../js/off-canvas.js"></script>
+        <script src="../../js/hoverable-collapse.js"></script>
+        <script src="../../js/misc.js"></script>
+        <script src="../../js/settings.js"></script>
+        <script src="../../js/todolist.js"></script>
+        <!-- endinject -->
+        <!-- Custom js for this page-->
+        <script src="../../js/data-table.js"></script>
+        <!-- End custom js for this page-->
+        <script>
+            //AUTOFILL CLASSNAME ON SELECTED ITEM
+            function getCourseName(course) {
+                let courseName = $("#courseName");
+                let cname = course.options[course.selectedIndex].text;
+                courseName.val(cname);
+            }
+            //AUTOFILL CLASSNAME ON SELECTED ITEM
+            function populateCoursesList() {
+                let classRoomId = $("#ClassRoom option:selected").val();
+                let select = $("#CourseSelectedId");
+                select.empty();
+                $.post("/getCourses-list", { classRoomId: classRoomId }, function (data) {
+                    console.log(data);
+                    let pos = 0;
+                    console.log(data);
+                    if (data.length > 0) {
+                        //SET btnContinue
+                        $("#btnContinue").prop("disabled", false);
+                        for (i = 0; i < data.length; i++) {
+                            select.append('<option value="' + data[i].id_cours + '">' + data[i].libelle + '</option>');
+                        }
+                    } else {
+                        //SET btnContinue
+                        $("#btnContinue").prop("disabled", true);
+                    }
+                });
+            }
+            //SAVE NOTES TO DB
+            function saveNotes() {
+
+                let formData = $("#noteForm").serialize();
+                $.post("/save-notes-db", formData, function (data) {
+                    // if (data.success) { //Success 
+                    //     $("#notifySignature").html(data.msg);
+                    // } else {
+                    //     $("#notifySignature").html(data.msg);
+                    // }
+                });
+
+            }
+
+
+        </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

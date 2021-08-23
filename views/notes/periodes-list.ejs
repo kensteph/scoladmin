@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <button type="button" class="btn btn-success btn"
+                                                    onclick="addClassroom()">Ajouter mode d'évaluation</button>
+                                                    <button type="button" class="btn btn-success btn" title="Changer le mode d'évaluation de l'année en cours"
+                                                    onclick="changeModeEvaluation()">Modifier mode d'évaluation</button>
+                                            </div>
+                                        </li>
+
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title h-red">
+                                        <% if(locals.msg){ %>
+                                            <%=msg %>
+                                                <% } %>
+                                    </h4>
+                                    <div class="row">
+
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mode Evaluation</th>
+                                                            <th>Code</th>
+                                                            <th>Nombre de controles</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% data.forEach((method)=> { %>
+                                                            <tr>
+
+                                                                <td>
+                                                                    <%=method.mode_evaluation%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%=method.code%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=method.nb_controles%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(method.if_present_in_note =="Not Found"){ %>
+                                                                        <i class="fas fa-plus to-link"
+                                                                            title="Ajouter les périodes d'évaluation <%=method.mode_evaluation%>"
+                                                                            onclick="addPeriod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Ajouter les périodes</i> |
+                                                                        &nbsp;&nbsp;
+                                                                        <i class="fas fa-edit to-link"
+                                                                            title="Modifier <%=method.mode_evaluation%>"
+                                                                            onclick="edit('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Modifier</i> |
+
+                                                                        <i class="fas fa-trash to-link h-red"
+                                                                            title="Supprimer <%=method.mode_evaluation%>"
+                                                                            onclick="deleteMethod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Supprimer </i>
+                                                                    <% } %>
+                                                                </td>
+
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD MODE EVALUATION -->
+                    <div id="course-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvelle méthode d'évaluation</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="courseForm" name="contact" role="form" method="POST">
+
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="courseName">Nom de la méthode</label>
+                                            <input type="text" required name="Methode" id="Methode" class="form-control"
+                                                placeholder="Nom de la méthode">
+                                        </div>
+                                        <label for="courseName">Code de la méthode</label>
+                                        <div class="form-inline">
+                                            <input type="text" required name="codeMethode" id="codeMethode"
+                                                class="form-control" placeholder="Code de la méthode">
+                                            &nbsp;
+                                            <input type="number" required name="nbPeriode" id="nbPeriode"
+                                                class="form-control" placeholder="Nombre de période"
+                                                title="Nombre de période">
+                                        </div>
+
+                                        <div class="form-group" id="periodList">
+                                            <br> <strong align="center">Liste des périodes</strong>
+                                            <ol id="csList">
+                                            </ol>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnCourse' value="Enregistrer" class="btn btn-success"
+                                            id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="methodID" id="methodID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- CHANGE MODE EVLUATION for the current year -->
+                     <div id="change-Mode-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Changement de mode d'évaluation</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                    <div class="modal-body">
+                                        <p><strong>N.B-</strong> Vous allez changer la mode d'évaluation de l'année choisie. Si vous avez déja 
+                                            enregistré des notes pour cette année, assurez vous que les noms des périodes (Etapes)
+                                            soient les memes.Par example,pour l'année 2020-2021 vous aviez 5 Etapes (Etape 1,Etape 2 ...),
+                                            pour une raison ou une autre vous aimeriez passer à 3 Etapes.
+                                            <br> 1-Ajouter la nouvelle methode d'abord.
+                                            2-Ajouter les 3 Etapes avec les memes noms des 5 Epates (Etape 1,Etape 2,Etape 3). 3-Attribuez cette 
+                                            nouvelle mode d'évaluaion à 2020-2021.<br>
+                                            4- <strong><i>S'il vous reste des notes à enregistrer,n'oubliez pas de vous rendre au tableau de bord. En haut à 
+                                            droite,cliquez sur les 3 points pour que vous puissiez changer la mode d'evaluation dans les parametres.</i></strong>
+
+                                        </p>
+                                        <form id="ChangeModeForm">
+                                                <div class="form-inline">
+                                                    <select class="form-control" name="AneAca" id="AneAca" title="Année Academique">
+                                                        <option><%=academicYearObj.Previous%></option>
+                                                        <option><%=academicYearObj.Next%></option>
+                                                    </select>
+                                                    &nbsp;&nbsp;
+                                                    <select class="form-control w-60" name="EvaluationMode" id="EvaluationMode" title="Mode d'evaluation">
+                                                        <% data.forEach((mode)=> { %>
+                                                            <option value="<%=mode.code%>">
+                                                                <%=mode.mode_evaluation+" (Nombre de controles : "+mode.nb_controles+")"%>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                    
+                                                </div>
+                                        </form>
+                                    </div>
+                                    <div id="ChangeNotify" align="center"></div>
+                                    <div class="modal-footer">
+                                        <button type="submit" onclick="changeModeEvaluationInDB()" class="btn btn-success">Attribuer</button>
+                                    </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADD PERIOD -->
+                    <div id="courseAss-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitleAssigment">Formation de liste de cours</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="assignCoursesForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div id="fields"></div>
+                                    </div>
+                                    <input type="hidden" name="actionField" id="actionFieldPeriod">
+                                    <input type="hidden" name="methodCode" id="methodCode">
+                                </form>
+                                <div id="AddPeriodNotify" align="center"></div>
+                                <div class="modal-footer">
+                                    <input type="submit" id='btnAssignation' value="Enregistrer"
+                                        onclick="assignCourses()" class="btn btn-success" id="submit">
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+
+    <script src="../../js/select2.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //AUTOFILL CLASSNAME ON SELECTED ITEM
+        function autoFill(Niveau) {
+            let classroomName = $("#classroomName");
+            if (Niveau.selectedIndex != 0) {
+                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
+                classroomName.val(generateClassroomName);
+            } else {
+                classroomName.val("");
+            }
+        }
+
+        //========================== ADD COURSE ===============================
+        function addClassroom() {
+            $("#modalTitle").html("Nouvelle méthode d'évaluation ");
+            $("#courseName").val("");
+            $("#courseCode").val("");
+            $("#courseID").val("");
+            $("#actionField").val("Add");
+            $("#btnCourse").val("Enregistrer");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
+        }
+        //EDIT INFO ABOUT COURSE
+        function edit(methodeID, method, codeMethode, nbPeriode) {
+            $("#modalTitle").html("Modification " + method);
+            $("#Methode").val(method);
+            $("#codeMethode").val(codeMethode);
+            $("#nbPeriode").val(nbPeriode);
+            $("#methodID").val(methodeID);
+            $("#actionField").val("Edit");
+            $("#btnCourse").val("Modifier");
+            let ul = $("#csList");
+            ul.empty();
+            $.post("/getPeriod-list", { methodEvaluationCode: codeMethode }, function (data) {
+                // if (data.success) { //Success 
+                //     $("#notifySignature").html(data.msg);
+                // } else {
+                //     $("#notifySignature").html(data.msg);
+                // }
+                //console.log(data);
+                let pos = 0;
+                for (i = 0; i < data.length; i++) {
+                    ul.append('<li>' + data[i].periode + '</li>');
+                }
+            });
+
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-success");
+            $("#course-modal").modal();
+        }
+        //EDIT INFO ABOUT COURSE
+        function deleteMethod(methodeID, method, codeMethode, nbPeriode) {
+            $("#modalTitle").html("Voulez-vous supprimer " + method + " ?");
+            $("#Methode").val(method);
+            $("#codeMethode").val(codeMethode);
+            $("#nbPeriode").val(nbPeriode);
+            $("#methodID").val(methodeID);
+            $("#actionField").val("Delete");
+            $("#btnCourse").val("Supprimer");
+            $("#btnCourse").removeClass();
+            $("#btnCourse").addClass("btn btn-danger");
+            $("#course-modal").modal();
+        }
+        //ADD PERIOD
+        function addPeriod(methodeID, method, codeMethode, nbPeriode) {
+            $("#modalTitleAssigment").html("Ajouter les périodes pour " + method);
+            $("#methodCode").val(codeMethode);
+            $("#actionFieldPeriod").val("Add");
+            $("#fields").empty();
+            let etap = prompt("Tapez le nom des périodes", "Etape");
+            if (etap != null) { 
+            for (i = 1; i <= nbPeriode; i++) {
+                let input = '<div class="form-inline"><input type="text" value="' + etap + ' ' + i + '" required name="periodName[]" id="periodName" class="form-control w-50" placeholder="Nom de la période">&nbsp;<select title="SIMPLE : Ne sera pas pris en compte lors de la calcul de la moyenne gle." class="form-control" name="Type[]" required id="Sexe"><option value="S">Simple</option><option value="G">Générale</option></select></div><br>';
+                $("#fields").append("<a>" + input + "</a>");
+            }
+            $("#courseAss-modal").modal();
+        }
+        }
+        //SAVE PERIOD
+        function assignCourses() {
+            let formData = $("#assignCoursesForm").serialize();
+            $.post("/period", formData, function (data) {
+                if (data.success) { //Success 
+                    $("#AddPeriodNotify").html(data.msg);
+                } else {
+                    $("#AddPeriodNotify").html(data.msg);
+                }
+            });
+
+        }
+        //change-Mode-modal
+        function changeModeEvaluation() {
+            $("#change-Mode-modal").modal();
+        }
+        //SAVE METHOD CHANGE
+        function changeModeEvaluationInDB(){
+            let formData = $("#ChangeModeForm").serialize();
+            $.post("/change-mode-evaluation", formData, function (data) {
+                if (data.success) { //Success 
+                    $("#ChangeNotify").html(data.msg);
+                } else {
+                    $("#ChangeNotify").html(data.msg);
+                }
+            });
+        }
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>
