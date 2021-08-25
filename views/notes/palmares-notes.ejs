@@ -45,26 +45,27 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <div id="contact">
-                                                <a><i class="fa fa-filter fa-2x to-link" title="Filtre" data-toggle="modal"
-                                                    data-target="#filter-modal" aria-hidden="true"></i>Filtre</a>
+                                                <a href="#" data-toggle="modal"data-target="#filter-modal" aria-hidden="true">
+                                                    <i class="fa fa-filter fa-2x to-link" title="Filtre" ></i> Filtre
+                                                </a>&nbsp;
                                                 <% if(listNotes.length>0){ %>
                                                     <a title="Palmarès" target="_blank"
                                                         href="/print-palmares-notes?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
                                                             class="fa fa-print fa-2x"></i> Palmarès</a>
-                                                    
+                                                            &nbsp;
                                                             <% if(ifLastPeriod){ %>
                                                                 <a title="Bulletins General"
                                                                     target="_blank"
                                                                     href="/print-all-bulletin-general?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
-                                                                        class="fa fa-print fa-2x"></i>Bulletins General</a>
+                                                                        class="fa fa-print fa-2x"></i> Bulletins Général</a>&nbsp;
                                                                 <a title="Palmarès General" target="_blank"
                                                                         href="/print-palmares-general?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
-                                                                            class="fa fa-print fa-2x"></i> Palmarès General</a>
+                                                                            class="fa fa-print fa-2x"></i> Palmarès Général</a>
                                                                             <% if(ifAdmission){ %>
                                                                             <button class="btn btn-success" onclick="admission('<%=methodEvaluationCode%>','<%=yearSelected%>','<%=roomSelected%>')">Admission</button>
                                                                             <% } %>
                                                             <% }else{ %>
-                                                                <a title="Bulletins" target="_blank"
+                                                                &nbsp; <a title="Bulletins" target="_blank"
                                                         href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
                                                             class="fa fa-print fa-2x"></i> Bulletins</a>
                                                             <% } %>

@@ -111,7 +111,7 @@
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i class="fas fa-trash to-link h-red"
                                                                         title="Supprimer <%=Student.fullname%>"
-                                                                        onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>')"></i>
+                                                                        onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"></i>
                                                                 </td>
 
                                                             </tr>
@@ -252,7 +252,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <strong id="modalFilterTitle">Affectation</strong>
+                                    <strong id="modalAffectationTitle">Affectation</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
                                 <form id="AffectationForm" role="form" >
@@ -314,16 +314,6 @@
     <script src="../../js/data-table.js"></script>
     <!-- End custom js for this page-->
     <script>
-        //AUTOFILL CLASSNAME ON SELECTED ITEM
-        function autoFill(Niveau) {
-            let classroomName = $("#classroomName");
-            if (Niveau.selectedIndex != 0) {
-                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
-                classroomName.val(generateClassroomName);
-            } else {
-                classroomName.val("");
-            }
-        }
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
             $("#modalTitle").html("Nouvel Etudiant/Elève");
@@ -355,17 +345,15 @@
             $("#classroom-modal").modal();
         }
         //DELETE INFO ABOUT CLASSROOM
-        function deleted(StudentID, firstname, lastname, gender, fullname, AffectationID) {
+        function deleted(StudentID, firstname, lastname, gender, fullname,classroom, AffectationID) {
             $("#modalTitle").html("Voulez-vous supprimer " + fullname + " de cette classe?");
             $("#Statut").attr("disabled", true);
             $("#Firstname").val(firstname);
             $("#Lastname").val(lastname);
             $("#Sexe").val(gender);
             $("#StudentID").val(StudentID);
+            $("#ClassRoom").val(classroom);
             $("#AffectationID").val(AffectationID);
-            $("#actionField").val("Edit");
-            $("#btnClassroom").val("Modifier");
-            $("#btnClassroom").removeClass();
             $("#actionField").val("Delete");
             $("#btnClassroom").val("Supprimer");
             $("#btnClassroom").removeClass();

@@ -201,9 +201,10 @@
                                                                                         target="_blank"
                                                                                         href="/print-bulletin-general?studentId=<%=studentInfo.id_personne%>&roomSelected=<%=studentYear.classroom%>&yearSelected=<%=studentYear.aneaca%>&methodEvaluationCode=<%=mode_evaluation_code%>">Bulletin General</a>
                                                                                         <% if(studentYear.aneaca==beforeLastYear){ %>
-                                                                                            <a title="Relevé de Notes" class="fa fa-print fa-2x"
+                                                                                            <a title="Relevé de Notes" class="btn btn-dark btn-fw"
                                                                                                                     target="_blank"
-                                                                                                                    href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClassbeforeLastYear%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=beforeLastYear%>&saOrSesClasse=<%=saOrSes%>">&nbsp;Relevé de Notes</a>
+                                                                                                                    href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClassbeforeLastYear%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=beforeLastYear%>&saOrSesClasse=<%=saOrSes%>">
+                                                                                                                    <i class="fa fa-print fa-2x"></i>&nbsp;Relevé de Notes</a>
                                                                                         <% } %>
                                                                                 <% } %>
                                                                             </div>
@@ -213,11 +214,12 @@
                                                                 <% pos++ %>
                                                                 <% }) %>
                                                                 
-                                                                <h5>MOYENNE GENERALE : <%= lastMoyGle.MoyGle %> (<%= lastMoyGle.decision %>)&nbsp;</h5>
+                                                                <strong>MOYENNE GENERALE : <%= lastMoyGle.MoyGle %> (<%= lastMoyGle.decision %>)&nbsp;</strong>
                                                                 <% if(lastMoyGle.ifPromoted){ %>
-                                                                <a title="Relevé de Notes" class="fa fa-print fa-2x"
+                                                                <a title="Relevé de Notes" 
                                                                                         target="_blank"
-                                                                                        href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClass%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=lastYear%>&saOrSesClasse=<%=saOrSes%>"></a>&nbsp;Relevé de Notes
+                                                                                        href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClass%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=lastYear%>&saOrSesClasse=<%=saOrSes%>">
+                                                                <i class="fa fa-print fa-2x"></i> &nbsp;Relevé de Notes</a>
                                                                 <% } %>
                                                         </div>
                                                     </div>

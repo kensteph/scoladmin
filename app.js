@@ -60,7 +60,8 @@ intitValues = async function (req) {
 }
 app.get('/', async (req, res) => {
     await intitValues(req);
-    let msg=req.body.msg;
+    let msg=req.query.msg;
+    console.log(msg);
     let isHome=true;
     res.render('login',{msg,isHome});
 });
@@ -96,14 +97,14 @@ app.post('/login', statistic, async (req, res) => {
                         res.render('index', params);
                     }else{
                         console.log("You are not authenticated...NO PASS");
-                        req.body.msg="You are not authenticated...NO PASS";
-                        res.redirect('/');
+                        let msg="Votre nom d'utilisateur ou mot de passe est incorrect...";
+                        res.redirect('/?msg='+msg);
                     }
             
     }else{
         console.log("You are not authenticated...");
-        req.body.msg="You are not authenticated...";
-        res.redirect('/');
+        let msg="Votre nom d'utilisateur ou mot de passe est incorrect...";
+        res.redirect('/?msg='+msg);
     }
 });
 app.get('/login', async (req, res) => {

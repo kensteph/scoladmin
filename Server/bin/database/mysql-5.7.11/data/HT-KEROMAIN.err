@@ -1746,3 +1746,186 @@ Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
 2021-08-23T20:02:22.195025Z 228 [Note] Aborted connection 228 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-08-23T20:02:29.360932Z 229 [Note] Aborted connection 229 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-08-23T20:02:31.058397Z 230 [Note] Aborted connection 230 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-23T20:23:28.378191Z 231 [Note] Aborted connection 231 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-23T20:23:33.411735Z 232 [Note] Aborted connection 232 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-23T20:23:37.809961Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-08-23T20:23:37.812951Z 0 [Note] Giving 2 client threads a chance to die gracefully
+2021-08-23T20:23:37.814947Z 0 [Note] Shutting down slave threads
+2021-08-23T20:23:39.816615Z 0 [Note] Forcefully disconnecting 2 remaining clients
+2021-08-23T20:23:39.816615Z 0 [Warning] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Forcing close of thread 5  user: 'root'
+
+2021-08-23T20:23:39.818608Z 0 [Warning] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Forcing close of thread 6  user: 'root'
+
+2021-08-23T20:23:39.819605Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-08-23T20:23:39.821600Z 0 [Note] Binlog end
+2021-08-23T20:23:39.844539Z 0 [Note] Shutting down plugin 'ngram'
+2021-08-23T20:23:39.845558Z 0 [Note] Shutting down plugin 'partition'
+2021-08-23T20:23:39.845558Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-08-23T20:23:39.846564Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-08-23T20:23:39.846564Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-08-23T20:23:39.847557Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-08-23T20:23:39.848528Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-08-23T20:23:39.849526Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-08-23T20:23:39.849526Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-08-23T20:23:39.850522Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-08-23T20:23:39.851519Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-08-23T20:23:39.851519Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-08-23T20:23:39.852517Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-08-23T20:23:39.852517Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-08-23T20:23:39.853514Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-08-23T20:23:39.854511Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-08-23T20:23:39.854511Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-08-23T20:23:39.855509Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-08-23T20:23:39.855509Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-08-23T20:23:39.856506Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-08-23T20:23:39.856506Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-08-23T20:23:39.857504Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-08-23T20:23:39.858501Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-08-23T20:23:39.858501Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-08-23T20:23:39.859498Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-08-23T20:23:39.860496Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-08-23T20:23:39.860496Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-08-23T20:23:39.861494Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-08-23T20:23:39.862491Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-08-23T20:23:39.863489Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-08-23T20:23:39.863489Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-08-23T20:23:39.864522Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-08-23T20:23:39.865516Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-08-23T20:23:39.865516Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-08-23T20:23:39.866512Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-08-23T20:23:39.866512Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-08-23T20:23:39.867510Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-08-23T20:23:39.867510Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-08-23T20:23:39.868504Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-08-23T20:23:39.869474Z 0 [Note] InnoDB: Starting shutdown...
+2021-08-23T20:23:39.972199Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-23T20:23:39.981174Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 210823 16:23:39
+2021-08-23T20:23:41.007427Z 0 [Note] InnoDB: Shutdown completed; log sequence number 48530277
+2021-08-23T20:23:41.009422Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-23T20:23:41.009422Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-08-23T20:23:41.010453Z 0 [Note] Shutting down plugin 'CSV'
+2021-08-23T20:23:41.010453Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-08-23T20:23:41.011449Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-08-23T20:23:41.011449Z 0 [Note] Shutting down plugin 'binlog'
+2021-08-23T20:23:41.013412Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-08-24T01:23:55.705302Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-24T01:23:55.705302Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-24T01:23:55.705302Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-24T01:23:55.706299Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-24T01:23:55.707322Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 6896 ...
+2021-08-24T01:23:55.776143Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-24T01:23:55.780435Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-24T01:23:55.794401Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-24T01:23:55.795398Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-24T01:23:55.796530Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-24T01:23:55.798335Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-24T01:23:55.808107Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-24T01:23:55.814234Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-24T01:23:55.872123Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-24T01:23:55.885828Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-24T01:23:55.980084Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-24T01:23:56.369309Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-24T01:23:56.371209Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-24T01:23:56.428922Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-24T01:23:56.439020Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-24T01:23:56.439020Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-24T01:23:56.443257Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-24T01:23:56.499341Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48530277
+2021-08-24T01:23:56.504127Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-24T01:23:56.504127Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-24T01:23:56.578441Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-24T01:23:56.590309Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-24T01:23:56.592694Z 0 [Note] IPv6 is available.
+2021-08-24T01:23:56.594710Z 0 [Note]   - '::' resolves to '::';
+2021-08-24T01:23:56.595707Z 0 [Note] Server socket created on IP: '::'.
+2021-08-24T01:23:56.858299Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-24T01:23:56.859688Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-24T01:23:57.608035Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210823 21:23:57
+2021-08-24T11:40:44.944337Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 36473760ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-24T13:49:58.228446Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:00.150760Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:02.333734Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:04.347877Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:06.464140Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:12.580740Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:31.258407Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:32.808475Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:50:33.749383Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:51:14.704491Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:52:26.673696Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T13:53:08.654243Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-24T18:46:19.195627Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1878936ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-24T19:54:14.192936Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 37315ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-25T00:07:41.484524Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-25T00:07:41.484524Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-25T00:07:41.484524Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-25T00:07:41.485522Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-25T00:07:41.486518Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 15560 ...
+2021-08-25T00:07:41.522191Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-25T00:07:41.524370Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-25T00:07:41.530799Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-25T00:07:41.531659Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-25T00:07:41.531659Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-25T00:07:41.532656Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-25T00:07:41.537642Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-25T00:07:41.539578Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-25T00:07:41.572691Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-25T00:07:41.583600Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-25T00:07:41.674705Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-25T00:07:41.680621Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48541037
+2021-08-25T00:07:41.682403Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48541046
+2021-08-25T00:07:41.686038Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48541046
+2021-08-25T00:07:41.687788Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-25T00:07:41.689247Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-25T00:07:42.423623Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-25T00:07:42.423623Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-25T00:07:42.425350Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-25T00:07:42.479572Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-25T00:07:42.483251Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-25T00:07:42.483251Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-25T00:07:42.486948Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-25T00:07:42.544275Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48541046
+2021-08-25T00:07:42.545429Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-25T00:07:42.545429Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-25T00:07:42.567465Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-25T00:07:42.570458Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-25T00:07:42.570827Z 0 [Note] IPv6 is available.
+2021-08-25T00:07:42.571825Z 0 [Note]   - '::' resolves to '::';
+2021-08-25T00:07:42.571825Z 0 [Note] Server socket created on IP: '::'.
+2021-08-25T00:07:42.601287Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210824 20:07:42
+2021-08-25T00:07:42.708123Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-25T00:07:42.709119Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-25T00:17:03.133211Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:17:05.564999Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:17:07.536743Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:17:08.697269Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:18:19.600619Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:18:20.818055Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:18:23.974066Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:20:26.212497Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:20:39.202353Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:20:56.391931Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:21:47.882395Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:22:11.535106Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:33.441552Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:35.263920Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:37.062871Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:39.420035Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:40.551934Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:27:49.711988Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:28:31.103403Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:31:27.041748Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:31:37.037044Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:32:01.141097Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:32:06.668257Z 24 [Note] Aborted connection 24 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T00:32:19.809330Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T13:17:45.104115Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 45897806ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-25T15:06:48.601692Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 144035ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-25T16:34:22.244678Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 706662ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-25T16:57:46.405658Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T16:58:18.498215Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T17:16:32.462296Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)

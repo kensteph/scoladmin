@@ -19,16 +19,7 @@ router.post('/students-list', auth, async (req, res) => {
         active = req.body.Statut;
     }
     console.log(req.body);
-    if (ClassRoom == "All") {
-
-    } else {
-        //GET INFO ABOUT THE CLASSROOM
-        info = await dbClassroomController.getclassroom(ClassRoom);
-        console.log("CLASS INFO : ", info);
-        req.body.Niveau = info.niveau;
-    }
-
-    console.log(req.body);
+    
     if (req.body.actionField == "Filter") { //FILTER
         res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active);
     } else {
@@ -245,7 +236,8 @@ router.get('/print-students-list', auth, async (req, res) => {
 
     let params = {
         pageTitle,
-        studentList
+        studentList,
+        ClassRoom
     };
     res.render('../print/templates/list-eleves', params);
 });

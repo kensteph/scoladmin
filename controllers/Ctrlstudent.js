@@ -10,7 +10,7 @@ var self = module.exports = {
             let nom = req.body.Lastname;
             let fullname = prenom+" "+nom.toUpperCase();
             let sexe = req.body.Sexe;
-            let userInfo = req.session.userData;
+            let userInfo = req.session.UserData;
             let acteur = userInfo.userName;
             let initial=prenom.substring(0,1)+nom.substring(0,1);
 
@@ -313,7 +313,8 @@ var self = module.exports = {
                 } else {
                     resolve({
                         msg: "Affectation supprimée avec succès.",
-                        success: "success"
+                        success: "success",
+                        type: "danger",
                     });
                 }
             });
