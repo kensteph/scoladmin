@@ -257,10 +257,10 @@ var self = module.exports = {
             let sql = "";
             let params = [];
             if (active == "All") {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers,tb_users as prof WHERE pers.id=prof.pers_id ORDER BY nom,prenom";
+                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers,tb_users as prof WHERE pers.id=prof.pers_id AND type NOT IN('Super Admin') ORDER BY nom,prenom";
                 params = [];
             } else {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers,tb_users as prof WHERE pers.id=prof.pers_id AND active=? ORDER BY nom,prenom";
+                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers,tb_users as prof WHERE pers.id=prof.pers_id AND active=? AND type NOT IN('Super Admin') ORDER BY nom,prenom";
                 params = [active];
             }
 
@@ -283,10 +283,10 @@ var self = module.exports = {
             let sql = "";
             let params = [];
             if (active == "All") {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers WHERE type!='Student' AND id NOT IN(SELECT pers_id FROM tb_users) ORDER BY nom,prenom";
+                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers WHERE type NOT IN('Student','Super Admin') AND pers.id NOT IN(SELECT pers_id FROM tb_users) ORDER BY nom,prenom";
                 params = [];
             } else {
-                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers WHERE type!='Student' AND active=? AND  id NOT IN(SELECT pers_id FROM tb_users) ORDER BY nom,prenom";
+                sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers WHERE type NOT IN('Student','Super Admin') AND active=? AND  pers.id NOT IN(SELECT pers_id FROM tb_users) ORDER BY nom,prenom";
                 params = [active];
             }
 
@@ -349,6 +349,131 @@ var self = module.exports = {
                     resolve({
                         msg: "Les informations concernant '" + user.toUpperCase() + "' ont été supprimées avec succès.",
                         success: "success"
+                    });
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+     //Load The app Menu
+     menuList: async function () {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_app_menu WHERE type_access='MENU'"
+            //console.log(sql);
+            con.query(sql, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+     //Load The app SUBMenu && ACtions
+     getSubMenuAndActionsFor: async function (menu) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM tb_app_menu WHERE type_access!='MENU' AND belong_to=?"
+            //console.log(sql);
+            con.query(sql,menu, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //Load All The USER'S ACCESS
+    listOfUserAccess: async function (username) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT ua.access access_id,route,IF(type_access='MENU',route,action) actions FROM tb_users u,tb_user_access ua,tb_app_menu al WHERE u.user_name=ua.user_name AND al.id=ua.access AND u.user_name=?";
+            //console.log(sql);
+            con.query(sql,username, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        let actions=[];
+        let routes=[];
+        let accessId=[];
+        for(i=0;i<data.length;i++){
+            actions.push(data[i].actions);
+            routes.push(data[i].route);
+            accessId.push(data[i].access_id);
+        }
+        let access={actions,routes,accessId};
+        //console.log(data);
+        return access;
+    },
+    //ADD USER ACCESSS
+    addUserAccess: async function (req) {
+        let promise = new Promise((resolve, reject) => {
+            let username = req.body.username;
+            let userAccess = req.body.UserAccess;
+            let granted_by = req.session.UserData.userName;
+            //VALUES foR BULK INSERTION
+            let finalValues = [];
+            for (i = 0; i < userAccess.length; i++) {
+                let value = [];
+                value.push(username);
+                value.push(userAccess[i]);
+                value.push(granted_by);
+                finalValues.push(value);
+            }
+            console.log("VALUES : ", finalValues);
+            let sql =
+                'INSERT INTO tb_user_access (user_name, access,granted_by) VALUES ? ';
+            con.query(sql, [finalValues], function (err, result) {
+                if (err) {
+                    msg = {
+                        success:false,
+                        msg:
+                            " Vous avez déja ajouté ",
+                        debug: err
+                    };
+                } else {
+                    msg = {
+                        success:true,
+                        msg:
+                            " Acces ajouté avec succès.",
+                    };
+                }
+
+                resolve(msg);
+                //console.log(msg);
+            });
+        });
+        rep = await promise;
+        return rep;
+    },
+    //REMOVE ALL USER'S ACCESS
+    deleteUserAccess: async function (user) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "DELETE FROM tb_user_access  WHERE user_name =?";
+            con.query(sql, user, function (err, rows) {
+                if (err) {
+                    resolve({
+                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
+                        type: "danger",
+                        debug: err,
+                        success:false
+                    });
+                } else {
+                    resolve({
+                        msg: "Les acces ont été supprimés avec succès.",
+                        success:true
                     });
                 }
             });

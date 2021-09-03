@@ -18,7 +18,7 @@
                             if(pos_mat == coursesList.length-1){ separator=""; }
                             %>
                             <strong>
-                                <%= courses.code+" : "%> </strong><%=courses.libelle+separator %>
+                                <%= courses.code+" : "%> </strong><%=courses.libelle+"/"+courses.coefficient+separator %>
                 <% pos_mat++; }) %>
             </div>
         </div>
@@ -52,7 +52,7 @@
                                                                 <%=pos+1%>
                                                             </td>
                                                             <td>
-                                                                <%=line.Student%>
+                                                                &nbsp;<%=line.Student%>
                                                             </td>
                                                             <% pos_note=0; coursesList.forEach((courses)=> { %>
                                                                 <td class="td-vn">

@@ -192,7 +192,6 @@ router.post('/remove-attribution', auth, async (req, res) => {
 //================================================= PRINTING ============================================
 router.get('/print-course-palmares', auth, async (req, res) => {
     let ClassRoom = req.query.ClassRoom;
-    let niveau = req.query.niveau;
     let AneAca = req.query.AneAca;
     let periode = req.query.Periode;
     let course = req.query.Course;
@@ -250,5 +249,13 @@ console.log(studentNotes);
     };
     res.render('../print/templates/palmares-cours', params);
 });
+//COURSES LIST BY CLASS
+router.get('/print-courses-list', auth, async (req, res) => {
+    let info = await dbClassroomController.getclassroom(ClassRoom);
+    //console.log("CLASS INFO : ", info);
+    let params={};
+    res.render('../print/templates/courses-list', params);
+});
+
 // Exportation of this router
 module.exports = router;

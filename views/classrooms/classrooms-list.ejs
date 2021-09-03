@@ -43,11 +43,13 @@
                                 </h3>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
+                                        <% if(UserData.userAccess.includes('add_classroom') || UserData.userAccess.includes('All')){ %>
                                         <li class="breadcrumb-item">
                                             <div id="contact"><button type="button" class="btn btn-info btn"
                                                     onclick="addClassroom()">Ajouter
                                                     salle de classe</button></div>
                                         </li>
+                                        <% } %>
                                     </ol>
                                 </nav>
                             </div>
@@ -68,7 +70,9 @@
                                                             <th>Niveau</th>
                                                             <th>Abbréviation</th>
                                                             <th title="Si cette salle de classe servira de salle d'examen">Salle d'examen</th>
+                                                            <% if(UserData.userAccess.includes('add_classroom') || UserData.userAccess.includes('All')){ %>
                                                             <th>Actions</th>
+                                                            <% } %>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -94,6 +98,7 @@
                                                                 <td>
                                                                     <%=ifExamRoom%>
                                                                 </td>
+                                                                <% if(UserData.userAccess.includes('add_classroom') || UserData.userAccess.includes('All')){ %>
                                                                 <td>
                                                                     <i class="fas fa-edit to-link"
                                                                         title="Modifier <%=classroom.classe%>"
@@ -103,7 +108,7 @@
                                                                         title="Supprimer <%=classroom.classe%>"
                                                                         onclick="deleteClassroom('<%=classroom.id%>','<%=classroom.mere%>','<%=classroom.classe%>','<%=classroom.abv%>')"></i>
                                                                 </td>
-
+                                                                <% } %>
                                                             </tr>
                                                             <% }) %>
                                                     </tbody>

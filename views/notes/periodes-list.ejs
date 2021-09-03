@@ -45,10 +45,14 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <div id="contact">
-                                                <button type="button" class="btn btn-success btn"
+                                                <% if(UserData.userAccess.includes('add_evaluation') || UserData.userAccess.includes('All')){ %>
+                                                    <button type="button" class="btn btn-success btn"
                                                     onclick="addClassroom()">Ajouter mode d'évaluation</button>
+                                                <% } %>
+                                                <% if(UserData.userAccess.includes('change_evaluation') || UserData.userAccess.includes('All')){ %>
                                                     <button type="button" class="btn btn-success btn" title="Changer le mode d'évaluation de l'année en cours"
                                                     onclick="changeModeEvaluation()">Modifier mode d'évaluation</button>
+                                                <% } %>
                                             </div>
                                         </li>
 
@@ -72,7 +76,8 @@
                                                         <tr>
                                                             <th>Mode Evaluation</th>
                                                             <th>Code</th>
-                                                            <th>Nombre de controles</th>
+                                                            <th>Controles</th>
+                                                            <th>Liste des controles</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
@@ -91,18 +96,30 @@
                                                                     <%=method.nb_controles%>
                                                                 </td>
                                                                 <td>
+                                                                    <%=method.periodesList%>
+                                                                </td>
+                                                                <td>
                                                                     <% if(method.if_present_in_note =="Not Found"){ %>
-                                                                        <i class="fas fa-plus to-link"
-                                                                            title="Ajouter les périodes d'évaluation <%=method.mode_evaluation%>"
-                                                                            onclick="addPeriod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Ajouter les périodes</i> |
-                                                                        &nbsp;&nbsp;
-                                                                        <i class="fas fa-edit to-link"
-                                                                            title="Modifier <%=method.mode_evaluation%>"
-                                                                            onclick="edit('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Modifier</i> |
 
-                                                                        <i class="fas fa-trash to-link h-red"
-                                                                            title="Supprimer <%=method.mode_evaluation%>"
-                                                                            onclick="deleteMethod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Supprimer </i>
+                                                                        <% if(UserData.userAccess.includes('add_period') || UserData.userAccess.includes('All')){ %>
+                                                                                <i class="fas fa-plus to-link"
+                                                                                title="Ajouter les périodes d'évaluation <%=method.mode_evaluation%>"
+                                                                                onclick="addPeriod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"> Périodes</i> |
+
+                                                                        <% } %>
+                                                                        
+                                                                        <% if(UserData.userAccess.includes('edit_evaluation') || UserData.userAccess.includes('All')){ %>
+                                                                            <i class="fas fa-edit to-link"
+                                                                                title="Modifier <%=method.mode_evaluation%>"
+                                                                                onclick="edit('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"></i> |
+                                                                        <% } %>
+
+                                                                        <% if(UserData.userAccess.includes('delete_evaluation') || UserData.userAccess.includes('All')){ %>
+                                                                            <i class="fas fa-trash to-link h-red"
+                                                                                title="Supprimer <%=method.mode_evaluation%>"
+                                                                                onclick="deleteMethod('<%=method.id%>','<%=method.mode_evaluation%>','<%=method.code%>','<%=method.nb_controles%>')"></i>
+                                                                        <% } %>
+
                                                                     <% } %>
                                                                 </td>
 
@@ -263,17 +280,6 @@
     <script src="../../js/select2.js"></script>
     <!-- End custom js for this page-->
     <script>
-        //AUTOFILL CLASSNAME ON SELECTED ITEM
-        function autoFill(Niveau) {
-            let classroomName = $("#classroomName");
-            if (Niveau.selectedIndex != 0) {
-                let generateClassroomName = Niveau.options[Niveau.selectedIndex].text;
-                classroomName.val(generateClassroomName);
-            } else {
-                classroomName.val("");
-            }
-        }
-
         //========================== ADD COURSE ===============================
         function addClassroom() {
             $("#modalTitle").html("Nouvelle méthode d'évaluation ");
@@ -298,15 +304,9 @@
             let ul = $("#csList");
             ul.empty();
             $.post("/getPeriod-list", { methodEvaluationCode: codeMethode }, function (data) {
-                // if (data.success) { //Success 
-                //     $("#notifySignature").html(data.msg);
-                // } else {
-                //     $("#notifySignature").html(data.msg);
-                // }
-                //console.log(data);
                 let pos = 0;
                 for (i = 0; i < data.length; i++) {
-                    ul.append('<li>' + data[i].periode + '</li>');
+                    ul.append("<li id='PL" + data[i].id + "'>" + data[i].periode + " (" + data[i].type_periode + ") &nbsp;&nbsp;&nbsp; <i title='Supprimer' onclick='removePeriod("+ data[i].id +")'"+" class='fas fa-trash to-link h-red'></i></li>");
                 }
             });
 
@@ -336,7 +336,7 @@
             let etap = prompt("Tapez le nom des périodes", "Etape");
             if (etap != null) { 
             for (i = 1; i <= nbPeriode; i++) {
-                let input = '<div class="form-inline"><input type="text" value="' + etap + ' ' + i + '" required name="periodName[]" id="periodName" class="form-control w-50" placeholder="Nom de la période">&nbsp;<select title="SIMPLE : Ne sera pas pris en compte lors de la calcul de la moyenne gle." class="form-control" name="Type[]" required id="Sexe"><option value="S">Simple</option><option value="G">Générale</option></select></div><br>';
+                let input = '<div class="form-inline"><input type="text" value="' + etap + ' ' + i + '" required name="periodName[]" id="periodName" class="form-control w-50" placeholder="Nom de la période">&nbsp;<select title="SIMPLE : Ne sera pas pris en compte lors du calcul de la moyenne gle." class="form-control" name="Type[]" required id="Sexe"><option value="S">Simple</option><option value="G">Générale</option></select></div><br>';
                 $("#fields").append("<a>" + input + "</a>");
             }
             $("#courseAss-modal").modal();
@@ -369,6 +369,19 @@
                 }
             });
         }
+        //REMOVE SINGLE PERIODE EVALUATION
+        function removePeriod(periodeId){
+            if(confirm("Voulez vous supprimer cette periode ? ")){
+                $.post("/remove-period", { periodToRemove: periodeId }, function (data) {
+                if (data.success) { //Success 
+                    $("#PL"+periodeId).remove();
+                } 
+                //console.log(data);
+            });
+            }
+            
+        }
+        
     </script>
 </body>
 

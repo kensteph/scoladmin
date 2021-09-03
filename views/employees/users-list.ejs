@@ -26,128 +26,188 @@
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <%- include("../parts/navbar") -%>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-
-            <!-- partial:../../partials/_sidebar.html -->
-            <%- include("../parts/sidebar") -%>
             <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
 
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="page-header">
-                        <h3 class="page-title">
-                            Liste des utilisateurs
-                        </h3>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <div id="contact"><button type="button" class="btn btn-info btn" data-toggle="modal"
-                                            data-target="#teacher-modal" onclick="addTeacher()">Ajouter utilisateur</button></div>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="table-responsive">
-                                        <table id="order-listing" class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Utilisateur</th>
-                                                    <th>Employé</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <% usersList.forEach((teacher)=> { 
-                                                if(teacher.user_name!=UserData.userName){  
-                                            %>
-                                                <tr id="row<%=teacher.id_personne%>">
-                                                    <td><%=teacher.user_name%></td>
-                                                    <td><%=teacher.fullname%></td>
-                                                    <td>
-                                                    <button class="btn btn-outline-primary" onclick="coursesAssignation('<%=teacher.fullname%>','<%=teacher.id_personne%>')">Liste des accès</button>
-                                                    
-                                                        &nbsp;&nbsp;&nbsp;
-                                                        <i class="fas fa-lock to-link"
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    Liste des utilisateurs
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <% if(UserData.userAccess.includes('add-user') || UserData.userAccess.includes('All')){ %>
+                                            <li class="breadcrumb-item">
+                                                <div id="contact"><button type="button" class="btn btn-info btn"
+                                                        data-toggle="modal" data-target="#teacher-modal"
+                                                        onclick="addTeacher()">Ajouter utilisateur</button></div>
+                                            </li>
+                                       <% } %>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Utilisateur</th>
+                                                            <th>Employé</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% usersList.forEach((teacher)=> {
+                                                            if(teacher.user_name!=UserData.userName){
+                                                            %>
+                                                            <tr id="row<%=teacher.id_personne%>">
+                                                                <td>
+                                                                    <%=teacher.user_name%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=teacher.fullname%>
+                                                                </td>
+                                                                <td>
+                                                                <% if(UserData.userAccess.includes('user-access') || UserData.userAccess.includes('All')){ %>
+                                                                    <button class="btn btn-outline-primary"
+                                                                        onclick="launchAccessModal('<%=teacher.user_name%>')">Liste
+                                                                        des accès</button>
+                                                                <% } %>
+
+                                                                <% if(UserData.userAccess.includes('reset-user-pass') || UserData.userAccess.includes('All')){ %>
+                                                                    &nbsp;&nbsp;&nbsp;
+                                                                    <i class="fas fa-lock to-link"
                                                                         title="Réinitialiser le mot de passe de <%=teacher.fullname%>"
                                                                         onclick="resetPassword('<%=teacher.user_name%>')"></i>
+                                                                <% } %>
+
+                                                                <% if(UserData.userAccess.includes('delete-user') || UserData.userAccess.includes('All')){ %>
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i class="fas fa-trash to-link h-red"
                                                                         title="Supprimer <%=teacher.fullname+' ('+teacher.user_name+')'%>"
                                                                         onclick="removeUser('<%=teacher.user_name%>')"></i>
-                                                    </td>
-                                                </tr>
-                                            <% } }) %>    
-                                                   
-                                            </tbody>
-                                        </table>
+                                                                <% } %>
+                                                                </td>
+                                                            </tr>
+                                                            <% } }) %>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
                     </div>
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                <%- include("../parts/footer") -%>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
+                    <!-- main-panel ends -->
 
-            <!-- ADD TEACHER -->
-            <div id="teacher-modal" class="modal fade" role="dialog" data-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <strong id="modalTitle">Nouvel utilisateur</strong>
-                            <a class="close" data-dismiss="modal">×</a>
-                        </div>
-                        <form id="UserForm" name="contact" role="form" method="POST">
-                            <div class="modal-body">
-                                <div class="form-inline">
-                                        <select class="form-control w-40" name="EmployeeID" id="EmployeeID" onchange="genUsername()">
-                                            <% employeeList.forEach((employee)=> { %>
-                                                <option value="<%=employee.id%>">
-                                                            <%=employee.fullname%>
+                    <!-- ADD TEACHER -->
+                    <div id="teacher-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvel utilisateur</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="UserForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" name="EmployeeID" id="EmployeeID"
+                                                onchange="genUsername()">
+                                                <% employeeList.forEach((employee)=> { %>
+                                                    <option value="<%=employee.id%>">
+                                                        <%=employee.fullname%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <input type="text" required name="Username" id="Username"
+                                                onfocus="genUsername()" class="form-control w-40"
+                                                placeholder="Nom d'utilisateur">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            <input type="password" required name="Password" id="Password"
+                                                onfocus="select()" class="form-control w-60" placeholder="Mot de passe">
+                                            &nbsp; &nbsp;
+                                            <select class="form-control" name="Statut" id="Statut">
+                                                <option value="1">Activé
                                                 </option>
-                                                <% }) %>
-                                        </select>
-                                        &nbsp; &nbsp;
-                                        <input type="text" required name="Username" id="Username" onfocus="genUsername()"
-                                            class="form-control w-40" placeholder="Nom d'utilisateur">
+                                                <option value="0">Désactivé</option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="StudentID" id="StudentID">
+                                        <input type="hidden" name="AffectationID" id="AffectationID">
+                                        <br>
+                                        <div id="notifyAddTeacher" class="mt-10" align="center"></div>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" id="submit"
+                                        onclick="addTeacherToDB()">Enregistrer</button>
                                 </div>
-                                <br>
-                                <div class="form-inline">
-                                    <input type="password" required name="Password" id="Password" onfocus="select()"
-                                        class="form-control w-60" placeholder="Mot de passe">
-                                    &nbsp; &nbsp;
-                                    <select class="form-control" name="Statut" id="Statut">
-                                        <option value="1">Activé
-                                        </option>
-                                        <option value="0">Désactivé</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" name="actionField" id="actionField">
-                                <input type="hidden" name="StudentID" id="StudentID">
-                                <input type="hidden" name="AffectationID" id="AffectationID">
-                                <br>
-                                <div id="notifyAddTeacher" class="mt-10" align="center"></div>
-                            </form>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-success" id="submit" onclick="addTeacherToDB()" >Enregistrer</button>
-                                
-                            </div>
-                        
+                        </div>
+
                     </div>
-                </div>
+
+                    <!-- SET USER S ACCESS -->
+                    <div id="user-access-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalAccessTitle">tt</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="AcccessForm">
+                                        <input type="hidden" name="username" id="UserSelected">
+                                        <div class="form-group" style="height: 300px;overflow-y: scroll;">
+                                            <ul>
+                                                <% appMenu.forEach((menu)=> {
+                                                    let subMenuActions = menu.subMenuAction;
+                                                %>
+                                                <li>
+                                                    <input type="checkbox" id="Access<%=menu.id%>" name="UserAccess" value="<%=menu.id%>"> <strong><%=menu.description%></strong>
+                                                    <ul>
+                                                        <% subMenuActions.forEach((subMenu)=> { %>
+                                                            <li>
+                                                                <input type="checkbox" id="Access<%=subMenu.id%>" name="UserAccess"  value="<%=subMenu.id%>"> <%=subMenu.description%>
+                                                            </li>
+                                                        <% }) %>
+                                                    </ul>
+                                                </li>
+                                                <% }) %>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div id="AcccessNotify" align="center"></div>
+                                <div class="modal-footer">
+                                    <button type="submitAccess" onclick="updateUserAccess()"
+                                        class="btn btn-success">Modifier</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
             </div>
-        </div>
-        <!-- page-body-wrapper ends -->
+            <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
@@ -171,11 +231,11 @@
 
 </html>
 <script>
-    let courseSelected=[];
-    let ol=$('#CoursesListSeleted');
+    let courseSelected = [];
+    let ol = $('#CoursesListSeleted');
     let listCourses = $("#TeacherCourses");
     //LAUNCH MODAL
-    function addTeacher(){
+    function addTeacher() {
         $('#UserForm').trigger("reset");
         $("#submit").attr("disabled", false);
         $("#actionField").val("Add");
@@ -183,13 +243,13 @@
     }
     //SAVE USER  TO DB
     function addTeacherToDB() {
-        let username= $("#Username").val().trim();
-        let pass= $("#Password").val().trim();
-        let defaultPass ='Scoladmin2021!';
-        if(username.length>=3){
-            if(pass.length>=8){
+        let username = $("#Username").val().trim();
+        let pass = $("#Password").val().trim();
+        let defaultPass = 'Scoladmin2021!';
+        if (username.length >= 3) {
+            if (pass.length >= 8) {
                 let formData = $("#UserForm").serialize();
-                    $.post("/user-list",formData, function (data) {
+                $.post("/user-list", formData, function (data) {
                     if (data.success) { //Success 
                         $("#notifyAddTeacher").html(data.msg);
                         $("#submit").attr("disabled", true);
@@ -197,41 +257,72 @@
                         $("#notifyAddTeacher").html(data.msg);
                     }
                 });
-            }else{
-                alert("Le mot de passe doit avoir au moins 8 caractères.Sinon vous allez avoir le mot de passe : "+defaultPass);
+            } else {
+                alert("Le mot de passe doit avoir au moins 8 caractères.Sinon vous allez avoir le mot de passe : " + defaultPass);
                 $("#Password").val(defaultPass);
             }
-        }else{
+        } else {
             alert("Le nom de l'utilisateur est trop court....");
         }
-        }
-    //GENERATE USERNAME
-    function genUsername(){
-     let fn= $("#EmployeeID option:selected").text().trim();
-     let spFn = fn.split(" ");
-     let un=fn.substr(0,1)+""+spFn[spFn.length-1];
-     $("#Username").val(un);
     }
-   //RESET USER PASSWORD
+    //GENERATE USERNAME
+    function genUsername() {
+        let fn = $("#EmployeeID option:selected").text().trim();
+        let spFn = fn.split(" ");
+        let un = fn.substr(0, 1) + "" + spFn[spFn.length - 1];
+        $("#Username").val(un);
+    }
+    //RESET USER PASSWORD
     function resetPassword(user) {
-        let newPassword = prompt("Voulez-vous réintialiser le mot de passe de "+user.toUpperCase()+" ?");
-        if(newPassword.length>=8){
-            $.post("/rest-user-password",{username:user.toLowerCase(),newPassword:newPassword}, function (data) {
-                alert(data.msg); 
+        let newPassword = prompt("Voulez-vous réintialiser le mot de passe de " + user.toUpperCase() + " ?");
+        if (newPassword.length >= 8) {
+            $.post("/rest-user-password", { username: user.toLowerCase(), newPassword: newPassword }, function (data) {
+                alert(data.msg);
             });
-        }else{
-            alert("Le mot de passe doit avoir au moins 8 caractères."); 
+        } else {
+            alert("Le mot de passe doit avoir au moins 8 caractères.");
         }
     }
     //REMOVE USER
     function removeUser(user) {
-        let response = confirm("Voulez-vous supprimer : "+user.toUpperCase()+" ?");
-        if(response){
-            $.post("/delete-user",{username:user.toLowerCase()}, function (data) {
-                alert(data.msg); 
+        let response = confirm("Voulez-vous supprimer : " + user.toUpperCase() + " ?");
+        if (response) {
+            $.post("/delete-user", { username: user.toLowerCase() }, function (data) {
+                alert(data.msg);
             });
         }
     }
-
+    //LAUNCH ACCESS MODAL
+    function launchAccessModal(username) {
+        $('#modalAccessTitle').html("Liste d'acces pour " + username);
+        $('#UserSelected').val(username);
+        $('#AcccessForm').trigger("reset");
+        $("#submitAccess").attr("disabled", false);
+        $("#AcccessNotify").html("");
+        //GET USER'S ACCESS
+        let user = $('#UserSelected').val();
+        $.post("/get-user-access", { username}, function (data) {
+            let accesIdList = data.accessId;
+            for(i=0;i<accesIdList.length;i++){
+                let id= accesIdList[i];
+                $("#Access"+id).prop('checked',true);
+            }
+            console.log(data);
+        });
+        $("#user-access-modal").modal();
+    }
+    //UPDATE USER'S ACCESS
+        function updateUserAccess() {
+            let user = $('#UserSelected').val();
+            let response = confirm("Voulez-vous modifier les acces de " + user.toUpperCase() + " ?");
+            if (response) {
+                let formData= $("#AcccessForm").serialize();
+                $.post("/set-user-access",formData, function (data) {
+                    alert(data.msg);
+                });
+            } else {
+                alert("Aucune modification enregistree...");
+            }
+        }
 
 </script>

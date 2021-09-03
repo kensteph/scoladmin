@@ -148,11 +148,13 @@
                 </div>
             </li>
             <% if(locals.isHome){ %>
-                <li class="nav-item nav-settings d-none d-lg-block">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </a>
-                </li>
+                <% if(UserData.userAccess.includes('settings') || UserData.userAccess.includes('All')){ %>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </a>
+                    </li>
+                <% } %>
             <% } %>
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"

@@ -1929,3 +1929,1039 @@ Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
 2021-08-25T16:57:46.405658Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-08-25T16:58:18.498215Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-08-25T17:16:32.462296Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T17:19:21.288593Z 29 [Note] Aborted connection 29 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T17:19:35.665150Z 30 [Note] Aborted connection 30 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T18:44:38.221485Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 2353573ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-25T19:52:00.008807Z 31 [Note] Aborted connection 31 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-25T19:52:05.034551Z 32 [Note] Aborted connection 32 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-26T20:07:31.496697Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-26T20:07:31.496697Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-26T20:07:31.496697Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-26T20:07:31.496697Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-26T20:07:31.498420Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 17536 ...
+2021-08-26T20:07:31.520800Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-26T20:07:31.522794Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-26T20:07:31.529147Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-26T20:07:31.530114Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-26T20:07:31.530114Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-26T20:07:31.531134Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-26T20:07:31.534209Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-26T20:07:31.536209Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-26T20:07:31.596048Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-26T20:07:31.606053Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-26T20:07:31.673841Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-26T20:07:31.676834Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48552681
+2021-08-26T20:07:31.677862Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48552690
+2021-08-26T20:07:31.678861Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48552690
+2021-08-26T20:07:31.679825Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-26T20:07:31.679825Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-26T20:07:32.080886Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-26T20:07:32.081884Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-26T20:07:32.082881Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-26T20:07:32.189227Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-26T20:07:32.194214Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-26T20:07:32.194214Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-26T20:07:32.195211Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-26T20:07:32.259042Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48552690
+2021-08-26T20:07:32.260040Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-26T20:07:32.260040Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-26T20:07:32.280985Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-26T20:07:32.283976Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-26T20:07:32.283976Z 0 [Note] IPv6 is available.
+2021-08-26T20:07:32.284974Z 0 [Note]   - '::' resolves to '::';
+2021-08-26T20:07:32.284974Z 0 [Note] Server socket created on IP: '::'.
+2021-08-26T20:07:32.316890Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210826 16:07:32
+2021-08-26T20:07:32.397649Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-26T20:07:32.398647Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-26T20:09:53.005380Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-26T20:09:58.023167Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-26T22:54:21.392171Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-26T22:54:21.392171Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-26T22:54:21.392171Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-26T22:54:21.392171Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-26T22:54:21.393268Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 1448 ...
+2021-08-26T22:54:21.404098Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-26T22:54:21.405095Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-26T22:54:21.406092Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-26T22:54:21.407089Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-26T22:54:21.407792Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-26T22:54:21.407792Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-26T22:54:21.409164Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-26T22:54:21.409164Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-26T22:54:21.433369Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-26T22:54:21.447059Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-26T22:54:21.541570Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-26T22:54:21.547581Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48552709
+2021-08-26T22:54:21.549937Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48552718
+2021-08-26T22:54:21.552996Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48552718
+2021-08-26T22:54:21.554811Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-26T22:54:21.555862Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-26T22:54:22.196127Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-26T22:54:22.197708Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-26T22:54:22.198988Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-26T22:54:22.309919Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-26T22:54:22.314912Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-26T22:54:22.317668Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-26T22:54:22.318665Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-26T22:54:22.377805Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48552718
+2021-08-26T22:54:22.378785Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-26T22:54:22.378785Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-26T22:54:22.388844Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-26T22:54:22.391835Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-26T22:54:22.392834Z 0 [Note] IPv6 is available.
+2021-08-26T22:54:22.392834Z 0 [Note]   - '::' resolves to '::';
+2021-08-26T22:54:22.393831Z 0 [Note] Server socket created on IP: '::'.
+2021-08-26T22:54:22.452010Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-26T22:54:22.452010Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-26T22:54:23.449359Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210826 18:54:23
+2021-08-26T22:58:49.965247Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-26T22:58:55.019888Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T11:51:12.429554Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 45788397ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-27T12:09:53.349893Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 236519ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-27T15:33:05.531918Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1328294ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-27T16:29:59.948173Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 73446ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-27T16:52:19.437867Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:27:11.416039Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:27:14.551165Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:27:29.897702Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:27:31.370529Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:27:48.635956Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:35:02.313041Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:39:47.206450Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:39:51.013875Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:39:55.095045Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:39:57.139054Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:39:58.357800Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:40:04.879152Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:40:29.296939Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:40:34.832825Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:41:27.362873Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:41:48.358032Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-27T17:42:00.285627Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T01:46:43.461102Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 28727464ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T19:10:28.937635Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-28T19:10:28.937635Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-28T19:10:28.937635Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-28T19:10:28.937635Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-28T19:10:28.937635Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 12936 ...
+2021-08-28T19:10:28.968905Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-28T19:10:28.968905Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-28T19:10:28.984499Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-28T19:10:29.022333Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-28T19:10:29.037992Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48580863
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48580872
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48580872
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-28T19:10:29.100485Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-28T19:10:29.523728Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-28T19:10:29.523728Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-28T19:10:29.523728Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-28T19:10:29.606682Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-28T19:10:29.606682Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-28T19:10:29.606682Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-28T19:10:29.606682Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-28T19:10:29.670811Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48580872
+2021-08-28T19:10:29.670811Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-28T19:10:29.670811Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-28T19:10:29.686069Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-28T19:10:29.686069Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-28T19:10:29.701691Z 0 [Note] IPv6 is available.
+2021-08-28T19:10:29.701691Z 0 [Note]   - '::' resolves to '::';
+2021-08-28T19:10:29.701691Z 0 [Note] Server socket created on IP: '::'.
+2021-08-28T19:10:29.723819Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210828 15:10:29
+2021-08-28T19:10:29.839683Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-28T19:10:29.855306Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-28T22:01:02.514242Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 7948647ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T22:36:27.386620Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1832048ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T22:36:36.256412Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 4835ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T23:19:10.737530Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 2549454ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T23:19:24.724889Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 9960ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-28T23:36:13.310765Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T23:36:22.195352Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T23:41:34.819182Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T23:41:42.022800Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T23:41:44.032982Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-28T23:41:47.212443Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-29T00:32:16.493213Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 210233ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-29T04:14:59.797249Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 13359288ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-30T00:57:21.380354Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-30T00:57:21.381523Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-30T00:57:21.381523Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-30T00:57:21.381523Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-30T00:57:21.383240Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 2668 ...
+2021-08-30T00:57:21.436483Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-30T00:57:21.440442Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-30T00:57:21.453054Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-30T00:57:21.455714Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-30T00:57:21.456969Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-30T00:57:21.458229Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-30T00:57:21.466079Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-30T00:57:21.470583Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-30T00:57:21.519059Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-30T00:57:21.533223Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-30T00:57:21.633337Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-30T00:57:21.641022Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48581857
+2021-08-30T00:57:21.642073Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48581866
+2021-08-30T00:57:21.645889Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48581866
+2021-08-30T00:57:21.647816Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-30T00:57:21.649382Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-30T00:57:22.154298Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-30T00:57:22.155453Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-30T00:57:22.156690Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-30T00:57:22.209681Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-30T00:57:22.219352Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-30T00:57:22.220479Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-30T00:57:22.221477Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-30T00:57:22.278874Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48581866
+2021-08-30T00:57:22.279873Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-30T00:57:22.279873Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-30T00:57:22.299799Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-30T00:57:22.303325Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-30T00:57:22.303325Z 0 [Note] IPv6 is available.
+2021-08-30T00:57:22.304323Z 0 [Note]   - '::' resolves to '::';
+2021-08-30T00:57:22.304323Z 0 [Note] Server socket created on IP: '::'.
+2021-08-30T00:57:22.333531Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210829 20:57:22
+2021-08-30T00:57:22.365341Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-30T00:57:22.366500Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-30T01:24:37.521930Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-30T01:39:31.195226Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 169951ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-30T02:11:02.938635Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-30T02:11:10.436032Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-30T02:18:37.023956Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-30T02:18:42.048853Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-31T17:05:15.219667Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-31T17:05:15.220189Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-31T17:05:15.220189Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-31T17:05:15.220189Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-31T17:05:15.220540Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 1196 ...
+2021-08-31T17:05:15.247848Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-31T17:05:15.248821Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-31T17:05:15.256469Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-31T17:05:15.256469Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-31T17:05:15.257467Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-31T17:05:15.257467Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-31T17:05:15.261722Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-31T17:05:15.263464Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-31T17:05:15.307358Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-31T17:05:15.314215Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-31T17:05:15.368281Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-31T17:05:15.371703Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48582668
+2021-08-31T17:05:15.371703Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48582677
+2021-08-31T17:05:15.373707Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48582677
+2021-08-31T17:05:15.373707Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-31T17:05:15.374707Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-31T17:05:15.778032Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-31T17:05:15.779028Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-31T17:05:15.780025Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-31T17:05:15.851762Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-31T17:05:15.855719Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-31T17:05:15.856718Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-31T17:05:15.857716Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-31T17:05:15.915559Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48582677
+2021-08-31T17:05:15.916561Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-31T17:05:15.917554Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-31T17:05:15.938499Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-31T17:05:15.941491Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-31T17:05:15.943485Z 0 [Note] IPv6 is available.
+2021-08-31T17:05:15.943485Z 0 [Note]   - '::' resolves to '::';
+2021-08-31T17:05:15.944484Z 0 [Note] Server socket created on IP: '::'.
+2021-08-31T17:05:15.972409Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210831 13:05:15
+2021-08-31T17:05:16.078125Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-31T17:05:16.079122Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-31T17:40:04.778326Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-31T18:33:43.702641Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1920704ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-31T23:25:58.374419Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-08-31T23:25:58.374419Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-08-31T23:25:58.374419Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-08-31T23:25:58.374419Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-08-31T23:25:58.375531Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 19772 ...
+2021-08-31T23:25:58.440626Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-08-31T23:25:58.444799Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-08-31T23:25:58.458813Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-08-31T23:25:58.459861Z 0 [Note] InnoDB: Uses event mutexes
+2021-08-31T23:25:58.461098Z 0 [Note] InnoDB: Memory barrier is not used
+2021-08-31T23:25:58.463230Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-08-31T23:25:58.471053Z 0 [Note] InnoDB: Number of pools: 1
+2021-08-31T23:25:58.477128Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-08-31T23:25:58.533344Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-08-31T23:25:58.539545Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-08-31T23:25:58.623626Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-08-31T23:25:58.629451Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48582696
+2021-08-31T23:25:58.629451Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48582705
+2021-08-31T23:25:58.631444Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48582705
+2021-08-31T23:25:58.632511Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-08-31T23:25:58.632511Z 0 [Note] InnoDB: Starting crash recovery.
+2021-08-31T23:25:59.386182Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-08-31T23:25:59.387178Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-08-31T23:25:59.388175Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-08-31T23:25:59.447675Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-08-31T23:25:59.453008Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-08-31T23:25:59.469366Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-08-31T23:25:59.473204Z 0 [Note] InnoDB: Waiting for purge to start
+2021-08-31T23:25:59.534075Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48582705
+2021-08-31T23:25:59.537536Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-08-31T23:25:59.538583Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-08-31T23:25:59.607031Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-08-31T23:25:59.616865Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-08-31T23:25:59.619458Z 0 [Note] IPv6 is available.
+2021-08-31T23:25:59.620926Z 0 [Note]   - '::' resolves to '::';
+2021-08-31T23:25:59.622920Z 0 [Note] Server socket created on IP: '::'.
+2021-08-31T23:25:59.667521Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210831 19:25:59
+2021-08-31T23:25:59.874742Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-08-31T23:25:59.876071Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-08-31T23:31:02.014000Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-08-31T23:49:18.696790Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 385348ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-08-31T23:56:16.214823Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:06:11.571971Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:19:46.982716Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:19:51.731233Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:19:54.989663Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:19:55.880178Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:20:09.334693Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:20:13.642849Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:20:17.010886Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:21:45.148122Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:24:26.441729Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:24:34.577724Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:24:37.615568Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:24:41.312559Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:24:46.834637Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:32:44.959098Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:33:02.367132Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:33:13.317108Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:33:19.449999Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:33:31.897892Z 24 [Note] Aborted connection 24 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:34:05.570218Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:34:12.351513Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:34:16.223876Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:34:32.725104Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:34:38.572394Z 29 [Note] Aborted connection 29 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:35:30.479927Z 30 [Note] Aborted connection 30 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:35:52.716414Z 31 [Note] Aborted connection 31 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:37:00.555347Z 32 [Note] Aborted connection 32 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:37:01.740172Z 33 [Note] Aborted connection 33 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:37:11.793280Z 34 [Note] Aborted connection 34 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:37:13.621578Z 35 [Note] Aborted connection 35 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:37:44.855921Z 36 [Note] Aborted connection 36 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:38:30.302203Z 37 [Note] Aborted connection 37 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:45:47.648945Z 38 [Note] Aborted connection 38 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:47:29.562115Z 39 [Note] Aborted connection 39 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:48:06.898049Z 40 [Note] Aborted connection 40 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:48:40.720240Z 41 [Note] Aborted connection 41 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T00:48:44.411028Z 42 [Note] Aborted connection 42 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:20:32.559316Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 70051ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T01:47:02.243446Z 43 [Note] Aborted connection 43 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:47:16.207162Z 44 [Note] Aborted connection 44 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:47:18.350111Z 45 [Note] Aborted connection 45 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:47:22.774243Z 46 [Note] Aborted connection 46 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:36.265957Z 47 [Note] Aborted connection 47 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:39.713928Z 48 [Note] Aborted connection 48 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:44.868070Z 49 [Note] Aborted connection 49 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:46.128157Z 50 [Note] Aborted connection 50 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:49.008190Z 51 [Note] Aborted connection 51 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T01:50:51.315042Z 52 [Note] Aborted connection 52 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T02:04:50.420637Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 57727ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T06:48:16.030009Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 12560847ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T11:42:21.543491Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 17643494ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T13:20:20.986461Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 536504ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T17:37:16.238571Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 2504869ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T18:25:34.173306Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 226337ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T18:57:29.852928Z 53 [Note] Aborted connection 53 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:03:29.691755Z 54 [Note] Aborted connection 54 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:03:32.025274Z 55 [Note] Aborted connection 55 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:03:53.457938Z 56 [Note] Aborted connection 56 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:02.282307Z 57 [Note] Aborted connection 57 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:10.347110Z 58 [Note] Aborted connection 58 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:13.310467Z 59 [Note] Aborted connection 59 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:15.639916Z 60 [Note] Aborted connection 60 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:23.112719Z 61 [Note] Aborted connection 61 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:04:45.410182Z 62 [Note] Aborted connection 62 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:05:15.195779Z 63 [Note] Aborted connection 63 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:05:31.048755Z 64 [Note] Aborted connection 64 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:05:47.958797Z 65 [Note] Aborted connection 65 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:06:30.136277Z 66 [Note] Aborted connection 66 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:06:31.878535Z 67 [Note] Aborted connection 67 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:07:29.232826Z 68 [Note] Aborted connection 68 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:07:35.316020Z 69 [Note] Aborted connection 69 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:07:36.758803Z 70 [Note] Aborted connection 70 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:07:38.091053Z 71 [Note] Aborted connection 71 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:07:42.390662Z 72 [Note] Aborted connection 72 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:08:34.168533Z 73 [Note] Aborted connection 73 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:08:37.207402Z 74 [Note] Aborted connection 74 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:08:44.047364Z 75 [Note] Aborted connection 75 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:08:46.926652Z 76 [Note] Aborted connection 76 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:09:03.060841Z 77 [Note] Aborted connection 77 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:09:20.807954Z 78 [Note] Aborted connection 78 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:09:24.816231Z 79 [Note] Aborted connection 79 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:09:38.438195Z 80 [Note] Aborted connection 80 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:09:45.044511Z 81 [Note] Aborted connection 81 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:03.228897Z 82 [Note] Aborted connection 82 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:08.979099Z 83 [Note] Aborted connection 83 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:11.109398Z 84 [Note] Aborted connection 84 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:13.061175Z 85 [Note] Aborted connection 85 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:20.952057Z 86 [Note] Aborted connection 86 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:23.133220Z 87 [Note] Aborted connection 87 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:25.309978Z 88 [Note] Aborted connection 88 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:30.204380Z 89 [Note] Aborted connection 89 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:10:33.377885Z 90 [Note] Aborted connection 90 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:12:24.620908Z 91 [Note] Aborted connection 91 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:12:27.680721Z 92 [Note] Aborted connection 92 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:12:35.170596Z 93 [Note] Aborted connection 93 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:16:33.725940Z 94 [Note] Aborted connection 94 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error writing communication packets)
+2021-09-01T19:17:35.973674Z 95 [Note] Aborted connection 95 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:17:39.646848Z 96 [Note] Aborted connection 96 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:17:41.527813Z 97 [Note] Aborted connection 97 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:07.881971Z 98 [Note] Aborted connection 98 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:35.571080Z 99 [Note] Aborted connection 99 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:36.873593Z 100 [Note] Aborted connection 100 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:50.093938Z 101 [Note] Aborted connection 101 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:56.423997Z 102 [Note] Aborted connection 102 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:57.608839Z 103 [Note] Aborted connection 103 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:19:58.752778Z 104 [Note] Aborted connection 104 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:20:13.082780Z 105 [Note] Aborted connection 105 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:20:30.467592Z 106 [Note] Aborted connection 106 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T19:30:49.536391Z 107 [Note] Aborted connection 107 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:29:07.025595Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 12754943ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-01T23:41:49.123645Z 108 [Note] Aborted connection 108 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:41:55.616718Z 109 [Note] Aborted connection 109 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:41:58.449719Z 110 [Note] Aborted connection 110 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:42:03.811509Z 111 [Note] Aborted connection 111 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:42:18.225782Z 112 [Note] Aborted connection 112 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:42:26.162223Z 113 [Note] Aborted connection 113 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:42:57.319597Z 114 [Note] Aborted connection 114 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:42:58.499869Z 115 [Note] Aborted connection 115 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:43:06.233118Z 116 [Note] Aborted connection 116 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:43:19.859615Z 117 [Note] Aborted connection 117 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:43:27.058581Z 118 [Note] Aborted connection 118 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:43:28.481690Z 119 [Note] Aborted connection 119 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:44:36.076399Z 120 [Note] Aborted connection 120 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:44:39.537454Z 121 [Note] Aborted connection 121 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:44:46.258047Z 122 [Note] Aborted connection 122 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:44:52.302205Z 123 [Note] Aborted connection 123 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:44:57.146395Z 124 [Note] Aborted connection 124 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:45:01.984465Z 125 [Note] Aborted connection 125 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:45:06.764377Z 126 [Note] Aborted connection 126 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:45:09.532511Z 127 [Note] Aborted connection 127 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:45:39.055274Z 128 [Note] Aborted connection 128 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:45:50.707979Z 129 [Note] Aborted connection 129 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:46:13.138185Z 130 [Note] Aborted connection 130 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-01T23:46:44.508119Z 131 [Note] Aborted connection 131 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:02:21.855173Z 132 [Note] Aborted connection 132 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:02:22.415831Z 133 [Note] Aborted connection 133 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:11:43.603628Z 134 [Note] Aborted connection 134 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:43:48.521148Z 135 [Note] Aborted connection 135 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:43:58.964322Z 136 [Note] Aborted connection 136 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:44:03.844345Z 137 [Note] Aborted connection 137 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:44:05.282239Z 138 [Note] Aborted connection 138 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:44:34.087227Z 139 [Note] Aborted connection 139 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:44:41.320451Z 140 [Note] Aborted connection 140 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:52:22.210033Z 141 [Note] Aborted connection 141 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:52:37.370786Z 142 [Note] Aborted connection 142 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:52:38.132814Z 143 [Note] Aborted connection 143 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:53:17.875228Z 144 [Note] Aborted connection 144 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:55:51.268291Z 145 [Note] Aborted connection 145 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:55:52.593281Z 146 [Note] Aborted connection 146 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:56:01.081225Z 147 [Note] Aborted connection 147 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:56:13.348576Z 148 [Note] Aborted connection 148 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:56:16.709432Z 149 [Note] Aborted connection 149 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:57:42.297529Z 150 [Note] Aborted connection 150 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:58:09.546822Z 151 [Note] Aborted connection 151 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:59:17.344292Z 152 [Note] Aborted connection 152 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:59:20.249610Z 153 [Note] Aborted connection 153 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T00:59:22.082669Z 154 [Note] Aborted connection 154 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:16.506611Z 155 [Note] Aborted connection 155 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:24.593677Z 156 [Note] Aborted connection 156 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:26.183826Z 157 [Note] Aborted connection 157 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:28.594523Z 158 [Note] Aborted connection 158 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:33.901520Z 159 [Note] Aborted connection 159 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:35.852676Z 160 [Note] Aborted connection 160 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:42.376236Z 161 [Note] Aborted connection 161 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:00:44.592795Z 162 [Note] Aborted connection 162 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:01:09.413895Z 163 [Note] Aborted connection 163 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:02:47.746793Z 164 [Note] Aborted connection 164 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:02:53.008234Z 165 [Note] Aborted connection 165 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:03:44.380797Z 166 [Note] Aborted connection 166 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:03:52.735361Z 167 [Note] Aborted connection 167 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:03:55.237369Z 168 [Note] Aborted connection 168 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:03:58.636020Z 169 [Note] Aborted connection 169 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:05.134429Z 170 [Note] Aborted connection 170 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:07.820406Z 171 [Note] Aborted connection 171 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:18.052309Z 172 [Note] Aborted connection 172 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:20.358058Z 173 [Note] Aborted connection 173 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:40.339682Z 174 [Note] Aborted connection 174 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:42.294501Z 175 [Note] Aborted connection 175 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:46.954060Z 176 [Note] Aborted connection 176 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:04:48.126515Z 177 [Note] Aborted connection 177 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:06:11.167148Z 178 [Note] Aborted connection 178 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:06:17.763963Z 179 [Note] Aborted connection 179 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:06:24.668756Z 180 [Note] Aborted connection 180 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:06:53.609827Z 181 [Note] Aborted connection 181 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:23:08.198017Z 182 [Note] Aborted connection 182 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:23:47.434901Z 183 [Note] Aborted connection 183 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:23:48.648909Z 184 [Note] Aborted connection 184 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:23:50.549087Z 185 [Note] Aborted connection 185 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:23:54.586063Z 186 [Note] Aborted connection 186 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:24:27.990221Z 187 [Note] Aborted connection 187 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:25:00.095272Z 188 [Note] Aborted connection 188 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:25:04.824123Z 189 [Note] Aborted connection 189 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:25:18.058537Z 190 [Note] Aborted connection 190 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T01:26:42.056409Z 191 [Note] Aborted connection 191 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T02:39:26.788828Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-09-02T02:39:26.791708Z 0 [Note] Giving 1 client threads a chance to die gracefully
+2021-09-02T02:39:26.793702Z 0 [Note] Shutting down slave threads
+2021-09-02T02:39:28.803195Z 0 [Note] Forcefully disconnecting 1 remaining clients
+2021-09-02T02:39:28.805188Z 0 [Warning] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Forcing close of thread 192  user: 'root'
+
+2021-09-02T02:39:28.809434Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-09-02T02:39:28.813166Z 0 [Note] Binlog end
+2021-09-02T02:39:28.895954Z 0 [Note] Shutting down plugin 'ngram'
+2021-09-02T02:39:28.895954Z 0 [Note] Shutting down plugin 'partition'
+2021-09-02T02:39:28.896941Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-09-02T02:39:28.896941Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-09-02T02:39:28.897938Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-09-02T02:39:28.897938Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-09-02T02:39:28.898943Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-09-02T02:39:28.898943Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-09-02T02:39:28.900002Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-09-02T02:39:28.900002Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-09-02T02:39:28.900929Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-09-02T02:39:28.901428Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-09-02T02:39:28.901926Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-09-02T02:39:28.901926Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-09-02T02:39:28.902924Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-09-02T02:39:28.902924Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-09-02T02:39:28.903921Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-09-02T02:39:28.903921Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-09-02T02:39:28.904918Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-09-02T02:39:28.904918Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-09-02T02:39:28.905916Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-09-02T02:39:28.905916Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-09-02T02:39:28.906913Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-09-02T02:39:28.906913Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-09-02T02:39:28.907910Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-09-02T02:39:28.907910Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-09-02T02:39:28.908908Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-09-02T02:39:28.908908Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-09-02T02:39:28.909905Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-09-02T02:39:28.910906Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-09-02T02:39:28.911324Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-09-02T02:39:28.911901Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-09-02T02:39:28.912897Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-09-02T02:39:28.913452Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-09-02T02:39:28.913452Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-09-02T02:39:28.914441Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-09-02T02:39:28.914637Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-09-02T02:39:28.915439Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-09-02T02:39:28.915692Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-09-02T02:39:28.916490Z 0 [Note] InnoDB: Starting shutdown...
+2021-09-02T02:39:29.018929Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-09-02T02:39:29.026322Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 210901 22:39:29
+2021-09-02T02:39:30.094213Z 0 [Note] InnoDB: Shutdown completed; log sequence number 48678280
+2021-09-02T02:39:30.095524Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-09-02T02:39:30.096206Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-09-02T02:39:30.096206Z 0 [Note] Shutting down plugin 'CSV'
+2021-09-02T02:39:30.097204Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-09-02T02:39:30.097516Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-09-02T02:39:30.099198Z 0 [Note] Shutting down plugin 'binlog'
+2021-09-02T02:39:30.100197Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-09-02T12:05:49.818347Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-09-02T12:05:49.819344Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-02T12:05:49.819344Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-09-02T12:05:49.819344Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-09-02T12:05:49.819344Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 19884 ...
+2021-09-02T12:05:49.841286Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-09-02T12:05:49.843280Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-09-02T12:05:49.849264Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-09-02T12:05:49.849264Z 0 [Note] InnoDB: Uses event mutexes
+2021-09-02T12:05:49.850262Z 0 [Note] InnoDB: Memory barrier is not used
+2021-09-02T12:05:49.850262Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-09-02T12:05:49.854251Z 0 [Note] InnoDB: Number of pools: 1
+2021-09-02T12:05:49.856246Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-09-02T12:05:49.903120Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-09-02T12:05:49.909103Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-09-02T12:05:49.959450Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-09-02T12:05:50.181594Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-09-02T12:05:50.182591Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-09-02T12:05:50.254398Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-09-02T12:05:50.261379Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-09-02T12:05:50.262376Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-09-02T12:05:50.263374Z 0 [Note] InnoDB: Waiting for purge to start
+2021-09-02T12:05:50.319224Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48678280
+2021-09-02T12:05:50.321220Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-09-02T12:05:50.321220Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-09-02T12:05:50.344158Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-09-02T12:05:50.347150Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-09-02T12:05:50.348148Z 0 [Note] IPv6 is available.
+2021-09-02T12:05:50.349145Z 0 [Note]   - '::' resolves to '::';
+2021-09-02T12:05:50.349145Z 0 [Note] Server socket created on IP: '::'.
+2021-09-02T12:05:50.380062Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210902  8:05:50
+2021-09-02T12:05:50.460845Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-09-02T12:05:50.461842Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-09-02T13:50:17.547953Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:30.366204Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:31.999858Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:33.503041Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:43.965204Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:45.771834Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:47.632219Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:53.250821Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:50:58.134204Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:51:02.140087Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:52:51.614575Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:52:56.631065Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:53:05.347018Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:53:07.405355Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:53:12.746533Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:53:39.306917Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:54:31.241291Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:54:35.550845Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:54:51.202682Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:54:58.049641Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:55:02.132751Z 24 [Note] Aborted connection 24 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:55:03.060360Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:55:55.066432Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:55:57.907134Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:56:01.750692Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:56:09.552673Z 29 [Note] Aborted connection 29 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:56:17.054178Z 30 [Note] Aborted connection 30 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:58:11.701173Z 31 [Note] Aborted connection 31 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:58:16.765840Z 32 [Note] Aborted connection 32 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:58:21.076836Z 33 [Note] Aborted connection 33 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:58:46.477564Z 34 [Note] Aborted connection 34 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:59:01.556915Z 35 [Note] Aborted connection 35 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:59:04.682606Z 36 [Note] Aborted connection 36 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T13:59:08.089483Z 37 [Note] Aborted connection 37 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:00:16.484533Z 38 [Note] Aborted connection 38 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:00:30.457119Z 39 [Note] Aborted connection 39 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:00:34.287539Z 40 [Note] Aborted connection 40 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:00:37.266494Z 41 [Note] Aborted connection 41 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:00:41.451687Z 42 [Note] Aborted connection 42 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:09.017632Z 43 [Note] Aborted connection 43 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:11.343173Z 44 [Note] Aborted connection 44 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:13.381468Z 45 [Note] Aborted connection 45 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:21.106979Z 46 [Note] Aborted connection 46 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:27.186063Z 47 [Note] Aborted connection 47 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:29.612308Z 48 [Note] Aborted connection 48 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:32.554245Z 49 [Note] Aborted connection 49 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:41.190714Z 50 [Note] Aborted connection 50 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:43.456379Z 51 [Note] Aborted connection 51 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:44.591884Z 52 [Note] Aborted connection 52 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:52.592792Z 53 [Note] Aborted connection 53 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:01:58.259799Z 54 [Note] Aborted connection 54 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:05.200203Z 55 [Note] Aborted connection 55 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:08.866625Z 56 [Note] Aborted connection 56 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:10.110300Z 57 [Note] Aborted connection 57 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:16.034714Z 58 [Note] Aborted connection 58 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:18.749913Z 59 [Note] Aborted connection 59 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:23.868454Z 60 [Note] Aborted connection 60 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:33.285013Z 61 [Note] Aborted connection 61 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:36.410046Z 62 [Note] Aborted connection 62 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:50.694653Z 63 [Note] Aborted connection 63 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:53.533272Z 64 [Note] Aborted connection 64 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:02:57.775484Z 65 [Note] Aborted connection 65 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:06:00.758645Z 66 [Note] Aborted connection 66 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:06:04.625346Z 67 [Note] Aborted connection 67 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:06:05.292665Z 68 [Note] Aborted connection 68 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:07:02.246118Z 69 [Note] Aborted connection 69 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:07:56.890638Z 70 [Note] Aborted connection 70 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:00.585171Z 71 [Note] Aborted connection 71 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:03.609192Z 72 [Note] Aborted connection 72 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:08.915828Z 73 [Note] Aborted connection 73 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:21.417317Z 74 [Note] Aborted connection 74 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:39.417627Z 75 [Note] Aborted connection 75 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:08:42.071854Z 76 [Note] Aborted connection 76 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:15:08.510505Z 77 [Note] Aborted connection 77 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:01.528632Z 78 [Note] Aborted connection 78 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:02.962846Z 79 [Note] Aborted connection 79 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:11.031392Z 80 [Note] Aborted connection 80 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:15.834447Z 81 [Note] Aborted connection 81 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:50.401543Z 82 [Note] Aborted connection 82 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:16:59.049961Z 83 [Note] Aborted connection 83 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:17:01.816773Z 84 [Note] Aborted connection 84 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:17:08.408651Z 85 [Note] Aborted connection 85 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:17:11.168573Z 86 [Note] Aborted connection 86 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:17:20.841831Z 87 [Note] Aborted connection 87 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:17:44.227888Z 88 [Note] Aborted connection 88 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:18:14.232336Z 89 [Note] Aborted connection 89 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:18:20.666473Z 90 [Note] Aborted connection 90 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:18:33.696242Z 91 [Note] Aborted connection 91 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:21:00.958260Z 92 [Note] Aborted connection 92 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:21:04.142296Z 93 [Note] Aborted connection 93 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:40:53.353542Z 94 [Note] Aborted connection 94 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:40:57.682353Z 95 [Note] Aborted connection 95 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:05.529802Z 96 [Note] Aborted connection 96 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:06.652410Z 97 [Note] Aborted connection 97 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:11.439462Z 98 [Note] Aborted connection 98 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:15.640889Z 99 [Note] Aborted connection 99 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:43.143548Z 100 [Note] Aborted connection 100 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:48.361228Z 101 [Note] Aborted connection 101 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:41:50.962483Z 102 [Note] Aborted connection 102 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:42:30.728641Z 103 [Note] Aborted connection 103 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:42:39.533350Z 104 [Note] Aborted connection 104 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:42:44.734853Z 105 [Note] Aborted connection 105 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:42:49.399066Z 106 [Note] Aborted connection 106 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:42:50.776706Z 107 [Note] Aborted connection 107 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T14:47:09.386405Z 108 [Note] Aborted connection 108 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:10:30.190162Z 109 [Note] Aborted connection 109 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:11:43.506602Z 110 [Note] Aborted connection 110 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:11:49.178816Z 111 [Note] Aborted connection 111 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:14.476421Z 112 [Note] Aborted connection 112 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:18.473816Z 113 [Note] Aborted connection 113 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:28.199545Z 114 [Note] Aborted connection 114 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:43.982798Z 115 [Note] Aborted connection 115 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:45.907266Z 116 [Note] Aborted connection 116 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:12:51.824350Z 117 [Note] Aborted connection 117 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:03.503472Z 118 [Note] Aborted connection 118 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:04.433399Z 119 [Note] Aborted connection 119 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:30.824489Z 120 [Note] Aborted connection 120 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:38.474744Z 121 [Note] Aborted connection 121 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:47.674654Z 122 [Note] Aborted connection 122 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:13:48.829147Z 123 [Note] Aborted connection 123 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:14:23.894024Z 124 [Note] Aborted connection 124 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:14:36.292952Z 125 [Note] Aborted connection 125 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:14:41.348565Z 126 [Note] Aborted connection 126 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:14:45.033700Z 127 [Note] Aborted connection 127 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:14:46.032986Z 128 [Note] Aborted connection 128 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:15:14.896581Z 129 [Note] Aborted connection 129 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:15:18.248284Z 130 [Note] Aborted connection 130 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:15:22.166201Z 131 [Note] Aborted connection 131 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:15:42.190555Z 132 [Note] Aborted connection 132 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:15:58.239137Z 133 [Note] Aborted connection 133 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:16:07.437525Z 134 [Note] Aborted connection 134 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:16:27.609650Z 135 [Note] Aborted connection 135 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:16:44.444452Z 136 [Note] Aborted connection 136 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:16:48.308037Z 137 [Note] Aborted connection 137 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:17:02.463342Z 138 [Note] Aborted connection 138 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:17:05.520671Z 139 [Note] Aborted connection 139 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:17:07.259563Z 140 [Note] Aborted connection 140 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:17:19.157020Z 141 [Note] Aborted connection 141 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:17:22.699119Z 142 [Note] Aborted connection 142 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:18:30.554783Z 143 [Note] Aborted connection 143 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:18:31.986993Z 144 [Note] Aborted connection 144 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:18:35.019691Z 145 [Note] Aborted connection 145 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:18:36.040956Z 146 [Note] Aborted connection 146 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:18:48.377024Z 147 [Note] Aborted connection 147 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:19:09.185978Z 148 [Note] Aborted connection 148 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:19:17.464305Z 149 [Note] Aborted connection 149 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:22:34.263484Z 150 [Note] Aborted connection 150 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:22:38.539834Z 151 [Note] Aborted connection 151 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:22:43.405473Z 152 [Note] Aborted connection 152 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:22:44.684659Z 153 [Note] Aborted connection 153 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:22:54.166121Z 154 [Note] Aborted connection 154 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:23:19.331702Z 155 [Note] Aborted connection 155 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:23:22.703200Z 156 [Note] Aborted connection 156 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:23:23.197799Z 157 [Note] Aborted connection 157 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:24:34.595775Z 158 [Note] Aborted connection 158 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:24:38.104791Z 159 [Note] Aborted connection 159 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:24:51.664566Z 160 [Note] Aborted connection 160 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:24:56.327441Z 161 [Note] Aborted connection 161 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:25:04.660932Z 162 [Note] Aborted connection 162 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:25:23.018701Z 163 [Note] Aborted connection 163 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:25:43.530558Z 164 [Note] Aborted connection 164 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:25:46.645481Z 165 [Note] Aborted connection 165 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:25:48.954748Z 166 [Note] Aborted connection 166 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:26:14.351523Z 167 [Note] Aborted connection 167 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:26:29.611897Z 168 [Note] Aborted connection 168 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:26:40.970648Z 169 [Note] Aborted connection 169 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:27:08.753113Z 170 [Note] Aborted connection 170 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:27:51.410723Z 171 [Note] Aborted connection 171 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:28:34.029103Z 172 [Note] Aborted connection 172 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:28:41.962447Z 173 [Note] Aborted connection 173 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:28:48.203067Z 174 [Note] Aborted connection 174 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:00.669931Z 175 [Note] Aborted connection 175 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:03.547382Z 176 [Note] Aborted connection 176 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:08.270880Z 177 [Note] Aborted connection 177 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:11.469608Z 178 [Note] Aborted connection 178 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:13.897319Z 179 [Note] Aborted connection 179 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:31.219937Z 180 [Note] Aborted connection 180 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:38.538299Z 181 [Note] Aborted connection 181 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:39.688282Z 182 [Note] Aborted connection 182 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:40.926551Z 183 [Note] Aborted connection 183 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:44.968845Z 184 [Note] Aborted connection 184 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:29:46.670030Z 185 [Note] Aborted connection 185 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:31:17.686655Z 186 [Note] Aborted connection 186 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:31:19.308039Z 187 [Note] Aborted connection 187 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:34:44.883296Z 188 [Note] Aborted connection 188 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:34:50.153133Z 189 [Note] Aborted connection 189 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:34:57.041639Z 190 [Note] Aborted connection 190 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:35:00.349038Z 191 [Note] Aborted connection 191 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:35:09.541616Z 192 [Note] Aborted connection 192 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T15:36:15.076939Z 193 [Note] Aborted connection 193 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:08:01.418141Z 194 [Note] Aborted connection 194 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:08:10.024147Z 195 [Note] Aborted connection 195 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:11:43.072946Z 196 [Note] Aborted connection 196 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:20:48.539880Z 197 [Note] Aborted connection 197 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:20:54.211352Z 198 [Note] Aborted connection 198 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:20:58.366356Z 199 [Note] Aborted connection 199 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:20:59.118594Z 200 [Note] Aborted connection 200 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:31:51.542559Z 201 [Note] Aborted connection 201 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:33:37.561893Z 202 [Note] Aborted connection 202 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:05.380098Z 203 [Note] Aborted connection 203 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:07.832534Z 204 [Note] Aborted connection 204 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:10.376732Z 205 [Note] Aborted connection 205 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:16.335791Z 206 [Note] Aborted connection 206 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:31.431580Z 207 [Note] Aborted connection 207 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:33.883023Z 208 [Note] Aborted connection 208 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:35:39.309506Z 209 [Note] Aborted connection 209 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:37:09.259661Z 210 [Note] Aborted connection 210 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:37:16.670648Z 211 [Note] Aborted connection 211 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:37:30.983142Z 212 [Note] Aborted connection 212 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:37:31.514225Z 213 [Note] Aborted connection 213 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:41:10.177300Z 214 [Note] Aborted connection 214 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:41:18.875225Z 215 [Note] Aborted connection 215 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:41:19.493228Z 216 [Note] Aborted connection 216 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:43:46.072749Z 217 [Note] Aborted connection 217 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:43:50.324769Z 218 [Note] Aborted connection 218 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:43:54.568830Z 219 [Note] Aborted connection 219 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:44:04.666502Z 220 [Note] Aborted connection 220 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:44:08.265766Z 221 [Note] Aborted connection 221 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:44:10.080503Z 222 [Note] Aborted connection 222 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T16:44:30.735912Z 223 [Note] Aborted connection 223 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:10:44.682344Z 224 [Note] Aborted connection 224 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:14:43.925508Z 225 [Note] Aborted connection 225 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:16:35.875496Z 226 [Note] Aborted connection 226 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:16:55.772745Z 227 [Note] Aborted connection 227 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:16:59.524715Z 228 [Note] Aborted connection 228 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:07.089107Z 229 [Note] Aborted connection 229 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:09.138663Z 230 [Note] Aborted connection 230 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:19.385323Z 231 [Note] Aborted connection 231 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:29.192531Z 232 [Note] Aborted connection 232 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:51.112009Z 233 [Note] Aborted connection 233 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:55.463377Z 234 [Note] Aborted connection 234 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:17:57.294482Z 235 [Note] Aborted connection 235 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:18:04.984923Z 236 [Note] Aborted connection 236 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:18:11.114539Z 237 [Note] Aborted connection 237 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:18:14.951281Z 238 [Note] Aborted connection 238 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:18:19.655706Z 239 [Note] Aborted connection 239 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:18:24.392047Z 240 [Note] Aborted connection 240 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:19:25.152379Z 241 [Note] Aborted connection 241 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:19:29.307272Z 242 [Note] Aborted connection 242 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:22:37.592761Z 243 [Note] Aborted connection 243 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:28:31.738723Z 244 [Note] Aborted connection 244 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:28:33.044858Z 245 [Note] Aborted connection 245 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:28:48.444903Z 246 [Note] Aborted connection 246 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:28:56.386715Z 247 [Note] Aborted connection 247 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:01.240265Z 248 [Note] Aborted connection 248 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:07.065874Z 249 [Note] Aborted connection 249 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:07.716508Z 250 [Note] Aborted connection 250 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:16.368034Z 251 [Note] Aborted connection 251 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:19.208869Z 252 [Note] Aborted connection 252 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:20.774768Z 253 [Note] Aborted connection 253 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:24.350849Z 254 [Note] Aborted connection 254 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:26.801297Z 255 [Note] Aborted connection 255 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:28.887150Z 256 [Note] Aborted connection 256 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:36.077845Z 257 [Note] Aborted connection 257 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:29:42.021384Z 258 [Note] Aborted connection 258 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:30:07.059698Z 259 [Note] Aborted connection 259 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:30:46.779950Z 260 [Note] Aborted connection 260 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T17:30:48.266248Z 261 [Note] Aborted connection 261 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T18:14:20.835136Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1981351ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-09-02T18:41:19.883762Z 262 [Note] Aborted connection 262 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T18:41:20.556577Z 263 [Note] Aborted connection 263 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:06:58.568484Z 264 [Note] Aborted connection 264 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:34:14.212731Z 265 [Note] Aborted connection 265 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:34:19.229115Z 266 [Note] Aborted connection 266 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:38:36.805217Z 267 [Note] Aborted connection 267 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:39:06.174165Z 268 [Note] Aborted connection 268 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:39:58.632151Z 269 [Note] Aborted connection 269 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:40:48.807604Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-09-02T19:40:48.808602Z 0 [Note] Giving 0 client threads a chance to die gracefully
+2021-09-02T19:40:48.809599Z 0 [Note] Shutting down slave threads
+2021-09-02T19:40:48.810598Z 0 [Note] Forcefully disconnecting 0 remaining clients
+2021-09-02T19:40:48.811596Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-09-02T19:40:48.813109Z 0 [Note] Binlog end
+2021-09-02T19:40:48.835949Z 0 [Note] Shutting down plugin 'ngram'
+2021-09-02T19:40:48.835949Z 0 [Note] Shutting down plugin 'partition'
+2021-09-02T19:40:48.835949Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-09-02T19:40:48.836973Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-09-02T19:40:48.836973Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-09-02T19:40:48.837970Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-09-02T19:40:48.837970Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-09-02T19:40:48.837970Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-09-02T19:40:48.838970Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-09-02T19:40:48.838970Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-09-02T19:40:48.839965Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-09-02T19:40:48.839965Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-09-02T19:40:48.840972Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-09-02T19:40:48.840972Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-09-02T19:40:48.841935Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-09-02T19:40:48.841935Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-09-02T19:40:48.842932Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-09-02T19:40:48.842932Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-09-02T19:40:48.843930Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-09-02T19:40:48.843930Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-09-02T19:40:48.844928Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-09-02T19:40:48.844928Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-09-02T19:40:48.845962Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-09-02T19:40:48.845962Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-09-02T19:40:48.846961Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-09-02T19:40:48.847950Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-09-02T19:40:48.847950Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-09-02T19:40:48.847950Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-09-02T19:40:48.848948Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-09-02T19:40:48.848948Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-09-02T19:40:48.849949Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-09-02T19:40:48.849949Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-09-02T19:40:48.850946Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-09-02T19:40:48.850946Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-09-02T19:40:48.850946Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-09-02T19:40:48.851943Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-09-02T19:40:48.851943Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-09-02T19:40:48.852945Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-09-02T19:40:48.852945Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-09-02T19:40:48.853934Z 0 [Note] InnoDB: Starting shutdown...
+2021-09-02T19:40:48.965877Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-09-02T19:40:48.980825Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 210902 15:40:48
+2021-09-02T19:40:49.890542Z 0 [Note] InnoDB: Shutdown completed; log sequence number 48830023
+2021-09-02T19:40:49.893537Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-09-02T19:40:49.894534Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-09-02T19:40:49.894534Z 0 [Note] Shutting down plugin 'CSV'
+2021-09-02T19:40:49.895531Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-09-02T19:40:49.896528Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-09-02T19:40:49.897525Z 0 [Note] Shutting down plugin 'binlog'
+2021-09-02T19:40:49.898560Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-09-02T19:41:15.068062Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-09-02T19:41:15.068062Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-02T19:41:15.068062Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-09-02T19:41:15.068062Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-09-02T19:41:15.069033Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 25204 ...
+2021-09-02T19:41:15.084284Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-09-02T19:41:15.085281Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-09-02T19:41:15.087292Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-09-02T19:41:15.087292Z 0 [Note] InnoDB: Uses event mutexes
+2021-09-02T19:41:15.088273Z 0 [Note] InnoDB: Memory barrier is not used
+2021-09-02T19:41:15.088273Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-09-02T19:41:15.089297Z 0 [Note] InnoDB: Number of pools: 1
+2021-09-02T19:41:15.089297Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-09-02T19:41:15.126020Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-09-02T19:41:15.133992Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-09-02T19:41:15.194939Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-09-02T19:41:15.410469Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-09-02T19:41:15.412480Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-09-02T19:41:15.515296Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-09-02T19:41:15.520302Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-09-02T19:41:15.521299Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-09-02T19:41:15.522297Z 0 [Note] InnoDB: Waiting for purge to start
+2021-09-02T19:41:15.581155Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48830023
+2021-09-02T19:41:15.582149Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-09-02T19:41:15.582149Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-09-02T19:41:15.595702Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-09-02T19:41:15.598692Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-09-02T19:41:15.599690Z 0 [Note] IPv6 is available.
+2021-09-02T19:41:15.599690Z 0 [Note]   - '::' resolves to '::';
+2021-09-02T19:41:15.600687Z 0 [Note] Server socket created on IP: '::'.
+2021-09-02T19:41:15.657535Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210902 15:41:15
+2021-09-02T19:41:15.748322Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-09-02T19:41:15.749318Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-09-02T19:41:30.481825Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:59:46.284795Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:59:56.419858Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T19:59:57.887179Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:00:05.880534Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:00:48.366553Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:00:55.060201Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:00:58.616906Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:01:01.709230Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:01:04.815239Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:01:07.892990Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:04:16.227916Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:07:39.635391Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:07:41.185608Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:19.597287Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:23.964266Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:26.634380Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:28.681527Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:34.148358Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:37.341153Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:09:58.245991Z 24 [Note] Aborted connection 24 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:14:54.953743Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T20:14:59.984743Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T21:59:47.581551Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-09-02T21:59:47.581551Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-09-02T21:59:47.581551Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-09-02T21:59:47.581551Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-09-02T21:59:47.582677Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 6792 ...
+2021-09-02T21:59:47.609210Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-09-02T21:59:47.611379Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-09-02T21:59:47.613374Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-09-02T21:59:47.614500Z 0 [Note] InnoDB: Uses event mutexes
+2021-09-02T21:59:47.614500Z 0 [Note] InnoDB: Memory barrier is not used
+2021-09-02T21:59:47.614500Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-09-02T21:59:47.615496Z 0 [Note] InnoDB: Number of pools: 1
+2021-09-02T21:59:47.616494Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-09-02T21:59:47.720250Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-09-02T21:59:47.730879Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-09-02T21:59:47.796984Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-09-02T21:59:47.802211Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 48860685
+2021-09-02T21:59:47.803208Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48860694
+2021-09-02T21:59:47.805203Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 48860694
+2021-09-02T21:59:47.806201Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-09-02T21:59:47.807199Z 0 [Note] InnoDB: Starting crash recovery.
+2021-09-02T21:59:48.380569Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-09-02T21:59:48.381567Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-09-02T21:59:48.383562Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-09-02T21:59:48.458742Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-09-02T21:59:48.477333Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-09-02T21:59:48.480389Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-09-02T21:59:48.483381Z 0 [Note] InnoDB: Waiting for purge to start
+2021-09-02T21:59:48.537622Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 48860694
+2021-09-02T21:59:48.539784Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-09-02T21:59:48.539784Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-09-02T21:59:48.568950Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-09-02T21:59:48.576026Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-09-02T21:59:48.578927Z 0 [Note] IPv6 is available.
+2021-09-02T21:59:48.579923Z 0 [Note]   - '::' resolves to '::';
+2021-09-02T21:59:48.580921Z 0 [Note] Server socket created on IP: '::'.
+2021-09-02T21:59:48.674133Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-09-02T21:59:48.675117Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-09-02T21:59:49.641039Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210902 17:59:49
+2021-09-02T22:41:20.388935Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:07:34.624514Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:07:43.194699Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:12:07.175620Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:14:11.920523Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:14:39.633821Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:14:42.891067Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:14:58.418668Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:03.546021Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:11.807545Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:19.006638Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:21.209613Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:29.675607Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:15:37.545547Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:16:31.998316Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:16:34.262407Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:16:51.197901Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:16:55.466286Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:11.614989Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:15.913903Z 23 [Note] Aborted connection 23 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:19.766523Z 24 [Note] Aborted connection 24 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:20.874319Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:22.102478Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:26.069982Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:27.941779Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:29.718884Z 29 [Note] Aborted connection 29 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:17:54.939083Z 30 [Note] Aborted connection 30 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:18:34.008086Z 31 [Note] Aborted connection 31 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-02T23:18:42.881494Z 32 [Note] Aborted connection 32 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-09-03T02:13:47.076927Z 33 [Note] Aborted connection 33 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)

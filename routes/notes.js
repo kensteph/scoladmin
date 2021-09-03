@@ -18,6 +18,16 @@ router.get('/periode-list', auth, async (req, res) => {
     if (req.query.msg) {
         msg = req.query.msg;
     }
+    for(i=0;i<modeEvaluation.length;i++){
+        //GET THE PERIOD LIST FOR THIS METHOD
+        let pl= await dbController.listOfPeriod(modeEvaluation[i].code);
+        let periods=[];
+        for(p=0;p<pl.length;p++){
+            periods.push(pl[p].periode+"("+pl[p].type_periode+")");
+        }
+        modeEvaluation[i].periodesList=periods.join("|");
+    }
+    //console.log(modeEvaluation);
     params = {
         pageTitle: "Gestion des périodes d'évaluation ",
         data: modeEvaluation,
@@ -54,27 +64,19 @@ router.post('/periode-list', auth, async (req, res) => {
     //     res.redirect('/courses-list?msg=' + response.msg);
     // }
 });
-//PERIODES List
+//ADD PERIODES List
 router.post('/period', auth, async (req, res) => {
     console.log(req.body);
-    let response;
-    if (req.body.actionField == "Edit") { //EDIT
-        response = await dbController.editCourseAssignment(req);
-    } else if (req.body.actionField == "Delete") { //DELETE
-        response = await dbController.deleteClassroom(req);
-    } else { //ADD 
-        response = await dbController.addPeriod(req);
-        res.json(response);
-    }
-    console.log("DB RESPONSE : ", response);
-    if (response.type == "success") {
-        console.log(response);
-        res.redirect('/periode-list?msg=' + response.msg);
-    } else {
-        console.log(response.debug);
-        res.redirect('/periode-list?msg=' + response.msg);
-    }
-    //res.json(response);
+    let response = await dbController.addPeriod(req);
+    res.json(response);
+});
+//REMOVE SINGLE PERIODE
+router.post('/remove-period', auth, async (req, res) => {
+    console.log(req.body);
+    let periodToRemove=req.body.periodToRemove;
+    let response = await dbController.deletePeriod(periodToRemove);
+    console.log(response);
+    res.json(response);
 });
 // PERIODES List
 router.post('/getPeriod-list', auth, async (req, res) => {

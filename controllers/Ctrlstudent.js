@@ -216,7 +216,7 @@ var self = module.exports = {
     //Student Live Search
     liveStudentSearch: async function (keyWorkToSearch) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,CONCAT(id,' - ',prenom,' ',nom) as fullname FROM tb_personnes WHERE  CONCAT(prenom,' ',nom,' ',phone,' ',id) LIKE '%" + keyWorkToSearch + "%' OR CONCAT(prenom,' ',nom) LIKE '%" + keyWorkToSearch + "%' AND type='Student' AND active=1 ";
+            let sql = "SELECT *,CONCAT(id,' - ',prenom,' ',nom) as fullname FROM tb_personnes WHERE  CONCAT(prenom,' ',nom,' ',phone,' ',id) LIKE '%" + keyWorkToSearch + "%' OR CONCAT(prenom,' ',nom) LIKE '%" + keyWorkToSearch + "%' AND type='Student' ";
             console.log(sql);
             con.query(sql, function (err, rows) {
                 if (err) {

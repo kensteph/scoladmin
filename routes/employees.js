@@ -46,9 +46,18 @@ router.post('/teacher-list', auth, async (req, res) => {
 router.get('/user-list', auth, async (req, res) => {
     let employeeListCandidate = await dbEmployeeController.employeesNotUsers(1);
     let usersList = await dbEmployeeController.listOfUser("All");
-    //console.log(employeeList);
+    let appMenu = await dbEmployeeController.menuList();
+
+    for(i=0;i<appMenu.length;i++){
+        let menu = appMenu[i].action;
+        let subMenuAction = await dbEmployeeController.getSubMenuAndActionsFor(menu);
+        appMenu[i].subMenuAction=subMenuAction;
+        //console.log(subMenuAction);
+    }
+    console.log(appMenu);
     params = {
         usersList,
+        appMenu,
         employeeList:employeeListCandidate,
         UserData: req.session.UserData
     };
@@ -103,10 +112,29 @@ router.post('/rest-user-password', auth, async (req, res) => {
     let response = await dbEmployeeController.setUserPassword(username,encryptedPassword);
     res.json(response);
 });
-//ADMIN RESET USER'S PASWORD
+//ADMIN REMOVE USER'S 
 router.post('/delete-user', auth, async (req, res) => {
     let username = req.body.username;
     let response = await dbEmployeeController.removeUser(username);
+    res.json(response);
+});
+//ADMIN SET USER'S ACCESS
+router.post('/set-user-access', auth, async (req, res) => {
+    console.log(req.body);
+    let username = req.body.username;
+    //REMOVE OLD ACCESS
+    let delete_response = await dbEmployeeController.deleteUserAccess(username);
+    console.log(delete_response);
+    if(delete_response.success){
+        let response = await dbEmployeeController.addUserAccess(req);
+        res.json(response);
+    }
+});
+//GET USER'S ACCESS
+router.post('/get-user-access', auth, async (req, res) => {
+    let username = req.body.username;
+    let response = await dbEmployeeController.listOfUserAccess(username);
+    console.log(response);
     res.json(response);
 });
 // Exportation of this router

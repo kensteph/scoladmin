@@ -84,17 +84,25 @@ app.post('/login', statistic, async (req, res) => {
     if(userInfo!=null){
         //console.log(userInfo);
             let passwordDB = userInfo.pass_word;
+            let title = userInfo.title;
                     if(userController.compareHashedPassword(password,passwordDB)){
                         await intitValues(req);
                         //USER'S ACCESSS
-                        let userAccess = ["Employee-list"];
-                        let userData = { userName: username, userAccess: userAccess };
+                        let userAccess = await userController.listOfUserAccess(username);
+                        let actions = userAccess.actions;
+                        let routesAccess=userAccess.routes;
+                        let accessId=userAccess.access_id;
+                        if(username=="admin" && title=="Super admin"){
+                            actions=['All'];
+                            routesAccess=['All'];
+                        }
+                        let userData = { userName: username, title,userAccess: actions,routesAccess ,accessId};
                         req.session.UserData = userData
                         let params = req.stat;
                         params.UserData = userData;
                         params.isHome=true;
                         //console.log(params)
-                        res.render('index', params);
+                        res.render('index',params);
                     }else{
                         console.log("You are not authenticated...NO PASS");
                         let msg="Votre nom d'utilisateur ou mot de passe est incorrect...";
@@ -120,6 +128,10 @@ app.get('/logout', async (req, res) => {
     //     console.log("Session destroyed....");
     // });
 });
+
+app.get('*',auth, (req, res) => {
+    res.redirect('/dash-board')
+})
 
 //LISTEN
 app.listen(process.env.SERVER_PORT, function () {

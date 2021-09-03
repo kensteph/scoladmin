@@ -1,0 +1,53 @@
+type_access,description,action,belong_to,route
+MENU,Acces au menu Classes,Classes,Classes,Classes
+SUBMENU,Acces au sous-menu Liste des Classes,display_classrooms,Classes,/classrooms-list
+ACTION,Ajouter nouvelle salle de classe,add_classroom,Classes,/classrooms-list
+ACTION,Modifier salle de classe,edit_classroom,Classes,/classrooms-list
+SUBMENU,Acces au sous-menu Salles d'examen,display_examrooms,Classes,/examrooms-list
+ACTION,Formation des salles d'examen,set_examrooms,Classes,/examrooms-list
+ACTION,Imprimer les salles d'examen,print_examrooms,Classes,/print-examrooms-list
+MENU,Acces au menu Cours,Cours,Cours,Cours
+SUBMENU,Acces au sous-menu Liste des Cours,display_courses,Cours,/courses-list
+ACTION,Ajouter nouveau cours(matieres),add_course,Cours,/courses-list
+ACTION,Modifier cours(matieres),edit_course,Cours,/courses-list
+ACTION,Assigner des cours(matieres),assign_courses,Cours,/courses-assignation
+ACTION,Modification des cours(matieres) assignes,edit_courses_assign,Cours,/edit-courses-assignation
+ACTION,Imprimer le palmares des cours,print_course_palma,Cours,/print-course-palmares
+MENU,Acces au menu Professurs,Professeurs,Professeurs,Professeurs
+SUBMENU,Acces au sous-menu Liste des Professeurs,teacher_list,Professeurs,/teacher-list
+ACTION,Ajouter nouveau professeur,add_teacher,Professeurs,/teacher-list
+ACTION,Modifier professeurs,edit_teacher,Professeurs,/teacher-list
+MENU,Acces au menu Eleves,Eleves,Eleves,Eleves
+SUBMENU,Acces au sous-menu Liste des Eleves,students-list,Eleves,/students-list
+ACTION,Ajouter un eleve,add_student,Eleves,/students-list
+ACTION,Modifier les informaions d'un eleve,edit_student,Eleves,/students-list
+ACTION,Supprimer un eleve,delete_student,Eleves,/students-list
+ACTION,Imprimer la liste des eleves,print_student_list,Eleves,/print-students-list
+ACTION,Changer un eleve de salle de classe,change_classroom,Eleves,/students-list
+MENU,Acces au menu Notes,Notes,Notes,Notes
+SUBMENU,Acces au sous-menu Periodes d'evaluation,periode-list,Notes,/periode-list
+ACTION,Ajouter mode d'evaluation ,add_evaluation,Notes,/periode-list
+ACTION,Modifier  mode d'evaluation ,edit_evaluation,Notes,/periode-list
+ACTION,Supprimer mode d'evaluation,delete_evaluation,Notes,/periode-list
+ACTION,Ajouter Periode d'evaluation,add_period,Notes,/periode-list
+ACTION,Changer la mode d'evaluation pour une annee academique,change_evaluation,Notes,/periode-list
+SUBMENU,Acces au sous-menu enregistrement Notes,save-notes,Notes,/periode-list
+ACTION,Modifier les notes d'un etudiant,edit-note,Notes,/palmares-notes
+SUBMENU,Acces au sous-menu Palmares,palmares-notes,Notes,/palmares-notes
+ACTION,Imprimer le palmares des notes,print_palmares,Notes,/print-palmares-notes
+ACTION,Imprimer les bulletins ,print_all_bulletin,Notes,/print-all-bulletin
+ACTION,Imprimer un bulletin,print_bulletin,Notes,/print-bulletin
+ACTION,Imprimer les bulletins (General),print_all_bulletin_gle,Notes,/print-all-bulletin-general
+ACTION,Imprimer un bulletin (General),print_bulletin_gle,Notes,/print-bulletin-general
+ACTION,Admission des eleves en fonction de leur moyenne generale,student_admission,Notes,/palmares-notes
+ACTION,Tableau d'honneur des eleves,tableau-honneur,Notes,/tableau-honneur
+ACTION,Imprimer le tableau d'honneur,print-tableau-honneur,Notes,/print-tableau-honneur
+MENU,Acces au menu Administration,Administration,Administration,Administration
+SUBMENU,Archives des eleves,student_archives,Administration,/student-archives
+SUBMENU,Papier entete de l'ecole,header-paper,Administration,/papier-entete
+SUBMENU,Liste des utilisateurs,user-list,Administration,/user-list
+ACTION,Ajouter un utilisateur,add-user,Administration,/user-list
+ACTION,Liste d'acces des  utilisateurs,user-access,Administration,/user-list
+ACTION,Reinitialiser le mot de passe d'un utilisateur,reset-user-pass,Administration,/user-list
+ACTION,Supprimer un utilisateur,delete-user,Administration,/user-list
+ACTION,Modifier les parametres,settings,Administration,/edit-settings

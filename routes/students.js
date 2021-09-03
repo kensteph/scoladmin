@@ -15,6 +15,11 @@ router.post('/students-list', auth, async (req, res) => {
     let AneAca = req.body.AneAca;
     let active = 1;
     let info;
+    if(ClassRoom!="All"){
+        //Info about the classroom
+        info = await dbClassroomController.getclassroom(ClassRoom);
+        req.body.Niveau= info.niveau;
+    }
     if (req.body.Statut) {
         active = req.body.Statut;
     }
@@ -34,8 +39,8 @@ router.post('/students-list', auth, async (req, res) => {
             //response = await dbController.setStudentStatus(req);
 
         } else {
-            if (req.body.Niveau == 0) {
-                response = { msg: "Vous devez choisir le niveau" };
+            if (req.body.Niveau== 0) {
+                response = { msg: "Vous devez choisir la salle de classe" };
             } else {
                 response = await dbController.addStudent(req);
             }

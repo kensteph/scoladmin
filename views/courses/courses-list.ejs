@@ -45,10 +45,14 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <div id="contact">
+                                                <% if(UserData.userAccess.includes('add_course') || UserData.userAccess.includes('All')){ %>
                                                 <button type="button" class="btn btn-success btn"
                                                     onclick="addClassroom()">Ajouter cours (Matière)</button>
+                                                <% } %>
+                                                <% if(UserData.userAccess.includes('assign_courses') || UserData.userAccess.includes('All')){ %>
                                                 <button type="button" class="btn btn-info btn"
                                                     onclick="assignCoursesModal()">Assignation de cours</button>
+                                                <% } %>
                                                 <a href="#" title="Filtre" data-toggle="modal"
                                                 data-target="#filter-modal" aria-hidden="true">
                                                     <i class="fa fa-filter fa-2x to-link" ></i> Filtrer la liste de cours
@@ -102,19 +106,25 @@
                                                                 </td>
                                                                 <td>
                                                                     <% if(!course.hasOwnProperty('position')){ %>
-                                                                        <i class="fas fa-edit to-link"
-                                                                            title="Modifier <%=course.classe%>"
-                                                                            onclick="editCourse('<%=course.id%>','<%=course.categorie%>','<%=course.code%>','<%=course.libelle%>')"></i>
-                                                                        &nbsp;&nbsp;&nbsp;
+                                                                            <% if(UserData.userAccess.includes('edit_course') || UserData.userAccess.includes('All')){ %>
+                                                                                <i class="fas fa-edit to-link"
+                                                                                    title="Modifier <%=course.classe%>"
+                                                                                    onclick="editCourse('<%=course.id%>','<%=course.categorie%>','<%=course.code%>','<%=course.libelle%>')"></i>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                            <% } %>
                                                                         <% }else{ %>
-                                                                            <i class="fas fa-edit to-link"
-                                                                                title="Modifier <%=course.libelle%>"
-                                                                                onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id_cours%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>','<%=course.active%>')"></i>
+                                                                                <% if(UserData.userAccess.includes('edit_courses_assign') || UserData.userAccess.includes('All')){ %>
+                                                                                    <i class="fas fa-edit to-link"
+                                                                                        title="Modifier <%=course.libelle%>"
+                                                                                        onclick="editCourseAssigment('<%=course.assigment_id%>','<%=course.id_cours%>','<%=course.libelle%>','<%=course.salle_classe%>','<%=course.coefficient%>','<%=course.position%>','<%=course.professeur%>','<%=course.active%>')"></i>
+                                                                                <% } %>
                                                                                 <% if(course.active!=0){ %>
                                                                                 &nbsp;&nbsp;&nbsp;
-                                                                                    <a title="Palmarès" target="_blank"
-                                                                                        href="/print-course-palmares?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&Course=<%=course.libelle+' | '+course.code%>&CourseId=<%=course.id%>&Periode=<%=periodSelected%>&Teacher=<%=course.teacher%>&modEvaluation=<%=methodEvaluationCode%>&niveau=<%=niveau%>&CourseCoeff=<%=course.coefficient%>"><i
-                                                                                        class="fa fa-print"></i></a>
+                                                                                    <% if(UserData.userAccess.includes('print_course_palma') || UserData.userAccess.includes('All')){ %>
+                                                                                        <a title="Palmarès" target="_blank"
+                                                                                            href="/print-course-palmares?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&Course=<%=course.libelle+' | '+course.code%>&CourseId=<%=course.id%>&Periode=<%=periodSelected%>&Teacher=<%=course.teacher%>&modEvaluation=<%=methodEvaluationCode%>&niveau=<%=niveau%>&CourseCoeff=<%=course.coefficient%>"><i
+                                                                                            class="fa fa-print"></i></a>
+                                                                                    <% } %>
                                                                                 <% } %>
                                                                         <% } %>
                                                                 </td>
@@ -150,8 +160,7 @@
 
                                         <div class="form-group">
                                             <label for="Categorie">Categorie</label>
-                                            <select class="form-control" name="Categorie" required id="Categorie"
-                                                onchange="autoFill(this)">
+                                            <select class="form-control" name="Categorie" required id="Categorie">
                                                 <option value="0">------Choisissez la catégorie------</option>
                                                 <% courseCategories.forEach((item)=> { %>
                                                     <option value="<%=item.id%>">

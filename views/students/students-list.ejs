@@ -44,21 +44,29 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
-                                            <div id="contact"><button type="button" class="btn btn-info btn"
-                                                    onclick="addClassroom()">Ajouter
-                                                    Etudiant/Eléve</button>
-                                                    <a href="#" title="Filtrer la liste" data-toggle="modal"
-                                                    data-target="#filter-modal"  aria-hidden="true">
-                                                        <i class="fa fa-filter fa-2x to-link" ></i> 
-                                                        Filtre
-                                                    </a>
+                                            <div id="contact">
+                                                <% if(UserData.userAccess.includes('add_student') || UserData.userAccess.includes('All')){ %>
+                                                    <button type="button" class="btn btn-info btn"
+                                                        onclick="addClassroom()">Ajouter
+                                                        Etudiant/Eléve</button>
+                                                <% } %>
+
                                                 
-                                                  <% if(studentList.length> 0){ %>
+                                                    <a href="#" title="Filtrer la liste" data-toggle="modal"
+                                                        data-target="#filter-modal" aria-hidden="true">
+                                                        <i class="fa fa-filter fa-2x to-link"></i>
+                                                        Filtrer la liste
+                                                    </a>
+
+                                                <% if(studentList.length> 0){ %>
                                                     &nbsp;&nbsp;
+                                                    <% if(UserData.userAccess.includes('print_student_list') || UserData.userAccess.includes('All')){ %>
                                                     <a title="Liste des élèves" target="_blank"
                                                         href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&statut=<%=statutSelected%>"><i
-                                                            class="fa fa-print fa-2x"></i> Liste des élèves</a>
+                                                            class="fa fa-print fa-2x"></i> Imprimer la liste des
+                                                        élèves</a>
                                                     <% } %>
+                                                <% } %>
                                             </div>
 
                                         </li>
@@ -76,11 +84,17 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive table-striped">
-                                                
+
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th><button id="selectCount" style="display: none;" onclick="launchModalAffectation()" class="btn btn-success">Admission</button></th>
+                                                            <% if(UserData.userAccess.includes('change_classroom') || UserData.userAccess.includes('All')){ %>
+                                                                <th>
+                                                                    <button id="selectCount" style="display: none;"
+                                                                        onclick="launchModalAffectation()"
+                                                                        class="btn btn-success">Admission</button>
+                                                                </th>
+                                                            <% } %>
                                                             <th>Elèves/Etudiants</th>
                                                             <th>Sexe</th>
                                                             <th>Actions</th>
@@ -89,29 +103,37 @@
                                                     <tbody>
                                                         <% studentList.forEach((Student)=> { %>
                                                             <tr>
-                                                                <td style="width: 10px;">
-                                                                    <input id="check-<%=Student.id_personne%>" class="checkbox" type="checkbox" onchange="selectStudent(this,'<%=Student.id_personne%>')">
-                                                                </td>
+                                                                <% if(UserData.userAccess.includes('change_classroom') || UserData.userAccess.includes('All')){ %>
+                                                                    <td style="width: 10px;">
+                                                                        <input id="check-<%=Student.id_personne%>"
+                                                                            class="checkbox" type="checkbox"
+                                                                            onchange="selectStudent(this,'<%=Student.id_personne%>')">
+                                                                    </td>
+                                                                <% } %>
                                                                 <td>
                                                                     <strong>
                                                                         <a
-                                                                        href="/student-details?ID=<%=Student.id_personne%>">
-                                                                        <%=Student.fullname+" ("+Student.dossier+")"%>
-                                                                    </a>
+                                                                            href="/student-details?ID=<%=Student.id_personne%>">
+                                                                            <%=Student.fullname+"("+Student.dossier+")"%>
+                                                                        </a>
                                                                     </strong>
-                                                                    
+
                                                                 </td>
                                                                 <td>
                                                                     <%=Student.sexe%>
                                                                 </td>
                                                                 <td>
-                                                                    <i class="fas fa-edit to-link"
-                                                                        title="Modifier <%=Student.fullname%>"
-                                                                        onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
-                                                                    &nbsp;&nbsp;&nbsp;
-                                                                    <i class="fas fa-trash to-link h-red"
-                                                                        title="Supprimer <%=Student.fullname%>"
-                                                                        onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"></i>
+                                                                    <% if(UserData.userAccess.includes('edit_student') || UserData.userAccess.includes('All')){ %>
+                                                                        <i class="fas fa-edit to-link"
+                                                                            title="Modifier <%=Student.fullname%>"
+                                                                            onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
+                                                                    <% } %>
+                                                                    <% if(UserData.userAccess.includes('delete_student') || UserData.userAccess.includes('All')){ %>
+                                                                        &nbsp;&nbsp;&nbsp;
+                                                                        <i class="fas fa-trash to-link h-red"
+                                                                            title="Supprimer <%=Student.fullname%>"
+                                                                            onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"></i>
+                                                                    <% } %>
                                                                 </td>
 
                                                             </tr>
@@ -153,9 +175,9 @@
                                                     <% }) %>
                                             </select>
                                             &nbsp; &nbsp;
-                                            <input type="text" required name="AneAca" id="AneAca" value="<%=yearSelected%>"
-                                                title="Année Académique" onclick="select()" class="form-control w-25"
-                                                placeholder="Année Académique">
+                                            <input type="text" required name="AneAca" id="AneAca"
+                                                value="<%=yearSelected%>" title="Année Académique" onclick="select()"
+                                                class="form-control w-25" placeholder="Année Académique">
                                             <input type="hidden" name="Niveau" id="Niveau">
                                             <br>
                                         </div>
@@ -255,42 +277,43 @@
                                     <strong id="modalAffectationTitle">Affectation</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
-                                <form id="AffectationForm" role="form" >
+                                <form id="AffectationForm" role="form">
                                     <div class="modal-body">
                                         <label for="Niveau">Salle de classe </label>
                                         <div class="form-inline">
                                             <select class="form-control w-60" id="ClassRoomID" name="ClassRoom">
                                                 <% data.forEach((classroom)=> { %>
-                                                    <% if(niveau ==classroom.niveau){ %> 
-                                                    <option  
-                                                            value="<%=classroom.id%>">
-                                                                <%=classroom.classe%>
-                                                    </option>
-                                                    <% } %>
-                                                <% }) %>
+                                                    <% if(niveau==classroom.niveau){ %>
+                                                        <option value="<%=classroom.id%>">
+                                                            <%=classroom.classe%>
+                                                        </option>
+                                                        <% } %>
+                                                            <% }) %>
                                             </select>
-                                            <input type="hidden" name="currentNiveau" value="<%=niveau%>" >
-                                            <input type="hidden" id="StudentsSelected" name="students" value="<%=niveau%>" >
+                                            <input type="hidden" name="currentNiveau" value="<%=niveau%>">
+                                            <input type="hidden" id="StudentsSelected" name="students"
+                                                value="<%=niveau%>">
                                             &nbsp;&nbsp;
                                             <select class="form-control" name="AneAca">
                                                 <% aneacaList.forEach((year)=> { %>
-                                                    <% if(currentYear >= year.aneaca){ %> 
+                                                    <% if(currentYear>= year.aneaca){ %>
                                                         <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
                                                                 value="<%=year.aneaca%>">
                                                                     <%=year.aneaca%>
                                                         </option>
-                                                    <% } %>
-                                                <% }) %>
+                                                        <% } %>
+                                                            <% }) %>
                                             </select>
-                                        
+
                                         </div>
                                     </div>
                                 </form>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-success" id="changeAffectation" onclick="changeAffectation()">Enregistrer</button>
-                                        
-                                    </div>
-                                
+                                <div class="modal-footer">
+                                    <button class="btn btn-success" id="changeAffectation"
+                                        onclick="changeAffectation()">Enregistrer</button>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -345,7 +368,7 @@
             $("#classroom-modal").modal();
         }
         //DELETE INFO ABOUT CLASSROOM
-        function deleted(StudentID, firstname, lastname, gender, fullname,classroom, AffectationID) {
+        function deleted(StudentID, firstname, lastname, gender, fullname, classroom, AffectationID) {
             $("#modalTitle").html("Voulez-vous supprimer " + fullname + " de cette classe?");
             $("#Statut").attr("disabled", true);
             $("#Firstname").val(firstname);
@@ -360,35 +383,35 @@
             $("#btnClassroom").addClass("btn btn-danger");
             $("#classroom-modal").modal();
         }
-        
+
         //ARRAY OF SELECTED STUDENT
-        let studentSelected=[];
+        let studentSelected = [];
         //SELECT STUDENT
-        function  selectStudent(check,val){
-            if(check.checked){
+        function selectStudent(check, val) {
+            if (check.checked) {
                 studentSelected.push(val);
                 $("#selectCount").show();
-            }else{
-                if(studentSelected.includes(val)){
+            } else {
+                if (studentSelected.includes(val)) {
                     studentSelected.pop(val);
                 }
             }
             let count = studentSelected.length;
-            if(count==0){
+            if (count == 0) {
                 $("#selectCount").hide();
-            }else{
+            } else {
                 $("#selectCount").show();
             }
-            $("#selectCount").html("Sélection : "+count);
+            $("#selectCount").html("Sélection : " + count);
             $("#StudentsSelected").val(studentSelected.join());
 
         }
         //LAUNCH MODAL AFFECTATION
         function launchModalAffectation() {
             let nbClassRoom = $("#ClassRoomID option").length;
-            if(nbClassRoom>0){
+            if (nbClassRoom > 0) {
                 $("#changeAffectation").show();
-            }else{
+            } else {
                 $("#changeAffectation").hide();
             }
             $("#affectation-modal").modal();
@@ -396,8 +419,8 @@
         //SAVE AFFECTATION CHANGE TO DB
         function changeAffectation() {
             let formData = $("#AffectationForm").serialize();
-            
-                $.post("/save-affectation-change-db",formData, function (data) {
+
+            $.post("/save-affectation-change-db", formData, function (data) {
                 // if (data.success) { //Success 
                 //     $("#notifySignature").html(data.msg);
                 // } else {
@@ -405,7 +428,7 @@
                 // }
             });
         }
-        
+
     </script>
 </body>
 

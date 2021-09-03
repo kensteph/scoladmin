@@ -10,7 +10,7 @@
                         Bienvenue <%= UserData.userName %> 
                     </p>
                     <p class="designation">
-                        Super Admin
+                        <%= UserData.title %>
                     </p>
                 </div>
             </div>
@@ -23,6 +23,7 @@
         </li>
 
         <!-- MENU CLASSES-->
+        <% if(UserData.userAccess.includes('Classes') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#class-menu" aria-expanded="false"
                 aria-controls="class-menu">
@@ -32,16 +33,23 @@
             </a>
             <div class="collapse" id="class-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="classrooms-list">Liste des classes</a>
-                    </li>
+                    <% if(UserData.userAccess.includes('display_classrooms') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="classrooms-list">Liste des classes</a>
+                        </li>
+                    <% } %>
+                    <% if(UserData.userAccess.includes('display_examrooms') || UserData.userAccess.includes('All')){ %>
                     <li class="nav-item">
                         <a class="nav-link" href="examrooms-list">Salles d'examen</a>
                     </li>
+                    <% } %>
                 </ul>
             </div>
         </li>
+        <% } %>
+
         <!-- MENU COURSES-->
+        <% if(UserData.userAccess.includes('Cours') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#courses-menu" aria-expanded="false"
                 aria-controls="courses-menu">
@@ -51,13 +59,18 @@
             </a>
             <div class="collapse" id="courses-menu">
                 <ul class="nav flex-column sub-menu">
+                    <% if(UserData.userAccess.includes('display_courses') || UserData.userAccess.includes('All')){ %>
                     <li class="nav-item">
                         <a class="nav-link" href="courses-list">Liste des cours</a>
                     </li>
+                    <% } %>
                 </ul>
             </div>
         </li>
+        <% } %>
+
         <!-- MENU PROFESSEURS-->
+        <% if(UserData.userAccess.includes('Professeurs') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#teacher-menu" aria-expanded="false"
                 aria-controls="teacher-menu">
@@ -73,7 +86,11 @@
                 </ul>
             </div>
         </li>
+
+        <% } %>
+
         <!-- MENU STUDENTS-->
+        <% if(UserData.userAccess.includes('Eleves') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#student-menu" aria-expanded="false"
                 aria-controls="student-menu">
@@ -83,16 +100,21 @@
             </a>
             <div class="collapse" id="student-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="students-list">Liste des Etudiants/Elèves</a>
-                    </li>
+                    <% if(UserData.userAccess.includes('students-list') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="students-list">Liste des Etudiants/Elèves</a>
+                        </li>
+                    <% } %>
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="students-gallery">Gallerie des Etudiants/Elèves</a> -->
                     </li>
                 </ul>
             </div>
         </li>
+        <% } %>
+
         <!-- MENU NOTES-->
+        <% if(UserData.userAccess.includes('Notes') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#note-menu" aria-expanded="false"
                 aria-controls="note-menu">
@@ -102,21 +124,33 @@
             </a>
             <div class="collapse" id="note-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="periode-list">Périodes d'évaluation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="save-notes">Enregistrement notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="palmares-notes">Palmarès</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/tableau-honneur">Tableau d'honneur</a>
-                    </li>
+                    <% if(UserData.userAccess.includes('periode-list') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="periode-list">Périodes d'évaluation</a>
+                        </li>
+                    <% } %>
+
+                    <% if(UserData.userAccess.includes('save-notes') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="save-notes">Enregistrement notes</a>
+                        </li>
+                    <% } %>
+
+                    <% if(UserData.userAccess.includes('palmares-notes') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="palmares-notes">Palmarès</a>
+                        </li>
+                    <% } %>
+
+                    <% if(UserData.userAccess.includes('tableau-honneur') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tableau-honneur">Tableau d'honneur</a>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
         </li>
+        <% } %>
 
         <!-- MENU EMPLOYES-->
         <!-- <li class="nav-item">
@@ -136,6 +170,7 @@
         </li> -->
 
         <!-- MENU ADMIN-->
+        <% if(UserData.userAccess.includes('Administration') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#admin-menu" aria-expanded="false"
                 aria-controls="admin-menu">
@@ -145,19 +180,29 @@
             </a>
             <div class="collapse" id="admin-menu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="student-archives">Archives</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="papier-entete">PAPIER EN-TÊTE</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="user-list">Utilisateurs</a>
-                    </li>
+                    <% if(UserData.userAccess.includes('student_archives') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="student-archives">Archives</a>
+                        </li>
+                    <% } %>
+
+                    <% if(UserData.userAccess.includes('header-paper') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="papier-entete">PAPIER EN-TÊTE</a>
+                        </li>
+                    <% } %>
+
+                    <% if(UserData.userAccess.includes('user-list') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="user-list">Utilisateurs</a>
+                        </li>
+                    <% } %>
                 </ul>
             </div>
             
         </li>
+
+        <% } %>
 
     </ul>
 </nav>

@@ -186,6 +186,30 @@ var self = module.exports = {
         rep = await promise;
         return rep;
     },
+    //Delete PERIOD
+    deletePeriod: async function (periodId) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "DELETE FROM tb_periodes_evaluation  WHERE id =?";
+            con.query(sql, periodId, function (err, rows) {
+                if (err) {
+                    resolve({
+                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
+                        type: "danger",
+                        debug: err,
+                        success:false
+                    });
+                } else {
+                    resolve({
+                        msg: "La periode été supprimée avec succès.",
+                        success:true
+                    });
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //LIST PERIOD
     listOfPeriod: async function (methodEvaluationCode) {
         let sql = "SELECT * FROM tb_periodes_evaluation WHERE mode_evaluation_code=?  ORDER BY id ";
