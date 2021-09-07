@@ -66,7 +66,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <% usersList.forEach((teacher)=> {
-                                                            if(teacher.user_name!=UserData.userName){
+                                                            if(teacher.user_name!=UserData.userName && teacher.user_name!="admin" ){
                                                             %>
                                                             <tr id="row<%=teacher.id_personne%>">
                                                                 <td>

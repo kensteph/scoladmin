@@ -276,11 +276,11 @@ var self = module.exports = {
     },
     //======================================================== NOTES=================================================
     //Load All The classrooms
-    listOfStudentWithoutNotes: async function (classroom, courseId, niveau, period, aneaca) {
+    listOfStudentWithoutNotes: async function (classroom, courseId,period, aneaca) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? AND id_personne NOT IN ( SELECT etudiant FROM tb_notes WHERE niveau=? AND periode=? AND aneaca=? AND cours=?) ORDER BY nom,prenom";
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af WHERE pers.id=af.id_personne AND classroom=? AND aneaca=? AND id_personne NOT IN ( SELECT etudiant FROM tb_notes WHERE niveau=? AND periode=? AND aneaca=? AND cours=?) AND pers.active=1 ORDER BY nom,prenom";
             //console.log(sql);
-            con.query(sql, [classroom, aneaca, niveau, period, aneaca, courseId], function (err, rows) {
+            con.query(sql, [classroom, aneaca, classroom, period, aneaca, courseId], function (err, rows) {
                 if (err) {
                     throw err;
                 } else {
@@ -289,7 +289,7 @@ var self = module.exports = {
             });
         });
         data = await promise;
-        //console.log(data);
+        console.log("DATA : ",data,classroom, courseId, period, aneaca);
         return data;
     },
     //SAVE NOTES
@@ -300,7 +300,7 @@ var self = module.exports = {
             let notes = req.body.note;
             let courseCoeff = req.body.courseCoeff;
             let period = req.body.period;
-            let niveauSelected = req.body.niveauSelected;
+            let classroomID = req.body.roomSelected;
             let yearAca = req.body.yearAca;
             let abscence = req.body.abscence;
             let methodEvaluationCode = req.body.methodEvaluationCode;
@@ -316,7 +316,7 @@ var self = module.exports = {
                     value.push(course);
                     value.push(notes[i]);
                     value.push(period);
-                    value.push(niveauSelected);
+                    value.push(classroomID);
                     value.push(yearAca);
                     value.push(abscence[i]);
                     value.push(courseCoeff);
@@ -777,11 +777,16 @@ var self = module.exports = {
                 if (err) {
                     throw err;
                 } else {
-                    resolve(rows[0].periode);
+                    console.log("ROWS : ",rows);
+                    let etape='Etape 1';
+                    if(rows[0].hasOwnProperty('periode')){
+                         etape=rows[0].periode;
+                    }
+                    resolve( etape);
                 }
             });
         });
-        data = await promise;
+        let data = await promise;
         //console.log(studentId, niveau, period, aneaca);
         return data;
     },

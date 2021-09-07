@@ -19,11 +19,17 @@ ACTION,Ajouter nouveau professeur,add_teacher,Professeurs,/teacher-list
 ACTION,Modifier professeurs,edit_teacher,Professeurs,/teacher-list
 MENU,Acces au menu Eleves,Eleves,Eleves,Eleves
 SUBMENU,Acces au sous-menu Liste des Eleves,students-list,Eleves,/students-list
-ACTION,Ajouter un eleve,add_student,Eleves,/students-list
+ACTION,Ajouter un eleve sans inscription,add_student,Eleves,/students-list
 ACTION,Modifier les informaions d'un eleve,edit_student,Eleves,/students-list
 ACTION,Supprimer un eleve,delete_student,Eleves,/students-list
 ACTION,Imprimer la liste des eleves,print_student_list,Eleves,/print-students-list
 ACTION,Changer un eleve de salle de classe,change_classroom,Eleves,/students-list
+SUBMENU,Acces au sous-menu Liste des Inscrits,registered-students-list,Eleves,/registered-students-list
+ACTION,Inscrire un nouvel eleve,register_student,Eleves,/registered-students-list
+ACTION,"Modifier une inscription (Classe,prenom,nom...)",edit_registration,Eleves,/registered-students-list
+ACTION,Supprimer une inscription,delete_registration,Eleves,/registered-students-list
+ACTION,Imprimer la liste des inscrits,print_registration_list,Eleves,/registered-students-list
+ACTION,Approuver les inscriptions,approve_registration,Eleves,/registered-students-list
 MENU,Acces au menu Notes,Notes,Notes,Notes
 SUBMENU,Acces au sous-menu Periodes d'evaluation,periode-list,Notes,/periode-list
 ACTION,Ajouter mode d'evaluation ,add_evaluation,Notes,/periode-list
@@ -32,12 +38,14 @@ ACTION,Supprimer mode d'evaluation,delete_evaluation,Notes,/periode-list
 ACTION,Ajouter Periode d'evaluation,add_period,Notes,/periode-list
 ACTION,Changer la mode d'evaluation pour une annee academique,change_evaluation,Notes,/periode-list
 SUBMENU,Acces au sous-menu enregistrement Notes,save-notes,Notes,/periode-list
+ACTION,Enregistrer les notes des eleves,save_notes,Notes,/save-notes
 ACTION,Modifier les notes d'un etudiant,edit-note,Notes,/palmares-notes
 SUBMENU,Acces au sous-menu Palmares,palmares-notes,Notes,/palmares-notes
 ACTION,Imprimer le palmares des notes,print_palmares,Notes,/print-palmares-notes
 ACTION,Imprimer les bulletins ,print_all_bulletin,Notes,/print-all-bulletin
 ACTION,Imprimer un bulletin,print_bulletin,Notes,/print-bulletin
 ACTION,Imprimer les bulletins (General),print_all_bulletin_gle,Notes,/print-all-bulletin-general
+ACTION,Imprimer releve de notes,print_releve_notes,Notes,/print-releve-notes
 ACTION,Imprimer un bulletin (General),print_bulletin_gle,Notes,/print-bulletin-general
 ACTION,Admission des eleves en fonction de leur moyenne generale,student_admission,Notes,/palmares-notes
 ACTION,Tableau d'honneur des eleves,tableau-honneur,Notes,/tableau-honneur

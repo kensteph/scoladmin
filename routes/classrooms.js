@@ -147,7 +147,7 @@ router.post('/save-affectation-change-db', auth, async (req, res) => {
     let students_str = req.body.students;
     let studentSelectedArray = students_str.split(",");
     let nbStudents = studentSelectedArray.length;
-    let userName = req.session.userData.userName;
+    let userName = req.session.UserData.userName;
     console.log("STUDENTS ID : ",studentSelectedArray,"COUNT : ",nbStudents);
     let response ;
     //GET INFO ABOUT THE CLASSROOM
@@ -169,12 +169,7 @@ router.post('/save-affectation-change-db', auth, async (req, res) => {
             console.log(response);
         }
     }
-    // let response = await dbController.editSettings(req);
-    // if (response.type == "success") {
-    //     res.json(response);
-    //     //res.render('../views/index.ejs');
-    //     //console.log(response);
-    // }
+    res.json(response);
 
 });
 //================================== SETTINGS ==============================

@@ -49,12 +49,14 @@
                                                 data-target="#filter-modal" aria-hidden="true">
                                                     <i class="fa fa-filter fa-2x to-link" title="Filtre" ></i> Filtrer le Tableau 
                                                 </a>
-                                                <% if(studentList.length> 0){ %>
+                                                <% if(UserData.userAccess.includes('print-tableau-honneur') || UserData.userAccess.includes('All')){ %>
+                                                    <% if(studentList.length> 0){ %>
                                                     &nbsp;&nbsp;
                                                     <a title="Impression" target="_blank"
                                                         href="/print-tableau-honneur?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
                                                             class="fa fa-print fa-2x"></i> Imprimer le tableau</a>
                                                     <% } %>
+                                                <% } %>
                                             </div>
 
                                         </li>

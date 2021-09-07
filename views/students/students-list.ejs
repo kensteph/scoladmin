@@ -114,7 +114,7 @@
                                                                     <strong>
                                                                         <a
                                                                             href="/student-details?ID=<%=Student.id_personne%>">
-                                                                            <%=Student.fullname+"("+Student.dossier+")"%>
+                                                                            <%=Student.fullname+" ("+Student.dossier+")"%>
                                                                         </a>
                                                                     </strong>
 
@@ -296,18 +296,20 @@
                                             &nbsp;&nbsp;
                                             <select class="form-control" name="AneAca">
                                                 <% aneacaList.forEach((year)=> { %>
-                                                    <% if(currentYear>= year.aneaca){ %>
+                                                    <% if(year.aneaca >=yearSelected){ %>
                                                         <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
                                                                 value="<%=year.aneaca%>">
                                                                     <%=year.aneaca%>
                                                         </option>
-                                                        <% } %>
-                                                            <% }) %>
+                                                    <% } %>
+                                            <% }) %>
                                             </select>
 
                                         </div>
                                     </div>
                                 </form>
+                                <br>
+                                <div id="NotifyChangeAffectation" align="center"></div>
                                 <div class="modal-footer">
                                     <button class="btn btn-success" id="changeAffectation"
                                         onclick="changeAffectation()">Enregistrer</button>
@@ -339,6 +341,7 @@
     <script>
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
+            $('#classroomForm').trigger("reset");
             $("#modalTitle").html("Nouvel Etudiant/Elève");
             $("#Statut").attr("disabled", true);
             $("#Niveau").val(0);
@@ -421,11 +424,11 @@
             let formData = $("#AffectationForm").serialize();
 
             $.post("/save-affectation-change-db", formData, function (data) {
-                // if (data.success) { //Success 
-                //     $("#notifySignature").html(data.msg);
-                // } else {
-                //     $("#notifySignature").html(data.msg);
-                // }
+                if (data.success) { //Success 
+                    $("#NotifyChangeAffectation").html(data.msg);
+                } else {
+                    $("#NotifyChangeAffectation").html(data.msg);
+                }
             });
         }
 

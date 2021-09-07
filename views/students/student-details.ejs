@@ -41,8 +41,8 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">
                                             <div id="contact">
-                                                <a title="Imprimer la fiche de l'élève,étudiant" target="_blank"
-                                                    href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
+                                                <a title="Imprimer la fiche de l'élève" target="_blank"
+                                                    href="#"><i
                                                         class="fa fa-print fa-2x"></i></a>
                                             </div>
 
@@ -76,7 +76,7 @@
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col-3">
-                                                                        <img src="../../uploads/<%=studentInfo.img_profile%>"
+                                                                        <img width="200" height="200" src="../../uploads/<%=studentInfo.img_profile%>"
                                                                             class="mw-100" alt="image">
                                                                         <input type="file" name="avatar" class="mt-4" />
                                                                         <input type="hidden" name="OldImgName" value="<%=studentInfo.img_profile%>">
@@ -206,6 +206,7 @@
                                                 </div> -->
                                             </div>
                                             <input type="hidden" name="StudentID" value="<%=studentInfo.id_personne%>">
+                                            <input type="hidden" name="What" value="<%=what%>">
                                             <input type="submit" value="Modifier" class="btn btn-success">
                                         </form>
                                     </div>
@@ -218,75 +219,6 @@
                             <!-- partial -->
                     </div>
                     <!-- main-panel ends -->
-
-                    <!-- ADD STUDENT -->
-                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <strong id="modalTitle">Nouvel Etudiant/Elève</strong>
-                                    <a class="close" data-dismiss="modal">×</a>
-                                </div>
-                                <form id="classroomForm" name="contact" role="form" method="POST">
-                                    <div class="modal-body">
-                                        <label for="ClassRoom">Salle de classe</label><br>
-                                        <div class="form-inline">
-                                            <select class="form-control w-50" name="ClassRoom" required id="ClassRoom">
-                                                <option value="0">------Salle de classe------</option>
-                                                <% data.forEach((classroom)=> { %>
-                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
-                                                            value="<%=classroom.id%>">
-                                                                <%=classroom.classe%>
-                                                    </option>
-                                                    <% }) %>
-                                            </select>
-                                            &nbsp; &nbsp;
-                                            <input type="text" required name="AneAca" id="AneAca" value="2020-2021"
-                                                title="Année Académique" onclick="select()" class="form-control w-25"
-                                                placeholder="Année Académique">
-                                            <input type="hidden" name="Niveau" id="Niveau">
-                                            <br>
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <label for="Firstname">Prénom</label>
-                                            <input type="text" required name="Firstname" id="Firstname"
-                                                class="form-control" placeholder="Prénom de l'étudiant/élève">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Lastname">Nom</label>
-                                            <input type="text" required name="Lastname" id="Lastname"
-                                                class="form-control" placeholder="Nom de l'étudiant/élève">
-                                        </div>
-                                        <div class="form-inline">
-                                            <label for="Sexe">Sexe</label>
-                                            &nbsp; &nbsp;
-                                            <select class="form-control" name="Sexe" required id="Sexe">
-                                                <option value="F">Féminin</option>
-                                                <option value="M">Masculin</option>
-                                            </select>
-                                            &nbsp; &nbsp;
-                                            <label for="Statut">Statut</label>
-                                            &nbsp; &nbsp;
-                                            <select class="form-control" name="Statut" id="Statut">
-                                                <option value="1">Activé
-                                                </option>
-                                                <option value="0">Désactivé</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="submit" id='btnClassroom' value="Enregistrer"
-                                            class="btn btn-success" id="submit">
-                                        <input type="hidden" name="actionField" id="actionField">
-                                        <input type="hidden" name="StudentID" id="StudentID">
-                                        <input type="hidden" name="AffectationID" id="AffectationID">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
             </div>
             <!-- page-body-wrapper ends -->

@@ -105,6 +105,11 @@
                             <a class="nav-link" href="students-list">Liste des Etudiants/Elèves</a>
                         </li>
                     <% } %>
+                    <% if(UserData.userAccess.includes('registered-students-list') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registered-students-list">Liste des inscrits</a>
+                        </li>
+                    <% } %>
                     <li class="nav-item">
                         <!-- <a class="nav-link" href="students-gallery">Gallerie des Etudiants/Elèves</a> -->
                     </li>

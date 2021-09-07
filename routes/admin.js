@@ -51,9 +51,10 @@ router.post('/student-archives-result', auth, async (req, res) => {
     let lastClassRoom;
     
     for (let yearAca of allClasses) {
-        let methodeEvaluationForThisYear = await dbNotesController.getModeEvaluation(yearAca.niveau, yearAca.aneaca);
+        console.log("STUDENT YEARS  : ",yearAca);
+        let methodeEvaluationForThisYear = await dbNotesController.getModeEvaluation(yearAca.classroom, yearAca.aneaca);
         let methode;
-        //console.log("METHODE : ", methodeEvaluationForThisYear);
+        console.log("METHODE : ", methodeEvaluationForThisYear);
         if (methodeEvaluationForThisYear!=null) {
             //console.log("METHODE : ", methodeEvaluationForThisYear);
             methode = methodeEvaluationForThisYear.mode_evaluation;
@@ -86,12 +87,14 @@ router.post('/student-archives-result', auth, async (req, res) => {
         // console.log("YEAR : ", yearAca.aneaca, " METHODE : ", methode," NBPERIODGLE : ",nbPeriodGle.length,"MOYENNE PASSAGE : ",moyennePassage);
         // console.log("MOYENNE GLE : ",moyenneGleStudent);
     }
-
+  // console.log("LAST GLE : ",lastMoyGle);
+  let nbClass=allClasses.length;
+    console.log("ALL CLASSES : ", allClasses,"SIZE : ",nbClass);
     fromClass= allClasses[0];
     toClass= allClasses[allClasses.length-1];
     let beforeLastYear;
     let fromToClassbeforeLastYear="";
-    if(allClasses.length==1){
+    if(nbClass==1){
         fromToClass=fromClass.classe+"  "+fromClass.aneaca;
     }else{
         fromToClass=fromClass.classe+"  "+fromClass.aneaca+" à "+toClass.classe+"  "+toClass.aneaca;
@@ -101,8 +104,7 @@ router.post('/student-archives-result', auth, async (req, res) => {
         toClassBeforeLast= allClasses[allClasses.length-2];
         fromToClassbeforeLastYear=fromClass.classe+"  "+fromClass.aneaca+" à "+toClassBeforeLast.classe+"  "+toClassBeforeLast.aneaca;
     }
-    // console.log("LAST GLE : ",lastMoyGle);
-    console.log("ALL CLASSES : ", allClasses);
+    
     //console.log("ALL PERIODES : ", periodsByYear);
 
     let pageTitle = studentFullName;

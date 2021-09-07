@@ -198,7 +198,7 @@ router.get('/save-notes', auth, async (req, res) => {
         infoCourse = await dbCoursesController.courseInfoById(CourseSelectedId, roomSelected);
         //COURSES LIST
         coursesList = await dbCoursesController.listOfCoursesByClassroom(roomSelected);
-        studentList = await dbController.listOfStudentWithoutNotes(roomSelected, CourseSelectedId, roomSelected, periodSelected, yearSelected);
+        studentList = await dbController.listOfStudentWithoutNotes(roomSelected, CourseSelectedId, periodSelected, yearSelected);
 
         pageTitle = "Notes " + info.classe + " " + periodSelected + " " + yearSelected + " | " + infoCourse.libelle;
     }
@@ -440,18 +440,18 @@ router.post('/palmares-notes', auth, async (req, res) => {
     res.render('../views/notes/palmares-notes', params);
 });
 //MANAGE STUDENT ADMISSION
-router.get('/student-admission', auth, async (req, res) => {
-    console.log("DATA RECEIVED : ",req.query);
+router.post('/student-admission', auth, async (req, res) => {
+    console.log("DATA RECEIVED : ",req.body);
     console.log("MOYENNE PASSAGE : ",global.moyennePassage);
     let moyennePassage=global.moyennePassage;
-    let methodEvaluationCode =  req.query.methodEvaluationCode;
+    let methodEvaluationCode =  req.body.methodEvaluationCode;
     let periodList = await dbController.listOfGeneralPeriod(methodEvaluationCode);
     let nbPeriodGle = periodList.length;
     let aneacaList = await dbClassroomController.getAcademicYear();
     let academicYearObj = helper.getAcademicYear();
-    let yearSelected = req.query.yearSelected;
-    let roomSelected = req.query.roomSelected;
-    let periodSelected = req.query.periodSelected;
+    let yearSelected = req.body.yearSelected;
+    let roomSelected = req.body.roomSelected;
+    let periodSelected = req.body.periodSelected;
     console.log(" NB PERIOD GEN : ",nbPeriodGle);
     
     //GET INFO ABOUT THE CLASSROOM

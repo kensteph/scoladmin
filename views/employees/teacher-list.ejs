@@ -61,7 +61,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <% teacherList.forEach((teacher)=> { %>
+                                            <% teacherList.forEach((teacher)=> { 
+                                               if(teacher.fullname!="Admin Admin"){    
+                                            %>
                                                 <tr id="row<%=teacher.id_personne%>">
                                                     <td><%=teacher.fullname%></td>
                                                     <td>
@@ -76,7 +78,7 @@
                                                                         onclick="deleted('<%=teacher.id_personne%>','<%=teacher.prenom%>','<%=teacher.nom%>','<%=teacher.sexe%>','<%=teacher.fullname%>')"></i>
                                                     </td>
                                                 </tr>
-                                            <% }) %>    
+                                            <% } }) %>    
                                                    
                                             </tbody>
                                         </table>

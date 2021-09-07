@@ -229,6 +229,8 @@
                 let courseName = $("#courseName");
                 let cname = course.options[course.selectedIndex].text;
                 courseName.val(cname);
+                //SET btnContinue
+                $("#btnContinue").prop("disabled", false);
             }
             //AUTOFILL CLASSNAME ON SELECTED ITEM
             function populateCoursesList() {

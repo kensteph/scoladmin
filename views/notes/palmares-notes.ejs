@@ -418,7 +418,7 @@
         function admission(methodEvaluationCode, yearSelected, roomSelected) {
             $("#msgAdmission").html("Traitement en cours....");
             $("#summary").html("");
-            $.get("/student-admission",{methodEvaluationCode, yearSelected, roomSelected}, function (data) {
+            $.post("/student-admission",{methodEvaluationCode, yearSelected, roomSelected}, function (data) {
                 let color="";
                 let table = "<div class='table-striped tableFixHead'><table class='table table-fixed-header table-striped'> <thead><tr><th class='th-fixed-header'>#</th><th class='th-fixed-header'>ELEVES</th class='th-fixed-header'><th class='th-fixed-header'>MOY. GLE</th></tr><thead> ";
                 let pos =1;

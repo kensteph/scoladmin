@@ -8,6 +8,7 @@ module.exports = async (req, res, next) => {
     let tableOfHonor=[];
     let title="";
     console.log("TABLE OF HONOR: ",tableToDisplay);
+    console.log("PERIODE OF HONOR: ",lastPeriodeInTableNote);
     //let methodEvaluationCode = await ctrlNotes.getYearModeEvaluation(currentYear);
 
     if(tableToDisplay=="Honorable"){

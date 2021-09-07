@@ -1,8 +1,7 @@
 const con = require('./database');
 const helper = require("../helpers/helper");
 var self = module.exports = {
-    //ADD NEW STUDENT
-    //Save Test in the DB
+    //ADD NEW STUDENT TO A CLASS WITHOUT INSCRIPTION
     addStudent: async function (req) {
         let promise = new Promise((resolve, reject) => {
 
@@ -57,6 +56,76 @@ var self = module.exports = {
                             msg = {
                                 type: "success",
                                 msg: fullname+" ajouté(e) avec succès...",
+                                success: true,
+                            }
+                            resolve(msg);
+                        });
+
+                    });
+                });
+            });
+            /* End transaction */
+        });
+        data = await promise;
+        //console.log(data); 
+        return data;
+    },
+
+    //ADD NEW STUDENT | INSCRIPTION
+    registerStudent: async function (req) {
+        let promise = new Promise((resolve, reject) => {
+
+            let prenom = req.body.Firstname;
+            let nom = req.body.Lastname;
+            let fullname = prenom+" "+nom.toUpperCase();
+            let sexe = req.body.Sexe;
+            let userInfo = req.session.UserData;
+            let acteur = userInfo.userName;
+            let initial=prenom.substring(0,1)+nom.substring(0,1);
+
+            //   /* Begin transaction */
+            con.beginTransaction(function (err) {
+                if (err) { throw err; }
+                //Insert info into personne table
+                let sql = "INSERT INTO tb_personnes (prenom,nom,sexe) VALUES (?,?,?)";
+                con.query(sql, [prenom, nom, sexe], function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        con.rollback(function () {
+
+                        });
+                    }
+                    let id_personne = result.insertId;
+                    let niveau = req.body.Niveau;
+                    let classroom = req.body.ClassRoom;
+                    let aneaca = req.body.AneAca;
+                    let dossier = helper.generateCode(initial,id_personne);
+                    //INSERT INFO INTO TABLE INSCRIPTION
+                    let sql2 = "INSERT INTO tb_inscription (pers_id, niveau, aneaca,inscrit_par) VALUES (?,?,?,?)";
+                    con.query(sql2, [id_personne, niveau, aneaca, acteur], async function (err, result) {
+                        if (err) {
+                            con.rollback(function () {
+                                console.log(err);
+                            });
+                        }
+                        //COMMIT IF ALL DONE COMPLETELY
+                        con.commit(function (err) {
+                            if (err) {
+                                con.rollback(function () {
+                                    msg = {
+                                        type: "danger",
+                                        msg:
+                                            "Une erreur est survenue. Veuillez réessayer s'il vous plait.",
+                                    };
+                                    resolve(msg);
+                                });
+                            }
+
+                            //update the dossier number int
+                            self.editStudentDossier(id_personne,dossier);
+                            msg = {
+                                type: "success",
+                                msg: fullname+" est inscrit(e) avec succès...",
                                 success: true,
                             }
                             resolve(msg);
@@ -197,6 +266,22 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+    //New Register Student Info
+    getNewRegisterInfo: async function (id) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname,af.id as id_affectation FROM tb_personnes as pers,tb_inscription as af WHERE pers.id=af.pers_id AND pers.id=?";
+            con.query(sql, [id], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //Student Info CLASSES
     getStudentClasses: async function (id) {
         let promise = new Promise((resolve, reject) => {
@@ -256,6 +341,44 @@ var self = module.exports = {
             }
 
             console.log(classroom, aneAca, active);
+            con.query(sql, params, function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+        //Load All The students
+    listOfRegisteredStudent: async function (niveau, aneAca, approuve = "All") {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "";
+            let params = [];
+            if (approuve == "All") {
+                if (niveau == "All") {
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_inscription as af,tb_classes c WHERE pers.id=af.pers_id AND af.niveau=c.id AND aneaca=? ORDER BY nom,prenom";
+                    params = [aneAca];
+                } else {
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_inscription as af,tb_classes c WHERE pers.id=af.pers_id AND af.niveau=c.id AND niveau=? AND aneaca=? ORDER BY nom,prenom";
+                    params = [niveau, aneAca];
+                }
+
+            } else {
+                if (niveau == "All") {
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_inscription as af,tb_classes c WHERE pers.id=af.pers_id AND af.niveau=c.id AND aneaca=? AND approuve=? ORDER BY nom,prenom";
+                    params = [aneAca, approuve];
+                } else {
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_inscription as af,tb_classes c WHERE pers.id=af.pers_id AND af.niveau=c.id AND niveau=? AND aneaca=? AND approuve=? ORDER BY nom,prenom";
+                    params = [niveau, aneAca, approuve];
+                }
+
+            }
+
+            console.log(niveau, aneAca, approuve);
             con.query(sql, params, function (err, rows) {
                 if (err) {
                     throw err;

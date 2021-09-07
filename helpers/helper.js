@@ -225,6 +225,10 @@ let self = module.exports = {
         var Day = today.getDate();
         var Month = today.getMonth() + 1;
         var Year = today.getFullYear();
+        if(Month==10 && Month<=12){
+            Year=Year+1;
+            console.log("ANEACA YEAR : ",Year);
+        }
         aneAcaP = Year - 1 + '-' + Year;
         aneAcaN = Year + '-' + (Year + 1);
         aneAca = { Previous: aneAcaP, Next: aneAcaN };
