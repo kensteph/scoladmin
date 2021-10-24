@@ -25,7 +25,7 @@ router.post('/classrooms-list', auth, async (req, res) => {
     }
 
     if (response.type == "success") {
-        res.redirect('/classrooms-list');
+        res.redirect('/classrooms-list?msg=' + response.msg);
     } else {
         console.log(response.msg);
         res.redirect('/classrooms-list?msg=' + response.msg);

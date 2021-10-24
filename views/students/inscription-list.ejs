@@ -62,8 +62,7 @@
                                                     <% if(UserData.userAccess.includes('print_student_list') || UserData.userAccess.includes('All')){ %>
                                                     <a title="Liste des élèves" target="_blank"
                                                         href="/print-inscrit-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&statut=<%=statutSelected%>"><i
-                                                            class="fa fa-print fa-2x"></i> Imprimer la liste des
-                                                        élèves</a>
+                                                            class="fa fa-print fa-2x"></i> Imprimer la liste</a>
                                                     <% } %>
                                                 <% } %>
                                             </div>
@@ -75,11 +74,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title h-red">
-                                        <% if(locals.msg){ %>
-                                            <%=msg %>
-                                                <% } %>
+                                <% if(locals.msg){ %>
+                                    <h4 class="<%=classStyle%>">
+                                        <%=msg%>
                                     </h4>
+                                    <% } %>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive table-striped">
@@ -96,17 +95,28 @@
                                                             <% } %>
                                                             <th>Elèves/Etudiants</th>
                                                             <th>Sexe</th>
+                                                            <th>Classe</th>
+                                                            <th>Statut</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% studentList.forEach((Student)=> { %>
+                                                        <% studentList.forEach((Student)=> { 
+                                                            let registrationSatus="";
+                                                            if(Student.approuve==-1){
+                                                                registrationSatus = "Rejetée";
+                                                            }else if(Student.approuve==1){
+                                                                registrationSatus = "Approuvée";
+                                                            }else{
+                                                                registrationSatus = "En attente";
+                                                            }
+                                                        %>
                                                             <tr>
                                                                 <% if(UserData.userAccess.includes('approve_registration') || UserData.userAccess.includes('All')){ %>
                                                                     <td style="width: 10px;">
-                                                                        <input id="check-<%=Student.id_personne%>"
+                                                                        <input id="Choices"
                                                                             class="checkbox" type="checkbox"
-                                                                            onchange="selectStudent(this,'<%=Student.pers_id%>')">
+                                                                            onchange="selectStudent(this,'<%=Student.pers_id%>','<%=Student.niveau%>')">
                                                                     </td>
                                                                 <% } %>
                                                                 <td>
@@ -114,26 +124,37 @@
                                                                         <strong>
                                                                             <a
                                                                                 href="/student-details?ID=<%=Student.pers_id%>&registered">
-                                                                                <%=Student.fullname+"("+Student.dossier+")"%>
+                                                                                <%=Student.fullname+" ("+Student.dossier+")"%>
                                                                             </a>
                                                                         </strong>
+                                                                    <% }else{ %>
+                                                                        <%=Student.fullname+" ("+Student.dossier+")"%>
                                                                     <% } %>
                                                                 </td>
                                                                 <td>
                                                                     <%=Student.sexe%>
                                                                 </td>
                                                                 <td>
+                                                                    <%=Student.classe%>
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    <%=registrationSatus%>
+                                                                </td>
+                                                                <td>
+                                                                <%if(Student.approuve!=1){%>
                                                                     <% if(UserData.userAccess.includes('edit_registration') || UserData.userAccess.includes('All')){ %>
                                                                         <i class="fas fa-edit to-link"
-                                                                            title="Modifier <%=Student.fullname%>"
-                                                                            onclick="edit('<%=Student.pers_id%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
+                                                                            title="Modifier l'inscription de <%=Student.fullname%>"
+                                                                            onclick="edit('<%=Student.pers_id%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.niveau%>','<%=Student.active%>')"> Modifier</i>
                                                                     <% } %>
                                                                     <% if(UserData.userAccess.includes('delete_registration') || UserData.userAccess.includes('All')){ %>
                                                                         &nbsp;&nbsp;&nbsp;
                                                                         <i class="fas fa-trash to-link h-red"
-                                                                            title="Supprimer <%=Student.fullname%>"
-                                                                            onclick="deleted('<%=Student.pers_id%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"></i>
+                                                                            title="Supprimer l'inscription de <%=Student.fullname%>"
+                                                                            onclick="deleted('<%=Student.pers_id%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.niveau%>','<%=Student.id_affectation%>')"> Supprimer</i>
                                                                     <% } %>
+                                                                <% } %>
                                                                 </td>
 
                                                             </tr>
@@ -215,7 +236,7 @@
                                             class="btn btn-success" id="submit">
                                         <input type="hidden" name="actionField" id="actionField">
                                         <input type="hidden" name="StudentID" id="StudentID">
-                                        <input type="hidden" name="AffectationID" id="AffectationID">
+                                        <input type="hidden" name="InscriptionID" id="AffectationID">
                                     </div>
                                 </form>
                             </div>
@@ -272,48 +293,30 @@
                             </div>
                         </div>
                     </div>
-                    <!-- CHANGE AFFECTATION -->
+                    <!-- ACCEPTER | REEJTER  -->
                     <div id="affectation-modal" class="modal fade" role="dialog" data-backdrop="static">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <strong id="modalAffectationTitle">Affectation</strong>
+                                    <strong>Changement de statut</strong>
                                     <a class="close" data-dismiss="modal">×</a>
                                 </div>
                                 <form id="AffectationForm" role="form">
                                     <div class="modal-body">
-                                        <label for="Niveau">Salle de classe </label>
                                         <div class="form-inline">
-                                            <select class="form-control w-60" id="ClassRoomID" name="ClassRoom">
-                                                <% data.forEach((classroom)=> { %>
-                                                    <% if(niveau==classroom.niveau){ %>
-                                                        <option value="<%=classroom.id%>">
-                                                            <%=classroom.classe%>
-                                                        </option>
-                                                        <% } %>
-                                                            <% }) %>
-                                            </select>
-                                            <input type="hidden" name="currentNiveau" value="<%=niveau%>">
-                                            <input type="hidden" id="StudentsSelected" name="students"
-                                                value="<%=niveau%>">
-                                            &nbsp;&nbsp;
-                                            <select class="form-control" name="AneAca">
-                                                <% aneacaList.forEach((year)=> { %>
-                                                    <% if(currentYear>= year.aneaca){ %>
-                                                        <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
-                                                                value="<%=year.aneaca%>">
-                                                                    <%=year.aneaca%>
-                                                        </option>
-                                                        <% } %>
-                                                            <% }) %>
-                                            </select>
-
+                                            <strong id="modalSetRegistrationStatusTitle"></strong>&nbsp;
+                                            <select class="form-control w-25" name="Statut" title="Statut de l'inscription">
+                                                <option value="1" >Approuvée</option>
+                                                <option value="0" >Mettre en attente</option>
+                                                <option value="-1" >Rejetée</option>
+                                            </select>&nbsp;
+                                            l'inscription.
                                         </div>
                                     </div>
                                 </form>
                                 <div class="modal-footer">
                                     <button class="btn btn-success" id="changeAffectation"
-                                        onclick="changeAffectation()">Enregistrer</button>
+                                        onclick="changeStatutInscription()">Enregistrer</button>
 
                                 </div>
 
@@ -342,6 +345,7 @@
     <script>
         //EDIT INFO ABOUT CLASSROOM
         function addClassroom() {
+            $("#classroomForm").trigger('reset');
             $("#modalTitle").html("Nouvel Etudiant/Elève");
             $("#Statut").attr("disabled", true);
             $("#Niveau").val(0);
@@ -355,15 +359,16 @@
             $("#classroom-modal").modal();
         }
         //EDIT INFO ABOUT CLASSROOM
-        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID, Statut) {
+        function edit(StudentID, firstname, lastname, gender, fullname, AffectationID,niveau,Statut) {
             $("#Statut").attr("disabled", false);
             $("#Statut").val(Statut);
-            $("#modalTitle").html("Modification " + fullname);
-            $("#Firstname").val(firstname);
-            $("#Lastname").val(lastname);
-            $("#Sexe").val(gender);
+            $("#modalTitle").html("Modification du statut de l'inscription : " + fullname);
+            $("#Firstname").val(firstname).attr("disabled", true);
+            $("#Lastname").val(lastname).attr("disabled", true);
+            $("#Sexe").val(gender).attr("disabled", true);
             $("#StudentID").val(StudentID);
             $("#AffectationID").val(AffectationID);
+            $("#ClassRoom").val(niveau);
             $("#actionField").val("Edit");
             $("#btnClassroom").val("Modifier");
             $("#btnClassroom").removeClass();
@@ -372,7 +377,7 @@
         }
         //DELETE INFO ABOUT CLASSROOM
         function deleted(StudentID, firstname, lastname, gender, fullname, classroom, AffectationID) {
-            $("#modalTitle").html("Voulez-vous supprimer " + fullname + " de cette classe?");
+            $("#modalTitle").html("Voulez-vous supprimer l'inscription de : " + fullname);
             $("#Statut").attr("disabled", true);
             $("#Firstname").val(firstname);
             $("#Lastname").val(lastname);
@@ -386,44 +391,52 @@
             $("#btnClassroom").addClass("btn btn-danger");
             $("#classroom-modal").modal();
         }
-
         //ARRAY OF SELECTED STUDENT
         let studentSelected = [];
+        let studentSelectedNiveau = [];
         //SELECT STUDENT
-        function selectStudent(check, val) {
+        function selectStudent(check,val,niveau) {
             if (check.checked) {
                 studentSelected.push(val);
+                studentSelectedNiveau.push(niveau);
                 $("#selectCount").show();
             } else {
                 if (studentSelected.includes(val)) {
+                    studentSelectedNiveau.pop(niveau);
                     studentSelected.pop(val);
                 }
             }
             let count = studentSelected.length;
             if (count == 0) {
                 $("#selectCount").hide();
+                studentSelected = [];
+                studentSelectedNiveau = [];
             } else {
                 $("#selectCount").show();
             }
-            $("#selectCount").html("Sélection : " + count);
-            $("#StudentsSelected").val(studentSelected.join());
-
-        }
-        //LAUNCH MODAL AFFECTATION
-        function launchModalAffectation() {
-            let nbClassRoom = $("#ClassRoomID option").length;
-            if (nbClassRoom > 0) {
-                $("#changeAffectation").show();
-            } else {
-                $("#changeAffectation").hide();
+            let StudentInfo=[];
+            for(i=0;i<count;i++){
+                StudentInfo.push({StudentID: studentSelected[i],StudentNiveau: studentSelectedNiveau[i]});
             }
+            $("#modalSetRegistrationStatusTitle").html("Pour les " + count+" élèves sélectionnés");
+            $("#selectCount").html("Changer Statut");
+            $("#StudentsSelected").val(studentSelected.join());
+            console.log(StudentInfo);
+        }
+        //LAUNCH MODAL CHANGER STATUT INSCRIPTION
+        function launchModalAffectation() {
+            // let nbClassRoom = $("#ClassRoomID option").length;
+            // if (nbClassRoom > 0) {
+            //     $("#changeAffectation").show();
+            // } else {
+            //     $("#changeAffectation").hide();
+            // }
             $("#affectation-modal").modal();
         }
         //SAVE AFFECTATION CHANGE TO DB
-        function changeAffectation() {
+        function changeStatutInscription() {
             let formData = $("#AffectationForm").serialize();
-
-            $.post("/save-affectation-change-db", formData, function (data) {
+            $.post("/change-registration-status", formData, function (data) {
                 // if (data.success) { //Success 
                 //     $("#notifySignature").html(data.msg);
                 // } else {

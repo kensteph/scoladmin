@@ -55,8 +55,7 @@ var self = module.exports = {
                     msg = {
                         type: "success",
                         success: true,
-                        msg:
-                            "<font color='green'><strong> " + classroomName + " modifié avec succès...</strong></font>",
+                        msg:classroomName + " modifié avec succès...",
                         nb_success: result.affectedRows,
                     };
                 }
@@ -260,7 +259,7 @@ var self = module.exports = {
                     type: "success",
                     success: true,
                     msg:
-                        "<font color='green'><strong> Affection réalisée avec succès...</strong></font>",
+                        "Affection réalisée avec succès...",
                     nb_success: result.affectedRows,
                 };
             }
@@ -282,7 +281,7 @@ var self = module.exports = {
                     msg = {
                         type: "danger",
                         msg:
-                            "<font color='red'><strong>Vous avez déja affecté cet eleve.</strong></font>",
+                            "Vous avez déja affecté cet eleve.",
                         debug: err
                     };
                 } else {
@@ -290,7 +289,7 @@ var self = module.exports = {
                         type: "success",
                         success: true,
                         msg:
-                            "<font color='green'><strong> Modification Affection réalisée avec succès...</strong></font>",
+                            "Modification Affection réalisée avec succès...",
                         nb_success: result.affectedRows,
                     };
                 }

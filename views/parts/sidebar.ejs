@@ -118,6 +118,40 @@
         </li>
         <% } %>
 
+        <!-- MENU ECONOMAT -->
+        <% if(UserData.userAccess.includes('Economat') || UserData.userAccess.includes('All')){ %>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#economat-menu" aria-expanded="false" aria-controls="note-menu">
+                    <i class="fas fa-money-check-alt menu-icon"></i>
+                    <span class="menu-title">Economat</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="economat-menu">
+                    <ul class="nav flex-column sub-menu">
+                        <% if(UserData.userAccess.includes('scolarite-list') || UserData.userAccess.includes('All')){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="scolarite-list">Scolarités</a>
+                            </li>
+                            <% } %>
+        
+                                <% if(UserData.userAccess.includes('account-list') || UserData.userAccess.includes('All')){ %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="account-list">Liste des Comptes</a>
+                                    </li>
+                                    <% } %>
+        
+                                <% if(UserData.userAccess.includes('transactions') || UserData.userAccess.includes('All')){ %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="transactions">Transactions</a>
+                                    </li>
+                                <% } %>
+
+                    </ul>
+                </div>
+            </li>
+        <% } %>
+
+
         <!-- MENU NOTES-->
         <% if(UserData.userAccess.includes('Notes') || UserData.userAccess.includes('All')){ %>
         <li class="nav-item">
@@ -188,6 +222,11 @@
                     <% if(UserData.userAccess.includes('student_archives') || UserData.userAccess.includes('All')){ %>
                         <li class="nav-item">
                             <a class="nav-link" href="student-archives">Archives</a>
+                        </li>
+                    <% } %>
+                    <% if(UserData.userAccess.includes('recovery') || UserData.userAccess.includes('All')){ %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recovery">Restauration </a>
                         </li>
                     <% } %>
 

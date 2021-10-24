@@ -78,6 +78,7 @@
                                                 <table id="order-listing" class="table">
                                                     <thead>
                                                         <tr>
+                                                            <th>Id</th>
                                                             <th>Cours(Matière)</th>
                                                             <th>Code</th>
                                                             <th>Position sur le bulletin</th>
@@ -94,6 +95,9 @@
                                                             }
                                                             %>
                                                             <tr class="<%=css_class%>" title="<%=desactive%>">
+                                                                <td>
+                                                                    <%=course.id_cours%>
+                                                                </td>
                                                                 <td>
                                                                     <%=course.libelle%> | <%=course.coefficient%>
                                                                 </td>

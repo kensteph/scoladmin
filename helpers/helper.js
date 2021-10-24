@@ -446,4 +446,15 @@ let self = module.exports = {
         }
         return title;
     },
+    inscriptionStatus(status) {
+        let title="";
+        if (status==-1) {
+            title = "Rejetée";
+        } else if (status==1) {
+            title = "Approuvée";
+        } else {
+                title = "En attente";
+        }
+        return title;
+    },
 }

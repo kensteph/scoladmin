@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <% if(UserData.userAccess.includes('create-account') || UserData.userAccess.includes('All')){ %>
+                                                    <button type="button" class="btn btn-info btn"
+                                                        onclick="launchCreateAccount()">Créer Compte</button>
+                                                <% } %>
+                                                
+                                                    <a href="#" title="Filtrer la liste" data-toggle="modal"
+                                                        data-target="#filter-modal" aria-hidden="true">
+                                                        <i class="fa fa-filter fa-2x to-link"></i>
+                                                        Filtrer la liste
+                                                    </a>
+
+                                                <% if(accountLists.length> 0){ %>
+                                                    &nbsp;&nbsp;
+                                                    <% if(UserData.userAccess.includes('print-scolarite') || UserData.userAccess.includes('All')){ %>
+                                                    <a title="Liste des élèves" target="_blank"
+                                                        href="/print-scolarite?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i> Imprimer</a>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <% if(locals.msg){ %>
+                                        <h4 class="<%=classStyle%>">
+                                            <%=msg%>
+                                        </h4>
+                                    <% } %>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Elèves</th>
+                                                            <th>Balance</th>
+                                                            <% if(roomSelected =="All" ){ %>
+                                                                <th> Classe </th>
+                                                            <% } %>
+                                                            <th> Actions</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% accountLists.forEach((account)=> { %>
+                                                            <tr>
+                                                                <td class="to-link" onclick="launchSearchTrans('<%=account.id_personne%>')">
+                                                                    <a href="#" title="Voir les transactions"><strong id="Fullname<%=account.id_personne%>">
+                                                                        <%=account.fullname+" | "+account.dossier%>
+                                                                    </strong>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <strong id="CurrentBalance<%=account.id_personne%>">
+                                                                        <%=account.balance%>
+                                                                    </strong>
+                                                                </td>
+                                                                    <% if(roomSelected=="All" ){ %>
+                                                                        <td>
+                                                                            <%=account.classe%>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <td>
+                                                                        <% if(UserData.userAccess.includes('add-transaction') || UserData.userAccess.includes('All')){ %>
+                                                                    
+                                                                            <i class="fas fa-plus-circle to-link" title="Nouvelle transaction pour <%=account.fullname+' | '+account.dossier%>" onclick="launchAccountTransaction('<%=account.id_personne%>','<%=account.acc_id%>')">
+                                                                                Transaction</i>
+                                                                    
+                                                                            <% } %>
+                                                                    </td>
+                                                                    
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- CREATE ACCOUNT -->
+                    <div id="Account-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">GREATION DE NOUVEAU COMPTE</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                    <div class="modal-body">
+                                        <form id="FormCreateAcc">
+                                            <p style="align-self: center;font-size: 16px;">Le système va Créer un compte pour les élèves qui n'en ont pas encore pour l'Année Académique :
+                                                <select name="AneAca" id="AneAcaC">
+                                                    <option value="<%=currentYear%>"><%=currentYear%></option>
+                                                    <option value="<%=nextYear%>"><%=nextYear%></option>
+                                                </select>
+                                            </p>
+                                        </form>
+                                        
+                                        <strong id="loaderCreateAcc"></strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button onclick="createAccount()" class="btn btn-success" id="btnCreateAcc">
+                                            Créer Compte
+                                        </button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="Niveau">Classe </label>
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" name="ClassRoom">
+                                                <option value="All">Toutes les classes</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                            
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" >
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ADD TRANSACTIONS -->
+                    <div id="Transactions-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="TransTitle">NOUVELLE TRANSACTION</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="FormAddTrans">
+                                        <p style="align-self: center;font-size: 16px;"> BALANCE : <strong id="ACCBALANCE"></strong></p>
+                                        <div class="form-inline">
+                                            <input type="number" min="1" name="Versement" id="Versement" title="Versement de l'eleve" placeholder="Versement" class="form-control w-30" >
+                                            &nbsp;&nbsp;
+                                            <select name="TransType" id="TypeTrans" title="Type de transaction" class="form-control w-25">
+                                                <option value="CREDIT">CREDIT</option>
+                                                <option value="DEBIT">DEBIT</option>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                            <select name="AneAca" class="form-control w-25">
+                                                <option value="<%=currentYear%>">
+                                                    <%=currentYear%>
+                                                </option>
+                                                <option value="<%=nextYear%>">
+                                                    <%=nextYear%>
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <br>
+                                            <textarea class="form-control" name="comments" cols="3" rows="3" placeholder="Commentaires"></textarea>
+                                        </div>
+                                        
+                                        <input type="hidden" name="AccountID" id="AccountID">
+                                        <input type="hidden" name="PrevBalance" id="PrevBalance">
+                                        <input type="hidden" name="PostBalance" id="PostBalance">
+                                        <input type="hidden" name="StudentId" id="StudentIdSelected">
+                                    </form>
+                    
+                                    <strong id="loaderTransactions"></strong>
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="saveTransaction()" class="btn btn-success" id="btnAddTrans">
+                                        Enregistrer Transaction
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SEARCH TRANS FOR STUDENT -->
+                    <div id="Search-student-Trans-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="SearchTransTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" action="/transactions" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            DE : &nbsp;<input class="form-control" type="date" value="<%=date_from%>"
+                                                name="date_from">&nbsp;
+                                            A : &nbsp;<input class="form-control" type="date" value="<%=date_to%>" name="date_to">
+                                        </div>
+                                        <br>
+                                        <div class="form-inline">
+                                            <label for="Niveau">Année Académique</label>
+                                            &nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <option value="All">Toutes les Années</option>
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Rechercher" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
+                                        <input type="hidden" name="studentSelected" id="studentSelectedTrans">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                  
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //CREATE ACCOUNT
+        function launchCreateAccount() {
+            $("#btnCreateAcc").attr("disabled", false);
+            $("#Account-modal").modal();
+        }
+        function createAccount() {
+            $("#btnCreateAcc").attr("disabled",true); 
+            $("#btnCreateAcc").html("Patientez...");
+            let AneAcaC = $("#AneAcaC").val();
+            $("#loaderCreateAcc").html("Création des comptes ("+ AneAcaC+") en cours.Veuillez patienter....");   
+            let formData = $("#FormCreateAcc").serialize();
+            $.post("/create-account", formData, function (msg) {
+                $("#btnCreateAcc").html(msg);
+                $("#loaderCreateAcc").html(msg);
+            });
+        }
+        //ADD TRANSACTION
+        function launchAccountTransaction(studentID,accID) {
+            //$("#btnCreateAcc").attr("disabled", false);
+            let fullname = $("#Fullname"+studentID).html();
+            let balance = parseFloat($("#CurrentBalance" + studentID).html());
+            if(balance>0){
+                $("#TypeTrans").val("DEBIT").change();
+            }else{
+                $("#TypeTrans").val("CREDIT").change();
+            }
+            $("#StudentIdSelected").val(studentID);
+            $("#AccountID").val(accID);
+            $("#TransTitle").html(fullname);
+            $("#ACCBALANCE").html(balance+" HTG");
+            $("#loaderTransactions").html("");
+            $("#Transactions-modal").modal();
+        }
+        //SAVE TRANSACTION 
+        function saveTransaction() {
+            $("#loaderTransactions").html("");
+            let studentID = $("#StudentIdSelected").val();
+            let Versement = parseFloat($("#Versement").val());
+            let balance= parseFloat($("#CurrentBalance" + studentID).html());
+            let typeTrans = $("#TypeTrans").val();
+            let newBalance = 0;
+            if(Versement>0){
+                let prevBal = balance;
+                if(typeTrans=="CREDIT"){
+                    newBalance = balance + Versement;
+                }else{
+                    newBalance = balance - Versement;
+                }
+                let details = "Cette transaction affectera le compte de la manière suivante : ANCIENNE BALANCE : "+ prevBal + "  VERSEMENT : " + Versement +"  NOUVELLE BALANCE : " + newBalance;
+                
+                $("#PrevBalance").val(prevBal);
+                $("#PostBalance").val(newBalance);
+
+                $("#btnAddTrans").attr("disabled", true);
+                $("#btnAddTrans").html("Patientez...");
+                $("#loaderTransactions").html("Traitement en cours.Veuillez patienter....");
+
+                let formData = $("#FormAddTrans").serialize();
+                if(confirm("Voulez-vous completer la transaction : "+details+" ?")){
+                    $.post("/add-transaction", formData, function (data) {
+                        $("#btnAddTrans").attr("disabled", false);
+                        $("#btnAddTrans").html("Enregistrer Transaction");
+                        if(data.success){
+                            $("#loaderTransactions").html(data.msg+"<br>"+details);
+                            $("#CurrentBalance" + studentID).html(newBalance);
+                            $("#ACCBALANCE").html(newBalance + " HTG");
+                            $('#FormAddTrans').trigger("reset");
+                            if (newBalance > 0) {
+                                $("#TypeTrans").val("DEBIT");
+                            }
+                        }else{
+                            $("#loaderTransactions").html(data.msg);
+                        }
+                    });
+                }
+            }else{
+                alert("Vous devez préciser le montant versé.");
+            }
+        }
+      //LAUNCH SEARCH TRANS for STUDENT
+        function launchSearchTrans(studentID) {
+           let fullname = $("#Fullname" + studentID).html();
+           $("#studentSelectedTrans").val(studentID);
+           $("#SearchTransTitle").html("Recherche pour : "+fullname);
+           $("#Search-student-Trans-modal").modal();
+        }  
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

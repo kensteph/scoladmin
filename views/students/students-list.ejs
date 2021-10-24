@@ -62,7 +62,7 @@
                                                     &nbsp;&nbsp;
                                                     <% if(UserData.userAccess.includes('print_student_list') || UserData.userAccess.includes('All')){ %>
                                                     <a title="Liste des élèves" target="_blank"
-                                                        href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&statut=<%=statutSelected%>"><i
+                                                        href="/print-students-list?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>&statut=<%=statutSelected%>&orderSelected=<%=orderSelected%>"><i
                                                             class="fa fa-print fa-2x"></i> Imprimer la liste des
                                                         élèves</a>
                                                     <% } %>
@@ -76,11 +76,11 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title h-red">
-                                        <% if(locals.msg){ %>
-                                            <%=msg %>
-                                                <% } %>
-                                    </h4>
+                                    <% if(locals.msg){ %>
+                                        <h4 class="<%=classStyle%>">
+                                            <%=msg%>
+                                        </h4>
+                                    <% } %>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="table-responsive table-striped">
@@ -97,7 +97,11 @@
                                                             <% } %>
                                                             <th>Elèves/Etudiants</th>
                                                             <th>Sexe</th>
-                                                            <th>Actions</th>
+                                                            <% if(roomSelected!="All" ){ %>
+                                                             <th>Actions</th>
+                                                            <% }else{  %>
+                                                                <th>Classe</th>
+                                                            <% } %>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -122,20 +126,26 @@
                                                                 <td>
                                                                     <%=Student.sexe%>
                                                                 </td>
-                                                                <td>
-                                                                    <% if(UserData.userAccess.includes('edit_student') || UserData.userAccess.includes('All')){ %>
-                                                                        <i class="fas fa-edit to-link"
-                                                                            title="Modifier <%=Student.fullname%>"
-                                                                            onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"></i>
+                                                                
+                                                                    <% if(roomSelected!="All" ){ %>
+                                                                        <td>
+                                                                            <% if(UserData.userAccess.includes('edit_student') || UserData.userAccess.includes('All')){ %>
+                                                                                
+                                                                                <i class="fas fa-edit to-link"
+                                                                                    title="Modifier(nom,prenom,sexe,Desactiver,activer...) <%=Student.fullname%>"
+                                                                                    onclick="edit('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.id_affectation%>','<%=Student.active%>')"> Modifier</i>
+                                                                                
+                                                                            <% } %>
+                                                                            <% if(UserData.userAccess.includes('delete_student') || UserData.userAccess.includes('All')){ %>
+                                                                                &nbsp;&nbsp;&nbsp;
+                                                                                <i class="fas fa-trash to-link h-red"
+                                                                                    title="<%=Student.fullname%> ne fera plus partie de cette classe.Du coup vous n'aurez pas ses notes."
+                                                                                    onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"> Suppression définitive</i>
+                                                                            <% } %>
+                                                                        </td>
+                                                                    <% }else{ %>
+                                                                        <td><%=Student.classe%></td>
                                                                     <% } %>
-                                                                    <% if(UserData.userAccess.includes('delete_student') || UserData.userAccess.includes('All')){ %>
-                                                                        &nbsp;&nbsp;&nbsp;
-                                                                        <i class="fas fa-trash to-link h-red"
-                                                                            title="Supprimer <%=Student.fullname%>"
-                                                                            onclick="deleted('<%=Student.id_personne%>','<%=Student.prenom%>','<%=Student.nom%>','<%=Student.sexe%>','<%=Student.fullname%>','<%=Student.classroom%>','<%=Student.id_affectation%>')"></i>
-                                                                    <% } %>
-                                                                </td>
-
                                                             </tr>
                                                             <% }) %>
                                                     </tbody>
@@ -257,6 +267,16 @@
                                                 </option>
                                                 <option value="0" <% if(statutSelected==0){ %> selected <% } %>
                                                         >Désactivé</option>
+                                            </select>
+                                        </div>
+                                        <br>
+                                        <label for="Classement">Classé la liste par </label>
+                                        <div class="form-inline">
+                                            <select class="form-control" name="OrderBy">
+                                                <option value="nom,prenom" <% if(orderSelected=="nom,prenom"){ %> selected <% } %> >Nom,prenom
+                                                </option>
+                                                <option value="sexe,nom,prenom" <% if(orderSelected=="sexe"){ %> selected <% } %>
+                                                        >Sexe,nom,prenom</option>
                                             </select>
 
                                         </div>

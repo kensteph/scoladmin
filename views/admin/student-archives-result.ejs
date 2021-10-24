@@ -39,13 +39,13 @@
                     <div class="content-wrapper">
 
                         <div class="col-6">
-                            <form action="" method="POST" id="search-form">
+                            <form method="POST" id="search-form">
                                 <div class="form-group d-flex">
                                     <input type="text" id="search-input" onfocus="select()"
                                         onkeyup="searchStudents()" class="form-control"
                                         placeholder="Rechercher ici..." autocomplete="off">
                                     <input type="hidden" name="StudentID" id="StudentID">
-                                    <button type="submit" class="btn btn-primary ml-3">Rechercher</button>
+                                    <!-- <button type="submit" class="btn btn-primary ml-3">Rechercher</button> -->
                                 </div>
                                 <div class="" id="search-result">
                                     <ul id="ResultList">
@@ -59,9 +59,20 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h2 class="page-title center">
+                                        <% if(ifOnlyPersonalInfo){ %>
+                                            <%=pageTitle%> 
+                                                <i class="fas fa-trash to-link h-red" title="Supprimer <%=studentInfo.fullname%>"
+                                                onclick="shiftDeleteStudent('<%=studentInfo.id%>','<%=studentInfo.fullname%>')"></i>
+                                            
+                                        <% }else{ %>
                                         <a href="/student-details?ID=<%=studentInfo.id_personne%>">
                                             <%=pageTitle%>
                                         </a>
+                                                <% if(!ifStudentHasNotes){ %>
+                                                    <i class="fas fa-trash to-link h-red" title="Supprimer <%=studentInfo.fullname%>"
+                                                    onclick="shiftDeleteStudent('<%=studentInfo.id_personne%>','<%=studentInfo.fullname%>')"></i>
+                                                <% } %>
+                                        <% } %>
                                     </h2>
 
                                     <div class="mt-4">
@@ -148,6 +159,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                         <% if(!ifOnlyPersonalInfo){ %>
                                             <div class="card">
                                                 <div class="card-header" role="tab" id="heading-2">
                                                     <h6 class="mb-0">
@@ -169,15 +181,15 @@
                                                                 <div class="card">
                                                                     <div class="card-header" role="tab"
                                                                         id="heading-4">
-                                                                        <h6 class="mb-0">
+                                                                        <h4 class="mb-0">
                                                                             <a data-toggle="collapse"
                                                                                 href="#collapse-sub<%=studentYear.id%>"
                                                                                 aria-expanded="false"
                                                                                 aria-controls="collapse-4"
                                                                                 class="collapsed">
-                                                                                <%=studentYear.aneaca%>
+                                                                                <%=studentYear.aneaca%> | <%=studentYear.classe%>
                                                                             </a>
-                                                                        </h6>
+                                                                        </h4>
                                                                     </div>
                                                                     <div id="collapse-sub<%=studentYear.id%>"
                                                                         class="collapse" role="tabpanel"
@@ -199,16 +211,11 @@
 
                                                                                 <% } }) %>
                                                                                 <% if(periodsByYear[pos].length>0){ %>
-                                                                                    <a title="Bulletin General"  class="btn btn-dark btn-fw"
-                                                                                        target="_blank"
-                                                                                        href="/print-bulletin-general?studentId=<%=studentInfo.id_personne%>&roomSelected=<%=studentYear.classroom%>&yearSelected=<%=studentYear.aneaca%>&methodEvaluationCode=<%=mode_evaluation_code%>">Bulletin General</a>
-                                                                                        <% if(studentYear.aneaca==beforeLastYear){ %>
                                                                                             <% if(UserData.userAccess.includes('print_releve_notes') || UserData.userAccess.includes('All')){ %>
-                                                                                            <a title="Relevé de Notes" class="btn btn-dark btn-fw"
-                                                                                                                    target="_blank"
-                                                                                                                    href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClassbeforeLastYear%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=beforeLastYear%>&saOrSesClasse=<%=saOrSes%>">
-                                                                                                                    <i class="fa fa-print fa-2x"></i>&nbsp;Relevé de Notes</a>
-                                                                                        <% } } %>
+                                                                                            <a title="Relevé de Notes" class="btn btn-dark btn-fw" target="_blank"
+                                                                                                href="/print-bulletin-general?studentId=<%=studentInfo.id_personne%>&roomSelected=<%=studentYear.classroom%>&yearSelected=<%=studentYear.aneaca%>&methodEvaluationCode=<%=mode_evaluation_code%>&printWhat=Releve"><i
+                                                                                                    class="fa fa-print fa-2x"></i>&nbsp; Relevé de Notes</a>
+                                                                                            <% }  %>
                                                                                 <% } %>
                                                                             </div>
                                                                         </div>
@@ -216,20 +223,11 @@
                                                                 </div>
                                                                 <% pos++ %>
                                                                 <% }) %>
-                                                                
-                                                                <strong>MOYENNE GENERALE : <%= lastMoyGle.MoyGle %> (<%= lastMoyGle.decision %>)&nbsp;</strong>
-
-                                                                <% if(lastMoyGle.ifPromoted){ %>
-                                                                    <% if(UserData.userAccess.includes('print_releve_notes') || UserData.userAccess.includes('All')){ %>
-                                                                        <a title="Relevé de Notes" 
-                                                                                                target="_blank"
-                                                                                                href="/print-releve-notes?studentId=<%=studentIdSelected%>&fromToClass=<%=fromToClass%>&roomSelected=<%=lastClassRoom%>&yearSelected=<%=lastYear%>&saOrSesClasse=<%=saOrSes%>">
-                                                                        <i class="fa fa-print fa-2x"></i> &nbsp;Relevé de Notes</a>
-                                                                <% } } %>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                         <%}%>
                                             <!-- <div class="card">
                                                 <div class="card-header" role="tab" id="heading-3">
                                                     <h6 class="mb-0">
@@ -282,6 +280,7 @@
 <script src="../../js/todolist.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
+<script src="../../js/toastDemo.js"></script>
 <script src="../../js/data-table.js"></script>
 <!-- End custom js for this page-->
 <script>
@@ -313,6 +312,20 @@
     function displayDetails(id) {
         $("#StudentID").val(id);
         $("#search-form").submit();
+    }
+    //DELETE DEFINITIVELY FROM DB
+    function shiftDeleteStudent(idStudentToDelete,studentFullname) {
+        if(confirm("Voulez-vouz vraiment supprimer '"+ studentFullname+"'' définitivement ?")){
+            $.post("/shiftDeleteStudent-from-db",{idStudentToDelete, studentFullname}, function (data) {
+                if (data.success) { //Success 
+                    showSuccessToast();
+                    //$("#NotifyDeleteStudent").html(data.msg);
+                } else {
+                    //$("#NotifyDeleteStudent").html(data.msg);
+                    showDangerToast();
+                }
+            });
+        }
     }
 </script>
 </body>

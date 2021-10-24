@@ -70,7 +70,6 @@ var self = module.exports = {
         //console.log(data); 
         return data;
     },
-
     //ADD NEW STUDENT | INSCRIPTION
     registerStudent: async function (req) {
         let promise = new Promise((resolve, reject) => {
@@ -266,6 +265,22 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
+    //Student Personal Info
+    getStudentPersonalInfo: async function (id) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT *,CONCAT(prenom,' ',nom) as fullname FROM tb_personnes as pers WHERE  pers.id=?";
+            con.query(sql, [id], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows[0]);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
     //New Register Student Info
     getNewRegisterInfo: async function (id) {
         let promise = new Promise((resolve, reject) => {
@@ -285,7 +300,7 @@ var self = module.exports = {
     //Student Info CLASSES
     getStudentClasses: async function (id) {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT * FROM tb_affectation af,tb_classes c   WHERE af.classroom=c.id AND id_personne=? ORDER BY af.id";
+            let sql = "SELECT * FROM tb_affectation af,tb_classes c   WHERE af.classroom=c.id AND id_personne=? ORDER BY aneaca";
             con.query(sql, [id], function (err, rows) {
                 if (err) {
                     throw err;
@@ -316,25 +331,25 @@ var self = module.exports = {
         return data;
     },
     //Load All The students
-    listOfStudent: async function (classroom, aneAca, active = "All") {
+    listOfStudent: async function (classroom, aneAca, active = "All",orderBy="nom,prenom") {
         let promise = new Promise((resolve, reject) => {
             let sql = "";
             let params = [];
             if (active == "All") {
                 if (classroom == "All") {
-                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND aneaca=? ORDER BY nom,prenom";
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND aneaca=? ORDER BY "+orderBy;
                     params = [aneAca];
                 } else {
-                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND classroom=? AND aneaca=? ORDER BY nom,prenom";
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND classroom=? AND aneaca=? ORDER BY "+orderBy;
                     params = [classroom, aneAca];
                 }
 
             } else {
                 if (classroom == "All") {
-                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND aneaca=? AND active=? ORDER BY nom,prenom";
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne AND af.niveau=c.id AND aneaca=? AND active=? ORDER BY "+orderBy;
                     params = [aneAca, active];
                 } else {
-                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne  AND af.niveau=c.id AND classroom=? AND aneaca=? AND active=? ORDER BY nom,prenom";
+                    sql = "SELECT *,CONCAT(UPPER(nom),' ',prenom) as fullname,CONCAT(UPPER(nom),' ',prenom) as sort,af.id as id_affectation FROM tb_personnes as pers,tb_affectation as af,tb_classes c WHERE pers.id=af.id_personne  AND af.niveau=c.id AND classroom=? AND aneaca=? AND active=? ORDER BY "+orderBy;
                     params = [classroom, aneAca, active];
                 }
 
@@ -353,7 +368,7 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
-        //Load All The students
+    //Load All The students
     listOfRegisteredStudent: async function (niveau, aneAca, approuve = "All") {
         let promise = new Promise((resolve, reject) => {
             let sql = "";
@@ -391,28 +406,19 @@ var self = module.exports = {
         //console.log(data);
         return data;
     },
-    //Delete STUDENT DEFINITEVELY
-    deleteStudent: async function (req) {
-        let Firstname = req.body.Firstname;
-        let Lastname = req.body.Lastname;
-        let Fullname = Firstname + " " + Lastname;
-        let ClassRoom = req.body.ClassRoom;
-
+    //VERIFY IF A STUDENT HAS NOTES IN THE SYSTEM IN ORDER TO SAFELY DELETE
+    ifStudentHasNotes: async function (idStudent) {
+        let hasNotes=false;
         let promise = new Promise((resolve, reject) => {
-            let sql = "DELETE FROM tb_personnes  WHERE id =?";
-            //console.log(sql + " ID : " + id_personne);
-            con.query(sql, ClassRoom, function (err, rows) {
+            let sql = "SELECT COUNT(note) nb_notes FROM tb_notes WHERE etudiant=?";
+            con.query(sql, [idStudent], function (err, rows) {
                 if (err) {
-                    resolve({
-                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
-                        type: "danger",
-                        debug: err
-                    });
+                    throw err;
                 } else {
-                    resolve({
-                        msg: "Les informations concernant " + Fullname + " ont été supprimées avec succès.",
-                        success: "success"
-                    });
+                    if(rows[0].nb_notes>0){
+                        hasNotes = true;
+                    }
+                    resolve(hasNotes);
                 }
             });
         });
@@ -421,6 +427,55 @@ var self = module.exports = {
         return data;
     },
     //Delete STUDENT DEFINITEVELY
+    deleteStudent: async function (idStudentToDelete,studentFullname) {
+
+        let promise = new Promise((resolve, reject) => {
+            let sql = "DELETE FROM tb_personnes  WHERE id =?";
+            //console.log(sql + " ID : " + id_personne);
+            con.query(sql, idStudentToDelete, function (err, rows) {
+                if (err) {
+                    resolve({
+                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
+                        type: "danger",
+                        debug: err
+                    });
+                } else {
+                    resolve({
+                        msg: "Les informations concernant " + studentFullname + " ont été supprimées avec succès.",
+                        success: true
+                    });
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //Delete STUDENT Affectation | REMOVE FROM A CLASSROOM
+    deleteAffectation: async function (idStudentToDelete) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "DELETE FROM tb_affectation  WHERE id_personne =?";
+            con.query(sql, idStudentToDelete, function (err, rows) {
+                if (err) {
+                    resolve({
+                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
+                        type: "danger",
+                        debug: err
+                    });
+                } else {
+                    resolve({
+                        msg: "Affectation supprimée avec succès.",
+                        success: "success",
+                        type: "danger",
+                    });
+                }
+            });
+        });
+        data = await promise;
+        console.log(data);
+        return data;
+    },
+    //Delete STUDENT Affectation | REMOVE FROM A CLASSROOM
     deleteStudentAffectation: async function (req) {
         let id_affectation = req.body.AffectationID;
         let promise = new Promise((resolve, reject) => {
@@ -477,5 +532,126 @@ var self = module.exports = {
         rep = await promise;
         return rep;
     },
+    //DEACTIVATE STUDENT
+    setRegistrationStatus: async function (req) {
+        let status = req.body.Statut;
+        let niveau = req.body.Niveau;
+        let aneaca = req.body.AneAca;
+        let studentId=req.body.StudentID;
+        let regisId= req.body.InscriptionID;
+        let student= req.body.Firstname+" "+req.body.Lastname;
+        let userInfo = req.session.UserData;
+        let acteur = userInfo.userName;
+        
+        let promise = new Promise((resolve, reject) => {
+            let sql =
+                'UPDATE tb_inscription SET approuve=?,approuve_par=?,date_approuve=now() WHERE id=?';
+            // console.log(sql);
+            con.query(sql, [status, acteur,regisId], async function (err, result) {
+                if (err) {
+                    msg = {
+                        type: "danger",
+                        msg:
+                            "Une erreur est survenue.Veuillez réessayer.",
+                        debug: err
+                    };
+                } else {
+                    msg = {
+                        type: "success",
+                        success: true,
+                        msg:
+                            "L'inscription de "+student+" a été '"+helper.inscriptionStatus(status)+"' avec succès.",
+                        nb_success: result.affectedRows,
+                    };
+                    //IF APPROUVED
+                    if(status==1){
+                        const dbClassroomController = require("./Ctrlclassroom");
+                        await dbClassroomController.studentAffectation(studentId,niveau,niveau,aneaca,acteur);
+                    }
+                }
 
+                resolve(msg);
+                //console.log(msg);
+            });
+        });
+        rep = await promise;
+        return rep;
+    },
+    //DELETE REGISTRATION
+    //Delete STUDENT Affectation | REMOVE FROM A CLASSROOM
+    deleteRegistration: async function (req) {
+        let registrationID = req.body.InscriptionID;
+        let studentId=req.body.StudentID;
+        let student= req.body.Firstname+" "+req.body.Lastname;
+        let promise = new Promise((resolve, reject) => {
+            let sql = "DELETE FROM tb_inscription  WHERE id =?";
+            //console.log(sql + " ID : " + id_personne);
+            con.query(sql, registrationID, async function (err, rows) {
+                if (err) {
+                    resolve({
+                        msg: "Une erreur est survenue. S'il vous palit réessayez.",
+                        type: "danger",
+                        debug: err
+                    });
+                } else {
+                    //REMOVE STUDENT DETAILS
+                    await self.deleteStudent(studentId,student);
+                    resolve({
+                        msg: "L'inscription de '"+student+"' supprimée avec succès.",
+                        success: "success",
+                        type: "danger",
+                    });
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //RECOVERY
+    getLostStudents: async function (aneaca) {
+        let promise = new Promise((resolve, reject) => {
+            let sql = "SELECT etudiant,prenom,nom,classe,niveau, aneaca FROM (SELECT DISTINCT(etudiant) ,niveau, aneaca FROM tb_notes WHERE etudiant NOT IN ( SELECT id_personne FROM tb_affectation WHERE aneaca=?) AND aneaca=?) A,tb_personnes B,tb_classes C WHERE A.etudiant=B.id AND C.id=A.niveau";
+            con.query(sql, [aneaca,aneaca], function (err, rows) {
+                if (err) {
+                    throw err;
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+        data = await promise;
+        //console.log(data);
+        return data;
+    },
+    //Add Student Affectation During Recovery
+    addAffectation: async function (id_personne,niveau,classroom,aneaca,acteur="System") {
+    let promise = new Promise((resolve, reject) => {
+        let sql = "INSERT INTO tb_affectation (id_personne,niveau,classroom,aneaca,acteur) VALUES (?,?,?,?,?)";
+        // console.log(sql);
+        con.query(sql, [id_personne,niveau,classroom,aneaca,acteur],async function (err, result) {
+            if (err) {
+                msg = {
+                    type: "danger",
+                    msg:
+                        "Vous avez déja affecté cet eleve",
+                    debug: err
+                };
+            } else {
+                msg = {
+                    type: "success",
+                    success: true,
+                    msg:
+                        "Affection réalisée avec succès...",
+                    nb_success: result.affectedRows,
+                };
+            }
+
+            resolve(msg);
+            //console.log(msg);
+        });
+    });
+    rep = await promise;
+    return rep;
+    },
 }

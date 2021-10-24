@@ -27,6 +27,7 @@ app.use(require('./routes/students'));
 app.use(require('./routes/notes'));
 app.use(require('./routes/employees'));
 app.use(require('./routes/admin'));
+app.use(require('./routes/economat'));
 
 //SYSTEM IGNITION
 intitValues = async function (req) {
@@ -39,7 +40,6 @@ intitValues = async function (req) {
     //GLOBALS VARIABLES
     global.modeEvaluation = await ctrlNotes.listOfModeEvaluation();
     global.appName = process.env.APP_NAME;
-    global.appRoutes = ['employee-list', ''];
     global.schoolName = settings.school_name;
     global.schoolAddress = settings.school_address;
     global.schoolPhone = settings.school_phone;
@@ -53,10 +53,6 @@ intitValues = async function (req) {
     global.moyennePassage = settings.coeff_passage*0.1;
     req.session.modEvaluation = settings.school_evaluation_method;
     req.session.CurrentAcademicYear = helper.getAcademicYear();
-
-    //MENU ACCESS
-    global.MENU_ITEM = ['Tableau de bord', 'Test Patient', 'Test Laboratoire', 'Patients', 'Examens', 'Gestion de stock', 'Paramètres', 'Administration'];
-    global.SUBMENU_ITEM = ['Ajouter Patient', 'Liste des Patients', 'Modifier Patients', 'Rechercher Patient', 'Liste des demandes de Tests', 'Supprimer une demandes de Test', 'Enregistrer Résultat', 'Modifier Résultat', 'Valider Résultat', 'Ajouter Signature', 'Imprimer Résultat', 'Ajouter examens', 'Voir la liste des examens', 'Supprimer examens', 'Modifier examens', 'Ajouter valeurs normales', 'Détails Examens', 'Ajouter Matériau', 'Modifier Matériau', 'Lister les matériaux', 'Ajouter Stock', 'Inventaire', 'Imprimer Inventaire', 'Requete Ajouter/Retirer article du Stock', 'Autoriser Ajouter/Retirer article du Stock', 'Approuver requete relative au stock', 'Voir la liste des requetes de stock', 'Valider/Invalider Stock', 'Modifier Stock', 'Supprimer Stock', 'Supprimer transactions pendantes', 'Mouvement de stock', 'Imprimer Mouvement de Stock'];
 }
 app.get('/', async (req, res) => {
     await intitValues(req);
@@ -92,6 +88,9 @@ app.post('/login', statistic, async (req, res) => {
                         let actions = userAccess.actions;
                         let routesAccess=userAccess.routes;
                         let accessId=userAccess.access_id;
+                        let uniqueRoutes = [...new Set(routesAccess)];
+                        //console.log("UNIQUE ROUTES : ",uniqueRoutes);
+                        routesAccess=uniqueRoutes;
                         if(username=="admin" && title=="Super admin"){
                             actions=['All'];
                             routesAccess=['All'];
@@ -128,7 +127,7 @@ app.get('/logout', async (req, res) => {
     //     console.log("Session destroyed....");
     // });
 });
-
+//IF USER POINT A BAD ROUTE
 app.get('*',auth, (req, res) => {
     res.redirect('/dash-board')
 })

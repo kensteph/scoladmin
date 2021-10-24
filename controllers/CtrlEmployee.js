@@ -360,7 +360,7 @@ var self = module.exports = {
      //Load The app Menu
      menuList: async function () {
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT * FROM tb_app_menu WHERE type_access='MENU'"
+            let sql = "SELECT * FROM tb_app_menu WHERE type_access='MENU' ORDER BY belong_to"
             //console.log(sql);
             con.query(sql, function (err, rows) {
                 if (err) {

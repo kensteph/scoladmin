@@ -18,13 +18,13 @@
         </div>
         </div>
         <div class=" row-report">
-            <div  <% if(periode==""){ %> class="col-sm-12" <% }else{ %> class="col-sm-3 center" <%}%> >
+            <div  <% if(periode==""){ %> class="col-sm-12" <% }else{ %> class="col-sm-6 center" <%}%> >
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th class="th-pos">#</th>
-                                <th>Elèves/Etudiants</th>
+                                <th <% if(periode!="All"){ %> class="td-fullname-70" <% }else{ %> class="td-fullname" <% } %> >Elèves/Etudiants</th>
                                 <% if(periode=="" ){ %>
                                     <% periodList.forEach((periode)=> { %>
                                         <th class="td-vn">
@@ -49,14 +49,14 @@
                                         let Notes=studentNotes[posEt];
                                     %>
                                     <% pos_note=0; periodList.forEach((periode)=> { %>
-                                        <td class="td-vn ">
+                                        <td class="td-vn">
                                                 <%=Notes[pos_note]%>
                                         </td>
                                     <% pos_note++; }) %>
                                     <%  }else{ %>
                                         <td class="td-vn">
                                             <%=studentNotes[posEt]%>
-                                    </th>
+                                         </td>
                                     <%  } %>
                                 </tr>
                             <% rank++; posEt++;}) %>

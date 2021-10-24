@@ -176,6 +176,7 @@ router.get('/save-notes', auth, async (req, res) => {
     let niveauSelected;
     let CourseSelectedId;
     let periodSelected;
+    let classStyle;
     let infoCourse = [];
     console.log(req.body);
     let pageTitle = "Gestion des notes";
@@ -190,6 +191,7 @@ router.get('/save-notes', auth, async (req, res) => {
         yearSelected = req.query.year;
         CourseSelectedId = req.query.course;
         periodSelected = req.query.period;
+        classStyle = req.query.classStyle;
         //GET INFO ABOUT THE CLASSROOM
         let info = await dbClassroomController.getclassroom(roomSelected);
         niveauSelected = info.niveau;
@@ -219,8 +221,8 @@ router.get('/save-notes', auth, async (req, res) => {
         Nextyear,
         roomSelected: roomSelected,
         niveauSelected: niveauSelected,
-        page: 'Notes',
         msg: msg,
+        classStyle,
     };
     res.render('../views/notes/save-notes', params);
 });
@@ -235,7 +237,11 @@ router.post('/save-notes-db', auth, async (req, res) => {
     let AneAca = req.body.yearAca;
     let CourseSelectedId = req.body.courseId;
     let period = req.body.period;
-    res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period+'&msg='+msg);
+    let classStyle ='card-title h-red';
+    if(response.success){
+        classStyle='card-title h-green';
+    }
+    res.redirect('/save-notes?year=' + AneAca + '&room=' + ClassRoom + '&course=' + CourseSelectedId + '&period=' + period+'&msg='+msg+'&classStyle='+classStyle);
     //res.json(response);
 });
 //SAVE OR EDIT SINGLE NOTE TO DB
@@ -332,6 +338,7 @@ router.post('/palmares-notes', auth, async (req, res) => {
     let periodSelected = req.body.PeriodFilter;
     let ifLastPeriod=false;
     let ifAdmission=false;
+    let printMode = req.body.PrintMode;
 
     let periodList = await dbController.listOfPeriod(methodEvaluationCode);
     let response = await dbClassroomController.listOfClassrooms("All");
@@ -396,10 +403,10 @@ router.post('/palmares-notes', auth, async (req, res) => {
         //GET THE TOTAL NOTE FOR THE STUDENT
         // let TotalNote = await dbController.getStudentTotalNote(StudentId, niveauSelected, periodSelected, yearSelected);
         // console.log("STUDENT : ", student.fullname, " : ", TotalNote.total);
-
+        sumNote = sumNote.toFixed(2);
         //GET THE MOYENNE
-        Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
-
+        Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne);
+        Moyenne = Moyenne.toFixed(2);
         palmares.push(line); // NOTES LIST
         Total.push(sumNote); // TOTAL LIST
         Moyennes.push(Moyenne); // MOYENNE LIST
@@ -434,7 +441,7 @@ router.post('/palmares-notes', auth, async (req, res) => {
         yearSelected: yearSelected,
         roomSelected: roomSelected,
         niveauSelected: niveauSelected,
-        page: 'Notes',
+        printMode,
         msg: msg,
     };
     res.render('../views/notes/palmares-notes', params);
@@ -672,7 +679,7 @@ router.get('/print-palmares-notes', auth, async (req, res) => {
         Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
 
         palmares.push(line); // NOTES LIST
-        Total.push(sumNote); // TOTAL LIST
+        Total.push(sumNote.toFixed(2)); // TOTAL LIST
         Moyennes.push(Moyenne); // MOYENNE LIST
 
         let obj = { Student: student.fullname, StudentId: StudentId, Moyenne, Notes: line, NoteIds: idNote, Total: sumNote, Sur: CoeffTotal, Moyenne };
@@ -808,6 +815,7 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
     let yearSelected = req.query.yearSelected;
     let roomSelected = req.query.roomSelected;
     let periodSelected = req.query.periodSelected;
+    let printMode = req.query.printMode;
     
     //GET INFO ABOUT THE CLASSROOM
     let info = await dbClassroomController.getclassroom(roomSelected);
@@ -824,11 +832,12 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
 
     //STUDENTS LIST
     let studentList = await dbStudentController.listOfStudent(roomSelected, yearSelected, 1);
+    let nbStudent = studentList.length;
     let palmares = [];
     let Total = [];
     let Moyennes = [];
     let listNotes = [];
-    for (i = 0; i < studentList.length; i++) {
+    for (i = 0; i < nbStudent; i++) {
         let student = studentList[i];
         let StudentId = student.id_personne;
         let line = []; //NOTES
@@ -860,15 +869,17 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
         Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
 
         palmares.push(line); // NOTES LIST
-        Total.push(sumNote); // TOTAL LIST
+        Total.push(sumNote.toFixed(2)); // TOTAL LIST
         Moyennes.push(Moyenne); // MOYENNE LIST
         let eleve= student.prenom+" "+student.nom.toUpperCase()+" ("+student.dossier+")";
         let obj = { Student: eleve, StudentId: StudentId, Moyenne, Notes: line, NoteIds: idNote, Total: sumNote, Sur: CoeffTotal, Moyenne };
         listNotes.push(obj);
     }
     listNotes.sort(helper.compareValues('Moyenne', 'desc'));
-    console.log("PALMAES : ", listNotes);
-
+    //console.log("PALMAES : ", listNotes);
+    let nbPage = Math.ceil(nbStudent/2);
+    let noteSlice =helper.splitArray(listNotes,nbPage);
+    console.log("NB PAGE : ",nbPage,noteSlice);
     let pageTitle = "Bulletin " + info.classe + " | " + periodSelected + " " + yearSelected;
 
     //let palmares = await dbController.palmares(roomSelected, yearSelected, periodSelected);
@@ -881,6 +892,7 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
         Total,
         CoeffTotal,
         listNotes,
+        noteSlice,
         periodList: periodList,
         periodSelected: periodSelected,
         studentList: studentList,
@@ -889,10 +901,16 @@ router.get('/print-all-bulletin', auth, async (req, res) => {
         UserData: req.session.UserData,
         yearSelected: yearSelected,
         roomSelected: roomSelected,
-        page: 'Notes',
+        nbPage,
+        nbStudent,
         msg: msg,
     };
-    res.render('../print/templates/all-bulletin.ejs', params);
+    let route='../print/templates/all-bulletin';
+    if(printMode=="Double"){
+        route='../print/templates/all-bulletin-double';
+    }
+    res.render(route, params);
+    //res.render('../print/templates/all-bulletin.ejs', params);
 });
 router.get('/print-bulletin', auth, async (req, res) => {
     let methodEvaluationCode =  req.query.methodEvaluationCode;
@@ -948,7 +966,7 @@ router.get('/print-bulletin', auth, async (req, res) => {
         Notes: studentNotes,
         Moyenne,
         place,
-        Total: sumNote,
+        Total: sumNote.toFixed(2),
         TotalCoeff: CoeffTotal,
         periodList: periodList,
         periodSelected: periodSelected,
@@ -970,6 +988,13 @@ router.get('/print-bulletin-general', auth, async (req, res) => {
     let roomSelected = req.query.roomSelected;
     let studentSelected = req.query.studentId;
     let moyennePassage = global.moyennePassage;
+    let nbPeriodes = periodList.length;
+    let printWhat="Bulletin";
+    if(req.query.printWhat){
+        printWhat=req.query.printWhat;
+    }
+    let sexe="Il";
+   
     //console.log(periodList," NB PERIOD GEN : ",nbPeriodGeneral);
     
     //GET INFO ABOUT THE CLASSROOM
@@ -977,18 +1002,24 @@ router.get('/print-bulletin-general', auth, async (req, res) => {
     // let niveauSelected =info.niveau;
     let msg = "";
     let studentInfo = await dbStudentController.getStudent(studentSelected);
+     if(studentInfo.sexe=="F"){ sexe="Elle"; }
     //COURSES LIST
     let coursesList = await dbCoursesController.listOfCoursesByClassroomAchivesFromTbNotes(roomSelected,yearSelected);
     //Coefficient de Calcul des moyennes
     let CoefficientCalcul = await dbController.CoefficientCalculFromCoursesList(coursesList);
     let CoeffTotal = CoefficientCalcul.Total;
 
+    //NOTES GLES
+    let moyenneGleStudent = await dbController.getMoyenneGleForYear(studentSelected,yearSelected,nbPeriodes);
+    console.log("INFO NOTES GLE : ",moyenneGleStudent);
     
     let studentNotesEachPeriod = [];
     let studentTotalNote=[];
     let studentMoyenne=[];
+    let studentNotesGle=moyenneGleStudent.Notes;
+    
     //FOR EAcH PERIOD
-    for (p = 0; p < periodList.length; p++) {
+    for (p = 0; p < nbPeriodes; p++) {
         let studentNotes = [];
         let sumNote = 0;
         //FOR EAcH COURSE
@@ -1012,7 +1043,7 @@ router.get('/print-bulletin-general', auth, async (req, res) => {
         //GET THE MOYENNE
         let Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
         studentNotesEachPeriod.push(studentNotes);
-        studentTotalNote.push(sumNote);
+        studentTotalNote.push(sumNote.toFixed(2));
         studentMoyenne.push(Moyenne);
     }
     
@@ -1024,23 +1055,37 @@ router.get('/print-bulletin-general', auth, async (req, res) => {
     let mention = helper.studentMention(studentInfo,moyGen,moyennePassage);
     let ifPromoted=mention.ifPromoted;
     let decision =mention.decision;
-    let pageTitle = "Bulletin Général " + info.classe + " | " + yearSelected;
+    let classe=info.classe+ " " + yearSelected;
+    let avec_succes=" ";
+    if(ifPromoted){
+        avec_succes=" avec satisfaction et succès ";
+    }
+    let pageTitle = "Bulletin Général de " +studentInfo.fullname+" | "+ classe;
+    if(printWhat=="Releve"){
+        pageTitle = "Relevé de notes de  " +studentInfo.fullname+" | "+ classe;
+    }
 
     params = {
         pageTitle: pageTitle,
+        printWhat,
+        classe,
         Notes: studentNotesEachPeriod,
+        studentNotesGle,
+        moyenneGleStudent,
         studentTotalNote,
         studentMoyenne,
         CoeffTotal,
         lastMoyenne,
+        nbPeriodes,
         moyGen,
         decision,
         periodList: periodList,
         Student: studentInfo,
+        sexe,
+        avec_succes,
         coursesList: coursesList,
         yearSelected: yearSelected,
         roomSelected: roomSelected,
-        page: 'Notes',
         msg: msg,
     };
     res.render('../print/templates/bulletin-general', params);
@@ -1052,6 +1097,7 @@ router.get('/print-all-bulletin-general', auth, async (req, res) => {
     let yearSelected = req.query.yearSelected;
     let roomSelected = req.query.roomSelected;
     let periodSelected = req.query.periodSelected;
+    let printMode = req.query.printMode;
     let moyennePassage = global.moyennePassage;
     //console.log(periodList," NB PERIOD GEN : ",nbPeriodGeneral);
     
@@ -1104,7 +1150,7 @@ router.get('/print-all-bulletin-general', auth, async (req, res) => {
                         //GET THE MOYENNE
                         let Moyenne = (sumNote / CoefficientCalcul.CoefMoyenne).toFixed(2);
                         studentNotesEachPeriod.push(studentNotes);
-                        studentTotalNote.push(sumNote);
+                        studentTotalNote.push(sumNote.toFixed(2));
                         studentMoyenne.push(Moyenne);
                     }
                     
@@ -1145,7 +1191,11 @@ router.get('/print-all-bulletin-general', auth, async (req, res) => {
         page: 'Notes',
         msg: msg,
     };
-    res.render('../print/templates/all-bulletin-general', params);
+    let route='../print/templates/all-bulletin-general';
+    if(printMode=="Double"){
+        route='../print/templates/all-bulletin-general';
+    }
+    res.render(route, params);
 });
 // TABLEAU DE BORD
 router.get('/print-tableau-honneur', auth, async (req, res) => {
@@ -1169,7 +1219,7 @@ router.get('/print-releve-notes', auth, async (req, res) => {
     let methode = methodeEvaluationForThisYear.mode_evaluation;
     //GET THE MOY GLE FOR THE LAST YEAR
     let nbPeriodGle = await dbController.listOfGeneralPeriod(methode);
-    //console.log("PERIOD GLE : ",nbPeriodGle);
+    console.log("PERIOD GLE : ",nbPeriodGle);
     let moyenneGleStudent = await dbController.getMoyenneGleForYear(studentSelected,yearSelected,nbPeriodGle.length);
     console.log("INFO : ",moyenneGleStudent);
     

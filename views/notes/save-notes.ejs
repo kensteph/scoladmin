@@ -61,11 +61,11 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title h-red">
-                                        <% if(locals.msg){ %>
-                                            <%=msg %>
-                                                <% } %>
-                                    </h4>
+                                    <% if(locals.msg){ %>
+                                        <h4 class="<%=classStyle%>">
+                                                <%=msg%>
+                                        </h4>
+                                    <% } %>
                                     <form id="noteForm" method="post" action="/save-notes-db">
                                         <input type="hidden" name="courseId" value="<%=infoCourse.id_cours%>">
                                         <input type="hidden" name="courseCoeff" value="<%=infoCourse.coefficient%>">
@@ -99,7 +99,7 @@
                                                                         <input type="number" name="note[]"
                                                                             class="form-control w-40"
                                                                             onclick="select()"
-                                                                            max="<%=infoCourse.coefficient%>" min="0"
+                                                                            max="<%=infoCourse.coefficient%>" min="0" step="any"
                                                                             placeholder="<%=infoCourse.coefficient%>">
                                                                             <input type="hidden" name="studentId[]"
                                                                                 value="<%=Student.id_personne%>">

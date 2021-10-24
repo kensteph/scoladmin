@@ -222,7 +222,7 @@
                                                 </div>
                                         </form>
                                     </div>
-                                    <div id="ChangeNotify" align="center"></div>
+                                    <div id="ChangeNotify" align="center"></div><br>
                                     <div class="modal-footer">
                                         <button type="submit" onclick="changeModeEvaluationInDB()" class="btn btn-success">Attribuer</button>
                                     </div>
@@ -250,8 +250,6 @@
                                 <div class="modal-footer">
                                     <input type="submit" id='btnAssignation' value="Enregistrer"
                                         onclick="assignCourses()" class="btn btn-success" id="submit">
-
-
                                 </div>
 
                             </div>
@@ -356,6 +354,7 @@
         }
         //change-Mode-modal
         function changeModeEvaluation() {
+             $("#ChangeNotify").html("");
             $("#change-Mode-modal").modal();
         }
         //SAVE METHOD CHANGE

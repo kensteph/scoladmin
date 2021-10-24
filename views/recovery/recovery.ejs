@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                    <a href="#" title="Filtrer la liste" data-toggle="modal"
+                                                        data-target="#filter-modal" aria-hidden="true">
+                                                        <i class="fa fa-filter fa-2x to-link"></i>
+                                                        Rechercher
+                                                    </a>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <% if(locals.msg){ %>
+                                        <h4 class="<%=classStyle%>">
+                                            <%=msg%>
+                                        </h4>
+                                    <% } %>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Elèves</th>
+                                                            <th>Classe</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% studentList.forEach((Student)=> { %>
+                                                            <tr id="RowId<%=Student.etudiant%>">
+                                                                <td>
+                                                                        <a 
+                                                                            href="/student-details?ID=<%=Student.etudiant%>">
+                                                                            <strong id="studentFullname<%=Student.etudiant%>"><%=Student.nom+" "+Student.prenom%></strong>
+                                                                        </a>
+                                                                </td>
+                                                                <td>
+                                                                    <span id="classRoom<%=Student.etudiant%>"><%=Student.classe+" "+Student.aneaca%></span>
+                                                                </td>
+                                                                        <td>
+                                                                                <i class="fas fa-undo to-link"
+                                                                                    title="Restaurer"
+                                                                                    onclick="recoverStudent('<%=Student.etudiant%>','<%=Student.niveau%>','<%=Student.aneaca%>')"> Restaurer</i>
+                                                                        </td>
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <div class="form-inline">
+                                            <label for="Niveau">Année Académique </label>
+                                            &nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Rechercher" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" id="actionField">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        
+        //RECOVER STUDENT
+        function recoverStudent(studentId,classe,aneaca) {
+            let studentFullname = $("#studentFullname"+ studentId).html();
+            let classRoom = $("#classRoom" + studentId).html();
+            if(confirm("Voulez-vous restaurer "+ studentFullname.toUpperCase()+" | "+ classRoom+" ?")){
+                //let formData = $("#AffectationForm").serialize();
+                let formData = { studentId, studentFullname, classe, classRoom, aneaca};
+                $.post("/recover-student", formData, function (data) {
+                    if (data.success) { //Success 
+                        $("#RowId" + studentId).fadeOut();
+                        alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

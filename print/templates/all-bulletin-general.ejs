@@ -21,8 +21,8 @@
                 <%=pageTitle%><br>
                 <%=Student.prenom+" "+Student.nom.toUpperCase()+" ("+Student.dossier+")"%>
                     <br><br>
+            </div>
         </div>
-    </div>
                         <div class="col-sm-12">
                                 <table class="table">
                                     <thead>
@@ -70,7 +70,7 @@
                                                 <tr>
                                                     <td class="td-bulletin"><strong>MOYENNE</strong></td>
                                                     <td class="td-vn td-bulletin">
-                                                        <strong>-----</strong>
+                                                        <strong>10</strong>
                                                     </td>
                                                     <% let pos_period=0; periodList.forEach((period)=> { %>
                                                     <td class="td-vn td-bulletin">
@@ -97,8 +97,9 @@
                                         <td class="td-bulletin"><strong>REMARQUES : </strong></td>
                                     </tr>
                                 </table>
+                                <%- include("signature") -%>
                         </div>
-            <%- include("signature") -%>
+            
             <% if(pos < bulletins.length-1){ %>
                 <div class="pagebreak"> </div>
                 <% } %>

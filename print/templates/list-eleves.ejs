@@ -19,25 +19,25 @@
         </div>
         <div class=" row-report">
             <div class="col-sm-12">
-                <div class="table-responsive">
-                    <table class="table">
+                    <table class="table-list">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Elèves/Etudiants</th>
-                                <th class="td-list">Lundi</th>
-                                <th class="td-list">Mardi</th>
-                                <th class="td-list">Mercredi</th>
-                                <th class="td-list">Jeudi</th>
-                                <th class="td-list">Vendredi</th>
-                                <th class="td-list">Remarques</th>
+                                <th class="th-list-student">#</th>
+                                <th class="th-list-student">Elèves/Etudiants</th>
+                                <th class="th-list-student">Sexe</th>
+                                <th class="th-list-student">Lundi</th>
+                                <th class="th-list-student">Mardi</th>
+                                <th class="th-list-student">Mercredi</th>
+                                <th class="th-list-student">Jeudi</th>
+                                <th class="th-list-student">Vendredi</th>
+                                <th class="th-list-student">Remarques</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% let pos=1; studentList.forEach((Student)=> { %>
                                 <tr>
-                                    <td align="center"><%=pos%></td>
-                                    <td class="td-fullname">
+                                    <td align="center" class="td-list-student"><%=pos%></td>
+                                    <td class="td-fullname-list-student">
                                         <% if(ClassRoom=="All"){ %>
                                             <%=Student.nom.toUpperCase()+" "+Student.prenom%>&nbsp;
                                             <strong><%=Student.abv%></strong>
@@ -45,6 +45,7 @@
                                             <%=Student.nom.toUpperCase()+" "+Student.prenom%>
                                         <% } %>
                                     </td>
+                                    <td class="td-list-student" align="center"><%=Student.sexe%></td>
                                     <td class="td-list"></td>
                                     <td class="td-list"></td>
                                     <td class="td-list"></td>
@@ -55,7 +56,6 @@
                                 <% pos++; }) %>
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
 

@@ -30,16 +30,27 @@ router.post('/student-archives-result', auth, async (req, res) => {
     let roomSelected;
     let statutSelected = 1;
     let studentFullName = "ARCHIVES";
-    let studentInfo;
+    let studentInfo={};
+    let ifOnlyPersonalInfo=false;
+    let ifStudentHasNotes=false;
     let studentIdSelected = req.body.StudentID;
     let moyennePassage = global.moyennePassage;
     let fromClass;
     let toClass;
     let fromToClass;
     let saOrSes="sa classe";//sa ou ses classes
+
+    //VERIFIFY IF THE STUDENT HAS NOTES
+    ifStudentHasNotes = await dbController.ifStudentHasNotes(studentIdSelected);
     //INFO ABOUT THE STUDENT
     studentInfo = await dbController.getStudent(studentIdSelected);
-    studentFullName = studentInfo.fullname;
+    if(studentInfo==null){ 
+        //Only the perssonal info available
+         studentInfo = await dbController.getStudentPersonalInfo(studentIdSelected);
+         ifOnlyPersonalInfo=true;
+    }
+        studentFullName = studentInfo.fullname;
+    
     //console.log("ID-STUDENT : ", studentIdSelected, "INFO : ", studentInfo);
 
     //INFO ABOUT THE CLASSES
@@ -88,7 +99,7 @@ router.post('/student-archives-result', auth, async (req, res) => {
         // console.log("MOYENNE GLE : ",moyenneGleStudent);
     }
   // console.log("LAST GLE : ",lastMoyGle);
-  let nbClass=allClasses.length;
+    let nbClass=allClasses.length;
     console.log("ALL CLASSES : ", allClasses,"SIZE : ",nbClass);
     fromClass= allClasses[0];
     toClass= allClasses[allClasses.length-1];
@@ -96,7 +107,7 @@ router.post('/student-archives-result', auth, async (req, res) => {
     let fromToClassbeforeLastYear="";
     if(nbClass==1){
         fromToClass=fromClass.classe+"  "+fromClass.aneaca;
-    }else{
+    }else if(nbClass>1){
         fromToClass=fromClass.classe+"  "+fromClass.aneaca+" à "+toClass.classe+"  "+toClass.aneaca;
         saOrSes="ses classes";
         let beforLastClass = allClasses[allClasses.length-2];
@@ -131,12 +142,54 @@ router.post('/student-archives-result', auth, async (req, res) => {
         UserData: req.session.UserData,
         roomSelected: roomSelected,
         statutSelected,
-        page: 'Students',
+        ifOnlyPersonalInfo,
+        ifStudentHasNotes,
         msg: msg,
     };
     res.render('../views/admin/student-archives-result', params);
 });
 
+//RECOVERY
+router.post('/recovery', auth, async (req, res) => {
+    let AneAca = req.body.AneAca;
+    console.log(req.body);
+    res.redirect('/recovery?year=' + AneAca);
+});
+// RECOVERY List
+router.get('/recovery', auth, async (req, res) => {
+    let aneacaList = await dbClassroomController.getAcademicYear();
+    let studentList = [];
+    let pageTitle = "Restauration des élèves";
+    let yearSelected;
+    //FILTER
+    if (req.query.year) {
+        yearSelected = req.query.year;
+        pageTitle = "Restauration des élèves " + " " + yearSelected ;
+        studentList = await dbController.getLostStudents(yearSelected);
+    }
+    //console.log("STUDENTS : ", studentList);
+    params = {
+        pageTitle: pageTitle,
+        aneacaList,
+        studentList: studentList,
+        UserData: req.session.UserData,
+        yearSelected
+    };
+    res.render('../views/recovery/recovery', params);
+});
+//RECOVER STUDENT
+router.post('/recover-student', auth, async (req, res) => {
+    console.log(req.body);
+    let userInfo = req.session.UserData;
+    let acteur = userInfo.userName;
+    let studentId = req.body.studentId;
+    let classeId = req.body.classe;
+    let aneaca = req.body.aneaca;
+    let classRoom = req.body.classRoom;
+    let studentFullname = req.body.studentFullname;
+    let response = await dbController.addAffectation(studentId,classeId,classeId,aneaca,acteur);
+    res.json(response);
+});
 
 //============================================ PRINTING =====================================================================
 

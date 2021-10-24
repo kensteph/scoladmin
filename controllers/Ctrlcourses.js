@@ -263,7 +263,7 @@ var self = module.exports = {
             sql = "SELECT DISTINCT(cours),id_cours,libelle,code,sur coefficient,position FROM tb_notes as grade ,tb_cours as c , tb_cours_par_classe as cpc WHERE c.id=grade.cours AND cpc.id_cours=grade.cours AND grade.niveau=? AND aneaca=? ORDER BY position";
             values= [classRoom,aneAca];
            
-            //console.log(sql);
+            console.log(sql);
             con.query(sql,values, function (err, rows) {
                 if (err) {
                     throw err;

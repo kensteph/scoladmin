@@ -46,7 +46,7 @@
                                         <li class="breadcrumb-item">
                                             <div id="contact">
                                                 <a href="#" data-toggle="modal"data-target="#filter-modal" aria-hidden="true">
-                                                    <i class="fa fa-filter fa-2x to-link" title="Filtre" ></i> Filtrer (Classe-Periode-Annee Academique)
+                                                    <i class="fa fa-filter fa-2x to-link" title="Filtre" ></i> Filtre
                                                 </a>&nbsp;
                                                 <% if(listNotes.length>0){ %>
 
@@ -80,7 +80,7 @@
                                                             
                                                             <% if(UserData.userAccess.includes('print_all_bulletin') || UserData.userAccess.includes('All')){ %>
                                                                             &nbsp; <a title="Bulletins" target="_blank"
-                                                                    href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>"><i
+                                                                    href="/print-all-bulletin?periodSelected=<%=periodSelected%>&roomSelected=<%=roomSelected%>&yearSelected=<%=yearSelected%>&methodEvaluationCode=<%=methodEvaluationCode%>&printMode=<%=printMode%>"><i
                                                                         class="fa fa-print fa-2x"></i> Bulletins</a>
                                                             <% } %>
                                                      <% } %>
@@ -233,6 +233,14 @@
                                            
 
                                         </div>
+                                        <br>
+                                        <label for="Niveau">Mode d'impression</label>
+                                        <div class="form-inline">
+                                            <select class="form-control w-35" name="PrintMode" id="PrintMode" >
+                                               <option value="Normal">1 Bulletin par feuille (8 1/2 X 11) format Portrait</option>
+                                               <option value="Double">2 Bulletins par feuille (8 1/2 X 11) format Paysage</option>
+                                            </select>
+                                      </div>
 
                                     </div>
                                     <div class="modal-footer">
@@ -258,7 +266,7 @@
                                         <div class="form-inline">
                                             <strong for="Cours" id="courseSelected">Cours/Matière </strong>
                                             &nbsp;
-                                            <input type="number" class="form-control w-20" min="0" name="note"
+                                            <input type="number" class="form-control w-25" min="0" name="note"
                                                 id="note">
                                             &nbsp;
                                             <select class="form-control w-25" name="abscence" title="Abscence/Triche">
@@ -379,7 +387,7 @@
             $("#coefficient").val(coef);
             $("#note").val(note);
             $("#idNote").val(idNote);
-            $("#note").attr("max", coef);
+            $("#note").attr("max",coef);
             $("#note").attr("placeholder", coef);
             if (note != "") {
                 btntxt = "Modifier";
@@ -390,8 +398,9 @@
         }
         //SAVE OR EDIT SINGLE NOTE
         function saveEditNote() {
-            let note = $("#note").val();
-            let coeff = $("#coefficient").val();
+            let note =parseFloat($("#note").val());
+            let coeff = parseFloat($("#coefficient").val());
+            //alert(note+">="+coeff);
             let notePosition = "POS" + $("#studentId").val() + "" + $("#courseId").val();
             if (note <= coeff) {
                 let formData = $("#EditNoteForm").serialize();

@@ -13,8 +13,11 @@ router.post('/students-list', auth, async (req, res) => {
     let response;
     let ClassRoom = req.body.ClassRoom;
     let AneAca = req.body.AneAca;
+    let orderSelected ="nom,prenom";
     let active = 1;
     let info;
+    let classStyle ='card-title h-red';
+    console.log(req.body);
     if(ClassRoom!="All"){
         //Info about the classroom
         info = await dbClassroomController.getclassroom(ClassRoom);
@@ -26,14 +29,15 @@ router.post('/students-list', auth, async (req, res) => {
     console.log(req.body);
     
     if (req.body.actionField == "Filter") { //FILTER
-        res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active);
+        orderSelected = req.body.OrderBy;
+        res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active+ '&orderSelected=' + orderSelected);
     } else {
         if (req.body.actionField == "Edit") { //EDIT
             response = await dbController.editStudent(req);
             response = await dbController.editStudentAffectation(req);
         } else if (req.body.actionField == "Delete") { //DELETE
             response = await dbController.deleteStudentAffectation(req);
-            // response = await dbController.deleteStudent(req);
+            //response = await dbController.deleteStudent(req);
             //DESACTIVE AU LIEU SUPPRIMER
             //let idStudent=
             //response = await dbController.setStudentStatus(req);
@@ -48,10 +52,11 @@ router.post('/students-list', auth, async (req, res) => {
         }
 
         if (response.type == "success") {
-            res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active+'&msg='+ response.msg);
+            classStyle ='card-title h-green'
+            res.redirect('/students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active+ '&orderSelected=' + orderSelected+'&msg='+ response.msg+'&classStyle='+classStyle);
         } else {
             console.log(response.msg);
-            res.redirect('/students-list?msg=' + response.msg);
+            res.redirect('/students-list?msg=' + response.msg+'&classStyle='+classStyle);
         }
     }
 
@@ -64,25 +69,30 @@ router.get('/students-list', auth, async (req, res) => {
     let academicYearObj = helpers.getAcademicYear();
     console.log("ACADEMIC YEAR OBJ : ", academicYearObj);
     let currentYear =academicYearObj.Previous; //CURRENT YEAR
+    let nextYear = academicYearObj.Next; //NEXT YEAR
     let roomSelected;
     let yearSelected=currentYear;
     let niveau;
     let statutSelected = 1;
+    let orderSelected="nom,prenom"; //ORDER BY
     let statusName = "actifs";
     let info;
+    let classStyle ;
     let pageTitle = "Etudiants/Elèves";
     //console.log(response);
     let msg = "";
     if (req.query.msg) {
         msg = req.query.msg;
+        classStyle = req.query.classStyle;
     }
     //FILTER
     if (req.query.year && req.query.room) {
         roomSelected = req.query.room;
         yearSelected = req.query.year;
         statutSelected = req.query.statut;
+        orderSelected = req.query.orderSelected;
         if (statutSelected == 0) { statusName = "désactivés" }
-        studentList = await dbController.listOfStudent(roomSelected, yearSelected, statutSelected);
+        studentList = await dbController.listOfStudent(roomSelected, yearSelected, statutSelected,orderSelected);
         if (roomSelected != "All") {
             //GET INFO ABOUT THE CLASSROOM
             info = await dbClassroomController.getclassroom(roomSelected);
@@ -102,10 +112,12 @@ router.get('/students-list', auth, async (req, res) => {
         UserData: req.session.UserData,
         currentYear,
         yearSelected: yearSelected,
+        nextYear,
         roomSelected: roomSelected,
         niveau,
         statutSelected,
-        page: 'Students',
+        orderSelected,
+        classStyle,
         msg: msg,
     };
     res.render('../views/students/students-list', params);
@@ -118,6 +130,7 @@ router.post('/registered-students-list', auth, async (req, res) => {
     let AneAca = req.body.AneAca;
     let active = 0;
     let info;
+    let classStyle ='card-title h-red';
     if(ClassRoom!="All"){
         //Info about the classroom
         info = await dbClassroomController.getclassroom(ClassRoom);
@@ -131,16 +144,11 @@ router.post('/registered-students-list', auth, async (req, res) => {
     if (req.body.actionField == "Filter") { //FILTER
         res.redirect('/registered-students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active);
     } else {
-        if (req.body.actionField == "Edit") { //EDIT
-            response = await dbController.editStudent(req);
-            response = await dbController.editStudentAffectation(req);
+        if (req.body.actionField == "Edit") { //EDIT REGISTRATION
+            response = await dbController.setRegistrationStatus(req);
+            console.log("SET REGISTRATION : ",response);
         } else if (req.body.actionField == "Delete") { //DELETE
-            response = await dbController.deleteStudentAffectation(req);
-            // response = await dbController.deleteStudent(req);
-            //DESACTIVE AU LIEU SUPPRIMER
-            //let idStudent=
-            //response = await dbController.setStudentStatus(req);
-
+            response = await dbController.deleteRegistration(req);
         } else {
             if (req.body.Niveau== 0) {
                 response = { msg: "Vous devez choisir la salle de classe" };
@@ -150,11 +158,13 @@ router.post('/registered-students-list', auth, async (req, res) => {
 
         }
 
+        
         if (response.type == "success") {
-            res.redirect('/registered-students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active+'&msg='+ response.msg);
+            classStyle ='card-title h-green'
+            res.redirect('/registered-students-list?year=' + AneAca + '&room=' + ClassRoom + '&statut=' + active+'&msg='+ response.msg+'&classStyle='+classStyle);
         } else {
             console.log(response.msg);
-            res.redirect('/registered-students-list?msg=' + response.msg);
+            res.redirect('/registered-students-list?msg=' + response.msg+'&classStyle='+classStyle);
         }
     }
 
@@ -172,12 +182,14 @@ router.get('/registered-students-list', auth, async (req, res) => {
     let niveau="All";
     let statutSelected ="All";
     let statusName = "";
+    let classStyle;
     let info;
     let pageTitle = "Liste des Inscriptions ";
     //console.log(response);
     let msg = "";
     if (req.query.msg) {
         msg = req.query.msg;
+        classStyle = req.query.classStyle;
     }
     //FILTER
     if (req.query.year && req.query.room) {
@@ -208,7 +220,7 @@ router.get('/registered-students-list', auth, async (req, res) => {
         roomSelected: roomSelected,
         niveau,
         statutSelected,
-        page: 'Students',
+        classStyle,
         msg: msg,
     };
      req.session.PrintJob=params;
@@ -270,8 +282,9 @@ router.get('/student-details', auth, async (req, res) => {
     let studentIdSelected = req.query.ID;
     let studentInfo =[];
     let what='Student';
+    let route='../views/students/student-details';
     console.log(req.query.registered);
-    if(req.query.registered!="undefined"){
+    if(req.query.hasOwnProperty('registered')){
         //GET INFO FROM INSCRIPTION
         console.log('INFO ABOUT NEW REGISTER');
         what='registered';
@@ -280,17 +293,17 @@ router.get('/student-details', auth, async (req, res) => {
     }else{
         studentInfo= await dbController.getStudent(studentIdSelected);
     }
-    
-    let studentFullName = studentInfo.fullname;
-    console.log("ID-STUDENT : ", studentIdSelected, "INFO : ", studentInfo);
-    let pageTitle = studentFullName;
-    console.log("ANE ACA : ", aneacaList);
-    let msg = "";
-    if (req.query.msg) {
-        msg = req.query.msg;
-    }
+    if(studentInfo!=null){
+        let studentFullName = studentInfo.fullname;
+        console.log("ID-STUDENT : ", studentIdSelected, "INFO : ", studentInfo);
+        let pageTitle = studentFullName;
+        console.log("ANE ACA : ", aneacaList);
+        let msg = "";
+        if (req.query.msg) {
+            msg = req.query.msg;
+        }
 
-    params = {
+        params = {
         pageTitle: pageTitle,
         data: response,
         studentInfo,
@@ -301,8 +314,36 @@ router.get('/student-details', auth, async (req, res) => {
         what,
         page: 'Students',
         msg: msg,
-    };
-    res.render('../views/students/student-details', params);
+        };
+        res.render(route, params);
+    }else{
+        res.redirect('/students-list');
+    }
+    
+});
+//CHANGE REGISTRATION STATUS
+router.post('/change-registration-status', auth, async (req, res) => {
+    console.log(req.body);
+    // let idStudentToDelete = req.body.idStudentToDelete;
+    // let studentFullname = req.body.studentFullname;
+    // let response = await dbController.deleteStudent(idStudentToDelete,studentFullname);
+    // if(response.success){
+    //     await dbController.deleteAffectation(idStudentToDelete);
+    // }
+    // console.log(response);
+    // res.json(response);
+});
+//DELETE REGISTRATION
+router.post('/delete-registration-from-db', auth, async (req, res) => {
+    let idStudentToDelete = req.body.idStudentToDelete;
+    let studentFullname = req.body.studentFullname;
+    console.log(req.body);
+    let response = await dbController.deleteStudent(idStudentToDelete,studentFullname);
+    if(response.success){
+        await dbController.deleteAffectation(idStudentToDelete);
+    }
+    console.log(response);
+    res.json(response);
 });
 // STUDENT DETAILS
 router.post('/student-details', auth, async (req, res) => {
@@ -326,6 +367,18 @@ router.post('/student-details', auth, async (req, res) => {
     console.log('EDIT RESPONSE : ', response);
     res.redirect('/student-details?ID=' + StudentID+"&"+what);
 });
+//DELETE STUDENT DEFINITIVELY
+router.post('/shiftDeleteStudent-from-db', auth, async (req, res) => {
+    let idStudentToDelete = req.body.idStudentToDelete;
+    let studentFullname = req.body.studentFullname;
+    console.log(req.body);
+    let response = await dbController.deleteStudent(idStudentToDelete,studentFullname);
+    if(response.success){
+        await dbController.deleteAffectation(idStudentToDelete);
+    }
+    console.log(response);
+    res.json(response);
+});
 
 
 //============================================ PRINTING =====================================================================
@@ -334,6 +387,7 @@ router.get('/print-students-list', auth, async (req, res) => {
     let ClassRoom = req.query.ClassRoom;
     let AneAca = req.query.AneAca;
     let status = req.query.statut;
+    let orderSelected = req.query.orderSelected;
     if(status==0){
         statusTxt = " desactivés";
     }else{
@@ -349,7 +403,7 @@ router.get('/print-students-list', auth, async (req, res) => {
         console.log("CLASS INFO : ", info);
     }
     //GET THE LIST
-    let studentList = await dbController.listOfStudent(ClassRoom, AneAca,status);
+    let studentList = await dbController.listOfStudent(ClassRoom, AneAca,status,orderSelected);
     console.log("PRINT : ","PARAMS : ",ClassRoom, AneAca,status,"DATA : ",studentList);
 
 

@@ -20,6 +20,7 @@ ACTION,Modifier professeurs,edit_teacher,Professeurs,/teacher-list
 MENU,Acces au menu Eleves,Eleves,Eleves,Eleves
 SUBMENU,Acces au sous-menu Liste des Eleves,students-list,Eleves,/students-list
 ACTION,Ajouter un eleve sans inscription,add_student,Eleves,/students-list
+ACTION,Afficher les details d'un elveve,student_details,Eleves,/student-details
 ACTION,Modifier les informaions d'un eleve,edit_student,Eleves,/students-list
 ACTION,Supprimer un eleve,delete_student,Eleves,/students-list
 ACTION,Imprimer la liste des eleves,print_student_list,Eleves,/print-students-list
@@ -47,6 +48,7 @@ ACTION,Imprimer un bulletin,print_bulletin,Notes,/print-bulletin
 ACTION,Imprimer les bulletins (General),print_all_bulletin_gle,Notes,/print-all-bulletin-general
 ACTION,Imprimer releve de notes,print_releve_notes,Notes,/print-releve-notes
 ACTION,Imprimer un bulletin (General),print_bulletin_gle,Notes,/print-bulletin-general
+ACTION,Imprimer le palmares general  des notes,print_palmares_gle,Notes,/print-palmares-general
 ACTION,Admission des eleves en fonction de leur moyenne generale,student_admission,Notes,/palmares-notes
 ACTION,Tableau d'honneur des eleves,tableau-honneur,Notes,/tableau-honneur
 ACTION,Imprimer le tableau d'honneur,print-tableau-honneur,Notes,/print-tableau-honneur
@@ -59,3 +61,12 @@ ACTION,Liste d'acces des  utilisateurs,user-access,Administration,/user-list
 ACTION,Reinitialiser le mot de passe d'un utilisateur,reset-user-pass,Administration,/user-list
 ACTION,Supprimer un utilisateur,delete-user,Administration,/user-list
 ACTION,Modifier les parametres,settings,Administration,/edit-settings
+MENU,Acces au menu ECONOMAT,Economat,Economat,/economat
+SUBMENU,Liste des scolarites par classe,scolarite-list,Economat,/scolarite-list
+ACTION,Ajouter nouvelle Scolarité,add-scolarite,Economat,/scolarite-list
+ACTION,Modifier Scolarité,edit-scolarite,Economat,/scolarite-list
+ACTION,Imprimer les scolarité,print-scolarite,Economat,/print-scolarite
+SUBMENU,Liste des comptes,account-list,Economat,/account-list
+ACTION,Creer compte,create-account,Economat,/create-account
+ACTION,"Ajouter transactions (CREDIT,DEBIT) pour les eleves",add-transaction,Economat,/add-transaction
+ACTION,Lister les transactions des comptes,transactions,Economat,/transactions

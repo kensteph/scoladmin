@@ -2,15 +2,30 @@
 <html>
 <!-- inject:css -->
 <link rel="stylesheet" href="/css/print.css">
-<title><%=pageTitle+" - "+Student.prenom+" "+Student.nom.toUpperCase()%></title>
+<title><%=pageTitle%></title>
 <body onload="window.print()">
     <%- include("header") -%>
         <div class="row-header-table">
             <div class="title-report">
+                <%if(printWhat!="Releve"){ %>
                 <%=pageTitle%><br>
                     <%=Student.prenom+" "+Student.nom.toUpperCase()+" ("+Student.dossier+")"%>
                     <br><br>
+                <% }else{ %>
+                    <h3>Relevé de notes</h3>
+                <% } %>
         </div>
+        <%if(printWhat=="Releve"){ %>
+            <p style="width: 100%;text-align: center;">Le Directeur du <strong>COLLÈGE EUGÈNE DE MAZENOD</strong>, soussigné ,
+                certifie que<br>
+                l'élève <strong>
+                    <%=Student.fullname+" ("+Student.dossier+")"%>
+                </strong>
+                était régulièrement inscrit dans sa liste de formation de classe de<i><strong>
+                        <%=classe%>
+                    </strong></i>. <%=sexe%> a suivi<%=avec_succes%>les cours programmés pour sa classe. <%=sexe%> a obtenu les notes générales
+                        pour les matières suivantes :</p>
+            <% } %>
     </div>
                         <div class="col-sm-12">
                                 <table class="table">
@@ -18,13 +33,19 @@
                                         <tr>
                                             <th class="td-bulletin">Cours/Matières</th>
                                             <th class="td-bulletin">Coefficients</th>
-                                            <% periodList.forEach((period)=> { %>
-                                                <th class="td-bulletin"><%=period.periode %></th>
-                                            <%  }) %>
+                                            <%if(printWhat!="Releve"){ %>
+                                                <% periodList.forEach((period)=> { %>
+                                                    <th class="td-bulletin"><%=period.periode %></th>
+                                                <%  }) %>
+                                            <% } %>
+                                            <th class="td-bulletin">Note Gle</th>
+                                            <%if(printWhat == "Releve"){ %>
+                                                <th class="td-fullname">Observations</th>
+                                            <% } %>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% let pos_cours=0; coursesList.forEach((courses)=> { %>
+                                        <% let pos_cours=0; let TotalGle=0;  coursesList.forEach((courses)=> { %>
                                             <tr class="td-bulletin">
                                                 <td class="td-bulletin">
                                                     <strong><i><%=courses.libelle %></i></strong>
@@ -32,15 +53,28 @@
                                                 <td class="td-vn td-bulletin">
                                                    <strong><%=courses.coefficient %></strong> 
                                                 </td>
-                                                <% let pos_period=0; periodList.forEach((period)=> { 
-                                                    let note = Notes[pos_period][pos_cours];
+                                                <% let pos_period=0; let noteTot=0; periodList.forEach((period)=> { 
+                                                    let note = parseFloat(Notes[pos_period][pos_cours]);
+                                                    if(isNaN(note)){
+                                                        note=0;
+                                                    }
+                                                    noteTot+=note;
                                                 %>
-                                                <td class="td-vn td-bulletin">
-                                                    <%=note %>
-                                                </td>
+                                                <%if(printWhat!="Releve"){ %>
+                                                    <td class="td-vn td-bulletin">
+                                                        <%=note==0 ? "" : note%>
+                                                    </td>
+                                                <% } %>
                                                 <% pos_period++ }) %>
+                                                <td class="td-vn td-bulletin">
+                                                    <% let noteGle=(noteTot/nbPeriodes).toFixed(2); %>
+                                                    <%=parseFloat(noteGle) %>
+                                                </td>
+                                                <%if(printWhat=="Releve" ){ %>
+                                                    <td class="td-bulletin"></td>
+                                                <% } %>
                                             </tr>
-                                        <% pos_cours++; }) %>
+                                        <% pos_cours++; TotalGle+=parseFloat(noteGle); }) %>
                                                 <tr class="td-bulletin">
                                                     <td class="td-bulletin"><strong>TOTAL</strong></td>
                                                     <td class="td-vn td-bulletin">
@@ -48,6 +82,7 @@
                                                             <%=CoeffTotal%>
                                                         </strong>
                                                     </td>
+                                                <%if(printWhat!="Releve"){ %>
                                                     <% let pos_period1=0; periodList.forEach((period)=> { %>
                                                         <td class="td-vn td-bulletin">
                                                             <strong>
@@ -55,38 +90,59 @@
                                                             </strong>
                                                         </td>
                                                     <% pos_period1++ }) %>
-                                                </tr>
-                                                <tr>
-                                                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                <% } %>
                                                     <td class="td-vn td-bulletin">
-                                                        <strong>-----</strong>
+                                                        <strong>
+                                                            <%=TotalGle.toFixed(2)%>
+                                                        </strong>
                                                     </td>
-                                                    <% let pos_period=0; periodList.forEach((period)=> { %>
-                                                    <td class="td-vn td-bulletin">
-                                                            <strong>
-                                                                <%=studentMoyenne[pos_period]%>
-                                                            </strong>
-                                                    </td>
-                                                    <% pos_period++ }) %>
+                                                    <%if(printWhat=="Releve" ){ %>
+                                                        <td class="td-moy-gle"></td>
+                                                    <% } %>
                                                 </tr>
+                                                <%if(printWhat!="Releve"){ %>
+                                                    <tr>
+                                                        <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                                                        <td class="td-vn td-bulletin">
+                                                            <strong>10</strong>
+                                                        </td>
+                                                        <% let pos_period=0; periodList.forEach((period)=> { %>
+                                                        <td class="td-vn td-bulletin">
+                                                                <strong>
+                                                                    <%=studentMoyenne[pos_period]%>
+                                                                </strong>
+                                                        </td>
+                                                        <% pos_period++ }) %>
+                                                        
+                                                    </tr>
+                                                <% } %>
                                                 <tr>
                                                     <td class="td-bulletin"><strong>MOYENNE GENERALE</strong></td>
                                                     <td class="td-moy-gle"><strong><%=moyGen%><strong></td>
+                                                        <%if(printWhat=="Releve" ){ %>
+                                                            <td class="td-moy-gle"></td>
+                                                            <td class="td-moy-gle"></td>
+                                                        <% } %>
                                                 </tr>
-
                                     </tbody>
                                 </table>
 
-                                <table style="margin-top: 10px;">
-                                    <tr colspan="<%=periodList.length%>">
-                                        <td class="td-bulletin">
-                                            <strong>MENTION : </strong> &nbsp;&nbsp; <%=decision%>
-                                        </td>
-                                    </tr>
-                                    <tr colspan="7">
-                                        <td class="td-bulletin"><strong>REMARQUES : </strong></td>
-                                    </tr>
-                                </table>
+                                <%if(printWhat=="Releve"){ %>
+                                    <p style="width: 100%;text-align: center;font-size: 16px;"> Ce relevé lui est remis pour servir et valoir ce que de droit. </p>
+                                <% } %>
+
+                                <%if(printWhat!="Releve"){ %>
+                                    <table style="margin-top: 10px;">
+                                        <tr colspan="<%=periodList.length%>">
+                                            <td class="td-bulletin">
+                                                <strong>MENTION : </strong> &nbsp;&nbsp; <%=decision%>
+                                            </td>
+                                        </tr>
+                                        <tr colspan="7">
+                                            <td class="td-bulletin"><strong>REMARQUES : </strong></td>
+                                        </tr>
+                                    </table>
+                                <% } %>
                         </div>
             <%- include("signature") -%>
 

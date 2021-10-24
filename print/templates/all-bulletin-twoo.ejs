@@ -1,0 +1,1011 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: red;
+        }
+
+        .centered {
+            position: absolute;
+            background-color: hotpink;
+            width: 100%;
+            top: 35%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .centered img {
+            width: 150px;
+            border-radius: 50%;
+        }
+        
+        .center-table{
+          /* background-color: hotpink; */
+          
+        }
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+}
+
+th {
+  border: 0.5px solid #050202;
+  font-size: 13px;
+  text-align: center;
+  padding: 0px;
+}
+
+td {
+  border: 0.5px solid #050202;
+  font-size: 13px;
+  padding: 1px;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="split left">
+        <div class="centered">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="td-bulletin">Cours/Matières</th>
+                        <th class="td-bulletin">Notes</th>
+                        <th class="td-bulletin">Coefficients</th>
+                    </tr>
+                </thead>
+                <tbody>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Sciences Religieuses
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            8
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            10
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Latin
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            15.5
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Grammaire
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            16
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Texte Expliqué
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            21
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            30
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Production Ecrite
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            6
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            10
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Pièce Classique / Fables
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            16
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Algèbre
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            36
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            40
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Géométrie
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            30
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            30
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Physique
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            12
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Sciences Naturelles
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            16
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Communication Créole
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            14
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Anglais
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            19
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Espagnol
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            10
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Sciences Sociales
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            27
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            30
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Informatique
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            16
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Art Plastique
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            6
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            10
+                        </td>
+                    </tr>
+            
+                    <tr class="td-bulletin">
+                        <td class="td-bulletin">
+                            Vie Scolaire / Formation Humaine
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            14
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            20
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td class="td-bulletin"><strong>TOTAL</strong></td>
+                        <td class="td-vn td-bulletin">
+                            <strong>
+                                282.50
+                            </strong>
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            <strong>
+                                360
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                        <td class="td-vn td-bulletin">
+            
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            <strong>
+                                7.85
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-bulletin"><strong>PLACE</strong></td>
+                        <td class="td-vn td-bulletin">
+            
+                        </td>
+                        <td class="td-vn td-bulletin">
+                            <strong>
+                                1
+                            </strong>
+                        </td>
+                    </tr>
+            
+            
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="split right">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="td-bulletin">Cours/Matières</th>
+                    <th class="td-bulletin">Notes</th>
+                    <th class="td-bulletin">Coefficients</th>
+                </tr>
+            </thead>
+            <tbody>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Sciences Religieuses
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        8
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        10
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Latin
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        15.5
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Grammaire
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        16
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Texte Expliqué
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        21
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        30
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Production Ecrite
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        6
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        10
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Pièce Classique / Fables
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        16
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Algèbre
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        36
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        40
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Géométrie
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        30
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        30
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Physique
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        12
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Sciences Naturelles
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        16
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Communication Créole
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        14
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Anglais
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        19
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Espagnol
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        10
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Sciences Sociales
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        27
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        30
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Informatique
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        16
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Art Plastique
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        6
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        10
+                    </td>
+                </tr>
+        
+                <tr class="td-bulletin">
+                    <td class="td-bulletin">
+                        Vie Scolaire / Formation Humaine
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        14
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        20
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td class="td-bulletin"><strong>TOTAL</strong></td>
+                    <td class="td-vn td-bulletin">
+                        <strong>
+                            282.50
+                        </strong>
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        <strong>
+                            360
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                    <td class="td-vn td-bulletin">
+        
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        <strong>
+                            7.85
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-bulletin"><strong>PLACE</strong></td>
+                    <td class="td-vn td-bulletin">
+        
+                    </td>
+                    <td class="td-vn td-bulletin">
+                        <strong>
+                            1
+                        </strong>
+                    </td>
+                </tr>
+        
+        
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/print-double.css">
+</head>
+<body onload="window.print()">
+    <% pos=0; noteSlice.forEach((line)=> {
+        notesStudent = line.Notes;
+    %>
+    
+            <div class="divide-left">
+                <%- include("header_double") -%>
+                <div class="row-header-table">
+                    <div class="title-report">
+                        <br>
+                        Bulletin 7ème Année Fondamentale B | Etape 1 2020-2021
+                        <br>
+                        jean Wid THOMAS (JT2020580)
+                    </div>
+                </div>
+                <table class="table centered">
+                    <thead>
+                        <tr>
+                            <th class="td-bulletin">Cours/Matières</th>
+                            <th class="td-bulletin">Notes</th>
+                            <th class="td-bulletin">Coefficients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Sciences Religieuses
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Latin
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                14.5
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Physique
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                11
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Sciences Naturelles
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                16
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Communication Créole
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                15
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Anglais
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                15
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Espagnol
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                14
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Sciences Sociales
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                28
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                30
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Informatique
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Art Plastique
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                9
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                        </tr>
+                
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Vie Scolaire / Formation Humaine
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                16
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                
+                        <tr>
+                            <td class="td-bulletin"><strong>TOTAL</strong></td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    295.00
+                                </strong>
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    360
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                            <td class="td-vn td-bulletin">
+                
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    8.19
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-bulletin"><strong>PLACE</strong></td>
+                            <td class="td-vn td-bulletin">
+                
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    1
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="divide-right">
+               <%- include("header_double") -%>
+                <div class="row-header-table">
+                    <div class="title-report">
+                        <br>
+                        Bulletin 7ème Année Fondamentale B | Etape 1 2020-2021
+                        <br>
+                        jean Wid THOMAS (JT2020580)
+                    </div>
+                </div>
+                <table class="table centered">
+                    <thead>
+                        <tr>
+                            <th class="td-bulletin">Cours/Matières</th>
+                            <th class="td-bulletin">Notes</th>
+                            <th class="td-bulletin">Coefficients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Sciences Religieuses
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Latin
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                14.5
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Grammaire
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                19.5
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Texte Expliqué
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                26
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                30
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Production Ecrite
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                6
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Pièce Classique / Fables
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                15
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Pièce Classique / Fables
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                15
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Pièce Classique / Fables
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                15
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Espagnol
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                14
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Sciences Sociales
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                28
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                30
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Informatique
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Art Plastique
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                9
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                10
+                            </td>
+                        </tr>
+            
+                        <tr class="td-bulletin">
+                            <td class="td-bulletin">
+                                Vie Scolaire / Formation Humaine
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                16
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                20
+                            </td>
+                        </tr>
+            
+                        <tr>
+                            <td class="td-bulletin"><strong>TOTAL</strong></td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    295.00
+                                </strong>
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    360
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-bulletin"><strong>MOYENNE</strong></td>
+                            <td class="td-vn td-bulletin">
+            
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    8.19
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-bulletin"><strong>PLACE</strong></td>
+                            <td class="td-vn td-bulletin">
+            
+                            </td>
+                            <td class="td-vn td-bulletin">
+                                <strong>
+                                    1
+                                </strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% "PAGE " +pos; %>
+            </div>
+            <div class="pagebreak"> </div>
+    <% pos++; }) %>
+</body>
+</html>

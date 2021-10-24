@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:40 GMT -->
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        <%=appName%>| <%=pageTitle%>
+    </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/iconfonts/font-awesome/css/all.min.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include("../parts/navbar") -%>
+            <!-- partial -->
+            <div class="container-fluid page-body-wrapper">
+
+                <!-- partial:../../partials/_sidebar.html -->
+                <%- include("../parts/sidebar") -%>
+                    <!-- partial -->
+
+                    <div class="main-panel">
+                        <div class="content-wrapper">
+                            <div class="page-header">
+                                <h3 class="page-title">
+                                    <%=pageTitle%>
+                                </h3>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <div id="contact">
+                                                <% if(UserData.userAccess.includes('add-scolarite') || UserData.userAccess.includes('All')){ %>
+                                                    <button type="button" class="btn btn-info btn"
+                                                        onclick="addClassroom()">Ajouter
+                                                        Nouvelle Scolarité</button>
+                                                <% } %>
+
+                                                
+                                                    <a href="#" title="Filtrer la liste" data-toggle="modal"
+                                                        data-target="#filter-modal" aria-hidden="true">
+                                                        <i class="fa fa-filter fa-2x to-link"></i>
+                                                        Filtrer la liste
+                                                    </a>
+
+                                                <% if(scolariteList.length> 0){ %>
+                                                    &nbsp;&nbsp;
+                                                    <% if(UserData.userAccess.includes('print-scolarite') || UserData.userAccess.includes('All')){ %>
+                                                    <a title="Liste des élèves" target="_blank"
+                                                        href="/print-scolarite?ClassRoom=<%=roomSelected%>&AneAca=<%=yearSelected%>"><i
+                                                            class="fa fa-print fa-2x"></i> Imprimer</a>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+
+                                        </li>
+                                    </ol>
+
+                                </nav>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <% if(locals.msg){ %>
+                                        <h4 class="<%=classStyle%>">
+                                            <%=msg%>
+                                        </h4>
+                                    <% } %>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive table-striped">
+
+                                                <table id="order-listing" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <% if(roomSelected =="All" ){ %>
+                                                                <th> Classe </th>
+                                                                <th> Montant</th>
+                                                            <% }else{  %>
+                                                                <th> Montant</th>
+                                                                <th> Année Académique</th>
+                                                            <% } %>
+                                                            <th> Actions</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% scolariteList.forEach((scolarite)=> { %>
+                                                            <tr>
+                                                                    <% if(roomSelected=="All" ){ %>
+                                                                        <td>
+                                                                            <%=scolarite.classe%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>
+                                                                                <%=scolarite.montant%>
+                                                                            </strong>
+                                                                        </td>
+                                                                    <% }else{ %>
+                                                                        <td>
+                                                                            <strong>
+                                                                                <%=scolarite.montant%>
+                                                                            </strong>
+                                                                        </td>
+                                                                        <td>
+                                                                            <strong>
+                                                                                <%=scolarite.aneaca%>
+                                                                            </strong>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <td>
+                                                                        <% if(UserData.userAccess.includes('edit-scolarite') || UserData.userAccess.includes('All')){ %>
+                                                                    
+                                                                            <i class="fas fa-edit to-link" title="Modifier" onclick="edit('<%=scolarite.montant%>','<%=scolarite.id_scolarite%>')">
+                                                                                Modifier</i>
+                                                                    
+                                                                            <% } %>
+                                                                    </td>
+                                                                    
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content-wrapper ends -->
+                        <!-- partial:../../partials/_footer.html -->
+                        <%- include("../parts/footer") -%>
+                            <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+
+                    <!-- ADD SCOLARITE -->
+                    <div id="classroom-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalTitle">Nouvelle Scolarité</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="classroomForm" name="contact" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="ClassRoom">Classe</label><br>
+                                        <div class="form-inline">
+                                            <select class="form-control w-50" name="ClassRoom" required id="ClassRoom">
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp; &nbsp;
+                                            <input type="text" required name="AneAca" id="AneAca"
+                                                value="<%=yearSelected%>" title="Année Académique" onclick="select()"
+                                                class="form-control w-25" placeholder="Année Académique">
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <label for="Scolarite">Scolarité</label>
+                                            <input type="number" step="any" required name="Scolarite" id="Scolarite"
+                                                class="form-control w-50" placeholder="Montant" onclick="select()">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" id='btnClassroom' value="Enregistrer"
+                                            class="btn btn-success" id="submit">
+                                        <input type="hidden" name="actionField" id="actionField">
+                                        <input type="hidden" name="ScolariteID" id="ScolariteID">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FILTER -->
+                    <div id="filter-modal" class="modal fade" role="dialog" data-backdrop="static">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <strong id="modalFilterTitle">Filtre</strong>
+                                    <a class="close" data-dismiss="modal">×</a>
+                                </div>
+                                <form id="FilterForm" role="form" method="POST">
+                                    <div class="modal-body">
+                                        <label for="Niveau">Classe </label>
+                                        <div class="form-inline">
+                                            <select class="form-control w-40" name="ClassRoom">
+                                                <option value="All">Toutes les classes</option>
+                                                <% data.forEach((classroom)=> { %>
+                                                    <option <% if(roomSelected==classroom.id){ %> selected <% } %>
+                                                            value="<%=classroom.id%>">
+                                                                <%=classroom.classe%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                            <select class="form-control" name="AneAca">
+                                                <option value="All">Toutes les Années</option>
+                                                <% aneacaList.forEach((year)=> { %>
+                                                    <option <% if(yearSelected==year.aneaca){ %> selected <% } %>
+                                                            value="<%=year.aneaca%>">
+                                                                <%=year.aneaca%>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                            
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Continuer" class="btn btn-success">
+                                        <input type="hidden" name="actionField" value="Filter" >
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                  
+            </div>
+            <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/misc.js"></script>
+    <script src="../../js/settings.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="../../js/data-table.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        //ADD SCOLARITE
+        function addClassroom() {
+            $('#classroomForm').trigger("reset");
+            // $("#ClassRoom").attr("disabled", false);
+            // $("#AneAca").attr("disabled", false);
+            $("#modalTitle").html("Nouvelle Scolarité");
+            $("#actionField").val("Add");
+            $("#btnClassroom").val("Enregistrer");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        //EDIT SCOLARITE
+        function edit(amount,scolariteID) {
+            $("#modalTitle").html("Modification");
+            // $("#ClassRoom").attr("disabled", true);
+            // $("#AneAca").attr("disabled", true);
+            $("#Scolarite").val(amount);
+            $("#ScolariteID").val(scolariteID);
+            $("#actionField").val("Edit");
+            $("#btnClassroom").val("Modifier");
+            $("#btnClassroom").removeClass();
+            $("#btnClassroom").addClass("btn btn-success");
+            $("#classroom-modal").modal();
+        }
+        
+    </script>
+</body>
+
+
+<!-- Mirrored from www.urbanui.com/melody/template/pages/tables/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Sep 2018 06:08:41 GMT -->
+
+</html>

@@ -4,6 +4,39 @@ table {
   width: 95%;
 }
 
+table-list {
+  font-family: arial, sans-serif;
+  width: 95%;
+}
+
+.th-list-student {
+  border: 0.5px solid #050202;
+  font-size: 14px;
+  text-align: center;
+  padding: 0px;
+}
+.td-list-student {
+  width: 50px;
+  border: 0.5px solid #050202;
+  padding: 1px;
+  font-size: 14px;
+}
+
+.td-fullname-list-student {
+  width: 40%;
+  border: 0.5px solid #050202;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.table-twoo-column {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px;
+  white-space: nowrap;
+  align-content: center;
+}
 .table-report {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -12,58 +45,67 @@ table {
 }
 
 th {
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
+  font-size: 10px;
   text-align: center;
   padding: 0px;
 }
 
 td {
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
+  font-size: 10px;
   padding: 1px;
 }
 .td-list {
   width: 50px;
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
 }
 
 .td-fullname {
   width: 40%;
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding-left: 10px;
+}
+
+.td-fullname-70 {
+  width: 70%;
+  border: 0.5px solid #050202;
+  padding-left: 10px;
+  text-align: left;
 }
 
 .td-classroom {
   width: 25%;
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
   padding-left: 10px;
 }
 
 .th-pos {
   width: 15px;
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
   text-align: center !important;
 }
 
 .th-periode {
   width: 20px;
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
   text-align: center !important;
-} 
+}
 .td-vn {
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
   text-align: center !important;
 }
 .td-bulletin {
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 5px;
 }
 .td-moy-gle {
-  border: 1px solid #dddddd;
+  border: 0.5px solid #050202;
   padding: 1px;
   font-size: medium;
   text-align: center !important;
@@ -83,7 +125,7 @@ hr {
 
 .header-form {
   text-align: center;
-  width: 70%;
+  width: 60%;
   margin-top: 15px;
   margin-left: 0px;
 }
@@ -107,6 +149,7 @@ hr {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-left: 0%;
+  text-align: center;
 }
 
 .memo {
@@ -155,6 +198,15 @@ hr {
   margin-left: -15px;
 }
 
+.title-report-double {
+  text-align: center;
+  width: 100%;
+  margin-top: 7px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: -40px;
+}
+
 h3 {
   color: #0f0f0f;
   font-family: arial, sans-serif;
@@ -183,12 +235,19 @@ h4 {
   margin-left: 7%;
 }
 
+.row-double {
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .row-report {
   display: -ms-flexbox;
   display: flex;
+  align-content: center;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 5px;
   /* margin-right: -15px; */
   /* margin-left: 7%; */
 }
@@ -210,6 +269,9 @@ body {
   border: 0px solid;
 }
 
+.col-sm-1 {
+  text-align: center;
+}
 .col-sm-6 {
   margin: auto;
   flex: 0 0 70%;
@@ -227,10 +289,18 @@ body {
 
 .col-sm-3 {
   position: relative;
-  width: 60%;
-  padding-left: 15px;
+  width: 50%;
   font-family: arial, sans-serif;
   font-size: 12px;
+  align-content: center;
+}
+
+.table-notes {
+  position: relative;
+  width: 70%;
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  margin-left: 10px;
 }
 
 .col-sm-3-right {
@@ -281,7 +351,7 @@ body {
 .palma-title {
   margin: 20px;
   font-size: 9px;
-  font-weight:lighter;
+  font-weight: lighter;
 }
 
 .report {
@@ -299,10 +369,10 @@ li {
   /* border: 1px solid red;  */
 }
 .signature-text {
- text-align: center;
- margin-top: 3px;
- font-size: 10px;
- /* border: 1px solid red;  */
+  text-align: center;
+  margin-top: 3px;
+  font-size: 10px;
+  /* border: 1px solid red;  */
 }
 
 .footer {
@@ -313,12 +383,13 @@ li {
   text-align: center;
 }
 
-
 .devise {
   font-size: 15px;
   margin-bottom: 20px;
 }
 
 @media print {
-  .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+  .pagebreak {
+    page-break-before: always;
+  } /* page-break-after works, as well */
 }

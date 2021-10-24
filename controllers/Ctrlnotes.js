@@ -336,6 +336,7 @@ var self = module.exports = {
                 con.query(sql, [finalValues], function (err, result) {
                     if (err) {
                         msg = {
+                            success:false,
                             type: "danger",
                             error: true,
                             msg:
@@ -344,6 +345,7 @@ var self = module.exports = {
                         };
                     } else {
                         msg = {
+                            success:true,
                             type: "success",
                             msg:
                                 " Notes enregistrées  avec succès.",
@@ -618,8 +620,9 @@ var self = module.exports = {
     },
     //GET STUDENT NOTE BY COURSE
     getMoyenneGleForYear: async function (studentId,aneaca,nbperiodGle) {
+        let sql="";
         let promise = new Promise((resolve, reject) => {
-            let sql = "SELECT cours, SUM(note)/"+nbperiodGle+" noteGle,sur FROM `tb_notes` WHERE etudiant=? AND aneaca=? GROUP BY cours ORDER BY cours";
+            sql = "SELECT cours, SUM(note)/"+nbperiodGle+" noteGle,sur FROM tb_notes n,tb_cours_par_classe c WHERE n.cours=c.id_cours AND etudiant=? AND aneaca=? GROUP BY cours ORDER BY c.position";
             con.query(sql, [studentId, aneaca], function (err, rows) {
                 if (err) {
                     throw err;
@@ -629,7 +632,7 @@ var self = module.exports = {
             });
         });
         data = await promise;
-        //console.log("DATA : ",data);
+        console.log("DATA : ",studentId,aneaca,nbperiodGle,sql);
         //CALCUL MOYENNE GENERALE
         let Notes=[];
         let Total=helper.SumArrayObjectByProperties(data,"noteGle").toFixed(2);
@@ -779,9 +782,12 @@ var self = module.exports = {
                 } else {
                     console.log("ROWS : ",rows);
                     let etape='Etape 1';
-                    if(rows[0].hasOwnProperty('periode')){
+                    if(rows.length>0){
+                        if(rows[0].hasOwnProperty('periode')){
                          etape=rows[0].periode;
+                        }
                     }
+                    
                     resolve( etape);
                 }
             });
