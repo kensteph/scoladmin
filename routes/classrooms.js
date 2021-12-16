@@ -54,6 +54,7 @@ router.get('/classrooms-list', auth, async (req, res) => {
 router.get('/examrooms-list', auth, async (req, res) => {
     let academicYearObj = helper.getAcademicYear();
     // console.log("ACADEMIC YEAR OBJ : ", academicYearObj);
+    let aneacaList = await dbController.getAcademicYear();
     let yearSelected =academicYearObj.Previous; //CURRENT YEAR
     let examRooms = await dbController.listOfExamrooms();
     let studentList = await dbStudentController.listOfStudent("All", yearSelected,1);
@@ -61,7 +62,7 @@ router.get('/examrooms-list', auth, async (req, res) => {
     let nbExamRooms = examRooms.length;
     let nbStudentByRoom = Math.ceil(nbStudents/nbExamRooms);
     let splitArray =  helper.splitArray(studentList,nbExamRooms);
-    let pageTitle = "Salles d'examen";
+    let pageTitle = "Salles d'examen "+yearSelected;
 
      let counts=[];
      for(i=0;i<examRooms.length;i++){
@@ -80,6 +81,7 @@ router.get('/examrooms-list', auth, async (req, res) => {
     params = {
         pageTitle: pageTitle,
         examRooms,
+        aneacaList,
         studentList,
         subList:splitArray,
         counts,
@@ -92,8 +94,8 @@ router.get('/examrooms-list', auth, async (req, res) => {
 router.post('/examrooms-list', auth, async (req, res) => {
    // console.log(req.body);
     let Criteria = req.body.Criteria;
-    let academicYearObj = helper.getAcademicYear();
-    let yearSelected =academicYearObj.Previous; //CURRENT YEAR
+    let aneacaList = await dbController.getAcademicYear();
+    let yearSelected =req.body.AneAca;
     let examRooms = await dbController.listOfExamrooms();
     let studentList = await dbStudentController.listOfStudent("All", yearSelected,1);
     let nbExamRooms = examRooms.length;
@@ -107,7 +109,7 @@ router.post('/examrooms-list', auth, async (req, res) => {
     // helper.shuffleArray(array);
     // console.log(array);
     let splitArray =  helper.splitArray(studentList,nbExamRooms);
-    let pageTitle = "Salles d'examen";
+    let pageTitle = "Salles d'examen "+yearSelected;
     
     
      let counts=[];
@@ -131,6 +133,7 @@ router.post('/examrooms-list', auth, async (req, res) => {
         examRooms,
         studentList,
         subList:splitArray,
+        aneacaList,
         counts,
         UserData: req.session.UserData,
         yearSelected: yearSelected,

@@ -225,7 +225,7 @@ let self = module.exports = {
         var Day = today.getDate();
         var Month = today.getMonth() + 1;
         var Year = today.getFullYear();
-        if(Month==10 && Month<=12){
+       if(Month>9 && Month<=12){
             Year=Year+1;
             console.log("ANEACA YEAR : ",Year);
         }
@@ -383,6 +383,19 @@ let self = module.exports = {
         return symbole + " " + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
 
+     //Format number Ex: 23000,77867 ==> 23000,77
+  formatNumberWithoutRound(number){
+    //Comvert the number to string
+    let nb_to_str = number.toString();
+    //Split the string in 2 parts
+    let parts = nb_to_str.split(".");
+    console.log("Parts : ",parts);
+    let entire_part=parts[0];
+    let dec_part= parts.length>1 ? "."+parts[1].substring(0, 2) : "";
+    let final_number = entire_part+dec_part;
+    console.log("Given Number : ",number,"Formated Number : ",final_number);
+    return final_number;
+  },
     //Formater un nombre (2,500.25)
     ageFormat(num, symbole) {
         return symbole + " " + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');

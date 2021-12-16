@@ -260,8 +260,8 @@ var self = module.exports = {
         let promise = new Promise((resolve, reject) => {
             let sql="";
             let values=[];
-            sql = "SELECT DISTINCT(cours),id_cours,libelle,code,sur coefficient,position FROM tb_notes as grade ,tb_cours as c , tb_cours_par_classe as cpc WHERE c.id=grade.cours AND cpc.id_cours=grade.cours AND grade.niveau=? AND aneaca=? ORDER BY position";
-            values= [classRoom,aneAca];
+            sql = "SELECT DISTINCT(cours),id_cours,libelle,code,sur coefficient,position FROM tb_notes as grade ,tb_cours as c , tb_cours_par_classe as cpc WHERE c.id=grade.cours AND cpc.id_cours=grade.cours AND grade.niveau=? AND cpc.salle_classe=? AND aneaca=? ORDER BY position";
+            values= [classRoom,classRoom,aneAca];
            
             console.log(sql);
             con.query(sql,values, function (err, rows) {

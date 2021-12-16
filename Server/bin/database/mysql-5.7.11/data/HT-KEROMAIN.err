@@ -7815,3 +7815,579 @@ Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
 2021-10-22T16:41:07.556320Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-10-22T17:50:10.574363Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
 2021-10-22T17:50:15.604150Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-10-24T11:59:55.439664Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-10-24T11:59:55.439664Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-10-24T11:59:55.439664Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-10-24T11:59:55.439664Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-10-24T11:59:55.439664Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 19228 ...
+2021-10-24T11:59:55.477417Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-10-24T11:59:55.477417Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-10-24T11:59:55.477417Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-10-24T11:59:55.477417Z 0 [Note] InnoDB: Uses event mutexes
+2021-10-24T11:59:55.477417Z 0 [Note] InnoDB: Memory barrier is not used
+2021-10-24T11:59:55.477417Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-10-24T11:59:55.493042Z 0 [Note] InnoDB: Number of pools: 1
+2021-10-24T11:59:55.493042Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-10-24T11:59:55.529806Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-10-24T11:59:55.545426Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-10-24T11:59:55.593327Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-10-24T11:59:55.609007Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 218751891
+2021-10-24T11:59:55.609007Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218751900
+2021-10-24T11:59:55.609007Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218751900
+2021-10-24T11:59:55.609007Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-10-24T11:59:55.609007Z 0 [Note] InnoDB: Starting crash recovery.
+2021-10-24T11:59:56.043978Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-10-24T11:59:56.043978Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-10-24T11:59:56.043978Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-10-24T11:59:56.108777Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-10-24T11:59:56.115782Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-10-24T11:59:56.115782Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-10-24T11:59:56.115782Z 0 [Note] InnoDB: Waiting for purge to start
+2021-10-24T11:59:56.178013Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218751900
+2021-10-24T11:59:56.178013Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-10-24T11:59:56.178013Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-10-24T11:59:56.200532Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-10-24T11:59:56.200532Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-10-24T11:59:56.200532Z 0 [Note] IPv6 is available.
+2021-10-24T11:59:56.200532Z 0 [Note]   - '::' resolves to '::';
+2021-10-24T11:59:56.200532Z 0 [Note] Server socket created on IP: '::'.
+2021-10-24T11:59:56.214838Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211024  7:59:56
+2021-10-24T11:59:56.335219Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-10-24T11:59:56.336215Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-10-24T12:54:35.039244Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-10-24T12:54:40.067265Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-10-24T13:06:20.574840Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-10-24T13:06:20.574840Z 0 [Note] Giving 0 client threads a chance to die gracefully
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down slave threads
+2021-10-24T13:06:20.584649Z 0 [Note] Forcefully disconnecting 0 remaining clients
+2021-10-24T13:06:20.584649Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-10-24T13:06:20.584649Z 0 [Note] Binlog end
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'ngram'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'partition'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-10-24T13:06:20.584649Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-10-24T13:06:20.594728Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-10-24T13:06:20.601640Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-10-24T13:06:20.604647Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-10-24T13:06:20.604725Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-10-24T13:06:20.604725Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-10-24T13:06:20.604725Z 0 [Note] InnoDB: Starting shutdown...
+2021-10-24T13:06:20.714695Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-10-24T13:06:20.724607Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 211024  9:06:20
+2021-10-24T13:06:22.019623Z 0 [Note] InnoDB: Shutdown completed; log sequence number 218751928
+2021-10-24T13:06:22.019623Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-10-24T13:06:22.019623Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-10-24T13:06:22.019623Z 0 [Note] Shutting down plugin 'CSV'
+2021-10-24T13:06:22.035239Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-10-24T13:06:22.035239Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-10-24T13:06:22.035239Z 0 [Note] Shutting down plugin 'binlog'
+2021-10-24T13:06:22.035239Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-10-29T01:27:50.504856Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-10-29T01:27:50.506124Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-10-29T01:27:50.506124Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-10-29T01:27:50.506124Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-10-29T01:27:50.507468Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 12000 ...
+2021-10-29T01:27:50.560039Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-10-29T01:27:50.565303Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-10-29T01:27:50.574643Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-10-29T01:27:50.576786Z 0 [Note] InnoDB: Uses event mutexes
+2021-10-29T01:27:50.576786Z 0 [Note] InnoDB: Memory barrier is not used
+2021-10-29T01:27:50.577786Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-10-29T01:27:50.584368Z 0 [Note] InnoDB: Number of pools: 1
+2021-10-29T01:27:50.587304Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-10-29T01:27:50.703826Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-10-29T01:27:50.721206Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-10-29T01:27:50.801630Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-10-29T01:27:51.228704Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-10-29T01:27:51.229770Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-10-29T01:27:51.310610Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-10-29T01:27:51.325938Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-10-29T01:27:51.329917Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-10-29T01:27:51.332884Z 0 [Note] InnoDB: Waiting for purge to start
+2021-10-29T01:27:51.385328Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218751928
+2021-10-29T01:27:51.389037Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-10-29T01:27:51.389037Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-10-29T01:27:51.436811Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-10-29T01:27:51.445687Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-10-29T01:27:51.449676Z 0 [Note] IPv6 is available.
+2021-10-29T01:27:51.450676Z 0 [Note]   - '::' resolves to '::';
+2021-10-29T01:27:51.452807Z 0 [Note] Server socket created on IP: '::'.
+2021-10-29T01:27:51.476943Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211028 21:27:51
+2021-10-29T01:27:51.772821Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-10-29T01:27:51.774028Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-10-29T17:07:42.748442Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 55372856ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-10-29T17:08:21.596264Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 35789ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-10-29T18:11:12.407917Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 43500ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-10-29T18:19:43.135048Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-10-29T18:19:48.173497Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-11-05T04:38:29.474565Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-11-05T04:38:29.475845Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-11-05T04:38:29.475845Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-11-05T04:38:29.475845Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-11-05T04:38:29.477558Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 20312 ...
+2021-11-05T04:38:29.547449Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-11-05T04:38:29.552428Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-11-05T04:38:29.565393Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-11-05T04:38:29.567449Z 0 [Note] InnoDB: Uses event mutexes
+2021-11-05T04:38:29.569383Z 0 [Note] InnoDB: Memory barrier is not used
+2021-11-05T04:38:29.571378Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-11-05T04:38:29.579358Z 0 [Note] InnoDB: Number of pools: 1
+2021-11-05T04:38:29.583352Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-11-05T04:38:29.694164Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-11-05T04:38:29.714227Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-11-05T04:38:29.803496Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-11-05T04:38:29.809234Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 218751947
+2021-11-05T04:38:29.811719Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218751956
+2021-11-05T04:38:29.814221Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218751956
+2021-11-05T04:38:29.816285Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-11-05T04:38:29.818210Z 0 [Note] InnoDB: Starting crash recovery.
+2021-11-05T04:38:30.638326Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-11-05T04:38:30.640586Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-11-05T04:38:30.643312Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-11-05T04:38:30.964950Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-11-05T04:38:30.976888Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-11-05T04:38:30.978881Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-11-05T04:38:30.981874Z 0 [Note] InnoDB: Waiting for purge to start
+2021-11-05T04:38:31.045957Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218751956
+2021-11-05T04:38:31.047956Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-11-05T04:38:31.049864Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-11-05T04:38:31.094641Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-11-05T04:38:31.100628Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-11-05T04:38:31.102620Z 0 [Note] IPv6 is available.
+2021-11-05T04:38:31.104616Z 0 [Note]   - '::' resolves to '::';
+2021-11-05T04:38:31.105612Z 0 [Note] Server socket created on IP: '::'.
+2021-11-05T04:38:31.109603Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211105  0:38:31
+2021-11-05T04:38:31.432837Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-11-05T04:38:31.436504Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-11-05T04:40:35.298529Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-11-05T04:40:35.302482Z 0 [Note] Giving 1 client threads a chance to die gracefully
+2021-11-05T04:40:35.304445Z 0 [Note] Shutting down slave threads
+2021-11-05T04:40:37.312598Z 0 [Note] Forcefully disconnecting 1 remaining clients
+2021-11-05T04:40:37.315583Z 0 [Warning] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Forcing close of thread 2  user: 'root'
+
+2021-11-05T04:40:37.322564Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-11-05T04:40:37.326563Z 0 [Note] Binlog end
+2021-11-05T04:40:37.400357Z 0 [Note] Shutting down plugin 'ngram'
+2021-11-05T04:40:37.402356Z 0 [Note] Shutting down plugin 'partition'
+2021-11-05T04:40:37.404351Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-11-05T04:40:37.406390Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-11-05T04:40:37.407377Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-11-05T04:40:37.409374Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-11-05T04:40:37.413462Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-11-05T04:40:37.414467Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-11-05T04:40:37.416460Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-11-05T04:40:37.417457Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-11-05T04:40:37.419452Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-11-05T04:40:37.421573Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-11-05T04:40:37.424439Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-11-05T04:40:37.426434Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-11-05T04:40:37.428429Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-11-05T04:40:37.430422Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-11-05T04:40:37.432417Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-11-05T04:40:37.434412Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-11-05T04:40:37.435409Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-11-05T04:40:37.437404Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-11-05T04:40:37.438401Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-11-05T04:40:37.440396Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-11-05T04:40:37.442391Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-11-05T04:40:37.443388Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-11-05T04:40:37.445382Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-11-05T04:40:37.447377Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-11-05T04:40:37.448374Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-11-05T04:40:37.450369Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-11-05T04:40:37.451366Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-11-05T04:40:37.453362Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-11-05T04:40:37.455356Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-11-05T04:40:37.456353Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-11-05T04:40:37.457350Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-11-05T04:40:37.459345Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-11-05T04:40:37.460342Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-11-05T04:40:37.461340Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-11-05T04:40:37.462337Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-11-05T04:40:37.463334Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-11-05T04:40:37.465383Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-11-05T04:40:37.466384Z 0 [Note] InnoDB: Starting shutdown...
+2021-11-05T04:40:37.578822Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-11-05T04:40:37.594777Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 211105  0:40:37
+2021-11-05T04:40:38.721434Z 0 [Note] InnoDB: Shutdown completed; log sequence number 218751984
+2021-11-05T04:40:38.726394Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-11-05T04:40:38.729425Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-11-05T04:40:38.732381Z 0 [Note] Shutting down plugin 'CSV'
+2021-11-05T04:40:38.736238Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-11-05T04:40:38.738366Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-11-05T04:40:38.742351Z 0 [Note] Shutting down plugin 'binlog'
+2021-11-05T04:40:38.750416Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-11-11T02:10:51.048304Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-11-11T02:10:51.049397Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-11-11T02:10:51.049397Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-11-11T02:10:51.049397Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-11-11T02:10:51.052423Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 10572 ...
+2021-11-11T02:10:51.144664Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-11-11T02:10:51.150478Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-11-11T02:10:51.165463Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-11-11T02:10:51.168478Z 0 [Note] InnoDB: Uses event mutexes
+2021-11-11T02:10:51.170478Z 0 [Note] InnoDB: Memory barrier is not used
+2021-11-11T02:10:51.172467Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-11-11T02:10:51.183290Z 0 [Note] InnoDB: Number of pools: 1
+2021-11-11T02:10:51.189535Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-11-11T02:10:51.296637Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-11-11T02:10:51.302434Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-11-11T02:10:51.419175Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-11-11T02:10:52.144251Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-11-11T02:10:52.146183Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-11-11T02:10:52.219883Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-11-11T02:10:52.237031Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-11-11T02:10:52.241165Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-11-11T02:10:52.244631Z 0 [Note] InnoDB: Waiting for purge to start
+2021-11-11T02:10:52.303444Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218751984
+2021-11-11T02:10:52.307392Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-11-11T02:10:52.308391Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-11-11T02:10:52.384658Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-11-11T02:10:52.395387Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-11-11T02:10:52.399849Z 0 [Note] IPv6 is available.
+2021-11-11T02:10:52.402836Z 0 [Note]   - '::' resolves to '::';
+2021-11-11T02:10:52.406209Z 0 [Note] Server socket created on IP: '::'.
+2021-11-11T02:10:52.479407Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211110 21:10:52
+2021-11-11T02:10:52.868660Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-11-11T02:10:52.871030Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-11-11T02:12:19.582856Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-11-11T02:12:19.586186Z 0 [Note] Giving 1 client threads a chance to die gracefully
+2021-11-11T02:12:19.587545Z 0 [Note] Shutting down slave threads
+2021-11-11T02:12:21.589994Z 0 [Note] Forcefully disconnecting 1 remaining clients
+2021-11-11T02:12:21.591987Z 0 [Warning] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Forcing close of thread 2  user: 'root'
+
+2021-11-11T02:12:21.597926Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-11-11T02:12:21.599918Z 0 [Note] Binlog end
+2021-11-11T02:12:21.607900Z 0 [Note] Shutting down plugin 'ngram'
+2021-11-11T02:12:21.609890Z 0 [Note] Shutting down plugin 'partition'
+2021-11-11T02:12:21.611885Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-11-11T02:12:21.614919Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-11-11T02:12:21.616871Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-11-11T02:12:21.621035Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-11-11T02:12:21.622857Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-11-11T02:12:21.625058Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-11-11T02:12:21.627847Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-11-11T02:12:21.629891Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-11-11T02:12:21.631883Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-11-11T02:12:21.633836Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-11-11T02:12:21.635828Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-11-11T02:12:21.636825Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-11-11T02:12:21.638867Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-11-11T02:12:21.640813Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-11-11T02:12:21.642849Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-11-11T02:12:21.644845Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-11-11T02:12:21.646791Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-11-11T02:12:21.648792Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-11-11T02:12:21.650788Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-11-11T02:12:21.652776Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-11-11T02:12:21.654770Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-11-11T02:12:21.655767Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-11-11T02:12:21.657762Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-11-11T02:12:21.659757Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-11-11T02:12:21.661759Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-11-11T02:12:21.663753Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-11-11T02:12:21.665748Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-11-11T02:12:21.667736Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-11-11T02:12:21.669737Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-11-11T02:12:21.671729Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-11-11T02:12:21.673724Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-11-11T02:12:21.674721Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-11-11T02:12:21.676716Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-11-11T02:12:21.678711Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-11-11T02:12:21.680705Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-11-11T02:12:21.681702Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-11-11T02:12:21.683698Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-11-11T02:12:21.686685Z 0 [Note] InnoDB: Starting shutdown...
+2021-11-11T02:12:21.793964Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-11-11T02:12:21.803339Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 211110 21:12:21
+2021-11-11T02:12:22.723523Z 0 [Note] InnoDB: Shutdown completed; log sequence number 218752028
+2021-11-11T02:12:22.728052Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-11-11T02:12:22.730236Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-11-11T02:12:22.732040Z 0 [Note] Shutting down plugin 'CSV'
+2021-11-11T02:12:22.733038Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-11-11T02:12:22.734037Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-11-11T02:12:22.736031Z 0 [Note] Shutting down plugin 'binlog'
+2021-11-11T02:12:22.739023Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-12-06T17:22:30.212877Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-12-06T17:22:30.213878Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-12-06T17:22:30.213878Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-12-06T17:22:30.213878Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-12-06T17:22:30.214872Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 3496 ...
+2021-12-06T17:22:30.250782Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-12-06T17:22:30.252770Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-12-06T17:22:30.259750Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-12-06T17:22:30.260747Z 0 [Note] InnoDB: Uses event mutexes
+2021-12-06T17:22:30.261746Z 0 [Note] InnoDB: Memory barrier is not used
+2021-12-06T17:22:30.262743Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-12-06T17:22:30.266731Z 0 [Note] InnoDB: Number of pools: 1
+2021-12-06T17:22:30.268727Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-12-06T17:22:30.314605Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-12-06T17:22:30.322614Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-12-06T17:22:30.367462Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-12-06T17:22:30.656688Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-12-06T17:22:30.658715Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-12-06T17:22:30.743459Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-12-06T17:22:30.750442Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-12-06T17:22:30.751435Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-12-06T17:22:30.752432Z 0 [Note] InnoDB: Waiting for purge to start
+2021-12-06T17:22:30.810304Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218752028
+2021-12-06T17:22:30.812276Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-12-06T17:22:30.812276Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-12-06T17:22:30.836209Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-12-06T17:22:30.839202Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-12-06T17:22:30.840198Z 0 [Note] IPv6 is available.
+2021-12-06T17:22:30.840198Z 0 [Note]   - '::' resolves to '::';
+2021-12-06T17:22:30.841195Z 0 [Note] Server socket created on IP: '::'.
+2021-12-06T17:22:30.867125Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211206 12:22:30
+2021-12-06T17:22:31.023706Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-12-06T17:22:31.024704Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-12-06T20:04:56.022704Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 917839ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-12-06T20:06:41.136746Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-06T20:06:46.168285Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-06T20:06:46.678955Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Normal shutdown
+
+2021-12-06T20:06:46.680948Z 0 [Note] Giving 0 client threads a chance to die gracefully
+2021-12-06T20:06:46.680948Z 0 [Note] Shutting down slave threads
+2021-12-06T20:06:46.681946Z 0 [Note] Forcefully disconnecting 0 remaining clients
+2021-12-06T20:06:46.682943Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+2021-12-06T20:06:46.683945Z 0 [Note] Binlog end
+2021-12-06T20:06:46.688927Z 0 [Note] Shutting down plugin 'ngram'
+2021-12-06T20:06:46.689927Z 0 [Note] Shutting down plugin 'partition'
+2021-12-06T20:06:46.690924Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+2021-12-06T20:06:46.690924Z 0 [Note] Shutting down plugin 'ARCHIVE'
+2021-12-06T20:06:46.691933Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+2021-12-06T20:06:46.692920Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+2021-12-06T20:06:46.692920Z 0 [Note] Shutting down plugin 'MyISAM'
+2021-12-06T20:06:46.693916Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+2021-12-06T20:06:46.694914Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+2021-12-06T20:06:46.694914Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+2021-12-06T20:06:46.695940Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+2021-12-06T20:06:46.695940Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+2021-12-06T20:06:46.696940Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+2021-12-06T20:06:46.696940Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+2021-12-06T20:06:46.696940Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+2021-12-06T20:06:46.697934Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+2021-12-06T20:06:46.697934Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+2021-12-06T20:06:46.698932Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+2021-12-06T20:06:46.698932Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+2021-12-06T20:06:46.699932Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+2021-12-06T20:06:46.699932Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+2021-12-06T20:06:46.700926Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+2021-12-06T20:06:46.700926Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+2021-12-06T20:06:46.701924Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+2021-12-06T20:06:46.701924Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+2021-12-06T20:06:46.701924Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+2021-12-06T20:06:46.702915Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+2021-12-06T20:06:46.702915Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+2021-12-06T20:06:46.703912Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+2021-12-06T20:06:46.703912Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+2021-12-06T20:06:46.704910Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+2021-12-06T20:06:46.704910Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+2021-12-06T20:06:46.705907Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+2021-12-06T20:06:46.705907Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+2021-12-06T20:06:46.706881Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+2021-12-06T20:06:46.706881Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+2021-12-06T20:06:46.706881Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+2021-12-06T20:06:46.707903Z 0 [Note] Shutting down plugin 'InnoDB'
+2021-12-06T20:06:46.708874Z 0 [Note] InnoDB: FTS optimize thread exiting.
+2021-12-06T20:06:46.708874Z 0 [Note] InnoDB: Starting shutdown...
+2021-12-06T20:06:46.815590Z 0 [Note] InnoDB: Dumping buffer pool(s) to C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-12-06T20:06:46.819578Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 211206 15:06:46
+2021-12-06T20:06:47.717212Z 0 [Note] InnoDB: Shutdown completed; log sequence number 218752056
+2021-12-06T20:06:47.720233Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-12-06T20:06:47.720233Z 0 [Note] Shutting down plugin 'MEMORY'
+2021-12-06T20:06:47.721225Z 0 [Note] Shutting down plugin 'CSV'
+2021-12-06T20:06:47.721225Z 0 [Note] Shutting down plugin 'sha256_password'
+2021-12-06T20:06:47.722222Z 0 [Note] Shutting down plugin 'mysql_native_password'
+2021-12-06T20:06:47.722222Z 0 [Note] Shutting down plugin 'binlog'
+2021-12-06T20:06:47.725189Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: Shutdown complete
+
+2021-12-07T14:30:26.972440Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-12-07T14:30:26.973541Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-12-07T14:30:26.973541Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-12-07T14:30:26.973541Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-12-07T14:30:26.974577Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 15660 ...
+2021-12-07T14:30:27.011913Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-12-07T14:30:27.013908Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-12-07T14:30:27.023980Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-12-07T14:30:27.023980Z 0 [Note] InnoDB: Uses event mutexes
+2021-12-07T14:30:27.024978Z 0 [Note] InnoDB: Memory barrier is not used
+2021-12-07T14:30:27.024978Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-12-07T14:30:27.031949Z 0 [Note] InnoDB: Number of pools: 1
+2021-12-07T14:30:27.034320Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-12-07T14:30:27.089175Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-12-07T14:30:27.096190Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-12-07T14:30:27.165483Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-12-07T14:30:27.459091Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-12-07T14:30:27.460087Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-12-07T14:30:27.516965Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-12-07T14:30:27.521922Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-12-07T14:30:27.522919Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-12-07T14:30:27.523917Z 0 [Note] InnoDB: Waiting for purge to start
+2021-12-07T14:30:27.588774Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218752056
+2021-12-07T14:30:27.589764Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-12-07T14:30:27.590737Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-12-07T14:30:27.610691Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-12-07T14:30:27.613676Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-12-07T14:30:27.614674Z 0 [Note] IPv6 is available.
+2021-12-07T14:30:27.615670Z 0 [Note]   - '::' resolves to '::';
+2021-12-07T14:30:27.615670Z 0 [Note] Server socket created on IP: '::'.
+2021-12-07T14:30:27.639606Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211207  9:30:27
+2021-12-07T14:30:27.759287Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-12-07T14:30:27.759287Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-12-07T14:40:07.348193Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:41:04.878094Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:44:48.115385Z 4 [Note] Aborted connection 4 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:44:59.692495Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:45:04.728024Z 6 [Note] Aborted connection 6 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:11.058877Z 7 [Note] Aborted connection 7 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:18.242661Z 8 [Note] Aborted connection 8 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:21.010266Z 9 [Note] Aborted connection 9 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:25.947573Z 10 [Note] Aborted connection 10 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:43.203356Z 11 [Note] Aborted connection 11 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:49:57.244795Z 12 [Note] Aborted connection 12 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:50:38.144315Z 13 [Note] Aborted connection 13 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:50:48.244636Z 14 [Note] Aborted connection 14 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:50:50.217359Z 15 [Note] Aborted connection 15 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:50:51.676067Z 16 [Note] Aborted connection 16 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:52:22.622266Z 17 [Note] Aborted connection 17 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:52:23.682430Z 18 [Note] Aborted connection 18 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:53:56.883578Z 19 [Note] Aborted connection 19 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:54:02.720038Z 20 [Note] Aborted connection 20 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T14:55:48.258683Z 21 [Note] Aborted connection 21 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:00:47.892827Z 22 [Note] Aborted connection 22 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:00:49.728916Z 25 [Note] Aborted connection 25 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:00:50.992536Z 26 [Note] Aborted connection 26 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:01:00.665660Z 27 [Note] Aborted connection 27 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:01:29.003325Z 28 [Note] Aborted connection 28 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:02:02.451774Z 29 [Note] Aborted connection 29 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T15:05:21.784871Z 30 [Note] Aborted connection 30 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-07T19:56:38.295025Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 263416ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-12-08T18:39:05.904559Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-12-08T18:39:05.905582Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-12-08T18:39:05.905582Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-12-08T18:39:05.905582Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-12-08T18:39:05.907551Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 5736 ...
+2021-12-08T18:39:05.947444Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-12-08T18:39:05.949440Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-12-08T18:39:05.956421Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-12-08T18:39:05.957418Z 0 [Note] InnoDB: Uses event mutexes
+2021-12-08T18:39:05.957418Z 0 [Note] InnoDB: Memory barrier is not used
+2021-12-08T18:39:05.958416Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-12-08T18:39:05.963402Z 0 [Note] InnoDB: Number of pools: 1
+2021-12-08T18:39:05.965396Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-12-08T18:39:06.003307Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-12-08T18:39:06.010277Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-12-08T18:39:06.067125Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-12-08T18:39:06.071115Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 218752075
+2021-12-08T18:39:06.072117Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218752084
+2021-12-08T18:39:06.073109Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218752084
+2021-12-08T18:39:06.075113Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-12-08T18:39:06.076102Z 0 [Note] InnoDB: Starting crash recovery.
+2021-12-08T18:39:06.552825Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-12-08T18:39:06.553822Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-12-08T18:39:06.555818Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-12-08T18:39:06.616655Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-12-08T18:39:06.621642Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-12-08T18:39:06.622639Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-12-08T18:39:06.624634Z 0 [Note] InnoDB: Waiting for purge to start
+2021-12-08T18:39:06.684474Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218752084
+2021-12-08T18:39:06.685470Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-12-08T18:39:06.686469Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-12-08T18:39:06.714394Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-12-08T18:39:06.718381Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-12-08T18:39:06.719380Z 0 [Note] IPv6 is available.
+2021-12-08T18:39:06.720378Z 0 [Note]   - '::' resolves to '::';
+2021-12-08T18:39:06.721375Z 0 [Note] Server socket created on IP: '::'.
+2021-12-08T18:39:06.739327Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211208 13:39:06
+2021-12-08T18:39:06.903885Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-12-08T18:39:06.904884Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-12-08T19:55:25.480688Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 397252ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+2021-12-08T21:57:57.043483Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-08T21:58:02.071706Z 3 [Note] Aborted connection 3 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-14T13:11:48.636365Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2021-12-14T13:11:48.636365Z 0 [Warning] 'NO_ZERO_DATE', 'NO_ZERO_IN_DATE' and 'ERROR_FOR_DIVISION_BY_ZERO' sql modes should be used with strict mode. They will be merged with strict mode in a future release.
+2021-12-14T13:11:48.636365Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2021-12-14T13:11:48.636365Z 0 [Warning] Insecure configuration for --secure-file-priv: Current value does not restrict location of generated files. Consider setting it to a valid, non-empty path.
+2021-12-14T13:11:48.639356Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe (mysqld 5.7.11) starting as process 3064 ...
+2021-12-14T13:11:48.702012Z 0 [ERROR] Can't open shared library 'C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\lib\plugin\keyring_file.dll' (errno: 126 The specified module could not be found.)
+2021-12-14T13:11:48.706174Z 0 [ERROR] Couldn't load plugin named 'keyring_file' with soname 'keyring_file.dll'.
+2021-12-14T13:11:48.717151Z 0 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2021-12-14T13:11:48.718924Z 0 [Note] InnoDB: Uses event mutexes
+2021-12-14T13:11:48.720137Z 0 [Note] InnoDB: Memory barrier is not used
+2021-12-14T13:11:48.721168Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2021-12-14T13:11:48.729455Z 0 [Note] InnoDB: Number of pools: 1
+2021-12-14T13:11:48.733102Z 0 [Note] InnoDB: Not using CPU crc32 instructions
+2021-12-14T13:11:48.826856Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+2021-12-14T13:11:48.841811Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2021-12-14T13:11:48.932133Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2021-12-14T13:11:48.939133Z 0 [Note] InnoDB: Log scan progressed past the checkpoint lsn 218752103
+2021-12-14T13:11:48.940904Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218752112
+2021-12-14T13:11:48.944099Z 0 [Note] InnoDB: Doing recovery: scanned up to log sequence number 218752112
+2021-12-14T13:11:48.945871Z 0 [Note] InnoDB: Database was not shutdown normally!
+2021-12-14T13:11:48.947383Z 0 [Note] InnoDB: Starting crash recovery.
+2021-12-14T13:11:49.614553Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+2021-12-14T13:11:49.615386Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2021-12-14T13:11:49.617610Z 0 [Note] InnoDB: Setting file '.\ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2021-12-14T13:11:49.684235Z 0 [Note] InnoDB: File '.\ibtmp1' size is now 12 MB.
+2021-12-14T13:11:49.690185Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2021-12-14T13:11:49.691182Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2021-12-14T13:11:49.693204Z 0 [Note] InnoDB: Waiting for purge to start
+2021-12-14T13:11:49.746359Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 218752112
+2021-12-14T13:11:49.747450Z 0 [Note] InnoDB: Loading buffer pool(s) from C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\data\ib_buffer_pool
+2021-12-14T13:11:49.748043Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2021-12-14T13:11:49.772968Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2021-12-14T13:11:49.776954Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2021-12-14T13:11:49.777952Z 0 [Note] IPv6 is available.
+2021-12-14T13:11:49.777952Z 0 [Note]   - '::' resolves to '::';
+2021-12-14T13:11:49.778948Z 0 [Note] Server socket created on IP: '::'.
+2021-12-14T13:11:49.795902Z 0 [Note] InnoDB: Buffer pool(s) load completed at 211214  8:11:49
+2021-12-14T13:11:49.979984Z 0 [Note] Event Scheduler: Loaded 0 events
+2021-12-14T13:11:49.980979Z 0 [Note] C:\Users\keromain\Downloads\MyPersonalWorkSpace\WEB\scoladmin\Server\bin\database\mysql-5.7.11\bin\mysqld.exe: ready for connections.
+Version: '5.7.11'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2021-12-14T14:46:32.894827Z 2 [Note] Aborted connection 2 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-14T14:46:37.931350Z 5 [Note] Aborted connection 5 to db: 'scoladmin_deploy' user: 'root' host: 'localhost' (Got an error reading communication packets)
+2021-12-14T18:31:41.631092Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 388931ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
